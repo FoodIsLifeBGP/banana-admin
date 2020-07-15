@@ -1,0 +1,15 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+
+.buttonContainer{
+  width: 150px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--BANANA_YELLOW);
+  color: var(--NAVY_BLUE);
+  border-radius: 8px;
+  font-family: 'Open Sans', sans-serif;
+}

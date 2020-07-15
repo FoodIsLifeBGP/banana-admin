@@ -1,68 +1,169 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Banana-admin
 
-## Available Scripts
+Banana App is an open-source, not-for-profit project of The Be Good Foundation. We can reduce hunger by simplifying food donation. We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of. Users will be able to find active donations, view the business's food rating, and claim a portion. This project is the admin portal where applictions of donors and clients to be approved.
 
-In the project directory, you can run:
+## Installation
 
-### `yarn start`
+First ensure you have [NodeJS](https://nodejs.org/en/) environment (recommended version is 12.18.2 LTS, which works well with our mobile app) on your computer, then run 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm start
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+to run admin portal.
 
-### `yarn test`
+## Commands
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Run project:
 
-### `yarn build`
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Build project
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```bash
+npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run storybook server
 
-### `yarn eject`
+```bash
+npm run storybook
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Development
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For UI component, we recommend to develop and debug in storybook, which is a library for developing UI components in isolation. Below is an example of building `Button` component via Storybook.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Build component skeleton
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+First, create an folder under `src/Components` called `Button`
 
-## Learn More
+```bash
+banana-admin $ cd src/Components 
+banana-admin/src/Components $ mkdir Button
+banana-admin/src/Components $ cd Button
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create `index.js` and `style.module.css`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`index.js`
 
-### Code Splitting
+``` javascript
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './style.module.css';
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+function Button(props) {
 
-### Analyzing the Bundle Size
+  return (
+    <div>
+       Btn
+    </div>
+  );
+}
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+export default Button;
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+`style.module.css` is an empty file currently. Here we use css module to avoid class name conflict when the project become large ([Ref](https://css-tricks.com/css-modules-part-1-need/)).
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
+In this end of this step, we already have a `<Button>` component that could be used somewhere else in this project.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Create Story.js
 
-### `yarn build` fails to minify
+Create `Button.stories.js`under `src/stories`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+`Button.stories.js`
+
+```javascript
+import React from 'react';
+import Button from '../Components/Button';
+
+export default {
+  title: 'Button',
+  component: Button,
+};
+
+export const presentation = () => <Button/>;
+
+```
+
+Now run
+
+`npm run storybook` to open storybook server, you should see `Button` at component list at left bar, and by clicking it you could see the component.
+
+![image-20200715000943318](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggrobpixauj31k20u0aci.jpg)
+
+### Adding style and props
+
+Now you can add some style and props constraint to the files under `Button`,  any modifications of files of `<Button>` component would be loaded into storybook in real time. Here is the files and preview after adding small details.
+
+`index.js`
+
+```javascript
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './style.module.css';
+
+function Button(props) {
+  const { text, style } = props;
+
+  return (
+    <div className={styles.buttonContainer} style={style}>
+      {text}
+    </div>
+  );
+}
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  style: PropTypes.object,
+};
+
+export default Button;
+
+```
+
+`style.module.css`
+
+```javascript
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+
+.buttonContainer{
+  width: 150px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--BANANA_YELLOW);
+  color: var(--NAVY_BLUE);
+  border-radius: 8px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+```
+
+`Button.stories.js`
+
+```javascript
+import React from 'react';
+import Button from '../Components/Button';
+
+export default {
+  title: 'Button',
+  component: Button,
+};
+
+export const presentation = () => <Button text="ButtonText" />;
+
+```
+
+![image-20200715001707871](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggrojcd7ixj31rd0u00v4.jpg)
+
