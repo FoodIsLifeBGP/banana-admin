@@ -7,7 +7,7 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 First ensure you have [NodeJS](https://nodejs.org/en/) environment (recommended version is 12.18.2 LTS, which works well with our mobile app) on your computer, then run 
 
 ```bash
-npm start
+npm install && npm start
 ```
 
 to run admin portal.
