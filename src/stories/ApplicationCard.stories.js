@@ -6,5 +6,17 @@ export default {
   component: ApplicationCard,
 };
 
-export const donor = () => <ApplicationCard type="donor" />;
-export const client = () => <ApplicationCard type="client" />;
+export const donor = () => (
+  <ApplicationCard
+    type="donor"
+    userCount={7}
+    approvedCount={6}
+  />
+);
+export const client = () => (
+  <ApplicationCard
+    type="client"
+    userCount={25}
+    approvedCount={15}
+  />
+);

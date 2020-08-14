@@ -1,4 +1,72 @@
-.container{
-  display: flex;
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
 
+.container{
+  width: 500px;
+  height: 244px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  position: relative;
+  box-sizing: border-box;
+
+  justify-content: center;
+  border-radius: 8px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container[type='client']{
+  background: var(--BANANA_YELLOW);
+  color: var(--NAVY_BLUE);
+}
+
+.container[type='donor']{
+  background: var(--NAVY_BLUE);
+  color: var(--BANANA_YELLOW);
+}
+
+.icon {
+  position: absolute;
+  height: 60px;
+  right: 24px;
+  top: 24px;
+}
+
+.body {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 82px;
+  align-items: center;
+  letter-spacing: 0.04em;
+}
+
+.footer {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+}
+
+.footerlabel {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  align-items: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.progressbar {
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+::-moz-progress-bar {
+  background-color: currentColor;
+}
+
+::-webkit-progress-value {
+  background-color: currentColor;
 }
