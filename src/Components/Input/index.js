@@ -10,7 +10,7 @@ import styles from './style.module.css';
 
 function Input(props) {
   // eslint-disable-next-line no-empty-pattern
-  const {iconName, id, name, placeholder, type} = props;
+  const {iconName, id, name, onChange, placeholder, type} = props;
   return (
     <div className={styles.container}>
       <CInputGroup>
@@ -24,6 +24,7 @@ function Input(props) {
           id={id}
           name={name}
           placeholder={placeholder}
+          onChange={onChange}
         ></CInput>
       </CInputGroup>
     </div>
