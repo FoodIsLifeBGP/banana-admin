@@ -8,6 +8,6 @@ export default {
 };
 
 export const presentation = () => {
-  // M.AutoInit();
+  M.AutoInit();
   return <Input iconName={"person"} placeholder={"Username"} />;
 }
