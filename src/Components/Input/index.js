@@ -14,7 +14,7 @@ function Input(props) {
   return (
     <Row>
       <Col l={8}>
-        <div className={`input-field ${styles.container}`}>
+        <div className={`input-field col ${styles.container}`}>
           <i className={`${styles.icon} material-icons prefix`}>{iconName}</i>
           <input id={id} name={name} onChange={onChange} placeholder={placeholder} type={type || "text"} />
         </div>
@@ -25,7 +25,11 @@ function Input(props) {
 
 Input.propTypes = {
   iconName: PropTypes.string,
-  placeholder: PropTypes.string
+  id: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  type: PropTypes.string
 };
 
 Input.defaultProps = {
