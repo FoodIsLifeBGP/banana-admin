@@ -1,0 +1,11 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+.container {
+  border: 2px solid #F0EEEE;
+  border-radius: 8px;
+}
+.icon {
+  border-right: 2px solid #F0EEEE;
+  height: $input-height;
+}
