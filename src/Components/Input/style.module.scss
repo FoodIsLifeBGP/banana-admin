@@ -7,4 +7,21 @@
 }
 .icon {
   border-right: 2px solid #F0EEEE;
+  margin-left: .5rem;
+  width: 2.5rem;
+  height: 100%;
+  top: 0;
+  padding: .75rem .5rem .5rem .25rem;
+}
+
+.pictured {
+  margin-left: 4rem !important;
+  width: calc(100% - 4rem) !important;
+  border-bottom: none !important;
+}
+
+.unpictured {
+  margin-left: 1rem !important;
+  width: calc(100% - 1rem) !important;
+  border-bottom: none !important;
 }

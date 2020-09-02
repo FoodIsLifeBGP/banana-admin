@@ -9,5 +9,10 @@ export default {
 
 export const presentation = () => {
   M.AutoInit();
-  return <Input iconName={"person"} placeholder={"Username"} />;
+  return (
+    <div>
+      <Input iconName={"person"} placeholder={"With Person Icon"} />
+      <Input iconName={null} placeholder={"With No Icon"} />
+    </div>
+  );
 }
