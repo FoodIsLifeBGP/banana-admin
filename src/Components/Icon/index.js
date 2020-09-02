@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import map from './map';
 
 // Renamed to avoid namespace conflict with materialize.Icon
-function AppIcon(props) {
+function Icon(props) {
   const { name, size } = props;
   const fileRef = map[name];
   if (fileRef) {
@@ -17,9 +17,9 @@ function AppIcon(props) {
   );
 }
 
-AppIcon.propTypes = {
+Icon.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
 };
 
-export default AppIcon;
+export default Icon;
