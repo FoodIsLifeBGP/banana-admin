@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Redirect} from 'react-router-dom';
 import {
   Col,
   Row
@@ -8,8 +9,36 @@ import Icon from '../../Components/Icon';
 import styles from './style.module.css';
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const body = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          donor: {
+            email: email, 
+            password: password}
+          })
+    }
+    fetch(`${process.env.BASE_URL}/admin_auth`, body)
+    .then(res => {
+      if(res.ok) {
+        res.json()
+        .then(json => { localStorage.setItem("userInfo", JSON.stringify(json)); })
+        .then(() => <Redirect to="/" />)
+      } else {
+        res.json()
+        .then(json => {alert(json.message)})
+      }
+    });
+  }
 
   return (
     <div className={styles.container}>
@@ -25,6 +54,25 @@ export default function LoginPage() {
                 <h1 className={styles.title}>BANANA PORTAL</h1>
               </Col>
             </Row>
+            <form onSubmit={onSubmit}>
+              <Input
+                id="email"
+                name="email"
+                iconName="person"
+                placeholder="Email"
+                onChange={setEmail}
+              />
+              <Input
+                id="password"
+                name="password"
+                iconName="lock"
+                placeholder="Password"
+                type="password"
+                onChange={setPassword}
+              />
+              {/* TODO: allow Input to return a Button object */}
+              <input type="submit">Submit</input>
+            </form>
           </Col>
         </Row>
       </div>
