@@ -3,6 +3,10 @@ export default class API {
     return `${process.env.REACT_APP_BASE_URL}/${endpoint}`;
   }
 
+  static userToken() {
+    return localStorage.getItem("userToken");
+  }
+
   static jsonPostBody(payload) {
     let body = {
       method: "POST",
@@ -12,7 +16,7 @@ export default class API {
       },
       body: JSON.stringify(payload)
     }
-    const userToken = localStorage.getItem("userToken");
+    const userToken = this.userToken();
     if(userToken) {
       body.headers["Authorization"] = `Bearer ${JSON.parse(userToken).jwt}`
     }
