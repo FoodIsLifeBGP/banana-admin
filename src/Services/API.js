@@ -26,10 +26,11 @@ export default class API {
   static jsonPost(endpoint, payload) {
     return fetch(this.path(endpoint), this.jsonPostBody(payload))
     .then(res => res.json())
+    .catch(message => {console.log(message)})
   }
 
   static storeJwt(token) {
-    if(token.donor && token.jwt) {
+    if(token && token.donor && token.jwt) {
       localStorage.setItem("userToken", JSON.stringify(token));
       return true;
     } else {
