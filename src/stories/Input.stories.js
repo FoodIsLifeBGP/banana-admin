@@ -1,4 +1,5 @@
 import React from 'react';
+import {Container} from 'reactstrap';
 import Input from '../Components/Input';
 
 export default {
@@ -6,4 +7,9 @@ export default {
   component: Input,
 };
 
-export const presentation = () => <Input />;
+export const presentation = () => {
+  return (
+    <Container>
+      <Input iconName="user" placeholder="Enter Username"/>
+    </Container>
+  )}
