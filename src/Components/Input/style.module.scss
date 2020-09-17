@@ -8,7 +8,10 @@
 .icon {
   padding: .5rem !important;
 }
-.inputbox {
+.pictured {
   border-style: none none none solid;
   border-color: var(--LIGHT_GRAY);
+}
+.unpictured {
+  border: none;
 }

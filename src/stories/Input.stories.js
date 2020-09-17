@@ -10,6 +10,7 @@ export default {
 export const presentation = () => {
   return (
     <Container>
-      <Input iconName="user" placeholder="Enter Username"/>
+      <Input iconName="user" placeholder="With Icon"/>
+      <Input placeholder="Without Icon"/>
     </Container>
   )}

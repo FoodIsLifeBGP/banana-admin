@@ -31,12 +31,13 @@ function Input(props) {
     }
   }
 
+  const inputClass = (iconName && iconName !== "") ? styles.pictured : styles.unpictured;
   return (
     <Row>
       <Col>
         <InputGroup className={styles.container}>
           {renderIcon()}
-          <BootstrapInput className={styles.inputbox} id={id} name={name} onChange={onChange} placeholder={placeholder} type={type || "text"} />
+          <BootstrapInput className={inputClass} id={id} name={name} onChange={onChange} placeholder={placeholder} type={type || "text"} />
         </InputGroup>
       </Col>
     </Row>
