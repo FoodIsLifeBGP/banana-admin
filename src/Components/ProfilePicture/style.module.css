@@ -9,7 +9,3 @@
 .blueBorder {
     border: 5px solid var(--NAVY_BLUE);
 }
-
-.imgDiv {
-    margin-bottom: .8em;
-}

@@ -49,15 +49,19 @@
     font-weight: bold;
     color: var(--NAVY_BLUE);
     text-decoration: none;
+    margin-top: .6em;
 }
 
 .infoContainer {
     margin-top: 1em;
     font-family: Open Sans;
     font-style: normal;
-    font-weight: .2;
     color: var(--NAVY_BLUE);
     letter-spacing: 0.02em;
+}
+
+.infoItem {
+    margin-top: .5em;
 }
 
 .logOut {
@@ -91,5 +95,5 @@
 .buttonContainer {
     display: flex;
     justify-content: center;
-    margin-top: 1em;
+    margin-top: 2em;
 }

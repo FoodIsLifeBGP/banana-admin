@@ -28,8 +28,8 @@ export default function Settings() {
                     <ProfilePicture blueBorder={true} srcImage={userStub.profPic}/>
                     <a className={styles.editLink} href="#">Edit</a>
                     <div className={styles.infoContainer}>
-                        <p>Member since : {userStub.signInDate.toLocaleDateString(undefined, { minimumIntegerDigits: 2, useGrouping: false })}</p>
-                        <p>Member Authorization : {userStub.role}</p>
+                        <p className={styles.infoItem}>Member since : {userStub.signInDate.toLocaleDateString(undefined, { minimumIntegerDigits: 2, useGrouping: false })}</p>
+                        <p className={styles.infoItem}>Member Authorization : {userStub.role}</p>
                         <div className={styles.borderBox}></div>
                             <div className={styles.emailContainer}>
                                 <div>Email Address: </div>
