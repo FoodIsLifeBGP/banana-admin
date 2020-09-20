@@ -1,0 +1,95 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    justify-content: center;
+    padding-top: 2em;
+    align-content: center;
+    max-width: 400px;
+    width: 75%;
+}
+
+.background {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: var(--WHITE);
+}
+
+.editPassword {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    color: var(--NAVY_BLUE);
+    text-decoration: none;
+}
+
+.nameHeader {
+    font-family: Open Sans;
+    font-style: normal;
+    color: var(--NAVY_BLUE);
+    letter-spacing: 0.04em;
+    font-weight: bold;
+    margin-bottom: .8em;
+}
+
+.passwordContainer {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.editLink {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    color: var(--NAVY_BLUE);
+    text-decoration: none;
+}
+
+.infoContainer {
+    margin-top: 1em;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: .2;
+    color: var(--NAVY_BLUE);
+    letter-spacing: 0.02em;
+}
+
+.logOut {
+    width: 100px;
+    height: 45px;
+    color: var(--NAVY_BLUE);
+    background-color: var(--BANANA_YELLOW);
+    margin-top: 2em;
+    border: none;
+    border-radius: 7px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.emailContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.topBreak {
+    margin-top: 2em;
+}
+
+.borderBox {
+    border-top: 2px solid var(--LIGHT_GRAY);
+    margin-top: 1.7em;
+    margin-bottom: 1.7em;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
