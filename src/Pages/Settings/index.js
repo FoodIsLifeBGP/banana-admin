@@ -16,7 +16,7 @@ let userStub = {
     password: 'fsadfsddsaf'
 }
 
-export default function Settings() {
+export default function SettingsPage() {
     return (
         <div>
             <Navbar/>

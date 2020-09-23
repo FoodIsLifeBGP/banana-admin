@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import styles from './App.module.css';
 import HomePage from './Pages/HomePage';
-import Settings from './Pages/Settings';
+import SettingsPage from './Pages/Settings';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <div>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/settings" component={Settings} />
+            <Route exact path="/settings" component={SettingsPage} />
           </Switch>
         </div>
       </Router>
