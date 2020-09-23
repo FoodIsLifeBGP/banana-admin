@@ -27,7 +27,6 @@ export default class API {
   static jsonPost(payload, endpoint) {
     return fetch(this.path(endpoint), this.jsonPostBody(payload))
     .then(res => res.json())
-    .catch(message => {console.log(message)})
   }
 
   static storeJwt(token) {
