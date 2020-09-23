@@ -16,8 +16,6 @@ let userStub = {
     password: 'fsadfsddsaf'
 }
 
-console.log(typeof userStub.signInDate)
-
 export default function Settings() {
     return (
         <div>
