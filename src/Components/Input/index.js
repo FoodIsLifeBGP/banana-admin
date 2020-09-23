@@ -6,7 +6,7 @@ import {
   InputGroupAddon,
   Input as BootstrapInput
 } from 'reactstrap';
-import Icon from '../Icon'
+import Icon from '../Icon/index.js'
 import PropTypes from 'prop-types';
 import styles from './style.module.scss';
 
@@ -15,7 +15,7 @@ import styles from './style.module.scss';
 
 function Input(props) {
   // Icon names at this point are those found at https://materializecss.com/icons.html
-  const {iconName, id, name, onChange, placeholder, type} = props;
+  const {className, iconName, id, name, onChange, placeholder, type} = props;
   console.log(styles.icon);
   console.log(styles.container);
 
@@ -33,7 +33,7 @@ function Input(props) {
 
   const inputClass = (iconName && iconName !== "") ? styles.pictured : styles.unpictured;
   return (
-    <Row>
+    <Row className={className}>
       <Col>
         <InputGroup className={styles.container}>
           {renderIcon()}
