@@ -10,9 +10,10 @@ export default class API {
   static jsonPostBody(payload) {
     let body = {
       method: "POST",
+      mode: 'cors',
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+        "Accept": 'application/json',
+        "Content-Type": 'application/json'
       },
       body: JSON.stringify(payload)
     }
@@ -23,7 +24,7 @@ export default class API {
     return body;
   }
 
-  static jsonPost(endpoint, payload) {
+  static jsonPost(payload, endpoint) {
     return fetch(this.path(endpoint), this.jsonPostBody(payload))
     .then(res => res.json())
     .catch(message => {console.log(message)})
