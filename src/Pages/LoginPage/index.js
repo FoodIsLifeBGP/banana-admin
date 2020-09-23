@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {Redirect} from 'react-router-dom';
 import {
+  Button as BootstrapButton,
   Container,
   Col,
-  Row
+  Row,
+  Form
 } from 'reactstrap';
-import Input from '../../Components/Input';
+import Input from '../../Components/Input/index.js';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
 
@@ -14,31 +16,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    const body = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          donor: {
-            email: email, 
-            password: password}
-          })
-    }
-    fetch(`${process.env.BASE_URL}/admin_auth`, body)
-    .then(res => {
-      if(res.ok) {
-        res.json()
-        .then(json => { localStorage.setItem("userInfo", JSON.stringify(json)); })
-        .then(() => <Redirect to="/" />)
-      } else {
-        res.json()
-        .then(json => {alert(json.message)})
-      }
-    });
+    //TODO: build login functionality
   }
 
   return (
@@ -48,7 +26,7 @@ export default function LoginPage() {
         <Container>
           <Row>
             <Col lg={8} push="l2">
-              <Row>
+              <Row className={styles.titlerow}>
                 <Col sm={6}>
                   <Icon name="bananaIcon" size={200} />
                 </Col>
@@ -56,13 +34,14 @@ export default function LoginPage() {
                   <h1 className={styles.title}>BANANA PORTAL</h1>
                 </Col>
               </Row>
-              <form onSubmit={onSubmit}>
+              <Form onSubmit={onSubmit}>
                 <Input
                   id="email"
                   name="email"
                   iconName="user"
                   placeholder="Email"
                   onChange={setEmail}
+                  className={styles.inputrow}
                 />
                 <Input
                   id="password"
@@ -71,10 +50,11 @@ export default function LoginPage() {
                   placeholder="Password"
                   type="password"
                   onChange={setPassword}
+                  className={styles.inputrow}
                 />
                 {/* TODO: allow Input to return a Button object */}
-                <input type="submit" value="Submit" />
-              </form>
+                <BootstrapButton onClick={onSubmit}>Submit</BootstrapButton>
+              </Form>
             </Col>
           </Row>
         </Container>
