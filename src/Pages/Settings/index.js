@@ -11,9 +11,10 @@ let userStub = {
     signInDate: new Date('04-02-2020'),
     role: 'Admin',
     email: 'hunter2@gmail.com',
-    //Not sure how we want to handle this. Should we send the encrypted password from the backend of just the length of the password
+    //Not sure how we want to handle outputting asterisks for the length of the password. 
+    //Should we send the encrypted password from the backend of just the length of the password
     //Not a great idea to use the plain text password
-    password: 'fsadfsddsaf'
+    //Should we ever return any information about the password to the front-end at all
 }
 
 export default function SettingsPage() {
@@ -36,7 +37,7 @@ export default function SettingsPage() {
                             </div>                          
                             <div className={styles.passwordContainer}>
                                 <div>Password:</div>
-                                <div>{"*".repeat(userStub.password.length)}</div>
+                                <div>{"*".repeat(8)}</div>
                                 <a className={styles.editPassword} href="#">Update</a>
                             </div>
                         <div className={styles.buttonContainer}>
