@@ -1,7 +1,7 @@
 .container{
 /* Rectangle 147 */
 
-position: absolute;
+position: absolute !important;
 left: 0%;
 right: 0%;
 top: 0%;
@@ -22,7 +22,7 @@ ul {
 /* BANANA PORTAL */
 
 
-position: absolute;
+position: absolute !important;
 left: 10.83%;
 right: 80.69%;
 top: 29.73%;
@@ -47,7 +47,7 @@ color: #083A9B;
 .alertBell {
 /* bell */
 
-position: absolute;
+position: absolute !important;
 left: 80.76%;
 right: 16.18%;
 top: 33.78%;
@@ -59,7 +59,7 @@ bottom: 33.78%;
 /* tasks */
 
 
-position: absolute;
+position: absolute !important;
 left: 86.6%;
 right: 10.35%;
 top: 33.78%;
@@ -71,7 +71,7 @@ bottom: 33.78%;
 /* Ellipse 25 */
 
 
-position: absolute;
+position: absolute !important;
 left: 92.01%;
 right: 3.82%;
 top: 29.73%;
