@@ -7,15 +7,13 @@ export default class API {
     return localStorage.getItem("userToken");
   }
 
-  static jsonPostBody(payload) {
+  static jsonHeaders() {
     let body = {
-      method: "POST",
       mode: 'cors',
       headers: {
         "Accept": 'application/json',
         "Content-Type": 'application/json'
-      },
-      body: JSON.stringify(payload)
+      }
     }
     const userToken = this.userToken();
     if(userToken) {
@@ -24,9 +22,29 @@ export default class API {
     return body;
   }
 
+  static jsonPostBody(payload) {
+    let body = this.jsonHeaders();
+    body.method = "POST";
+    body.body = JSON.stringify(payload);
+    return body;
+  }
+
+  static jsonGetBody() {
+    let body = this.jsonHeaders();
+    body.method = "GET";
+    return body;
+  }
+
   static jsonPost(payload, endpoint) {
     return fetch(this.path(endpoint), this.jsonPostBody(payload))
     .then(res => res.json())
+  }
+
+  static jsonGet(queryObj, endpoint) {
+    let newUrl = this.path(endpoint);
+    newUrl.search = new URLSearchParams(queryObj);
+    return fetch(newUrl.toString(), this.jsonGetBody())
+    .then(r => r.json());
   }
 
   static storeJwt(token) {
