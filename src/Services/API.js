@@ -35,12 +35,12 @@ export default class API {
     return body;
   }
 
-  static jsonPost(payload, endpoint) {
+  static jsonPost(endpoint, payload) {
     return fetch(this.path(endpoint), this.jsonPostBody(payload))
     .then(res => res.json())
   }
 
-  static jsonGet(queryObj, endpoint) {
+  static jsonGet(endpoint, queryObj=null) {
     let newUrl = this.path(endpoint);
     newUrl.search = new URLSearchParams(queryObj);
     return fetch(newUrl.toString(), this.jsonGetBody())
