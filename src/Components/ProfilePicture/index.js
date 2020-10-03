@@ -12,7 +12,7 @@ function ProfilePicture(props) {
     });
     return (
         <div className={styles.imgDiv}>
-            <img src={srcImage} className={profPic} alt=""></img>
+            {srcImage != '#' && (<img src={srcImage} className={profPic} alt=""></img>)}
         </div>
     );
 }
