@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.module.css';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { 
+  Nav,
+  Navbar as BootstrapNavbar,
+  NavbarBrand, 
+  NavbarText,
+  NavItem, 
+  Row,
+  Col
+} from 'reactstrap';
 import Icon from '../Icon';
 
 function Navbar(props) {
@@ -12,25 +20,29 @@ function Navbar(props) {
   //const toggle = () => setDropdownOpen(!dropdownOpen);
 
   return (
-    <div className={styles.container}>
+    <BootstrapNavbar className={styles.container}>
+      <NavbarBrand href="#">
+        <Row className="align-items-center">
+          <Col>
+            <Icon name="bananaIcon" size={75} />
+          </Col>
+          <Col>
+            <NavbarText className={styles.bananaPortalNav}>BANANA<br/>PORTAL</NavbarText>
+          </Col>          
+        </Row>
+      </NavbarBrand>
       <Nav pills>
-        <NavItem>
-        <Icon name="bananaIcon" size={75} />
-        </NavItem>
-        <NavItem>
-          <NavLink href="#" active className={styles.bananaPortalNav}>BANANA PORTAL</NavLink>
-        </NavItem>
-        <NavItem className={styles.alertBell}>
+        <NavItem className={styles.navIcon}>
           <Icon name="alertBell" size={35} />
         </NavItem>
-        <NavItem className={styles.tasks}>
+        <NavItem className={styles.navIcon}>
           <Icon name="tasks" size={35} />
         </NavItem>
-        <NavItem className={styles.ellipse}>
+        <NavItem className={styles.navIcon}>
           <Icon name="ellipse" size={35} />
         </NavItem>
       </Nav>
-    </div>
+    </BootstrapNavbar>
   );
 }
 

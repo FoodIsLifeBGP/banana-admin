@@ -1,32 +1,32 @@
 .container{
 /* Rectangle 147 */
-
-position: absolute !important;
+/* 
+position: absolute;
 left: 0%;
 right: 0%;
 top: 0%;
-bottom: 0%;
+bottom: 0%; */
 
-height: 100px;
+/* height: 100px; */
 
 background: #FFFFFF;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 ul {
-    list-style-type: none;
+    /* list-style-type: none; */
 }
 
 
-.bananaPortalNav{
+.bananaPortalNav {
 /* BANANA PORTAL */
 
 
-position: absolute !important;
+/* position: absolute;
 left: 10.83%;
 right: 80.69%;
 top: 29.73%;
-bottom: 24.32%;
+bottom: 24.32%; */
 
 font-family: Open Sans;
 font-style: normal;
@@ -44,36 +44,6 @@ color: #083A9B;
 
 }
 
-.alertBell {
-/* bell */
-
-position: absolute !important;
-left: 80.76%;
-right: 16.18%;
-top: 33.78%;
-bottom: 33.78%;
-
-} 
-
-.tasks {
-/* tasks */
-
-
-position: absolute !important;
-left: 86.6%;
-right: 10.35%;
-top: 33.78%;
-bottom: 33.78%;
-
-}
-
-.ellipse {
-/* Ellipse 25 */
-
-
-position: absolute !important;
-left: 92.01%;
-right: 3.82%;
-top: 29.73%;
-bottom: 29.73%;
+.navIcon {
+  margin-right: 4rem;
 }
