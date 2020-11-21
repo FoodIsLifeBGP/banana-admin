@@ -1,0 +1,47 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+.container {
+  height: 100vh;
+}
+
+.borderspace {
+  background-color: var(--BANANA_YELLOW);
+  height: 100%;
+  width: 0;
+  float: left;
+  position: relative;
+}
+
+.mainspace {
+  background-color: var(--WHITE);
+  height: 100%;
+  width: 100%;
+  float: right;
+  position: relative;
+}
+
+.titlerow {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+
+.inputrow {
+  margin: .5rem;
+}
+
+.title {
+  color: var(--NAVY_BLUE);
+  text-align: left;
+  font-weight: bold;
+  font-size: 4rem;
+}
+
+@media (min-width: 768px) {
+  .borderspace {
+    width: 25%;
+  }
+  .mainspace {
+    width: 75%;
+  }
+}
