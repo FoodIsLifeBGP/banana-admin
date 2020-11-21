@@ -1,6 +1,17 @@
 @import "../../colors.module.css";
 @import "../../fonts.module.css";
 
+h3 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 46px;
+  color: var(--NAVY_BLUE);
+  text-transform: uppercase;
+  margin: 40px 0 40px 0;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -47,13 +58,37 @@ div.infoItem:nth-child(even) {
   background: var(--WHITE);
 }
 
-h3 {
-  font-family: Open Sans;
+.buttonContainer {
+  width: 192px;
+  height: 73px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--BANANA_YELLOW);
+  color: var(--NAVY_BLUE);
+  border-radius: 8px;
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 25px;
-  line-height: 34px;
-  color: var(--NAVY_BLUE);
-  text-transform: uppercase;
-  padding: 10px 0 10px 0;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: 0.04em;
+  margin: 40px 0 10px 0;
+}
+
+.dropdown {
+  width: 100%;
+  height: 83px;
+  left: 420px;
+  top: 964px;
+  border: 2px solid var(--LIGHT_GRAY);
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.applicationStatusForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }

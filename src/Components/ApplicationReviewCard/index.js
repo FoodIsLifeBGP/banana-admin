@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListItem from "./ListItem";
+import ApplicationStatusForm from "./ApplicationStatusForm";
 import styles from "./style.module.css";
 
 function ApplicationReview(props) {
@@ -30,6 +31,7 @@ function ApplicationReview(props) {
         <ListItem itemTitle='State' itemValue={businessState} />
         <ListItem itemTitle='Zip Code' itemValue={businessZipCode} />
       </div>
+      <ApplicationStatusForm />
     </div>
   );
 }
