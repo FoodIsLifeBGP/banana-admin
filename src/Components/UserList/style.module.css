@@ -1,0 +1,38 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+th {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: 0.04em;
+  color: #083A9B;
+
+  border-bottom: 2px solid #C4C4C4;
+  border-top: 2px solid #C4C4C4;
+  padding: 24px;
+  text-align: center;
+}
+
+td {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: 0.04em;
+
+  border-bottom: 1px solid #C4C4C4;
+  padding: 26px;
+  text-align: center;
+  justify-content: center;
+}
+
+.status {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 26px;
+}

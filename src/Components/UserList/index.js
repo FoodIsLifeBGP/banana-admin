@@ -12,7 +12,7 @@ const testData = [
   },
   {
     name: "Maxwell Countryman Skewes",
-    businessName: "Max's Countrey Meats",
+    businessName: "Max's Country Meats",
     dateRegistered: "2018/06/12",
     status: "pending"
   },
@@ -55,6 +55,8 @@ function UserList (props) {
           <th>Status</th>
         </tr>
 
+        {/* Replace testData.map with line below for production
+        {data.map((entry, index) => {  */}
         {testData.map((entry, index) => {
           return(
             <tr key={index}>
@@ -62,7 +64,7 @@ function UserList (props) {
               <td>{entry.name}</td>
               <td>{entry.businessName}</td>
               <td>{entry.dateRegistered}</td>
-              <td><Status statusState={entry.status} /></td>
+              <td className={styles.status}><Status statusState={entry.status} /></td>
             </tr>
           )
         })}
