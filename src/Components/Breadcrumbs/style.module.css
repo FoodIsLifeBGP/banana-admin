@@ -1,0 +1,13 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+.Breadcrumbs{
+    flex-direction: row;
+    align-items: flex-start;
+    display: flex;
+}
+
+.Breadcrumb{
+    color: var(--NAVY_BLUE);
+    padding: 0 0.5rem;
+}
