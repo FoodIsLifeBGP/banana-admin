@@ -1,0 +1,130 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+
+  .text {
+    position: static;
+    width: 67px;
+    height: 27px;
+    left: 10px;
+    top: 5px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+
+    color: #000000;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 10px 0px;
+  }
+
+.pendingDiv {
+  /* Auto Layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 10px;
+
+  /* position: absolute; */
+  width: 106px;
+  height: 37px;
+  /* left: 1108px;
+  top: 0px; */
+
+  /* Banana Yellow */
+
+  background-color: #FFE145;
+  border-radius: 8px;
+}
+
+.activeDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 10px;
+
+  /* position: absolute; */
+  width: 87px;
+  height: 37px;
+  /* left: 1210px;
+  top: 485px; */
+
+  background: #4DBD74;
+  border-radius: 8px;
+}
+
+.inactiveDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 10px;
+
+  /* position: absolute; */
+  width: 106px;
+  height: 37px;
+  /* left: 1203px;
+  top: 740px; */
+
+  background: #C8CED3;
+  border-radius: 8px;
+}
+
+.incompleteDiv { 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 10px;
+
+  /* position: absolute; */
+  width: 141px;
+  height: 37px;
+  /* left: 1188.5px;
+  top: 825px; */
+
+  background: #E88D3A;
+  border-radius: 8px;
+}
+
+.suspendedDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 10px;
+
+  /* position: absolute; */
+  width: 136px;
+  height: 37px;
+  /* left: 1189.5px;
+  top: 910px; */
+
+  background: #F86C6B;
+  border-radius: 8px;
+}
+
+.closedDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 10px;
+
+  /* position: absolute; */
+  width: 90px;
+  height: 37px;
+  /* left: 1211px;
+  top: 1167px; */
+
+  background: #6D6D6D;
+  border-radius: 8px;
+}

@@ -2,42 +2,61 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.module.css';
 
-function Status(props) {
-  const { status } = props;
 
-  if (status = "active") {
+function Status (props) {
+  const { statusState } = props;
+
+  if (statusState === "pending") {
     return (
-      <p className="status-active"><strong>Active</strong></p>
-    )
+      <div className={styles.pendingDiv}>
+        <p className={styles.text}><strong>Pending</strong></p>
+      </div>
+    );
   }
 
-  if (status = "inactive") {
+  if (statusState === "active") {
     return (
-      <p className="status-inactive"><strong>Inactive</strong></p>
-    )
+    <div className={styles.activeDiv}>
+      <p className={styles.text}><strong>Active</strong></p>
+    </div>
+    );
   }
 
-  if (status = "incomplete") {
+  if (statusState === "inactive") {
     return (
-      <p className="status-incomplete"><strong>Incomplete</strong></p>
-    )
+      <div className={styles.inactiveDiv}>
+        <p className={styles.text}><strong>Inactive</strong></p>
+      </div>
+    );
   }
 
-  if (status = "suspended") {
+  if (statusState === "incomplete") {
     return (
-      <p className="status-suspended"><strong>Suspended</strong></p>
-    )
+      <div className={styles.incompleteDiv}>
+        <p className={styles.text}><strong>Incomplete</strong></p>
+      </div>
+    );
   }
 
-  if (status = "closed") {
+  if (statusState === "suspended") {
     return (
-      <p className="status-closed"><strong>Closed</strong></p>
-    )
+      <div className={styles.suspendedDiv}>
+        <p className={styles.text}><strong>Suspended</strong></p>
+      </div>
+    );
+  }
+
+  if (statusState === "closed") {
+    return (
+      <div className={styles.closedDiv}>
+        <p className={styles.text}><strong>Closed</strong></p>
+      </div>
+    );
   }
 }
 
 Status.propTypes = {
-  status: PropTypes.string.isRequired,
+  statusState: PropTypes.string.isRequired,
 };
 
 
