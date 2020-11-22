@@ -5,28 +5,26 @@ import styles from './style.module.css';
 
 const Breadcrumbs = (props) => {
 
-  const makeCrumbs = (crumbs) => {
-    if (crumbs.length) {
-      return crumbs.map = (crumb => {
-        return (
-          <Link key={i} to={`/${crumb.path}`}>
-            {crumbs.title}
-          </Link>
-          </>
-          );
-        })
-      }
-    };
-    
-return (
-  <div className={styles.Breadcrumbs} aria-label="breadcrumb">
-    <Link to="/" className={styles.Breadcrumb}>
-      Home
+  const makeCrumbs = () => {
+    return (props.map = ((crumb) => {
+      const { label, path } = crumb;
+      return (
+        <Link key={label} to={`/${path}`}>
+          {label}
         </Link>
+      );
+    }));
+  };
 
-    {makeCrumbs}
-  </div>
-);
+
+  return (
+    <div className={styles.Breadcrumbs}>
+      <Link to="/" className={styles.Breadcrumb}>
+        Home
+      </Link>
+      {makeCrumbs}
+    </div>
+  );
 };
 
 Breadcrumbs.propTypes = {
