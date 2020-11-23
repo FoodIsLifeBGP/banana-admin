@@ -12,7 +12,7 @@ function Icon(props) {
   }
 
   return (
-    <div>IconNotFound</div>
+    <i class={`fa fa-${name}`} style={{fontSize: size + 'px'}} />
   );
 }
 
