@@ -27,9 +27,9 @@ function ApplicationCard(props) {
   }
   return (
     <div className={styles.container} type={type}>
-      <div className={styles.icon} onClick={onClick}>
+      <button className={styles.icon} type="button" tabIndex={0} onClick={onClick}>
         <Icon name={iconName} size={70} />
-      </div>
+      </button>
       <div className={styles.body}>
         {userCount.toLocaleString(undefined, { minimumIntegerDigits: 2, useGrouping: false })}
       </div>
