@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./style.module.css";
 
-function ApplicationStatusForm({ handleSubmit }) {
+function ApplicationStatusForm({ title, handleSubmit }) {
   return (
     <div className={styles.container}>
-      <h3>Decisions</h3>
+      <h3>{title}</h3>
       <form className={styles.applicationStatusForm} onSubmit={handleSubmit}>
         <select className={styles.dropdown} value=''>
           <option value=''>Please Select...</option>
@@ -23,6 +23,7 @@ function ApplicationStatusForm({ handleSubmit }) {
 }
 
 ApplicationStatusForm.propTypes = {
+  title: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 

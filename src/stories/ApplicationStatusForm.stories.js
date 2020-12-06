@@ -7,5 +7,5 @@ export default {
 };
 
 export const presentation = () => (
-  <ApplicationStatusForm handleSubmit={() => {}} />
+  <ApplicationStatusForm title='Change Status' handleSubmit={() => {}} />
 );
