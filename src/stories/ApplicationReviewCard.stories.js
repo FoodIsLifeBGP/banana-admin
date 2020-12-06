@@ -18,3 +18,7 @@ export const donor = () => (
     businessZipCode='98000'
   />
 );
+
+export const client = () => (
+  <ApplicationReviewCard type='client' status='pending' name='Zach Gallaway' />
+);

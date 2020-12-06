@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListItem from "./ListItem";
-import ApplicationStatusForm from "./ApplicationStatusForm";
 import styles from "./style.module.css";
 
 function ApplicationReview(props) {
-  // eslint-disable-next-line no-unused-vars
   const {
     type,
     status,
@@ -22,24 +20,40 @@ function ApplicationReview(props) {
       <div className={styles.infoList}>
         <ListItem itemTitle='Status' itemValue={status} />
         <ListItem itemTitle='Name' itemValue={name} />
-        <ListItem itemTitle='Business Name' itemValue={businessName} />
-        <ListItem
-          itemTitle='Business Address'
-          itemValue={businessStreetAddress}
-        />
-        <ListItem itemTitle='City' itemValue={businessCity} />
-        <ListItem itemTitle='State' itemValue={businessState} />
-        <ListItem itemTitle='Zip Code' itemValue={businessZipCode} />
+        {type === "donor" && (
+          <>
+            <ListItem itemTitle='Business Name' itemValue={businessName} />
+            <ListItem
+              itemTitle='Business Address'
+              itemValue={businessStreetAddress}
+            />
+            <ListItem itemTitle='City' itemValue={businessCity} />
+            <ListItem itemTitle='State' itemValue={businessState} />
+            <ListItem itemTitle='Zip Code' itemValue={businessZipCode} />
+          </>
+        )}
       </div>
-      <ApplicationStatusForm />
     </div>
   );
 }
 
 ApplicationReview.propTypes = {
   type: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  businessName: PropTypes.string,
+  businessStreetAddress: PropTypes.string,
+  businessCity: PropTypes.string,
+  businessState: PropTypes.string,
+  businessZipCode: PropTypes.string,
 };
 
-ApplicationReview.defaultProps = {};
+ApplicationReview.defaultProps = {
+  businessName: "",
+  businessStreetAddress: "",
+  businessCity: "",
+  businessState: "",
+  businessZipCode: "",
+};
 
 export default ApplicationReview;
