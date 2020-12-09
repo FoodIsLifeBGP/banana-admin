@@ -4,40 +4,38 @@ import {
   Row,
   InputGroup,
   InputGroupAddon,
-  Input as BootstrapInput
+  Input as BootstrapInput,
 } from 'reactstrap';
-import Icon from '../Icon/index.js'
 import PropTypes from 'prop-types';
+import Icon from '../Icon/index';
 import styles from './style.module.scss';
-
 
 // This should be placed inside a reactstrap Container component
 
 function Input(props) {
   // Icon names at this point are those found at https://materializecss.com/icons.html
-  const {className, iconName, id, name, onChange, placeholder, type} = props;
-  console.log(styles.icon);
-  console.log(styles.container);
+  const {
+    className, iconName, id, name, onChange, placeholder, type,
+  } = props;
 
   const renderIcon = () => {
-    if(iconName && iconName !== "") {
+    if (iconName && iconName !== '') {
       return (
-      <InputGroupAddon addonType="prepend" className={styles.icon}>
-        <Icon name={iconName} size={20}/>
-      </InputGroupAddon>
-      )
-    } else {
-      return null;
+        <InputGroupAddon addonType="prepend" className={styles.icon}>
+          <Icon name={iconName} size={20} />
+        </InputGroupAddon>
+      );
     }
-  }
+    return null;
+  };
 
-  const inputClass = (iconName && iconName !== "") ? styles.pictured : styles.unpictured;
+  const inputClass = (iconName && iconName !== '') ? styles.pictured : styles.unpictured;
   return (
     <Row className={className}>
       <Col>
         <InputGroup className={styles.container}>
           {renderIcon()}
-          <BootstrapInput className={inputClass} id={id} name={name} onChange={onChange} placeholder={placeholder} type={type || "text"} />
+          <BootstrapInput className={inputClass} id={id} name={name} onChange={onChange} placeholder={placeholder} type={type || 'text'} />
         </InputGroup>
       </Col>
     </Row>
@@ -50,10 +48,18 @@ Input.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  className: PropTypes.string,
 };
 
 Input.defaultProps = {
+  iconName: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default Input;
