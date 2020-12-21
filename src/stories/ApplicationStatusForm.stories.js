@@ -1,11 +1,11 @@
-import React from "react";
-import ApplicationStatusForm from "../Components/ApplicationStatusForm";
+import React from 'react';
+import ApplicationStatusForm from '../Components/ApplicationStatusForm';
 
 export default {
-  title: "ApplicationStatusForm",
+  title: 'ApplicationStatusForm',
   component: ApplicationStatusForm,
 };
 
 export const presentation = () => (
-  <ApplicationStatusForm title='Change Status' handleSubmit={() => {}} />
+  <ApplicationStatusForm title="Change Status" handleSubmit={() => {}} />
 );

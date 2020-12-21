@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./style.module.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './style.module.css';
 
 function ListItem(props) {
   const { itemTitle, itemValue } = props;
