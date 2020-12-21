@@ -1,13 +1,20 @@
 ## Banana-admin
 
-Banana App is an open-source, not-for-profit project of The Be Good Foundation. We can reduce hunger by simplifying food donation. We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of. Users will be able to find active donations, view the business's food rating, and claim a portion. This project is the admin portal where applictions of donors and clients to be approved.
+Banana App is an open-source, not-for-profit project of The Be Good Foundation. We can reduce hunger by simplifying food donation. We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of. Users will be able to find active donations, view the business's food rating, and claim a portion. This project is the admin portal where applications of donors and clients are to be approved.
+
+# Banana-Admin
+  - [Installation](#installation)
+  - [Commands](#commands)
+  - [Development](#development)
+  - [Building a Component](#build-component-skeleton)
+---
 
 ## Installation
 
 First ensure you have [NodeJS](https://nodejs.org/en/) environment (recommended version is 12.18.2 LTS, which works well with our mobile app) on your computer, then run 
 
 ```bash
-npm install && npm start
+yarn install && yarn start
 ```
 
 to run admin portal.
@@ -17,24 +24,24 @@ to run admin portal.
 Run project:
 
 ```bash
-npm start
+yarn start
 ```
 
 Build project
 
 ```bash
-npm run build
+yarn run build
 ```
 
 Run storybook server
 
 ```bash
-npm run storybook
+yarn run storybook
 ```
 
 ## Development
 
-For UI component, we recommend to develop and debug in storybook, which is a library for developing UI components in isolation. Below is an example of building `Button` component via Storybook.
+For UI component, we recommend to develop and debug in [Storybook](https://storybook.js.org), which is a library for developing UI components in isolation. Below is an example of building `Button` component via Storybook.
 
 ### Build component skeleton
 
@@ -95,7 +102,7 @@ export const presentation = () => <Button/>;
 
 Now run
 
-`npm run storybook` to open storybook server, you should see `Button` at component list at left bar, and by clicking it you could see the component.
+`yarn run storybook` to open storybook server, you should see `Button` at component list at left bar, and by clicking it you could see the component.
 
 ![image-20200715000943318](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggrobpixauj31k20u0aci.jpg)
 

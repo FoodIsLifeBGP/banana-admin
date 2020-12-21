@@ -12,7 +12,7 @@ function Icon(props) {
   }
 
   return (
-    <i class={`fa fa-${name}`} style={{fontSize: size + 'px'}} />
+    <i className={`fa fa-${name}`} style={{ fontSize: `${size} + px` }} />
   );
 }
 
