@@ -1,0 +1,11 @@
+.profPic {
+    border-radius: 50%;
+    width: 150px; /* width of container */
+    height: 150px; /* height of container */
+    object-fit: cover;
+    
+}
+
+.blueBorder {
+    border: 5px solid var(--NAVY_BLUE);
+}

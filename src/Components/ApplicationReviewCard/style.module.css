@@ -1,0 +1,59 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+h3 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 46px;
+  color: var(--NAVY_BLUE);
+  text-transform: uppercase;
+  margin: 40px 0 40px 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 83px;
+  width: 100%;
+}
+
+.infoItem p {
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: 0.04em;
+  color: var(--NAVY_BLUE);
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
+
+.emphasized {
+  font-weight: bold;
+}
+
+div.infoItem:nth-child(odd) {
+  background: var(--LIGHT_GRAY);
+}
+div.infoItem:nth-child(even) {
+  background: var(--WHITE);
+}

@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.module.css';
-import { 
+import {
   Nav,
   Navbar as BootstrapNavbar,
-  NavbarBrand, 
+  NavbarBrand,
   NavbarText,
-  NavItem, 
+  NavItem,
   Row,
-  Col
+  Col,
 } from 'reactstrap';
+import styles from './style.module.css';
 import Icon from '../Icon';
 
 function Navbar(props) {
   // eslint-disable-next-line no-unused-vars
   const { showMenu, showNotification } = props;
-  //const [dropdownOpen, setDropdownOpen] = useState(false);
+  // const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  //const toggle = () => setDropdownOpen(!dropdownOpen);
+  // const toggle = () => setDropdownOpen(!dropdownOpen);
 
   return (
     <BootstrapNavbar className={styles.container}>
@@ -27,8 +27,12 @@ function Navbar(props) {
             <Icon name="bananaIcon" size={75} />
           </Col>
           <Col>
-            <NavbarText className={styles.bananaPortalNav}>BANANA<br/>PORTAL</NavbarText>
-          </Col>          
+            <NavbarText className={styles.bananaPortalNav}>
+              BANANA
+              <br />
+              PORTAL
+            </NavbarText>
+          </Col>
         </Row>
       </NavbarBrand>
       <Nav pills>
