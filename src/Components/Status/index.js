@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.module.css';
 
-
-function Status (props) {
+function Status(props) {
   const { statusState } = props;
 
-  if (statusState === "pending") {
+  if (statusState === 'pending') {
     return (
       <div className={styles.pendingDiv}>
         <p className={styles.text}><strong>Pending</strong></p>
@@ -14,15 +13,15 @@ function Status (props) {
     );
   }
 
-  if (statusState === "active") {
+  if (statusState === 'active') {
     return (
-    <div className={styles.activeDiv}>
-      <p className={styles.text}><strong>Active</strong></p>
-    </div>
+      <div className={styles.activeDiv}>
+        <p className={styles.text}><strong>Active</strong></p>
+      </div>
     );
   }
 
-  if (statusState === "inactive") {
+  if (statusState === 'inactive') {
     return (
       <div className={styles.inactiveDiv}>
         <p className={styles.text}><strong>Inactive</strong></p>
@@ -30,7 +29,7 @@ function Status (props) {
     );
   }
 
-  if (statusState === "incomplete") {
+  if (statusState === 'incomplete') {
     return (
       <div className={styles.incompleteDiv}>
         <p className={styles.text}><strong>Incomplete</strong></p>
@@ -38,7 +37,7 @@ function Status (props) {
     );
   }
 
-  if (statusState === "suspended") {
+  if (statusState === 'suspended') {
     return (
       <div className={styles.suspendedDiv}>
         <p className={styles.text}><strong>Suspended</strong></p>
@@ -46,7 +45,7 @@ function Status (props) {
     );
   }
 
-  if (statusState === "closed") {
+  if (statusState === 'closed') {
     return (
       <div className={styles.closedDiv}>
         <p className={styles.text}><strong>Closed</strong></p>
@@ -58,6 +57,5 @@ function Status (props) {
 Status.propTypes = {
   statusState: PropTypes.string.isRequired,
 };
-
 
 export default Status;

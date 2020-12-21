@@ -6,18 +6,16 @@ export default {
   component: Status,
 };
 
-export const presentation = () => {
-  return (
-    <React.Fragment>
-      <Status statusState="pending"/>
-      <Status statusState="active"/>
-      <Status statusState="inactive"/>
-      <Status statusState="incomplete"/>
-      <Status statusState="suspended"/>
-      <Status statusState="closed"/>
-    </React.Fragment>
-  );
-}
+export const presentation = () => (
+  <>
+    <Status statusState="pending" />
+    <Status statusState="active" />
+    <Status statusState="inactive" />
+    <Status statusState="incomplete" />
+    <Status statusState="suspended" />
+    <Status statusState="closed" />
+  </>
+);
 
 // export const presentation = () => <Status statusState="pending"/>
 // export const active = () => <Status statusState="active"/>
