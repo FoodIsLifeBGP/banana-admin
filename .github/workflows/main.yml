@@ -2,7 +2,7 @@ on: [push]
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     name: Run eslint
     steps:
       - uses: actions/checkout@v1
