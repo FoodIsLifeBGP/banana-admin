@@ -7,6 +7,7 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
   - [Commands](#commands)
   - [Development](#development)
   - [Building a Component](#build-component-skeleton)
+  - [Creating a Pull Request](#creating-a-pull-request)
 ---
 
 ## Installation
@@ -174,3 +175,8 @@ export const presentation = () => <Button text="ButtonText" />;
 
 ![image-20200715001707871](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggrojcd7ixj31rd0u00v4.jpg)
 
+## Creating a Pull Request
+Prior to creating a pull request, please correct any eslint errors presented upon running: 
+```
+  yarn lint
+```
