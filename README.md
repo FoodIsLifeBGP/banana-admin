@@ -40,6 +40,12 @@ Run storybook server
 yarn run storybook
 ```
 
+Run ESLint
+
+```bash
+yarn lint
+```
+
 ## Development
 
 For UI component, we recommend to develop and debug in [Storybook](https://storybook.js.org), which is a library for developing UI components in isolation. Below is an example of building `Button` component via Storybook.
@@ -177,6 +183,9 @@ export const presentation = () => <Button text="ButtonText" />;
 
 ## Creating a Pull Request
 Prior to creating a pull request, please correct any eslint errors presented upon running: 
-```
+```bash
   yarn lint
 ```
+Please fill out the pull request template as thoroughly and thoughtfully as possible.
+
+If your pull request is not quite ready to be merged, please add "`WIP:`" (work in progress) to the beginning of the title to ensure it does not get merged accidentally.
