@@ -44,7 +44,7 @@ const testData = [
 ]
 
 function UserList (props) {
-  const { data } = props;
+  //const { data } = props;
 
   return (
       <table>
