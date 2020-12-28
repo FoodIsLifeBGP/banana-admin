@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.module.css';
 import Status from '../Status';
+import { v4 } from 'uuid';
 
 const testData = [
   {
@@ -59,7 +60,7 @@ function UserList (props) {
         {data.map((entry, index) => {  */}
         {testData.map((entry, index) => {
           return(
-            <tr key={index}>
+            <tr key={v4()}>
               <td>{index + 1}</td>
               <td>{entry.name}</td>
               <td>{entry.businessName}</td>
