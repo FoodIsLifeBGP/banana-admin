@@ -18,7 +18,7 @@
     align-items: center;
     letter-spacing: 0.04em;
 
-    color: #000000;
+    color: var(--BLACK);
 
 
     /* Inside Auto Layout */
@@ -45,7 +45,7 @@
 
   /* Banana Yellow */
 
-  background-color: #FFE145;
+  background-color: var(--BANANA_YELLOW);
   border-radius: 8px;
 }
 
@@ -61,7 +61,7 @@
   /* left: 1210px;
   top: 485px; */
 
-  background: #4DBD74;
+  background: var(--GREEN);
   border-radius: 8px;
 }
 
@@ -93,7 +93,7 @@
   /* left: 1188.5px;
   top: 825px; */
 
-  background: #E88D3A;
+  background: var(--ORANGE);
   border-radius: 8px;
 }
 
@@ -109,7 +109,7 @@
   /* left: 1189.5px;
   top: 910px; */
 
-  background: #F86C6B;
+  background: var(--SUSPENDED_RED);
   border-radius: 8px;
 }
 
