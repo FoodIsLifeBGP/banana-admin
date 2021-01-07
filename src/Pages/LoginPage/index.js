@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
-import {Redirect} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import {
   Button as BootstrapButton,
   Container,
   Col,
   Row,
-  Form
+  Form,
 } from 'reactstrap';
 import Input from '../../Components/Input/index.js';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const onSubmit = (e) => {
-    //TODO: build login functionality
-  }
+    // TODO: build login functionality
+  };
 
   return (
     <div className={styles.container}>
@@ -60,5 +60,5 @@ export default function LoginPage() {
         </Container>
       </div>
     </div>
-  )
+  );
 }

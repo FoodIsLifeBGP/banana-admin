@@ -7,6 +7,7 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
   - [Commands](#commands)
   - [Development](#development)
   - [Building a Component](#build-component-skeleton)
+  - [Creating a Pull Request](#creating-a-pull-request)
 ---
 
 ## Installation
@@ -37,6 +38,12 @@ Run storybook server
 
 ```bash
 yarn run storybook
+```
+
+Run ESLint
+
+```bash
+yarn lint
 ```
 
 ## Development
@@ -174,3 +181,11 @@ export const presentation = () => <Button text="ButtonText" />;
 
 ![image-20200715001707871](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggrojcd7ixj31rd0u00v4.jpg)
 
+## Creating a Pull Request
+Prior to creating a pull request, please correct any eslint errors presented upon running: 
+```bash
+  yarn lint
+```
+Please fill out the pull request template as thoroughly and thoughtfully as possible.
+
+If your pull request is not quite ready to be merged, please add "`WIP:`" (work in progress) to the beginning of the title to ensure it does not get merged accidentally.
