@@ -12,4 +12,8 @@
   --DARK_GRAY : rgb(60, 60, 60);
   --DARK_GRAY_TRANSPARENT : rgba(60, 60, 60, .5);
   --RED : #E10000;
+  --BLACK : #000000;
+  --GREEN : #4DBD74;
+  --ORANGE : #FFAD0F;
+  --SUSPENDED_RED : #F86C6B;
 }
