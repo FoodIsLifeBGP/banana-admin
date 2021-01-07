@@ -16,7 +16,7 @@ function Status(props) {
   if (statusState === 'active') {
     return (
       <div className={styles.activeDiv}>
-        <p className={styles.text}><strong>Active</strong></p>
+        <p className={styles.text}><strong className={styles.whiteText}>Active</strong></p>
       </div>
     );
   }
@@ -24,7 +24,7 @@ function Status(props) {
   if (statusState === 'inactive') {
     return (
       <div className={styles.inactiveDiv}>
-        <p className={styles.text}><strong>Inactive</strong></p>
+        <p className={styles.text}><strong className={styles.navyBlueText}>Inactive</strong></p>
       </div>
     );
   }
@@ -48,7 +48,7 @@ function Status(props) {
   if (statusState === 'closed') {
     return (
       <div className={styles.closedDiv}>
-        <p className={styles.text}><strong>Closed</strong></p>
+        <p className={styles.text}><strong className={styles.whiteText}>Closed</strong></p>
       </div>
     );
   }

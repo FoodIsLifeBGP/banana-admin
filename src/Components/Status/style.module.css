@@ -18,15 +18,20 @@
     align-items: center;
     letter-spacing: 0.04em;
 
-    color: var(--BLACK);
-
-
     /* Inside Auto Layout */
 
     flex: none;
     order: 0;
     flex-grow: 0;
     margin: 10px 0px;
+  }
+
+  .whiteText {
+    color: var(--WHITE);
+  }
+
+  .navyBlueText {
+    color: var(--NAVY_BLUE);
   }
 
 .pendingDiv {
