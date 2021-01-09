@@ -1,0 +1,32 @@
+label,
+select {
+  display: block;
+}
+
+label {
+  color: var(--NAVY_BLUE);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+select {
+  height: 60px;
+}
+
+form {
+  text-align: left;
+  width: 80%;
+  margin: auto;
+}
+
+.container {
+  border: 2px solid var(--LIGHT_GRAY);
+  border-radius: 8px;
+}
+
+.decision-making {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 20px;
+  font-weight: bold;
+}
