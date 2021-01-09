@@ -7,7 +7,7 @@ import {
   Row,
   Form,
 } from 'reactstrap';
-import Input from '../../Components/Input/index.js';
+import Input from '../../Components/Input/index';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
 
