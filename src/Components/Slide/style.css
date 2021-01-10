@@ -2,10 +2,10 @@
 
 .slide-form {
   background-color: white;
-  width: 40%;
-  min-width: 320px;
+  width: 400px;
   position: absolute;
   right: 0;
+  top: 120px;
   z-index: 100;
 }
 
@@ -23,17 +23,23 @@
 .general-title {
   background-color: var(--NAVY_BLUE);
   color: #ffffff;
-  margin: 0;
-  padding: 24px;
+  font-size: 20px;
   font-weight: bold;
   text-align: left;
-  font-size: 20px;
+  margin: 0;
+  padding: 24px;
 }
 
 .titles {
-  text-align: right;
   color: var(--NAVY_BLUE);
   font-weight: bold;
+  text-align: right;
+  width: 100%;
+}
+
+.information {
+  color: var(--NAVY_BLUE);
+  text-align: left;
   width: 100%;
 }
 
@@ -47,18 +53,14 @@
 
 .titles p,
 .information p {
-  height: 48px;
+  height: 60px;
+  margin: 0;
   font-size: 20px;
 }
 
-.titles > p:nth-of-type(2n),
-.information > p:nth-of-type(2n) {
-  background-color: var(--LIGHT_GRAY);
-}
-
-.information {
-  text-align: left;
-  width: 100%;
+.titles > p:nth-of-type(2n + 1),
+.information > p:nth-of-type(2n + 1) {
+  background: var(--LIGHT_GRAY);
 }
 
 .hidden {

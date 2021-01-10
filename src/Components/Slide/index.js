@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Decisions from '../Decisions';
 import Status from '../Status/index';
+import Icon from '../Icon/index';
 import './style.css';
 
 const business = {
@@ -26,7 +27,7 @@ function Slide() {
       <div className={`${isOpen ? '' : 'hidden'} slide-form slide`}>
         <p className="general-title">
           General Info
-          <span className="close-button" onClick={handleSlideMove} aria-hidden="true">X</span>
+          <span className="close-button" onClick={handleSlideMove} aria-hidden="true"><Icon name="times" size="" /></span>
         </p>
         <div className="group">
           <div className="titles">
