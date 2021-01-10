@@ -1,3 +1,6 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
 label,
 select {
   display: block;
@@ -14,9 +17,8 @@ select {
 }
 
 form {
+  font-family: "Open Sans", sans-serif;
   text-align: left;
-  width: 80%;
-  margin: auto;
 }
 
 .container {
@@ -25,8 +27,30 @@ form {
 }
 
 .decision-making {
-  display: inline-block;
-  margin-left: 12px;
+  display: flex;
+  justify-content: flex-end;
   font-size: 20px;
   font-weight: bold;
+  margin: 12px 24px 0 0;
+}
+
+.decision-selection {
+  border-top: 1px solid var(--LIGHT_GRAY_DISABLED);
+  border-bottom: 1px solid var(--LIGHT_GRAY_DISABLED);
+  margin: 0;
+  padding: 12px 24px 12px 36px;
+}
+
+.buttonContainer {
+  width: 150px;
+  height: 60px;
+  background: none;
+  color: var(--NAVY_BLUE);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.confirm {
+  background: var(--BANANA_YELLOW);
 }

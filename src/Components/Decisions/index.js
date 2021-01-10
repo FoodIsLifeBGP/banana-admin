@@ -1,11 +1,10 @@
 import React from 'react';
-import Button from '../Button/index';
 import './style.css';
 
 function Decisions() {
   return (
     <form>
-      <label htmlFor="status-decision" control="decisions">
+      <label className="decision-selection" htmlFor="status-decision" control="decisions">
         Decisions
         <select className="container" id="status-decision" name="decisions">
           <option>Active</option>
@@ -16,10 +15,8 @@ function Decisions() {
         </select>
       </label>
       <div className="decision-making">
-        <Button text="Cancel" />
-      </div>
-      <div className="decision-making">
-        <Button text="Confirm" />
+        <button className="buttonContainer" type="submit">Cancel</button>
+        <button className="buttonContainer confirm" type="submit">Confirm</button>
       </div>
     </form>
   );
