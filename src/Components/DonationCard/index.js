@@ -16,11 +16,7 @@ const months = ['January',
   'November',
   'December'];
 
-function DonationCard(props) {
-  // eslint-disable-next-line no-unused-vars
-  const { totalDonation, claimedDonation } = props;
-  const fractionClaimed = claimedDonation / totalDonation;
-  const percentClaimed = Math.trunc(fractionClaimed * 100);
+function getDate() {
   const rawDate = new Date(Date.now());
   const year = rawDate.getFullYear();
   const date = rawDate.getDate();
@@ -30,7 +26,15 @@ function DonationCard(props) {
   const minutes = rawDate.getMinutes();
   const formattedMinutes = (minutes < 10 ? '0' : '') + minutes;
   const dayPart = hour < 12 ? 'a.m.' : 'p.m.';
-  const formattedDate = `${formattedHour}:${formattedMinutes} ${dayPart} ${month} ${date}, ${year}`;
+  return `${formattedHour}:${formattedMinutes} ${dayPart} ${month} ${date}, ${year}`;
+}
+
+function DonationCard(props) {
+  // eslint-disable-next-line no-unused-vars
+  const { totalDonation, claimedDonation } = props;
+  const fractionClaimed = claimedDonation / totalDonation;
+  const percentClaimed = Math.trunc(fractionClaimed * 100);
+  const formattedDate = getDate();
 
   const iconName = 'veggies';
   return (

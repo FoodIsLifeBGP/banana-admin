@@ -44,10 +44,6 @@
     font-weight: bold;
 }
 
-.fractiondisplay{
-
-}
-
 .claimedamount{
     font-weight: bold;
 }
@@ -60,7 +56,18 @@
 
 .progressbar{
     width: 100%;
+    /* background-color: var(--DARK_GRAY); */
+    -webkit-appearance: none;
+    border: none;
 }
+
+/* ::-moz-progress-bar{
+    background-color: var(--DARK_GRAY);
+}
+  
+::-webkit-progress-value{
+    background-color: var(--DARK_GRAY);
+} */
 
 .datedisplay{
     color: var(--DARK_GRAY);
