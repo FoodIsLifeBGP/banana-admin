@@ -6,6 +6,8 @@ import ALERTBELL_SVG from '../../Image/ALERTBELL.svg';
 import TASKS_SVG from '../../Image/TASKS.svg';
 import ELLIPSE_SVG from '../../Image/ELLIPSE.svg';
 
+import SEARCH_SVG from '../../Image/SEARCH.svg';
+
 export default {
   bananaIcon: BANANA_SVG,
   clientPlusIcon: CLIENT_PLUS_SVG,
@@ -13,4 +15,5 @@ export default {
   alertBell: ALERTBELL_SVG,
   tasks: TASKS_SVG,
   ellipse: ELLIPSE_SVG,
+  search: SEARCH_SVG,
 };
