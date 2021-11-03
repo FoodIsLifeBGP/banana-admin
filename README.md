@@ -4,6 +4,7 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 
 # Banana-Admin
   - [Installation](#installation)
+  - [Environment Variables](#environment-variables)
   - [Commands](#commands)
   - [Development](#development)
   - [Building a Component](#build-component-skeleton)
@@ -19,6 +20,24 @@ yarn install && yarn start
 ```
 
 to run admin portal.
+
+## Environment Variables
+
+Create a .env in the root level of your project. Variables that can be set include:
+
+Set which port on which you would like to run the app.
+```
+REACT_APP_BASE_URL=http://localhost:3000
+```
+
+This will set the login server endpoint for testing or production.
+```
+APP_VARIANT=development
+```
+or
+```
+APP_VARIANT=production
+```
 
 ## Commands
 
