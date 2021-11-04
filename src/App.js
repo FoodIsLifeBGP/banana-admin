@@ -7,6 +7,7 @@ import {
 import styles from './App.module.css';
 import HomePage from './Pages/HomePage';
 import SettingsPage from './Pages/Settings';
+import LoginPage from './Pages/LoginPage';
 
 function App() {
   return (
