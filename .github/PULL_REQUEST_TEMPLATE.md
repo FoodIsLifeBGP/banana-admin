@@ -43,6 +43,11 @@ Please delete options that are not relevant.
 #### Images (before/ after screenshots, interaction GIFs, ...)
 
 
+
+#### Please test your work using the [Accessibility Insights for Web](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni) plugin. Include any relevant notes and screenshots.
+
+
+
 ---
 
 
