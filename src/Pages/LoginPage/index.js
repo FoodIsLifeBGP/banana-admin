@@ -19,46 +19,59 @@ export default function LoginPage() {
     // TODO: build login functionality
   };
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.borderspace} />
-      <div className={styles.mainspace}>
-        <Container>
-          <Row>
-            <Col lg={8} push="l2">
-              <Row className={styles.titlerow}>
-                <Col sm={6}>
-                  <Icon name="bananaIcon" size={200} />
-                </Col>
-                <Col sm={6}>
-                  <h1 className={styles.title}>BANANA PORTAL</h1>
-                </Col>
-              </Row>
-              <Form onSubmit={onSubmit}>
-                <Input
-                  id="email"
-                  name="email"
-                  iconName="user"
-                  placeholder="Email"
-                  onChange={setEmail}
-                  className={styles.inputrow}
-                />
-                <Input
-                  id="password"
-                  name="password"
-                  iconName="lock"
-                  placeholder="Password"
-                  type="password"
-                  onChange={setPassword}
-                  className={styles.inputrow}
-                />
-                {/* TODO: allow Input to return a Button object */}
-                <BootstrapButton onClick={onSubmit}>Submit</BootstrapButton>
-              </Form>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    </div>
-  );
+	return (
+		<div className={styles.container}>
+			<div className={styles.borderspace} />
+			<div className={styles.mainspace}>
+				<Container className="h-100 row align-items-center">
+					<Row>
+						<Col lg={10} className="mx-auto">
+							<Row className={styles.titlerow}>
+								<Col sm={6}>
+									<Icon name="bananaIcon" size={200} />
+								</Col>
+								<Col sm={6}>
+									<h1 className={styles.title}>BANANA PORTAL</h1>
+								</Col>
+							</Row>
+							<Form sm={12} className="mx-auto">
+								<Input
+									id="email"
+									name="email"
+									iconName="user"
+									placeholder="Email"
+									className={styles.inputrow}
+									value={email}
+									setValue={setEmail}
+								/>
+								<Input
+									id="password"
+									name="password"
+									iconName="lock"
+									placeholder="Password"
+									type="password"
+									onChange={setPassword}
+									className={styles.inputrow}
+									value={password}
+									setValue={setPassword}
+								/>
+								{/* TODO: allow Input to return a Button object */}
+								<div className="mt-5 mx-5 row row-cols-2 formSubmit">
+									<BootstrapButton
+										className={`col ${styles.button}`}
+										onClick={onSubmit}
+									>
+										Login
+									</BootstrapButton>
+									<a href="/" className="col">
+										<p>Forgot password?</p>
+									</a>
+								</div>
+							</Form>
+						</Col>
+					</Row>
+				</Container>
+			</div>
+		</div>
+	);
 }
