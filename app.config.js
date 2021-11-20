@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 
-export default ({ config }) => {
+const config = ({ config }) => {
   dotenv.config();
   return {
     ...config,
@@ -9,3 +9,5 @@ export default ({ config }) => {
     },
   };
 };
+
+export default config;
