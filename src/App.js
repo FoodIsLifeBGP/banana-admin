@@ -15,9 +15,9 @@ function App() {
 			<Router>
 				<div>
 					<Routes>
-						<Route exact={true} path="/" component={LoginPage} />
-						<Route exact={true} path="/home" component={HomePage} />
-						<Route exact={true} path="/settings" component={SettingsPage} />
+						<Route exact={true} path="/" element={<LoginPage />} />
+						<Route exact={true} path="/home" element={<HomePage />} />
+						<Route exact={true} path="/settings" element={<SettingsPage />} />
 					</Routes>
 				</div>
 			</Router>
