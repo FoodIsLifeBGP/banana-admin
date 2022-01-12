@@ -1,7 +1,7 @@
 import React from 'react';
 import {
 	BrowserRouter as Router,
-	Switch,
+	Routes,
 	Route,
 } from 'react-router-dom';
 import styles from './App.module.css';
@@ -14,11 +14,11 @@ function App() {
 		<div className={styles.App}>
 			<Router>
 				<div>
-					<Switch>
+					<Routes>
 						<Route exact={true} path="/" component={LoginPage} />
 						<Route exact={true} path="/home" component={HomePage} />
 						<Route exact={true} path="/settings" component={SettingsPage} />
-					</Switch>
+					</Routes>
 				</div>
 			</Router>
 		</div>
