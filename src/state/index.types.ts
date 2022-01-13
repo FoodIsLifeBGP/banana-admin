@@ -5,12 +5,22 @@ export interface Alert {
   dismissable?: boolean;
 }
 
+export interface UserState {
+  email: string;
+  password: string;
+  address_city: string;
+  address_state: string;
+  address_zip: string;
+  account_status: string;
+}
 export interface InitialState {
-  userIdentity: 'super-admin' | 'admin';
+  userIdentity: string;
   apiBaseUrl: string;
+  createUrl: string;
   loginUrl: string;
   alert?: Alert;
   jwt?: string;
+  user?: UserState;
 }
 
 export interface StatusCode {
