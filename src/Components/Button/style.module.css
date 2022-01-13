@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--BANANA_YELLOW);
+  background-color: var(--BANANA_YELLOW);
   color: var(--NAVY_BLUE);
   border-radius: 8px;
   font-family: 'Open Sans', sans-serif;
