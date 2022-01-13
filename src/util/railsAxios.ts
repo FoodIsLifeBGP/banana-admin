@@ -1,7 +1,7 @@
 import axios from 'axios';
 import getEnv from './environment';
 
-export default (jwt?: string) => {
+const railsAxios = (jwt?: string) => {
 	const JSON_HEADERS = {
 		Accept: 'application/json',
 		'Content-Type': 'application/json',
@@ -17,3 +17,5 @@ export default (jwt?: string) => {
 		baseURL: API_BASE_URL,
 	});
 };
+
+export default railsAxios;
