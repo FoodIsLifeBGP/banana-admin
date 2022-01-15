@@ -6,21 +6,22 @@ import {
 } from 'reactstrap';
 import Navbar from '../../Components/Navbar';
 import ApplicationCard from '../../Components/ApplicationCard';
-import styles from './HomePage.module.css';
+import DonationCard from '../../Components/DonationCard';
 
 export default function HomePage() {
   return (
-    <div className={styles.HomePage}>
+    <div>
       <Navbar />
-      <Container>
+      <Container style={{ marginTop: '120px' }}>
         <Row>
-          <Col className="applications">
+          <Col md="6">
             <h3>New Applications</h3>
             <ApplicationCard type="client" userCount={25} approvedCount={15} />
             <ApplicationCard type="donor" userCount={7} approvedCount={5} />
           </Col>
-          <Col className="donation">
+          <Col md="6">
             <h3>Donation Status</h3>
+            <DonationCard claimedDonation={29} totalDonation={50} />
           </Col>
         </Row>
       </Container>
