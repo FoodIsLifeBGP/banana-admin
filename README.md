@@ -23,21 +23,16 @@ to run admin portal.
 
 ## Environment Variables
 
-Create a .env in the root level of your project. Variables that can be set include:
+Create a .env in the root level of your project.
 
-Set which port on which you would like to run the app.
-```
-REACT_APP_BASE_URL=http://localhost:3000
-```
+Set the app to either `development` or `production` by adding one of the following to your `.env`:
 
-This will set the login server endpoint for testing or production.
 ```
 APP_VARIANT=development
-```
-or
-```
+
 APP_VARIANT=production
 ```
+This will then set the appropriate server endpoint in `environment.ts`
 
 ## Commands
 
