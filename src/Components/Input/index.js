@@ -20,7 +20,7 @@ function Input(props) {
   const renderIcon = () => {
     if (iconName && iconName !== '') {
       return (
-          <Icon name={iconName} size={20} className={styles.icon} />
+        <Icon name={iconName} size={20} className={styles.icon} />
       );
     }
     return null;

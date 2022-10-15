@@ -7,6 +7,7 @@ import {
   Row,
   Form,
 } from 'reactstrap';
+import getEnv from '../../util/environment.ts';
 import Input from '../../Components/Input/index';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
@@ -25,7 +26,8 @@ export default function LoginPage(props) {
   const onSubmit = (e) => {
     // TODO: build login functionality
     e.preventDefault();
-    fetch('https://localhost:3000/login', {
+    fetch(getEnv(), {
+    // fetch('https://localhost:3000/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
