@@ -1,4 +1,4 @@
-## Banana-admin
+# Banana-admin
 
 Banana App is an open-source, not-for-profit project of The Be Good Foundation. We can reduce hunger by simplifying food donation. We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of. Users will be able to find active donations, view the business's food rating, and claim a portion. This project is the admin portal where applications of donors and clients are to be approved.
 
