@@ -7,12 +7,11 @@ import {
   Row,
   Form,
 } from 'reactstrap';
-import getEnv from '../../util/environment.ts';
 import Input from '../../Components/Input/index';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
 
-export default function LoginPage(props) {
+export default function LoginPage({ handleLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,8 +25,7 @@ export default function LoginPage(props) {
   const onSubmit = (e) => {
     // TODO: build login functionality
     e.preventDefault();
-    fetch(getEnv(), {
-    // fetch('https://localhost:3000/login', {
+    fetch('https://localhost:3000/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +38,7 @@ export default function LoginPage(props) {
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem('token', data.jwt);
-        props.handleLogin(data.user);
+        handleLogin(data.user);
       });
 
     setEmail('');
