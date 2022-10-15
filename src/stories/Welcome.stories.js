@@ -6,16 +6,18 @@ export default {
   component: Welcome,
 };
 
-export const ToStorybook = () => (
-  <div>
-    {
-    `
+export function ToStorybook() {
+  return (
+    <div>
+      {
+        `
     Welcome to the storybook of banana-admin, it's the UI component library, you could view the effect
     and code example of all existing UI component.
     `
-  }
-  </div>
-);
+      }
+    </div>
+  );
+}
 
 ToStorybook.story = {
   name: 'to Storybook',

@@ -3,7 +3,6 @@ import {
   Col,
   Row,
   InputGroup,
-  InputGroupAddon,
   Input as BootstrapInput,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -21,9 +20,7 @@ function Input(props) {
   const renderIcon = () => {
     if (iconName && iconName !== '') {
       return (
-        <InputGroupAddon addonType="prepend" className={styles.icon}>
-          <Icon name={iconName} size={20} />
-        </InputGroupAddon>
+        <Icon name={iconName} size={20} className={styles.icon} />
       );
     }
     return null;
