@@ -1,19 +1,10 @@
-import railsAxios from "../../util/railsAxios";
+import railsAxios from '../../util/railsAxios';
 
-export interface AdminRegisterProps {
-  email: string;
-  password: string;
-  retypedPassword: string;
-  firstName: string;
-  lastName: string;
-  city: string;
-  state: string;
-  zip: string;
-}
-
-export const registerAdmin = async (store, admin: AdminRegisterProps) => {
-  const {createUrl, userIdentity} = store.state;
-  const {email, password, firstName, lastName, city, state, zip} = admin;
+export const registerAdmin = async (store, admin) => {
+  const { createUrl, userIdentity } = store.state;
+  const {
+    email, password, firstName, lastName, city, state, zip,
+  } = admin;
 
   try {
     const response = await railsAxios().post(createUrl, JSON.stringify({
@@ -33,7 +24,7 @@ export const registerAdmin = async (store, admin: AdminRegisterProps) => {
       user: response.data?.admin || {},
     });
     return response.status;
-  } catch (error: any) {
+  } catch (error) {
     await store.setState({
       jwt: '',
       user: {},
@@ -42,8 +33,6 @@ export const registerAdmin = async (store, admin: AdminRegisterProps) => {
   }
 };
 
-const register = (store: any, user: AdminRegisterProps) => {
-  return registerAdmin(store, user);
-};
+const register = (store, user) => registerAdmin(store, user);
 
-export {register};
+export { register };
