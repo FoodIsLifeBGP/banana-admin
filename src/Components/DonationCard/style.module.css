@@ -1,3 +1,76 @@
-.container{
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
 
+.container{
+    width: 550px;
+    height: 180px;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    position: relative;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.imgwrapper{
+    padding: 15px 30px 0 0;
+
+}
+
+.details{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    color: var(--NAVY_BLUE);
+}
+
+.title{
+    font-weight: bold;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.rowwrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.percentdisplay{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.claimedamount{
+    font-weight: bold;
+}
+
+.progressbarrow{
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+}
+
+.progressbar{
+    width: 100%;
+    /* background-color: var(--DARK_GRAY); */
+    -webkit-appearance: none;
+    border: none;
+}
+
+/* ::-moz-progress-bar{
+    background-color: var(--DARK_GRAY);
+}
+  
+::-webkit-progress-value{
+    background-color: var(--DARK_GRAY);
+} */
+
+.datedisplay{
+    color: var(--DARK_GRAY);
+    font-weight: bold;
+    padding-top: 5px;
 }
