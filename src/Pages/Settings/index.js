@@ -30,8 +30,10 @@ export default function SettingsPage() {
           <div className={styles.infoContainer}>
             <p className={styles.infoItem}>
               Member since :
-              {userStub.signInDate.toLocaleDateString(undefined,
-                { minimumIntegerDigits: 2, useGrouping: false })}
+              {userStub.signInDate.toLocaleDateString(
+                undefined,
+                { minimumIntegerDigits: 2, useGrouping: false },
+              )}
             </p>
             <p className={styles.infoItem}>
               Member Authorization :

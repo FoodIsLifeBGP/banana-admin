@@ -7,7 +7,7 @@ import TASKS_SVG from '../../Image/TASKS.svg';
 import ELLIPSE_SVG from '../../Image/ELLIPSE.svg';
 import VEGGIES_SVG from '../../Image/VEGGIES.svg';
 
-export default {
+const icons = {
   bananaIcon: BANANA_SVG,
   clientPlusIcon: CLIENT_PLUS_SVG,
   donorPlusIcon: DONOR_PLUS_SVG,
@@ -16,3 +16,5 @@ export default {
   ellipse: ELLIPSE_SVG,
   veggies: VEGGIES_SVG,
 };
+
+export default icons;
