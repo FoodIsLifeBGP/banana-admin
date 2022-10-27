@@ -1,52 +1,26 @@
 .searchComponent {
-  /* position: absolute; */
   width: 403px;
   height: 73px;
-  /* left: 695px;
-  top: 259px; */
-
   display: flex;
-  flex-directionF: row;
-
-  background: #f0eeee;
+  flex-direction: row;
+  background: var(--LIGHT_GRAY);
   border-radius: 8px;
 }
 
 .vector {
-  /* Vector */
-  /* position: absolute;
   width: 22px;
   height: 24px;
-  left: 0%;
-  right: 0.01%;
-  top: 0%;
-  bottom: -0.01%; */
-
-  width: 22px;
-  height: 24px;
-
   align-items: center;
   padding-top: 24px;
   padding-left: 16px;
-  /* Navy Blue */
-  /* background: #083a9b; */
 }
 
 .searchBar {
-  /* Search by name */
-
-  /* position: absolute;
-  width: 192px;
-  height: 33px;
-  left: 749px;
-  top: 278px; */
-
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
   line-height: 33px;
-
   border: none;
   background: rgba(0,0,0,0);
 
