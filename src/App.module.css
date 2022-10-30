@@ -1,6 +1,11 @@
 @import "colors.module.css";
 @import "fonts.module.css";
 
+.App {
+  text-align: center;
+  background-color:var(--LIGHT_BLUE)
+}
+
 h3 {
   font-family: Open Sans;
   font-style: normal;

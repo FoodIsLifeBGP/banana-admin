@@ -8,7 +8,7 @@
 .borderspace {
   background-color: var(--BANANA_YELLOW);
   height: 100%;
-  width: 0;
+  width: 10vw;
   float: left;
   position: relative;
 }
@@ -21,9 +21,14 @@
   position: relative;
 }
 
+.formcontainer {
+  margin: 0 auto;
+}
+
 .titlerow {
   margin-top: 4rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 
 .inputrow {
@@ -37,6 +42,24 @@
   font-size: 4rem;
 }
 
+.button {
+  background-color: var(--BANANA_YELLOW);
+  color: var(--NAVY_BLUE);
+  border: none;
+  font-weight: bold;
+}
+
+.formSubmit {
+  display: flex;
+  margin: .5rem;
+}
+
+form i {
+  position: relative;
+  padding: .5rem;
+  top: 2px;
+}
+
 @media (min-width: 768px) {
   .borderspace {
     width: 25%;
@@ -44,4 +67,13 @@
   .mainspace {
     width: 75%;
   }
+}
+
+@media (max-width: 768px) {
+	.borderspace {
+		display: none;
+	}
+	.mainspace {
+		background-color: var(--BANANA_YELLOW);
+	}
 }

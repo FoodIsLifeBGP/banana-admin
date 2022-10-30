@@ -11,19 +11,19 @@ function ApplicationCard(props) {
   let newUserLabel = '';
   let iconName = '';
   switch (type) {
-    case 'donor': {
-      newUserLabel = 'New Donors';
-      iconName = 'donorPlusIcon';
-      break;
-    }
-    case 'client': {
-      newUserLabel = 'New Clients';
-      iconName = 'clientPlusIcon';
-      break;
-    }
-    default: {
-      throw new Error('wrong type in application card!');
-    }
+  case 'donor': {
+    newUserLabel = 'New Donors';
+    iconName = 'donorPlusIcon';
+    break;
+  }
+  case 'client': {
+    newUserLabel = 'New Clients';
+    iconName = 'clientPlusIcon';
+    break;
+  }
+  default: {
+    throw new Error('wrong type in application card!');
+  }
   }
   return (
     <div className={styles.container} type={type}>
