@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <div>
       <Navbar />
-      <Container style={{ marginTop: '120px' }}>
+      <Container style={{ margin: '4rem auto' }}>
         <Row>
           <Col md="6">
             <h3>New Applications</h3>
