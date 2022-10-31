@@ -5,7 +5,7 @@ import Icon from '../Icon';
 
 function ApplicationCard(props) {
   const {
-    type, userCount, approvedCount, onClick,
+    type, userCount, approvedCount,
   } = props;
   const fractionApproved = approvedCount / (userCount || 1);
   let newUserLabel = '';
@@ -27,9 +27,9 @@ function ApplicationCard(props) {
   }
   return (
     <div className={styles.container} type={type}>
-      <button className={styles.icon} type="button" tabIndex={0} onClick={onClick}>
-        <Icon name={iconName} size={70} />
-      </button>
+      <div className={styles.icon}>
+        <Icon className={styles.icon} name={iconName} size={70} />
+      </div>
       <div className={styles.body}>
         {userCount.toLocaleString(undefined, { minimumIntegerDigits: 2, useGrouping: false })}
       </div>
@@ -45,14 +45,12 @@ ApplicationCard.propTypes = {
   type: PropTypes.string,
   userCount: PropTypes.number,
   approvedCount: PropTypes.number,
-  onClick: PropTypes.func,
 };
 
 ApplicationCard.defaultProps = {
   type: 'donor',
   userCount: 0,
   approvedCount: 0,
-  onClick: () => {},
 };
 
 export default ApplicationCard;

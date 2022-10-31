@@ -1,76 +1,84 @@
-@import "../../colors.module.css";
-@import "../../fonts.module.css";
 
-.container{
-    width: 550px;
-    height: 180px;
-    display: flex;
-    flex-direction: row;
-    padding: 20px;
-    position: relative;
-    box-sizing: border-box;
-    justify-content: space-between;
-    border-radius: 8px;
-    font-family: 'Open Sans', sans-serif;
-}
+ @import "../../colors.module.css";
+ @import "../../fonts.module.css";
 
-.imgwrapper{
-    padding: 15px 30px 0 0;
+ .container{
+   width: 500px;
+   height: 512px;
+   display: flex;
+   flex-direction: column;
+   margin: 24px;
+   position: relative;
+   box-sizing: border-box;
+   justify-content: center;
+   border-radius: 8px;
+   font-family: 'Open Sans', sans-serif;
+   background: var(--LIGHT_GRAY);
+   color: var(--NAVY_BLUE);
+ }
 
-}
+ .cardTop {
+   height: 259px;
+   padding: 24px;
+ }
 
-.details{
-    flex: auto;
-    display: flex;
-    flex-direction: column;
-    color: var(--NAVY_BLUE);
-}
+ .cardBottom {
+   height: auto;
+   padding: 24px;
+ }
 
-.title{
-    font-weight: bold;
-    font-size: 25px;
-    text-transform: uppercase;
-}
+ .divider {
+   border-bottom: 2px solid var(--LIGHT_GRAY_DISABLED);
+ }
 
-.rowwrapper{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-}
+ .body {
+   font-style: normal;
+   font-weight: bold;
+   font-size: 60px;
+   line-height: 82px;
+   align-items: center;
+   letter-spacing: 0.04em;
+ }
 
-.percentdisplay{
-    font-size: 40px;
-    font-weight: bold;
-}
+ .date {
+   font-weight: bold;
+   font-size: 24px;
+   line-height: 33px;
+   letter-spacing: 0.04em;
+   color: #3F3F3F;
+   display: flex;
+   justify-content: end;
+   text-align: right;
+ }
 
-.claimedamount{
-    font-weight: bold;
-}
+ .footerLabel {
+   font-style: normal;
+   font-weight: bold;
+   font-size: 24px;
+   line-height: 33px;
+   display: flex;
+   align-items: center;
+   letter-spacing: 0.04em;
+   text-transform: uppercase;
+ }
 
-.progressbarrow{
-    display: flex;
-    flex-direction: row;
-    justify-content: stretch;
-}
+ .alignRight {
+   display: flex;
+   justify-content: end;
+ }
 
-.progressbar{
-    width: 100%;
-    /* background-color: var(--DARK_GRAY); */
-    -webkit-appearance: none;
-    border: none;
-}
+ .progressBar {
+   width: 100%;
+   margin-top: 30px;
+   margin-bottom: 9px;
+   -webkit-appearance: none;
+ }
 
-/* ::-moz-progress-bar{
-    background-color: var(--DARK_GRAY);
-}
-  
-::-webkit-progress-value{
-    background-color: var(--DARK_GRAY);
-} */
+ ::-moz-progress-bar {
+   background-color: currentColor;
+ }
 
-.datedisplay{
-    color: var(--DARK_GRAY);
-    font-weight: bold;
-    padding-top: 5px;
-}
+ ::-webkit-progress-value {
+   background-color: currentColor;
+ }
+ 
