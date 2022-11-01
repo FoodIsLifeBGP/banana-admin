@@ -1,0 +1,9 @@
+@import "../../colors.module.css";
+
+nav > .pagination > .pagtab {
+  background: orange !important;
+}
+
+.pagtabtext {
+  color: var(--NAVY_BLUE);
+}
