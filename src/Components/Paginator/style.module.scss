@@ -1,7 +1,18 @@
 @import "../../colors.module.css";
 
-nav > .pagination > .pagtab {
-  background: orange !important;
+.page-item.active .page-link {
+  background-color: orange !important;
+}
+
+.paginationItemStyle {
+	&.page-item {
+		&.active {
+			a {
+				background-color: var(--BANANA_YELLOW);
+				border-color: var(--BANANA_YELLOW);
+			}
+		}
+	}
 }
 
 .pagtabtext {

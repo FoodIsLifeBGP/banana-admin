@@ -128,34 +128,39 @@ function Paginator() {
       </table>
 
       <Pagination aria-label="Page navigation example" className={styles.pagination}>
-        {currentPage !== 1 &&
-          <PaginationItem onClick={() => priorPage(currentPage)}>
-            <PaginationLink href="#">
-              <span className={styles.pagtabtext}>
-                &laquo;
-              </span>
-            </PaginationLink>
-          </PaginationItem>
-        }
+        {currentPage !== 1
+          && (
+            <PaginationItem onClick={() => priorPage(currentPage)}>
+              <PaginationLink href="#">
+                <span className={styles.pagtabtext}>
+                  &laquo;
+                </span>
+              </PaginationLink>
+            </PaginationItem>
+          )}
         {pageNumbers.map((number) => (
-        <PaginationItem active={number === currentPage} onClick={() => paginate(number)} 
-          className={styles.pagtab}>
-          <PaginationLink href="#">
-            <span className={styles.pagtabtext}>
-            {number}
-            </span>
-          </PaginationLink>
-        </PaginationItem>        
-        ))}
-        {currentPage !== pages &&
-          <PaginationItem onClick={() => nextPage(currentPage)}>
+          <PaginationItem
+            active={number === currentPage}
+            onClick={() => paginate(number)}
+            className="paginationItemStyle"
+          >
             <PaginationLink href="#">
               <span className={styles.pagtabtext}>
-              &raquo;
+                {number}
               </span>
             </PaginationLink>
           </PaginationItem>
-        }
+        ))}
+        {currentPage !== pages
+          && (
+            <PaginationItem onClick={() => nextPage(currentPage)}>
+              <PaginationLink href="#">
+                <span className={styles.pagtabtext}>
+                  &raquo;
+                </span>
+              </PaginationLink>
+            </PaginationItem>
+          )}
       </Pagination>
     </nav>
   );
