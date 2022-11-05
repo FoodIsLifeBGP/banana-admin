@@ -4,9 +4,7 @@ import styles from './style.module.css';
 import Icon from '../Icon';
 
 function ApplicationCard(props) {
-  const {
-    type, userCount, approvedCount,
-  } = props;
+  const { type, userCount, approvedCount } = props;
   const fractionApproved = approvedCount / (userCount || 1);
   let newUserLabel = '';
   let iconName = '';
