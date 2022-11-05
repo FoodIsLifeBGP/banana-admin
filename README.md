@@ -13,19 +13,36 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 
 ## Installation
 
-First ensure you have [NodeJS](https://nodejs.org/en/) environment (recommended version is 12.18.2 LTS, which works well with our mobile app) on your computer, then run 
+Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo.
 
-```bash
-yarn install && yarn start
-```
+Then if you havent already done so, clone the repository to your desired project folder and install dependencies: `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
 
-to run admin portal.
+otherwise you can just navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-rn`)
+
+# Installation (Mac/OSX)
+
+First we install NVM and Node
+- `npm i -g nvm` **OR** `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
+
+# Installation (Windows)
+
+- Go to [this website](https://github.com/coreybutler/nvm-windows) and follow the instructions for installing Node Version Manager for Windows
+
+- ***NOTE: This is necessary as the Banana app uses an older version of Node. This is also very convenient as it will let you switch between previous (or current) versions of Node depending on which project you're working on.***
+#### **SETTING UP CODE ENVIRONMENT (OS AGNOSTIC)**
+
+1) To confirm installation on either mac or windows, open up your Command Prompt and run `nvm --version` and it should return the version of your NVM and a list of its usage.
+
+2) Once that's done, run `nvm use` (Banana App's config are compatible with Node version <= 14.17.0) and if you dont have the necessary version follow the prompt to install it (e.g. `nvm install 14.17.0`).
+   - [NOTE: Run `nvm list` or `nvm ls` to see all of your saved versions of Node. You can use the same command `nvm use [version]` to switch].
+
+3) Finally run `yarn install && yarn start`
 
 ## Environment Variables
 
-Create a .env in the root level of your project.
+Create a `.env` file in the root level of your project.
 
-Set the app to either `development` or `production` by adding one of the following to your `.env`:
+Set the app to either `development` or `production` by adding one of the following to your `.env` file:
 
 ```
 APP_VARIANT=development
@@ -38,25 +55,25 @@ This will then set the appropriate server endpoint in `environment.ts`
 
 Run project:
 
-```bash
+```
 yarn start
 ```
 
 Build project
 
-```bash
+```
 yarn run build
 ```
 
 Run storybook server
 
-```bash
+```
 yarn run storybook
 ```
 
 Run ESLint
 
-```bash
+```
 yarn lint
 ```
 
@@ -68,8 +85,8 @@ For UI component, we recommend to develop and debug in [Storybook](https://story
 
 First, create an folder under `src/Components` called `Button`
 
-```bash
-banana-admin $ cd src/Components 
+```
+banana-admin $ cd src/Components
 banana-admin/src/Components $ mkdir Button
 banana-admin/src/Components $ cd Button
 ```
@@ -196,8 +213,8 @@ export const presentation = () => <Button text="ButtonText" />;
 ![image-20200715001707871](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggrojcd7ixj31rd0u00v4.jpg)
 
 ## Creating a Pull Request
-Prior to creating a pull request, please correct any eslint errors presented upon running: 
-```bash
+Prior to creating a pull request, please correct any eslint errors presented upon running:
+```
   yarn lint
 ```
 Please fill out the pull request template as thoroughly and thoughtfully as possible.
