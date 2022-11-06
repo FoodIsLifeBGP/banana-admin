@@ -15,7 +15,7 @@ function Decisions() {
         </select>
       </label>
       <div className="decision-making">
-        <button className="buttonContainer" type="submit">Cancel</button>
+        <button className="buttonContainer" type="button">Cancel</button>
         <button className="buttonContainer confirm" type="submit">Confirm</button>
       </div>
     </form>
