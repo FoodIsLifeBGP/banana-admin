@@ -4,6 +4,7 @@ import Status from '../Status/index';
 import Icon from '../Icon/index';
 import './style.css';
 
+// TODO: Remove this object once the API is connected
 const business = {
   status: 'Inactive',
   businessName: 'I am a business',
