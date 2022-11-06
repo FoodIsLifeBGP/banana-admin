@@ -71,6 +71,7 @@
    width: 100%;
    margin-top: 30px;
    margin-bottom: 9px;
+   appearance: none;
    -webkit-appearance: none;
  }
 
