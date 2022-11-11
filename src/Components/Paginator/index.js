@@ -144,7 +144,7 @@ function Paginator() {
             onClick={() => paginate(number)}
             className="paginationItemStyle"
           >
-            <PaginationLink href="#">
+            <PaginationLink href="#" className="paginationLinkStyle">
               <span className={styles.pagtabtext}>
                 {number}
               </span>
