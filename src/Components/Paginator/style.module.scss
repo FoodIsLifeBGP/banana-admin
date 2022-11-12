@@ -1,13 +1,13 @@
 @import "../../colors.module.css";
 
-$background-color: var(--BANANA_YELLOW);
+// $background-color: var(--BANANA_YELLOW);
 
 .paginationItemStyle {
   .page-link {
     color: #fff
   }
 	&.page-item {
-		&.active &:active {
+		&.active {
 			a {
 				background-color: var(--BANANA_YELLOW) !important;
 				border-color: var(--BANANA_YELLOW);
@@ -16,12 +16,27 @@ $background-color: var(--BANANA_YELLOW);
 	}
 }
 
-.page-item.active .page-link {
-  background-color: $background-color;
-	border-color: $background-color;
+// .paginationItemStyle {
+//   .page-link {
+//     color: #fff
+//   }
+// 	&.page-item {
+//     a {
+//       background-color: var(--BANANA_YELLOW) !important;
+//       border-color: var(--BANANA_YELLOW);
+//     }
+// 	}
+// }
+
+// .page-item.active .page-link {
+//   background-color: $background-color;
+// 	border-color: $background-color;
+// }
+
+li.activeSquare > a {
+  background-color: var(--BANANA_YELLOW) !important;
 }
 
 .pagtabtext {
-  background-color: var(--BANANA_YELLOW);
   color: var(--NAVY_BLUE);
 }
