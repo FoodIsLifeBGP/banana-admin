@@ -1,0 +1,68 @@
+@import "../../colors.module.css";
+
+.slide-form {
+  background-color: white;
+  width: 400px;
+  position: absolute;
+  right: 0;
+  top: 120px;
+  z-index: 100;
+}
+
+.close-button {
+  position: absolute;
+  right: 18px;
+}
+
+.group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.general-title {
+  background-color: var(--NAVY_BLUE);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  margin: 0;
+  padding: 24px;
+}
+
+.titles {
+  color: var(--NAVY_BLUE);
+  font-weight: bold;
+  text-align: right;
+  width: 100%;
+}
+
+.information {
+  color: var(--NAVY_BLUE);
+  text-align: left;
+  width: 100%;
+}
+
+.titles > p {
+  padding: 12px 12px 12px 0;
+}
+
+.information > p {
+  padding: 12px 0 12px 12px;
+}
+
+.titles p,
+.information p {
+  height: 60px;
+  margin: 0;
+  font-size: 20px;
+}
+
+.titles > p:nth-of-type(2n + 1),
+.information > p:nth-of-type(2n + 1) {
+  background: var(--LIGHT_GRAY);
+}
+
+.hidden {
+  display: none;
+}
