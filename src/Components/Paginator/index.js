@@ -127,12 +127,12 @@ function Paginator() {
         ))}
       </table>
 
-      <Pagination aria-label="Page navigation example">
+      <Pagination aria-label="Page navigation example" className={styles.paginationStyle}>
         {currentPage !== 1
           && (
             <PaginationItem onClick={() => priorPage(currentPage)}>
               <PaginationLink href="#">
-                <span className={styles.pagtabtext}>
+                <span className={styles.pagTabText}>
                   &laquo;
                 </span>
               </PaginationLink>
@@ -144,8 +144,8 @@ function Paginator() {
             className={number === currentPage ? 'activeSquare paginationItemStyle' : 'paginationItemStyle'}
             active={number === currentPage}
           >
-            <PaginationLink href="#" className="paginationLinkStyle">
-              <span className={styles.pagtabtext}>
+            <PaginationLink href="#" className={number === currentPage ? styles.paginationLinkStyle : ''}>
+              <span className={styles.pagTabText}>
                 {number}
               </span>
             </PaginationLink>
@@ -155,7 +155,7 @@ function Paginator() {
           && (
             <PaginationItem onClick={() => nextPage(currentPage)}>
               <PaginationLink href="#">
-                <span className={styles.pagtabtext}>
+                <span className={styles.pagTabText}>
                   &raquo;
                 </span>
               </PaginationLink>

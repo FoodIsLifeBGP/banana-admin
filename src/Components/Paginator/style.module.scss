@@ -1,42 +1,14 @@
 @import "../../colors.module.css";
 
-// $background-color: var(--BANANA_YELLOW);
-
-.paginationItemStyle {
-  .page-link {
-    color: #fff
-  }
-	&.page-item {
-		&.active {
-			a {
-				background-color: var(--BANANA_YELLOW) !important;
-				border-color: var(--BANANA_YELLOW);
-			}
-		}
-	}
+.paginationStyle {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-// .paginationItemStyle {
-//   .page-link {
-//     color: #fff
-//   }
-// 	&.page-item {
-//     a {
-//       background-color: var(--BANANA_YELLOW) !important;
-//       border-color: var(--BANANA_YELLOW);
-//     }
-// 	}
-// }
-
-// .page-item.active .page-link {
-//   background-color: $background-color;
-// 	border-color: $background-color;
-// }
-
-li.activeSquare > a {
+.paginationLinkStyle {
   background-color: var(--BANANA_YELLOW) !important;
 }
 
-.pagtabtext {
+.pagTabText {
   color: var(--NAVY_BLUE);
 }
