@@ -9,8 +9,11 @@ function ApplicationStatusForm({ title, handleSubmit }) {
       <form className={styles.applicationStatusForm} onSubmit={handleSubmit}>
         <select className={styles.dropdown} value="">
           <option value="">Please Select...</option>
-          <option value="pending">Pending</option>
           <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+          <option value="suspended">Suspended</option>
+          <option value="incomplete">Incomplete</option>
+          <option value="closed">Closed</option>
         </select>
         <input
           className={styles.buttonContainer}
