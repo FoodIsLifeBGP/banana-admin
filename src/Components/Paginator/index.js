@@ -4,42 +4,41 @@ import styles from './style.module.scss';
 
 function Paginator(props) {
   // Need to pass in number of entries and desired entries per page
+  // TODO: implement pagination with a 'pagy' obj that gets sent to/from the
+  // backend
   const { entries, entriesPerPage } = props;
   const pages = Math.ceil(entries / entriesPerPage);
   const pageNumbers = [];
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Below 3 lines can be reused on the page component
-  // const indexOfLastEntry = currentPage * entriesPerPage;
-  // const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
-  // const currentEntries = entries.slice(indexOfFirstEntry, indexOfLastEntry);
-
   // Get pages
-  for (let i = 1; i <= Math.ceil(pages); i += 1) {
+  for (let i = 1; i <= pages; i += 1) {
     pageNumbers.push(i);
   }
 
-  // Go to specific page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Go to prior page
-  const priorPage = (pageNumber) => setCurrentPage(pageNumber - 1);
+  const priorPage = (pageNumber) => {
+    if (pageNumber !== 1) {
+      setCurrentPage(pageNumber - 1);
+    }
+  };
 
-  // Go to next page
-  const nextPage = (pageNumber) => setCurrentPage(pageNumber + 1);
+  const nextPage = (pageNumber) => {
+    if (pageNumber !== pages) {
+      setCurrentPage(pageNumber + 1);
+    }
+  };
 
   return (
-    <Pagination aria-label="Page navigation example" className={styles.paginationStyle}>
-      {currentPage !== 1
-        && (
-          <PaginationItem onClick={() => priorPage(currentPage)}>
-            <PaginationLink href="#">
-              <span className={styles.pagTabText}>
-                &laquo;
-              </span>
-            </PaginationLink>
-          </PaginationItem>
-        )}
+    <Pagination aria-label="Page navigation" className={styles.paginationStyle}>
+      <PaginationItem onClick={() => priorPage(currentPage)} disabled={currentPage === 1}>
+        <PaginationLink href="#">
+          <span className={currentPage !== 1 ? styles.pagTabText : ''}>
+            &laquo;
+          </span>
+        </PaginationLink>
+      </PaginationItem>
       {pageNumbers.map((number) => (
         <PaginationItem
           onClick={() => paginate(number)}
@@ -53,16 +52,13 @@ function Paginator(props) {
           </PaginationLink>
         </PaginationItem>
       ))}
-      {currentPage !== pages
-        && (
-          <PaginationItem onClick={() => nextPage(currentPage)}>
-            <PaginationLink href="#">
-              <span className={styles.pagTabText}>
-                &raquo;
-              </span>
-            </PaginationLink>
-          </PaginationItem>
-        )}
+      <PaginationItem onClick={() => nextPage(currentPage)} disabled={currentPage === pages}>
+        <PaginationLink href="#">
+          <span className={currentPage !== pages ? styles.pagTabText : ''}>
+            &raquo;
+          </span>
+        </PaginationLink>
+      </PaginationItem>
     </Pagination>
   );
 }
