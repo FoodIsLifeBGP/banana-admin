@@ -1,31 +1,32 @@
 .container{
   width: 500px;
-  height: 244px;
   display: flex;
   flex-direction: column;
   position: relative;
   box-sizing: border-box;
-  border: 5px var(--BANANA_YELLOW);
+  border: 2px solid var(--LIGHT_GRAY);
   font-family: 'Open Sans', sans-serif;
   background: var(--WHITE);
-  color: var(--NAVY_BLUE)
+  color: var(--NAVY_BLUE);
 }
 
 .topBar{
   background: var(--BANANA_YELLOW);
-  width: 500px;
-  height: 100px;
-  line-height: 100px;
-  justify-content: center;
-  align-items: center;
+  height: 75px;
+  line-height: 75px;
   text-align: center;
   font-size: larger;
   font-weight: bold;
 }
 
+.mainBody{
+  padding: 70px 10px 10px 10px;
+}
+
 p{
   text-align: center;
   margin: 20px;
+  font-size: larger;
 }
 
 .buttonContainer{
@@ -35,8 +36,8 @@ p{
 }
 
 .okayButton{
-  width: 150px;
-  height: 70px;
+  width: 120px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,22 +47,5 @@ p{
   font-weight: bold;
   border-radius: 8px;
   border-color: var(--BANANA_YELLOW);
-  border-width: 0px;
-}
-
-.undoButton{
-  width: 150px;
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--LIGHT_GRAY);
-  color: var(--NAVY_BLUE);
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
-  margin-right: 10px;
-  border-radius: 8px;
-  border-color: var(--LIGHT_GRAY);
-  box-shadow: var(--LIGHT_GRAY);
   border-width: 0px;
 }

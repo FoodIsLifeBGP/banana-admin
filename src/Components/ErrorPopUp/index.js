@@ -11,9 +11,9 @@ function ErrorPopUp() {
       {show && (
         <div className={styles.container}>
           <div className={styles.topBar}>
-            Error Occurred
+            ERROR OCCURRED
           </div>
-          <div>
+          <div className={styles.mainBody}>
             <p>
               Something went wrong while processing the application status update. Please try again.
             </p>

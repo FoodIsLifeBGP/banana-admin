@@ -12,9 +12,9 @@ function SuccessPopUp() {
       {show && (
         <div className={styles.container}>
           <div className={styles.topBar}>
-            Application Status Change
+            APPLICATION STATUS CHANGE
           </div>
-          <div>
+          <div className={styles.mainBody}>
             <p>
               The application status has been successfully updated.
             </p>
