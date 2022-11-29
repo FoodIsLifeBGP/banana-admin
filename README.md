@@ -59,23 +59,23 @@ Run project:
 yarn start
 ```
 
-Build project
-
-```
-yarn run build
-```
-
 Run storybook server
 
 ```
 yarn run storybook
 ```
 
-Run ESLint
+Run ESLint (you'll need to ensure you fix any linter errors and visually double-check your components in storybook before submitting/merging your PR so our build-checks pass)
 
 ```
 yarn lint
 ```
+
+...and infequently you may need to build the project:
+```
+yarn run build
+```
+
 
 ## Development
 
