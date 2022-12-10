@@ -4,6 +4,7 @@ const getServerEndPoint = () => {
   } if (process.env.APP_VARIANT === 'production') {
     return 'https://api.bananaapp.org';
   }
+  // eslint-disable-next-line no-console
   return console.error('Please set your APP_VARIANT in your .env as either "development" or "production".');
 };
 

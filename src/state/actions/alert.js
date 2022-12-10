@@ -1,9 +1,7 @@
-import { Alert } from '../index.types';
-
-export const updateAlert = (store, alert: Alert) => {
+export const updateAlert = (store, alert) => {
   store.setState({ alert });
 };
 
-export const clearAlert = (store => {
+export const clearAlert = ((store) => {
   store.setState({ alert: undefined });
 });

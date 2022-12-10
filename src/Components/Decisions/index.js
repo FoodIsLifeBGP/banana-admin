@@ -4,7 +4,7 @@ import './style.css';
 function Decisions() {
   return (
     <form>
-      <label className="decision-selection" htmlFor="status-decision" control="decisions">
+      <label className="decision-selection" htmlFor="status-decision">
         Decisions
         <select className="container" id="status-decision" name="decisions">
           <option>Active</option>
