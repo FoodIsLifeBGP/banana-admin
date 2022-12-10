@@ -26,7 +26,7 @@
 p{
   text-align: center;
   margin: 20px;
-  font-size: larger;
+  font-size: 1.2rem;
 }
 
 .buttonContainer{
@@ -45,6 +45,7 @@ p{
   color: var(--NAVY_BLUE);
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
+  font-size: 1rem;
   border-radius: 8px;
   border-color: var(--BANANA_YELLOW);
   border-width: 0px;
@@ -60,6 +61,7 @@ p{
   color: var(--NAVY_BLUE);
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
+  font-size: 1rem;
   margin-right: 20px;
   border-radius: 8px;
   border-color: var(--LIGHT_GRAY);

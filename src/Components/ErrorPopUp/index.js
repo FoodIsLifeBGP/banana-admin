@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styles from './style.module.css';
 
-function ErrorPopUp() {
+function ErrorPopUp(props) {
   const [show, setShow] = useState(true);
-
+  const [errorMessage, setErrorMessage] = useState('Something went wrong while processing the application status update. Please try again.');
   const disapear = () => setShow(false);
+  const { apiErrorMessage } = props;
+
+  if (apiErrorMessage) setErrorMessage(apiErrorMessage);
 
   return (
     <div>
@@ -15,7 +18,7 @@ function ErrorPopUp() {
           </div>
           <div className={styles.mainBody}>
             <p>
-              Something went wrong while processing the application status update. Please try again.
+              {errorMessage}
             </p>
             <div className={styles.buttonContainer}>
               <input
