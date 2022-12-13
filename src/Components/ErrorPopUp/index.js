@@ -6,7 +6,7 @@ function ErrorPopUp(props) {
   const [errorMessage, setErrorMessage] = useState('Something went wrong while processing the application status update. Please try again.');
   const { apiErrorMessage } = props;
 
-  if (apiErrorMessage) setErrorMessage(apiErrorMessage);
+  if (apiErrorMessage) { setErrorMessage(apiErrorMessage); }
 
   return (
     <div>
