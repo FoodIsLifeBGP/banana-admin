@@ -3,7 +3,6 @@ import styles from './style.module.css';
 
 function SuccessPopUp() {
   const [show, setShow] = useState(true);
-  const disapear = () => setShow(false);
   // TODO: Create route for "Undo" button
   // Error message is the only prop
 
@@ -28,7 +27,7 @@ function SuccessPopUp() {
                 className={styles.okayButton}
                 type="submit"
                 value="Okay"
-                onClick={() => disapear()}
+                onClick={() => setShow(false)}
               />
             </div>
           </div>

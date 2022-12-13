@@ -4,7 +4,6 @@ import styles from './style.module.css';
 function ErrorPopUp(props) {
   const [show, setShow] = useState(true);
   const [errorMessage, setErrorMessage] = useState('Something went wrong while processing the application status update. Please try again.');
-  const disapear = () => setShow(false);
   const { apiErrorMessage } = props;
 
   if (apiErrorMessage) setErrorMessage(apiErrorMessage);
@@ -25,7 +24,7 @@ function ErrorPopUp(props) {
                 className={styles.okayButton}
                 type="submit"
                 value="Okay"
-                onClick={() => disapear()}
+                onClick={() => setShow(false)}
               />
             </div>
           </div>
