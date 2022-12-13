@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import styles from './style.module.css';
 
-function SuccessPopUp() {
+function SuccessPopUp(props) {
   const [show, setShow] = useState(true);
+  let successMessage = 'The application status has been successfully updated.';
+  const { apiSuccessMessage } = props;
+  if (apiSuccessMessage) {
+    successMessage = apiSuccessMessage;
+  }
   // TODO: Create route for "Undo" button
-  // Error message is the only prop
+  // Success message is the only prop
 
   return (
     <div>
@@ -15,7 +20,7 @@ function SuccessPopUp() {
           </div>
           <div className={styles.mainBody}>
             <p>
-              The application status has been successfully updated.
+              {successMessage}
             </p>
             <div className={styles.buttonContainer}>
               <input
