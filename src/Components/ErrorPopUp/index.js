@@ -3,10 +3,11 @@ import styles from './style.module.css';
 
 function ErrorPopUp(props) {
   const [show, setShow] = useState(true);
-  const [errorMessage, setErrorMessage] = useState('Something went wrong while processing the application status update. Please try again.');
+  let errorMessage = 'Something went wrong while processing the application status update. Please try again.';
   const { apiErrorMessage } = props;
-
-  if (apiErrorMessage) { setErrorMessage(apiErrorMessage); }
+  if (apiErrorMessage) {
+    errorMessage = apiErrorMessage;
+  }
 
   return (
     <div>
