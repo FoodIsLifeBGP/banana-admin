@@ -1,10 +1,10 @@
 .container{
-  width: 450px;
+  width: 28.1rem;
   display: flex;
   flex-direction: column;
   position: relative;
   box-sizing: border-box;
-  border: 2px solid var(--LIGHT_GRAY);
+  border: .13rem solid var(--LIGHT_GRAY);
   font-family: 'Open Sans', sans-serif;
   background: var(--WHITE);
   color: var(--NAVY_BLUE);
@@ -12,32 +12,32 @@
 
 .topBar{
   background: var(--BANANA_YELLOW);
-  height: 75px;
-  line-height: 75px;
+  height: 4.7rem;
+  line-height: 4.7rem;
   text-align: center;
   font-size: larger;
   font-weight: bold;
 }
 
 .mainBody{
-  padding: 50px 50px 10px 50px;
+  padding: 3.1rem 3.1rem .6rem 3.1rem;
 }
 
 p{
   text-align: center;
-  margin: 20px;
+  margin: 1.2rem;
   font-size: 1.2rem;
 }
 
 .buttonContainer{
-  padding: 30px 20px;
+  padding: 2rem 1.2rem;
   display: flex;
   justify-content: center;
 }
 
 .okayButton{
-  width: 120px;
-  height: 50px;
+  width: 7.5rem;
+  height: 3.1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,14 +46,14 @@ p{
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
   font-size: 1rem;
-  border-radius: 8px;
+  border-radius: .5rem;
   border-color: var(--BANANA_YELLOW);
-  border-width: 0px;
+  border-width: 0rem;
 }
 
 .undoButton{
-  width: 120px;
-  height: 50px;
+  width: 7.5rem;
+  height: 3.1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,9 +62,9 @@ p{
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
   font-size: 1rem;
-  margin-right: 20px;
-  border-radius: 8px;
+  margin-right: 1.2rem;
+  border-radius: .5rem;
   border-color: var(--LIGHT_GRAY);
   box-shadow: var(--LIGHT_GRAY);
-  border-width: 0px;
+  border-width: 0rem;
 }
