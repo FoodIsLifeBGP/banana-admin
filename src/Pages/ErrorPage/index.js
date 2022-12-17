@@ -1,16 +1,18 @@
 import React from 'react';
 import Navbar from '../../Components/Navbar';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 import Icon from '../../Components/Icon';
 
 function ErrorPage() {
+  const ladyWidth = 400;
+  const bananaWidth = 60;
   return (
     <div>
       <Navbar />
       <div className={styles.body}>
         <div className={styles.leftBody}>
           <h1>404</h1>
-          <p>Looks like this page went bananas</p>
+          <p>Looks like this page went bananas.</p>
           <div className={styles.buttonContainer}>
             <input
               className={styles.goBackButton}
@@ -25,8 +27,10 @@ function ErrorPage() {
           </div>
         </div>
         <div className={styles.rightBody}>
-          <Icon name="upsetWoman" size={493.19} />
-          <Icon name="bananaPeel" size={66.72} className={styles.bananaPeel} />
+          <Icon name="upsetWoman" size={ladyWidth} />
+          <div className={styles.bananaPeel}>
+            <Icon name="bananaPeel" size={bananaWidth} />
+          </div>
         </div>
       </div>
       <div className={styles.bottomBar} />
