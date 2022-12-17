@@ -1,10 +1,10 @@
 .container{
-  width: 500px;
+  width: 31.25rem;
   display: flex;
   flex-direction: column;
   position: relative;
   box-sizing: border-box;
-  border: 2px solid var(--LIGHT_GRAY);
+  border: .13rem solid var(--LIGHT_GRAY);
   font-family: 'Open Sans', sans-serif;
   background: var(--WHITE);
   color: var(--NAVY_BLUE);
@@ -12,33 +12,33 @@
 
 .topBar{
   background: var(--BANANA_YELLOW);
-  height: 75px;
-  line-height: 75px;
+  height: 4.7rem;
+  line-height: 4.7rem;
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
 .mainBody{
-  padding: 70px 10px 10px 10px;
+  padding: 4.4rem .6rem .6rem .6rem;
 }
 
 p{
   text-align: center;
-  margin: 20px;
+  margin: 1.2rem;
   font-size: larger;
   font-size: 1.2rem;
 }
 
 .buttonContainer{
-  padding: 30px 20px;
+  padding: 2rem 1.2rem;
   display: flex;
   justify-content: center;
 }
 
 .okayButton{
-  width: 120px;
-  height: 50px;
+  width: 7.5rem;
+  height: 3.1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,8 +46,8 @@ p{
   color: var(--NAVY_BLUE);
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   border-color: var(--BANANA_YELLOW);
-  border-width: 0px;
+  border-width: 0rem;
   font-size: 1rem;
 }
