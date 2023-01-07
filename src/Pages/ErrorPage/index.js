@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../../Components/Navbar';
 import styles from './style.module.scss';
 import Icon from '../../Components/Icon';
@@ -6,6 +6,11 @@ import Icon from '../../Components/Icon';
 function ErrorPage() {
   const ladyWidth = 400;
   const bananaWidth = 60;
+
+  useEffect(() => {
+    document.body.classList.add('theBody');
+  }, []);
+
   return (
     <div>
       <Navbar />
