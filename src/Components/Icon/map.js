@@ -7,6 +7,8 @@ import ELLIPSE_SVG from '../../Image/ELLIPSE.svg';
 import SEARCH_SVG from '../../Image/SEARCH.svg';
 import TASKS_SVG from '../../Image/TASKS.svg';
 import VEGGIES_SVG from '../../Image/VEGGIES.svg';
+import HIDDEN_EYE_SVG from '../../Image/HIDDEN_EYE.svg';
+import VISIBLE_EYE_SVG from '../../Image/VISIBLE_EYE.svg'
 
 const icons = {
   alertBell: ALERTBELL_SVG,
@@ -18,6 +20,8 @@ const icons = {
   search: SEARCH_SVG,
   tasks: TASKS_SVG,
   veggies: VEGGIES_SVG,
+  hiddenEye: HIDDEN_EYE_SVG,
+  visibleEye: VISIBLE_EYE_SVG,
 };
 
 export default icons;

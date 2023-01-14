@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 // import PropTypes from 'prop-types';
 import styles from './style.module.css';
-// import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
+import Icon from '../Icon';
 
 function NewAdminForm() {
   const initialFormData = {
@@ -71,14 +71,12 @@ function NewAdminForm() {
             type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Enter Super Admin password"
-            
             value={formData.password}
           />
-            <i onClick={handlePassword}
-            >
+            <i onClick={handlePassword}>
               {showPassword ? (
-                <FaRegEye />) : (
-                  <FaRegEyeSlash />
+                <Icon name="visibleEye" />) : (
+                  <Icon name="hiddenEye" />
               ) }
             </i>
         </div>
