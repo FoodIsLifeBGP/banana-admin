@@ -1,0 +1,109 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 0px;
+  flex-wrap: wrap;
+}
+
+.newAdminForm {
+  flex-direction: row;
+  width: 100%;
+  justify-content: stretch
+  
+}
+
+.fieldContainer {
+  display: flex;
+  /* flex-direction: row;
+  gap: 10%; */
+  justify-content: stretch;
+  padding-bottom: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: end;
+  gap: 5%;
+  padding-right: 11%;
+}
+
+
+#buttonConfirm {
+  width: 192px;
+  height: 73px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--BANANA_YELLOW);
+  color: var(--NAVY_BLUE);
+  border-radius: 8px;
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: 0.04em;
+  margin: 40px 0 10px 0;
+}
+
+#buttonBack {
+  width: 192px;
+  height: 73px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--LIGHT_GRAY);
+  color: var(--NAVY_BLUE);
+  border-radius: 8px;
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: 0.04em;
+  margin: 40px 0 10px 0;
+  
+}
+
+/* 
+
+
+
+*/
+
+input {
+  width: 65%;
+  height: 55px;
+  border: 2px solid var(--LIGHT_GRAY);
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: 0.04em;
+  color: var(--NAVY_BLUE);
+}
+
+
+h3 {
+  text-align: center;
+}
+
+label {
+  text-align: left;
+  color: var(--NAVY_BLUE);
+  font-style: normal;
+  font-weight:bold;
+  width: 20%;
+  min-width: 0;
+  padding-top: 15px;
+  margin-left: 50px;
+  flex-grow: 0;
+}
+
