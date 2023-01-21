@@ -12,8 +12,8 @@ const getEnv = () => ({
   CREATE_URL: 'admin_auth',
   LOGIN_URL: '/login',
   // TODO: Update logic for user identity to either: 'view-only' | 'admin' | 'super-admin'
-  USER_IDENTITY: 'view-only',
-  API_BASE_URL: getServerEndPoint() || 'development',
+  USER_IDENTITY: 'admin',
+  API_BASE_URL: getServerEndPoint(),
 });
 
 export default getEnv;
