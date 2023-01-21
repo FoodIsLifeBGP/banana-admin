@@ -76,6 +76,7 @@ yarn lint
 yarn run build
 ```
 
+navigate to `http://localhost:3004` (port set in `package.json`)
 
 ## Development
 

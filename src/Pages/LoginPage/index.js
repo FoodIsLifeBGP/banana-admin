@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import {
   Button as BootstrapButton,
   Container,
@@ -10,39 +10,46 @@ import {
 import Input from '../../Components/Input/index';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
+import { logIn } from '../../state/actions/auth';
+import { initialState } from '../../util/environment';
+// import useGlobal from '../../state/index';
 
-export default function LoginPage({ handleLogin }) {
+export default function LoginPage() {
+  // const [{ userIdentity, loginUrl }, { logIn }] = useGlobal();
+  const { userIdentity, loginUrl } = initialState;
+
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
-  const onSubmit = (e) => {
-    // TODO: build login functionality
-    e.preventDefault();
-    fetch('https://localhost:3000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        email, password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem('token', data.jwt);
-        handleLogin(data.user);
-      });
-
+  const clearEmailAndPassword = () => {
     setEmail('');
     setPassword('');
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const statusCode = await logIn(userIdentity, loginUrl, { email, password });
+    switch (statusCode) {
+    case 202: {
+      clearEmailAndPassword();
+      navigate('HomePage');
+      return;
+    }
+    case 401: alert('Incorrect email or password'); return; /* TODO: create `Alert` component instead of using default */
+    case 404: alert('Server not found - please try again'); return;
+    case 500: alert('Network error - please try again'); return;
+    default: alert(`Server replied with ${statusCode} status code`);
+    }
   };
 
   return (
@@ -86,7 +93,7 @@ export default function LoginPage({ handleLogin }) {
                 <div className="mt-5 mx-5 row row-cols-2 formSubmit">
                   <BootstrapButton
                     className={`col ${styles.button}`}
-                    onClick={onSubmit}
+                    onClick={handleLogin}
                   >
                     Login
                   </BootstrapButton>
