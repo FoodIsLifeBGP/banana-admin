@@ -107,3 +107,7 @@ label {
   flex-grow: 0;
 }
 
+i {
+  position: absolute;
+  right: 5%;
+}
