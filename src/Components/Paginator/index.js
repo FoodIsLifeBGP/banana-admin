@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import styles from './style.module.scss';
 
@@ -6,29 +6,15 @@ function Paginator(props) {
   // Need to pass in number of entries and desired entries per page
   // TODO: implement pagination with a 'pagy' obj that gets sent to/from the
   // backend
-  const { entries, entriesPerPage } = props;
-  const pages = Math.ceil(entries / entriesPerPage);
+  const {
+    pages, currentPage, paginate, nextPage, priorPage,
+  } = props;
   const pageNumbers = [];
-  const [currentPage, setCurrentPage] = useState(1);
 
   // Get pages
   for (let i = 1; i <= pages; i += 1) {
     pageNumbers.push(i);
   }
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const priorPage = (pageNumber) => {
-    if (pageNumber !== 1) {
-      setCurrentPage(pageNumber - 1);
-    }
-  };
-
-  const nextPage = (pageNumber) => {
-    if (pageNumber !== pages) {
-      setCurrentPage(pageNumber + 1);
-    }
-  };
 
   return (
     <Pagination aria-label="Page navigation" className={styles.paginationStyle}>
