@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './style.module.css';
+// import PropTypes from 'prop-types';
+// import styles from './style.module.css';
 
-function NotificationCard(props) {
+function NotificationCard() {
   return (
     <div>
       NotificationCard
