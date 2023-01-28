@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from './style.module.css';
 
-function BreadCrumb(props) {
-  const { breadCrumbTrail } = props;
+function BreadCrumb() {
+  // const { breadCrumbTrail } = props;
   // breadCrumbTrail is an array of dictionaries with the
   // pages and their respective links links to.
   // EX.
-  // const breadCrumbTrail = [
-  //   { pageName: 'Honky Tonk', url: 'localhost:3000' },
-  //   { pageName: 'Donors', url: 'localhost:3000' },
-  //   { pageName: 'New Applications', url: 'localhost:3000' },
-  // ];
+  const breadCrumbTrail = [
+    { pageName: 'Home', url: 'localhost:3000' },
+    { pageName: 'Donors', url: 'localhost:3000' },
+    { pageName: 'New Applications', url: 'localhost:3000' },
+  ];
 
   const breadCrumbTrailMap = [];
 
