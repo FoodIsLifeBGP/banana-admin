@@ -1,8 +1,8 @@
 import ApiService from '../../Services/ApiService';
-import { initialState } from '../../util/environment';
+// import { initialState } from '../index';
 
-export async function logIn(store, { email, password }) {
-  const { loginUrl, userIdentity } = initialState;
+export async function logIn(store, { email, password }, loginUrl, userIdentity) {
+  // const { loginUrl, userIdentity } = initialState;
   const { axiosRequest } = ApiService();
 
   try {
@@ -25,5 +25,6 @@ export async function logIn(store, { email, password }) {
 }
 
 export async function logOut(store) {
-  await store.setState(initialState);
+  // await store.setState(initialState);
+  console.log(store);
 }

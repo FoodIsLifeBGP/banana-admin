@@ -10,13 +10,13 @@ import {
 import Input from '../../Components/Input/index';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
-import { logIn } from '../../state/actions/auth';
-import { initialState } from '../../util/environment';
-// import useGlobal from '../../state/index';
+import useGlobal from '../../state/index';
 
 export default function LoginPage() {
-  // const [{ userIdentity, loginUrl }, { logIn }] = useGlobal();
-  const { userIdentity, loginUrl } = initialState;
+  const [{ userIdentity, loginUrl }, { logIn }] = useGlobal();
+
+  console.log('state', userIdentity);
+  console.log('actions', logIn);
 
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -39,6 +39,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     const statusCode = await logIn(userIdentity, loginUrl, { email, password });
+
     switch (statusCode) {
     case 202: {
       clearEmailAndPassword();

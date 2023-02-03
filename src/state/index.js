@@ -1,8 +1,8 @@
-import React from 'react';
-import useGlobalHook from 'use-global-hook';
+import globalHook from 'use-global-hook';
 import getEnv from '../util/environment';
+import { logIn } from './actions/auth';
 
-import * as actions from './actions';
+// import * as actions from './actions';
 
 const {
   CREATE_URL, API_BASE_URL, LOGIN_URL, USER_IDENTITY,
@@ -18,11 +18,6 @@ export const initialState = {
   user: undefined,
 };
 
-// Paste the following into your code to use global state & actions:
-
-// import useGlobal from '@state';
-// const [ state, actions ] = useGlobal;
-
-const useGlobal = useGlobalHook(React, initialState, actions);
+const useGlobal = globalHook(initialState, { logIn });
 
 export default useGlobal;
