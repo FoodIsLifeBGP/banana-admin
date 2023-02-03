@@ -1,15 +1,15 @@
 import ApiService from '../../Services/ApiService';
-// import { initialState } from '../index';
+import initialState from '../../util/environment';
 
 export async function logIn(store, { email, password }, loginUrl, userIdentity) {
-  // const { loginUrl, userIdentity } = initialState;
+  const { LOGIN_URL, USER_IDENTITY } = initialState;
   const { axiosRequest } = ApiService();
 
   try {
     const response = await axiosRequest(
       'POST',
-      loginUrl,
-      JSON.stringify({ [userIdentity]: { email, password } }),
+      LOGIN_URL,
+      JSON.stringify({ [USER_IDENTITY]: { email, password } }),
     );
     await store.setState({
       jwt: response.data.jwt || '',
@@ -25,6 +25,5 @@ export async function logIn(store, { email, password }, loginUrl, userIdentity) 
 }
 
 export async function logOut(store) {
-  // await store.setState(initialState);
-  console.log(store);
+  await store.setState(initialState);
 }

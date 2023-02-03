@@ -1,9 +1,8 @@
 import axios from 'axios';
-import getEnv from '../util/environment';
+import initialState from '../util/environment';
 
 const ApiService = () => {
-  const { API_BASE_URL } = getEnv();
-
+  const { API_BASE_URL } = initialState;
   const fullPath = (endpoint) => `${API_BASE_URL}/${endpoint}`;
 
   const axiosRequest = (method, endpoint, body = null) => {

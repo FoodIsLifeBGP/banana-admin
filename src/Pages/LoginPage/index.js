@@ -13,10 +13,12 @@ import styles from './style.module.scss';
 import useGlobal from '../../state/index';
 
 export default function LoginPage() {
-  const [{ userIdentity, loginUrl }, { logIn }] = useGlobal();
+  const [{ userIdentity, loginUrl }, { logIn, logOut, updateAlert }] = useGlobal();
 
   console.log('state', userIdentity);
   console.log('actions', logIn);
+  console.log('actions', logOut);
+  console.log('actions', updateAlert);
 
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
