@@ -1,7 +1,7 @@
 import ApiService from '../../Services/ApiService';
 import initialState from '../../util/environment';
 
-export async function logIn(store, { email, password }, loginUrl, userIdentity) {
+export async function logIn(store, { email, password }) {
   const { LOGIN_URL, USER_IDENTITY } = initialState;
   const { axiosRequest } = ApiService();
 
@@ -13,8 +13,10 @@ export async function logIn(store, { email, password }, loginUrl, userIdentity) 
     );
     await store.setState({
       jwt: response.data.jwt || '',
-      user: response.data[userIdentity] || {},
+      user: response.data[USER_IDENTITY] || {},
     });
+
+    store.setState({ email: '', password: '' });
     return response.request.status;
   } catch (error) {
     const e = error.toString().toLowerCase().split(' status code ');

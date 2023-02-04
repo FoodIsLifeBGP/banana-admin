@@ -13,34 +13,22 @@ import styles from './style.module.scss';
 import useGlobal from '../../state/index';
 
 export default function LoginPage() {
-  const [{ userIdentity, loginUrl }, { logIn, logOut, updateAlert }] = useGlobal();
-
-  console.log('state', userIdentity);
-  console.log('actions', logIn);
-  console.log('actions', logOut);
-  console.log('actions', updateAlert);
+  const [, { logIn }] = useGlobal();
 
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
 
   const clearEmailAndPassword = () => {
     setEmail('');
     setPassword('');
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleLogin = async (event) => {
+    event.preventDefault();
 
-    const statusCode = await logIn(userIdentity, loginUrl, { email, password });
+    /* NOTE: `store` is implicitly passed to an "action" */
+    const statusCode = await logIn({ email, password });
 
     switch (statusCode) {
     case 202: {
@@ -78,8 +66,7 @@ export default function LoginPage() {
                   placeholder="Email"
                   className={styles.inputrow}
                   value={email}
-                  setValue={setEmail}
-                  onChange={handleEmailChange}
+                  onChange={({ target }) => setEmail(target.value)}
                 />
                 <Input
                   id="password"
@@ -89,8 +76,7 @@ export default function LoginPage() {
                   type="password"
                   className={styles.inputrow}
                   value={password}
-                  setValue={setPassword}
-                  onChange={handlePasswordChange}
+                  onChange={({ target }) => setPassword(target.value)}
                 />
                 {/* TODO: allow Input to return a Button object */}
                 <div className="mt-5 mx-5 row row-cols-2 formSubmit">
