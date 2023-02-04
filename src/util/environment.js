@@ -11,8 +11,7 @@ const getServerEndPoint = () => {
 };
 
 const initialState = {
-  CREATE_URL: 'admin_auth',
-  LOGIN_URL: 'login',
+  LOGIN_URL: 'admin_auth',
   USER_IDENTITY: 'admin',
   API_BASE_URL: getServerEndPoint(),
   alert: undefined,

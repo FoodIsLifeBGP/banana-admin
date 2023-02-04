@@ -33,12 +33,17 @@ export default function LoginPage() {
     switch (statusCode) {
     case 202: {
       clearEmailAndPassword();
-      navigate('HomePage');
+      navigate('/home');
       return;
     }
-    case 401: alert('Incorrect email or password'); return; /* TODO: create `Alert` component instead of using default */
+    /* TODO: create `Alert` component instead of using default JS `alert()` */
+    // eslint-disable-next-line no-alert
+    case 401: alert('Incorrect email or password'); return;
+    // eslint-disable-next-line no-alert
     case 404: alert('Server not found - please try again'); return;
+    // eslint-disable-next-line no-alert
     case 500: alert('Network error - please try again'); return;
+    // eslint-disable-next-line no-alert
     default: alert(`Server replied with ${statusCode} status code`);
     }
   };

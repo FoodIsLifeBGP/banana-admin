@@ -10,12 +10,6 @@ import SettingsPage from './Pages/SettingsPage';
 import ReviewApplicationPage from './Pages/ReviewApplicationPage';
 import LoginPage from './Pages/LoginPage/index';
 
-// TODO:
-// 1. set user and JWT to localStorage
-// 2. on each page load if user and JWT not present, redirect to login page
-//    - look into how we are handling ROUTING!
-//    - there should be a default/fall-through for auth failure
-
 function App() {
   return (
     <div className={styles.App}>
