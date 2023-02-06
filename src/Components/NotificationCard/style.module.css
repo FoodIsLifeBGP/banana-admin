@@ -1,0 +1,23 @@
+.container {
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+}
+
+.profile {
+  height: 80px;
+  width: 80px;
+}
+
+.notification {
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+  color:blue;
+  padding: 15px;
+  background-color: wheat;
+}
+
+.date {
+  color: gray;
+}
