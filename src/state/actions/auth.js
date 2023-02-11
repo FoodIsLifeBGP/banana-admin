@@ -1,22 +1,18 @@
-import ApiService from '../../Services/ApiService';
-import initialState from '../../util/environment';
+import railsAxios from '../../util/railsAxios';
+import { initialState } from '../index';
 
-export async function logIn(store, { email, password }) {
-  const { LOGIN_URL, USER_IDENTITY } = initialState;
-  const { axiosRequest } = ApiService();
+export const logIn = async (store, { email, password }) => {
+  const { loginUrl, userIdentity } = store.state;
 
   try {
-    const response = await axiosRequest(
-      'POST',
-      LOGIN_URL,
-      JSON.stringify({ [USER_IDENTITY]: { email, password } }),
+    const response = await railsAxios().post(
+      loginUrl,
+      JSON.stringify({ [userIdentity]: { email, password } }),
     );
     await store.setState({
-      jwt: response.data.jwt || '',
-      user: response.data[USER_IDENTITY] || {},
+      jwt: response.data?.jwt || '',
+      user: response.data?.[userIdentity] || {},
     });
-
-    store.setState({ email: '', password: '' });
     return response.request.status;
   } catch (error) {
     const e = error.toString().toLowerCase().split(' status code ');
@@ -24,8 +20,8 @@ export async function logIn(store, { email, password }) {
       ? parseInt(e.slice(-1), 10)
       : 418;
   }
-}
+};
 
-export async function logOut(store) {
+export const logOut = async (store) => {
   await store.setState(initialState);
-}
+};

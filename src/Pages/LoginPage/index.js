@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import {
   Button as BootstrapButton,
   Container,
@@ -10,42 +10,39 @@ import {
 import Input from '../../Components/Input/index';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
-import useGlobal from '../../state/index';
 
-export default function LoginPage() {
-  const [, { logIn }] = useGlobal();
-
-  const navigate = useNavigate();
+export default function LoginPage({ handleLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const clearEmailAndPassword = () => {
-    setEmail('');
-    setPassword('');
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  const onSubmit = (e) => {
+    // TODO: build login functionality
+    e.preventDefault();
+    fetch('https://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        email, password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem('token', data.jwt);
+        handleLogin(data.user);
+      });
 
-    /* NOTE: `store` is implicitly passed to an "action" */
-    const statusCode = await logIn({ email, password });
-
-    switch (statusCode) {
-    case 202: {
-      clearEmailAndPassword();
-      navigate('/home');
-      return;
-    }
-    /* TODO: create `Alert` component instead of using default JS `alert()` */
-    // eslint-disable-next-line no-alert
-    case 401: alert('Incorrect email or password'); return;
-    // eslint-disable-next-line no-alert
-    case 404: alert('Server not found - please try again'); return;
-    // eslint-disable-next-line no-alert
-    case 500: alert('Network error - please try again'); return;
-    // eslint-disable-next-line no-alert
-    default: alert(`Server replied with ${statusCode} status code`);
-    }
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -71,7 +68,8 @@ export default function LoginPage() {
                   placeholder="Email"
                   className={styles.inputrow}
                   value={email}
-                  onChange={({ target }) => setEmail(target.value)}
+                  setValue={setEmail}
+                  onChange={handleEmailChange}
                 />
                 <Input
                   id="password"
@@ -81,12 +79,14 @@ export default function LoginPage() {
                   type="password"
                   className={styles.inputrow}
                   value={password}
-                  onChange={({ target }) => setPassword(target.value)}
+                  setValue={setPassword}
+                  onChange={handlePasswordChange}
                 />
+                {/* TODO: allow Input to return a Button object */}
                 <div className="mt-5 mx-5 row row-cols-2 formSubmit">
                   <BootstrapButton
                     className={`col ${styles.button}`}
-                    onClick={handleLogin}
+                    onClick={onSubmit}
                   >
                     Login
                   </BootstrapButton>
