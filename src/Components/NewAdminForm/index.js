@@ -1,32 +1,31 @@
-import React, {useState} from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './style.module.css';
 import Icon from '../Icon';
 
 function NewAdminForm() {
   const initialFormData = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: ""
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  };
+  const [formData, setFormData] = useState(initialFormData);
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  function handlePassword() {
+    setShowPassword(!showPassword);
   }
-  const [formData, setFormData] = useState(initialFormData)
 
-  const [showPassword, setShowPassword] = useState(false)
-
-  function handlePassword (){
-    setShowPassword(!showPassword)
-  }
-
-  function handleOnChange(e){
-    const key = e.target.name
-    const value = e.target.value
+  function handleOnChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
     setFormData({
       ...formData,
-      [key]: value
-    })
+      [key]: value,
+    });
   }
-  console.log(formData)
 
   return (
     <div className={styles.container}>
@@ -49,9 +48,7 @@ function NewAdminForm() {
             type="text"
             name="lastName"
             placeholder="Enter last name"
-            
-            value={formData.lastName}
-          />
+            value={formData.lastName} />
         </div>
         <div className={styles.fieldContainer}>
           <label htmlFor="email">Email</label>
@@ -60,33 +57,26 @@ function NewAdminForm() {
             type="email"
             name="email"
             placeholder="Enter email"
-            
-            value={formData.email}
-          />
+            value={formData.email} />
         </div>
         <div className={styles.fieldContainer}>
           <label htmlFor="password">Enter Password </label>
           <input
             onChange={handleOnChange}
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             name="password"
             placeholder="Enter Super Admin password"
-            value={formData.password}
-          />
-            <i onClick={handlePassword}>
-              {showPassword ? (
-                <Icon name="visibleEye" />) : (
-                  <Icon name="hiddenEye" />
-              ) }
-            </i>
+            value={formData.password} />
+          <i onClick={handlePassword}>
+            {showPassword ? (<Icon name="visibleEye" />) : (<Icon name="hiddenEye" />) }
+          </i>
         </div>
         <div className={styles.buttonContainer}>
-          <button id={styles.buttonBack} >Back</button>
+          <input type='submit' value='Back' id={styles.buttonBack} />
           <input
             type="submit"
             value="Confirm"
-            id={styles.buttonConfirm}
-          />
+            id={styles.buttonConfirm} />
         </div>
       </form>
     </div>
