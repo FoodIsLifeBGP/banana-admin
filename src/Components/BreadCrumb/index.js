@@ -1,17 +1,17 @@
 import React from 'react';
-import styles from './style.module.css';
+import { Breadcrumb as StrapBreadcrumb, BreadcrumbItem } from 'reactstrap';
+import styles from './style.module.scss';
 
-function BreadCrumb() {
-  // const { breadCrumbTrail } = props;
+function BreadCrumb(props) {
   // breadCrumbTrail is an array of dictionaries with the
-  // pages and their respective links links to.
+  // pages and their respective links.
   // EX.
-  const breadCrumbTrail = [
-    { pageName: 'Home', url: 'localhost:3000' },
-    { pageName: 'Donors', url: 'localhost:3000' },
-    { pageName: 'New Applications', url: 'localhost:3000' },
-  ];
-
+  // const breadCrumbTrail = [
+  //   { pageName: 'Home', url: 'localhost:3000' },
+  //   { pageName: 'Donors', url: 'localhost:3000' },
+  //   { pageName: 'New Applications', url: 'localhost:3000' },
+  // ];
+  const { breadCrumbTrail } = props;
   const breadCrumbTrailMap = [];
 
   if (breadCrumbTrail) {
@@ -20,22 +20,16 @@ function BreadCrumb() {
       breadCrumbTrailMap.push(newPage);
     }
   }
-
   return (
-    <nav aria-label="breadcrumb">
-      <ol className={styles.breadcrumb}>
-        {breadCrumbTrailMap.map((entry) => (
-          <li
-            className="breadcrumb-item"
-            key={entry.index}
-          >
-            <a href={entry.value.url}>
-              {entry.value.pageName}
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
+    <StrapBreadcrumb cssModule={styles}>
+      {breadCrumbTrailMap.map((page) => (
+        <BreadcrumbItem key={page.index}>
+          <a href={page.value.url}>
+            {page.value.pageName}
+          </a>
+        </BreadcrumbItem>
+      ))}
+    </StrapBreadcrumb>
   );
 }
 
