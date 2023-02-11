@@ -1,13 +1,14 @@
-import railsAxios from '../../util/railsAxios';
+import ApiService from '../../Services/ApiService';
 
 export const registerAdmin = async (store, admin) => {
+  const { axiosRequest } = ApiService();
   const { createUrl, userIdentity } = store.state;
   const {
     email, password, firstName, lastName, city, state, zip,
   } = admin;
 
   try {
-    const response = await railsAxios().post(createUrl, JSON.stringify({
+    const response = await axiosRequest('POST', createUrl, JSON.stringify({
       [userIdentity]: {
         email,
         password,
