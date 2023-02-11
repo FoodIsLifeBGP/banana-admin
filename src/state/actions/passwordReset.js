@@ -1,6 +1,4 @@
-import ApiService from '../../Services/ApiService';
-
-const { axiosRequest } = ApiService();
+import railsAxios from '../../util/railsAxios';
 
 export const requestResetToken = async (store, {
   onComplete, input, setIsSubmitting, setError,
@@ -9,7 +7,7 @@ export const requestResetToken = async (store, {
   const endpoint = `/password_resets/${userIdentity}/`;
   const email = JSON.stringify({ email: input });
   try {
-    await axiosRequest('POST', endpoint, email);
+    await railsAxios().post(endpoint, email);
     setIsSubmitting(false);
     onComplete();
   } catch (e) {
@@ -24,7 +22,7 @@ export const submitResetToken = async (store, {
   const { userIdentity } = store.state;
   const endpoint = `/password_resets/${userIdentity}/${input}/`;
   try {
-    await axiosRequest('GET', endpoint);
+    await railsAxios().get(endpoint);
     setIsSubmitting(false);
     setToken(input);
     onComplete();
@@ -41,7 +39,7 @@ export const submitNewPassword = async (store, {
   const password = JSON.stringify({ password: input });
   const endpoint = `/password_resets/${userIdentity}/${token}`;
   try {
-    await axiosRequest('PATCH', endpoint, password);
+    await railsAxios().patch(endpoint, password);
     setIsSubmitting(false);
     onComplete();
   } catch (e) {
