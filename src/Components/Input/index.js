@@ -32,14 +32,7 @@ function Input(props) {
       <Col>
         <InputGroup className={styles.container}>
           {renderIcon()}
-          <BootstrapInput
-            id={id}
-            name={name}
-            className={inputClass}
-            onChange={onChange}
-            placeholder={placeholder}
-            type={type || 'text'}
-          />
+          <BootstrapInput className={inputClass} id={id} name={name} onChange={onChange} placeholder={placeholder} type={type || 'text'} />
         </InputGroup>
       </Col>
     </Row>
@@ -52,6 +45,7 @@ Input.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
+  type: PropTypes.string,
   className: PropTypes.string,
 };
 
@@ -61,6 +55,7 @@ Input.defaultProps = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
+  type: PropTypes.string,
   className: PropTypes.string,
 };
 

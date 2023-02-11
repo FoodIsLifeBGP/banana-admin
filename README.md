@@ -45,11 +45,9 @@ Create a `.env` file in the root level of your project.
 Set the app to either `development` or `production` by adding one of the following to your `.env` file:
 
 ```
-REACT_APP_VARIANT= 'development'
+APP_VARIANT=development
 
-REACT_APP_VARIANT= 'production'
-
-REACT_APP_VARIANT = 'local'
+APP_VARIANT=production
 ```
 This will then set the appropriate server endpoint in `environment.ts`
 
@@ -78,7 +76,6 @@ yarn lint
 yarn run build
 ```
 
-navigate to `http://localhost:3004` (port set in `package.json`)
 
 ## Development
 
