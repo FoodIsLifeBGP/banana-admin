@@ -83,7 +83,6 @@ export default function LoginPage() {
                   value={password}
                   onChange={({ target }) => setPassword(target.value)}
                 />
-                {/* TODO: allow Input to return a Button object */}
                 <div className="mt-5 mx-5 row row-cols-2 formSubmit">
                   <BootstrapButton
                     className={`col ${styles.button}`}
