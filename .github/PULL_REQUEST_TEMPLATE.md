@@ -1,6 +1,4 @@
-[//]: # (WIP: Title Template: "[TR_##] Title")
-
----
+## Pull Request Template
 
 #### Please check if the PR fulfills these requirements
 
@@ -50,5 +48,8 @@ Please delete options that are not relevant.
 ---
 
 
-#### TODO
+#### TODO:
+- this
+- that
+- other
 
