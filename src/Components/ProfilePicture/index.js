@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.module.css';
+import BANANA from '../../Image/BANANA.svg';
 
 const classNames = require('classnames');
 
@@ -17,7 +18,7 @@ function ProfilePicture(props) {
   });
   return (
     <div className={styles.imgDiv}>
-      {srcImage !== '#' && (<img src={srcImage} style={{ height: customHeight, width: customWidth }} className={profPic} alt="" />)}
+      {srcImage && (<img src={srcImage} style={{ height: customHeight, width: customWidth }} className={profPic} alt="" />)}
     </div>
   );
 }
@@ -31,7 +32,7 @@ ProfilePicture.propTypes = {
 
 ProfilePicture.defaultProps = {
   blueBorder: true,
-  srcImage: '#',
+  srcImage: BANANA,
   customHeight: 150, /* Height of container on Profile Page */
   customWidth: 150, /* Width of container on Profile Page */
 };
