@@ -5,14 +5,19 @@ import styles from './style.module.css';
 const classNames = require('classnames');
 
 function ProfilePicture(props) {
-  const { blueBorder, srcImage } = props;
+  const {
+    blueBorder,
+    srcImage,
+    customHeight,
+    customWidth,
+  } = props;
   const profPic = classNames({
     [styles.profPic]: true,
     [styles.blueBorder]: blueBorder,
   });
   return (
     <div className={styles.imgDiv}>
-      {srcImage !== '#' && (<img src={srcImage} className={profPic} alt="" />)}
+      {srcImage !== '#' && (<img src={srcImage} style={{ height: customHeight, width: customWidth }} className={profPic} alt="" />)}
     </div>
   );
 }
@@ -20,11 +25,15 @@ function ProfilePicture(props) {
 ProfilePicture.propTypes = {
   blueBorder: PropTypes.bool,
   srcImage: PropTypes.string,
+  customHeight: PropTypes.number,
+  customWidth: PropTypes.number,
 };
 
 ProfilePicture.defaultProps = {
   blueBorder: true,
   srcImage: '#',
+  customHeight: 150, /* Height of container on Profile Page */
+  customWidth: 150, /* Width of container on Profile Page */
 };
 
 export default ProfilePicture;
