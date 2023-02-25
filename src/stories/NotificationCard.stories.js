@@ -6,4 +6,4 @@ export default {
   component: NotificationCard,
 };
 
-export const presentation = () => <NotificationCard />;
+export const presentation = () => <NotificationCard srcImage="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />;
