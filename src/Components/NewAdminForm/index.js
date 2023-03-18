@@ -29,14 +29,14 @@ function NewAdminForm() {
   }
 
   return (
-    <div >
+    <div>
       <h3>Add New Admin</h3>
       <form>
         <div className={styles.fieldContainer}>
           <label htmlFor="firstName">
             <div>First name</div>
             <Input
-              iconName=''
+              iconName=""
               id="firstName"
               onChange={handleOnChange}
               type="text"
@@ -50,7 +50,7 @@ function NewAdminForm() {
           <label htmlFor="lastName">
             <div>Last name</div>
             <Input
-              iconName=''
+              iconName=""
               id="lastName"
               onChange={handleOnChange}
               type="text"
@@ -64,7 +64,7 @@ function NewAdminForm() {
           <label htmlFor="email">
             <div>Email</div>
             <Input
-              iconName=''
+              iconName=""
               id="email"
               onChange={handleOnChange}
               type="email"
@@ -78,7 +78,7 @@ function NewAdminForm() {
           <label htmlFor="password">
             <div>Enter Password</div>
             <Input
-              iconName=''
+              iconName=""
               id="password"
               onChange={handleOnChange}
               type={showPassword ? 'text' : 'password'}
