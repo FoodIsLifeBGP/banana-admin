@@ -1,8 +1,8 @@
 const getServerEndPoint = () => {
   if (process.env.REACT_APP_VARIANT === 'development') {
-    return '20.245.24.72:3000';
+    return 'https://apitest.thebegoodproject.org';
   } if (process.env.REACT_APP_VARIANT === 'production') {
-    return 'https://api.bananaapp.org';
+    return 'https://api.thebegoodproject.org';
   } if (process.env.REACT_APP_VARIANT === 'local') {
     return 'http://localhost:3000';
   }
