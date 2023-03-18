@@ -1,0 +1,17 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+.container {
+  border: 2px solid var(--LIGHT_GRAY);
+  border-radius: 8px;
+}
+.icon {
+  padding: .5rem !important;
+}
+.pictured {
+  border-style: none none none solid;
+  border-color: var(--LIGHT_GRAY);
+}
+.unpictured {
+  border: none;
+}
