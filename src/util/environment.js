@@ -1,6 +1,6 @@
 const getServerEndPoint = () => {
   if (process.env.REACT_APP_VARIANT === 'development') {
-    return 'https://apitest.thebegoodproject.org';
+    return 'http://apitest.thebegoodproject.org';
   } if (process.env.REACT_APP_VARIANT === 'production') {
     return 'https://api.thebegoodproject.org';
   } if (process.env.REACT_APP_VARIANT === 'local') {
