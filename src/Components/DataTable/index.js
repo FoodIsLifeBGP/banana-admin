@@ -10,10 +10,15 @@ function DataTable({ data, type }){
       ? ['no', 'account_status', 'first_name', 'last_name', 'email']
       : ['no', 'name', 'business name', 'date registered', 'status'];
 
-    useEffect(()=> {
-    
+      // API SERVICE, AXIOS WILL BE USED. Below is just playing with UI and table.  
 
-    },[])
+    // useEffect(()=> {
+
+    // const req = await fetch(/ `${}`) // if type is client or donor, implement type of route with api service
+    // const res = req.json()
+
+
+    // },[])
 
   return (
     <table>
