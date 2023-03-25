@@ -1,0 +1,53 @@
+.container{
+  width: 31.25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  border: .13rem solid var(--LIGHT_GRAY);
+  font-family: 'Open Sans', sans-serif;
+  background: var(--WHITE);
+  color: var(--NAVY_BLUE);
+}
+
+.topBar{
+  background: var(--BANANA_YELLOW);
+  height: 4.7rem;
+  line-height: 4.7rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.mainBody{
+  padding: 4.4rem .6rem .6rem .6rem;
+}
+
+p{
+  text-align: center;
+  margin: 1.2rem;
+  font-size: larger;
+  font-size: 1.2rem;
+}
+
+.buttonContainer{
+  padding: 2rem 1.2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.okayButton{
+  width: 7.5rem;
+  height: 3.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--BANANA_YELLOW);
+  color: var(--NAVY_BLUE);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border-color: var(--BANANA_YELLOW);
+  border-width: 0rem;
+  font-size: 1rem;
+}
