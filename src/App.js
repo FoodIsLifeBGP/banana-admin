@@ -45,3 +45,12 @@ function App() {
 }
 
 export default App;
+
+// initialState = {
+//   LOGIN_URL: 'admin_auth',
+//   USER_IDENTITY: 'admin',
+//   API_BASE_URL: getServerEndPoint(),
+//   alert: undefined,
+//   jwt: undefined /* TODO: pull `jwt` from localStorage here, otherwise set undefined */,
+//   user: undefined /* TODO: pull `user` from localStorage here, otherwise set undefined */,
+// }
