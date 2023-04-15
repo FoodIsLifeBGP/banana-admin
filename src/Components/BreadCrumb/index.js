@@ -24,7 +24,7 @@ function BreadCrumb(props) {
     <StrapBreadcrumb cssModule={styles}>
       {breadCrumbTrailMap.map((page) => (
         <BreadcrumbItem key={page.index}>
-          <a href={page.value.url}>
+          <a className={styles.linkStyle} href={page.value.url}>
             {page.value.pageName}
           </a>
         </BreadcrumbItem>

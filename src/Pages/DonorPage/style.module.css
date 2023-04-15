@@ -7,11 +7,19 @@ h2 {
   font-weight: bold;
 }
 
+.newDonorTable {
+  width: 100%;
+}
+
+.breadCTrail {
+  margin: 2rem 0rem;
+}
+
 .headerBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 4rem 0rem;
+  margin-bottom: 2rem;
 }
 
 .headerRight {

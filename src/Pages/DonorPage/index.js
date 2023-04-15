@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
-import styles from './style.module.css';
+
+import BreadCrumb from '../../Components/BreadCrumb';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
 import Paginator from '../../Components/Paginator';
 import Status from '../../Components/Status';
 
+import styles from './style.module.css';
+
+// TODO: Pull real data, not dummy data
 const testData = [
   {
     name: 'Zach Gallaway',
@@ -109,12 +113,19 @@ function DonorPage() {
     }
   };
 
+  const newDonorPageBCT = [
+    { pageName: 'Home', url: 'localhost:3000' },
+    { pageName: 'Donor', url: 'localhost:3000' },
+    { pageName: 'New Donor Applications', url: 'localhost:3000' },
+  ];
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
       <Navbar />
       <div className={styles.belowNav}>
+        <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
         <div className={styles.headerBar}>
           <h2 className={styles.headerLeft}>NEW APPLICATIONS (DONOR)</h2>
           <div className={styles.headerRight}>
@@ -126,7 +137,8 @@ function DonorPage() {
             />
           </div>
         </div>
-        <table>
+        {/* Replace table with dynamic table component when it's ready */}
+        <table className={styles.newDonorTable}>
           <tr>
             <th>No.</th>
             <th>Name</th>

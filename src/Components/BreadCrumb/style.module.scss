@@ -1,5 +1,11 @@
+@import "../../colors.module.css";
+
 .breadcrumb {
   background: white;
   display: flex;
-  padding: 0rem;
+  padding: 2rem 0rem;
+}
+
+.linkStyle {
+  color: var(--NAVY_BLUE);
 }
