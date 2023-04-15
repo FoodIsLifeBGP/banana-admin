@@ -47,7 +47,7 @@
    letter-spacing: 0.04em;
    color: #3F3F3F;
    display: flex;
-   justify-content: end;
+   justify-content: flex-end;
    text-align: right;
  }
 
@@ -64,7 +64,7 @@
 
  .alignRight {
    display: flex;
-   justify-content: end;
+   justify-content: flex-end;
  }
 
  .progressBar {
