@@ -42,7 +42,7 @@ First we install NVM and Node
 
 Create a `.env` file in the root level of your project.
 
-Set the app to either `development` or `production` by adding one of the following to your `.env` file:
+Set the app to either `local`, `development` or `production` by adding one of the following to your `.env` file:
 
 ```
 REACT_APP_VARIANT= 'development'
