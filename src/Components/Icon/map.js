@@ -7,6 +7,8 @@ import ELLIPSE_SVG from '../../Image/ELLIPSE.svg';
 import SEARCH_SVG from '../../Image/SEARCH.svg';
 import TASKS_SVG from '../../Image/TASKS.svg';
 import VEGGIES_SVG from '../../Image/VEGGIES.svg';
+import HIDDEN_EYE_SVG from '../../Image/HIDDEN_EYE.svg';
+import VISIBLE_EYE_SVG from '../../Image/VISIBLE_EYE.svg';
 import BANANA_PEEL_SVG from '../../Image/BANANA_PEEL.svg';
 import UPSET_PERSON_SVG from '../../Image/UPSET_PERSON.svg';
 
@@ -20,6 +22,8 @@ const icons = {
   search: SEARCH_SVG,
   tasks: TASKS_SVG,
   veggies: VEGGIES_SVG,
+  hiddenEye: HIDDEN_EYE_SVG,
+  visibleEye: VISIBLE_EYE_SVG,
   bananaPeel: BANANA_PEEL_SVG,
   upsetWoman: UPSET_PERSON_SVG,
 };
