@@ -3,29 +3,31 @@
 
 
 .container {
-  display: flex;
-  flex-direction: column;
   min-width: 0px;
   flex-wrap: wrap;
+  max-width: 100%
 }
 
 .newAdminForm {
-  display: flex;
-  flex-direction: row;
   width: 100%;
-  justify-content: stretch
+  display: flex;
+  flex-direction: column;
+  padding-right: 10%;
+  padding-left: 10%;
 }
 
 .fieldContainer {
-  width: 100%;
+  width: 90%;
+  align-items: center;
+  justify-content: space-evenly;
+  display: flex;
   flex-direction: row;
-  gap: 10%;
-  justify-content: stretch;
-  padding-bottom: 20px;
+  padding: 2%
 }
 
 .buttonContainer {
   display: flex;
+  flex-direction: row;
   justify-content: end;
   gap: 5%;
   padding-right: 11%;
@@ -70,9 +72,23 @@
   margin: 40px 0 10px 0;
 }
 
-Input {
+.labelName {
+  width: 20%;
+}
+
+input {
+  width: 90%;
+  height: 55px;
+  border: 2px solid var(--LIGHT_GRAY);
+  box-sizing: border-box;
+  border-radius: 8px;
   font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 33px;
   letter-spacing: 0.04em;
+  color: var(--NAVY_BLUE);
 }
 
 h3 {
@@ -80,13 +96,12 @@ h3 {
 }
 
 label {
-  width: 100%;
   text-align: left;
   color: var(--NAVY_BLUE);
   font-style: normal;
   font-weight:bold;
   width: 20%;
-  min-width: 0;
+  min-width: 10%;
   padding-top: 15px;
   margin-left: 50px;
   flex-grow: 0;
@@ -95,4 +110,9 @@ label {
 radio {
   position: absolute;
   right: 5%;
+}
+
+inputForm {
+    border: 2px solid var(--LIGHT_GRAY);
+    border-radius: 8px;
 }
