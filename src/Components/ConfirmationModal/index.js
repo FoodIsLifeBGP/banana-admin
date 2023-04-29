@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import styles from './style.module.scss';
 
 function ConfirmationModal(props) {
-
   const [show, setShow] = useState(true);
   const { apiSuccessMessage, firstName, lastName } = props;
-  let fName = 'Johnny'
-  let lName = 'Appleseed'
+  let fName = 'Johnny';
+  let lName = 'Appleseed';
   if (firstName && lastName) {
-    fName = firstName
-    lName = lastName
+    fName = firstName;
+    lName = lastName;
   }
-  let successMessage = `${fName} ${lName} was added as admin.`
+  let successMessage = `${fName} ${lName} was added as admin.`;
   if (apiSuccessMessage) {
     successMessage = apiSuccessMessage;
   }
