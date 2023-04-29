@@ -40,7 +40,7 @@ function NewAdminForm() {
             onChange={handleOnChange}
             type="text"
             name="firstName"
-            placeholder="Enter first name"
+            placeholder="First name"
             value={formData.firstName}
           />
         </label>
@@ -51,7 +51,7 @@ function NewAdminForm() {
             onChange={handleOnChange}
             type="text"
             name="lastName"
-            placeholder="Enter last name"
+            placeholder="Last name"
             value={formData.lastName}
           />
         </label>
@@ -62,7 +62,7 @@ function NewAdminForm() {
             onChange={handleOnChange}
             type="email"
             name="email"
-            placeholder="Enter email"
+            placeholder="Email"
             value={formData.email}
           />
         </label>
@@ -73,7 +73,7 @@ function NewAdminForm() {
             onChange={handleOnChange}
             type={showPassword ? 'text' : 'password'}
             name="password"
-            placeholder="Enter Super Admin password"
+            placeholder="New admin password"
             value={formData.password}
           />
           <radio onClick={handlePassword} onKeyDown={() => {}}>
