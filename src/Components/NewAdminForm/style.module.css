@@ -1,13 +1,6 @@
 @import "../../colors.module.css";
 @import "../../fonts.module.css";
 
-
-.container {
-  min-width: 0px;
-  flex-wrap: wrap;
-  max-width: 100%
-}
-
 .newAdminForm {
   width: 100%;
   display: flex;
@@ -35,7 +28,7 @@
 
 
 #buttonConfirm {
-  width: 150px;
+  width: 15%;
   height: 70px;
   display: flex;
   justify-content: center;
@@ -54,7 +47,7 @@
 }
 
 #buttonBack {
-  width: 150px;
+  width: 15%;
   height: 70px;
   display: flex;
   justify-content: center;
@@ -89,6 +82,7 @@ input {
   line-height: 33px;
   letter-spacing: 0.04em;
   color: var(--NAVY_BLUE);
+  padding-left: 2%;
 }
 
 h3 {
