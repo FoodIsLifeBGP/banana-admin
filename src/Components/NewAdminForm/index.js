@@ -26,6 +26,8 @@ function NewAdminForm() {
     });
   }
 
+  //create onSubmit function for prop for form, need route to create new admin
+
   return (
     <div className={styles.container}>
       <h3>Add New Admin</h3>
