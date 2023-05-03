@@ -21,7 +21,7 @@ function Navbar(props) {
 
   return (
     <BootstrapNavbar className={styles.container}>
-      <NavbarBrand href="#">
+      <NavbarBrand href="/">
         <Row className="align-items-center">
           <Col>
             <Icon name="bananaIcon" size={75} />
