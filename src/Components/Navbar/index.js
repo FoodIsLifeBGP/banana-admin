@@ -19,6 +19,11 @@ function Navbar(props) {
 
   // const toggle = () => setDropdownOpen(!dropdownOpen);
 
+  // Bell: /notifications
+  // Banana Portal: /home
+  // Profile Pic: /settings
+  // List: /all-clients (or /all-donors depending on what list is more popular)
+
   return (
     <BootstrapNavbar className={styles.container}>
       <NavbarBrand href="/">
