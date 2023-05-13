@@ -15,77 +15,79 @@ const testData = [
     name: 'Zach Gallaway',
     businessName: 'Food 4 U',
     dateSubmitted: '2023/01/19',
-    status: 'pending',
+    status: 'active',
   },
   {
     name: 'Jason Derulo 2',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'active',
   },
   {
     name: 'Jason Derulo 3',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'inactive',
   },
   {
     name: 'Jason Derulo 4',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'incomplete',
   },
   {
     name: 'Jason Derulo 5',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'suspended',
   },
   {
     name: 'Jason Derulo 6',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'active',
   },
   {
     name: 'Jason Derulo 7',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'active',
   },
   {
     name: 'Jason Derulo 8',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'inactive',
   },
   {
     name: 'Jason Derulo 9',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'inactive',
   },
   {
     name: 'Jason Derulo 10',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'suspended',
   },
   {
     name: 'Jason Derulo 11',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'active',
   },
   {
     name: 'Jason Derulo 12',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'pending',
+    status: 'active',
   },
 ];
+// NOTE: user variant is either "donor", "client" or "all"
+function UserIndexPage(userVariant = 'all') {
+  console.log('userVariant:', userVariant);
 
-function DonorPage() {
   const entriesPerPage = 10;
   const [displayData, setDisplayData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -116,7 +118,7 @@ function DonorPage() {
   const newDonorPageBCT = [
     { pageName: 'Home', url: 'localhost:3000' },
     { pageName: 'Donor', url: 'localhost:3000' },
-    { pageName: 'New Donor Applications', url: 'localhost:3000' },
+    { pageName: 'All Lists', url: 'localhost:3000' },
   ];
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -127,7 +129,7 @@ function DonorPage() {
       <div className={styles.belowNav}>
         <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
         <div className={styles.headerBar}>
-          <h2 className={styles.headerLeft}>NEW APPLICATIONS (DONOR)</h2>
+          <h2 className={styles.headerLeft}>ALL LISTS (DONOR)</h2>
           <div className={styles.headerRight}>
             <Search className={styles.headerItem} />
             <input
@@ -170,4 +172,4 @@ function DonorPage() {
   );
 }
 
-export default DonorPage;
+export default UserIndexPage;

@@ -73,7 +73,7 @@ Run ESLint (you'll need to ensure you fix any linter errors and visually double-
 yarn lint
 ```
 
-...and infequently you may need to build the project:
+...and infrequently you may need to build the project:
 ```
 yarn run build
 ```
