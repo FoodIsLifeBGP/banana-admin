@@ -43,7 +43,9 @@ function Navbar(props) {
       </NavbarBrand>
       <Nav pills>
         <NavItem className={styles.navIcon}>
-          <Icon name="alertBell" size={35} />
+          <NavLink href="/notifications">
+            <Icon name="alertBell" size={35} />
+          </NavLink>
         </NavItem>
         <NavItem className={styles.navIcon}>
           <Icon name="tasks" size={35} />
