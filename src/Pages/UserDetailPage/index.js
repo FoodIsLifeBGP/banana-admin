@@ -142,7 +142,7 @@ function UserDetailPage() {
             <input
               className={styles.viewAllButton}
               type="submit"
-              value="View all list"
+              value="All Applications"
             />
           </div>
         </div>

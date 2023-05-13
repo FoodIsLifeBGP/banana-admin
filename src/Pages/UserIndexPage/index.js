@@ -85,10 +85,18 @@ const testData = [
     status: 'active',
   },
 ];
-// NOTE: user variant can only be either "donor", "client" or "all"
+// NOTE: user variant can only be either "donors", "clients" or "all"
 function UserIndexPage() {
   const { userVariant } = useParams();
-  console.log('userVariant:', userVariant);
+  let userVariantText = userVariant;
+
+  if (userVariant === 'all') {
+    userVariantText = 'Donors & Clients';
+  } else {
+    userVariantText = userVariant.charAt(0).toUpperCase() + userVariant.slice(1);
+  }
+
+  console.log('userVariant:', userVariantText);
 
   const entriesPerPage = 10;
   const [displayData, setDisplayData] = useState([]);
@@ -118,9 +126,8 @@ function UserIndexPage() {
   };
 
   const newDonorPageBCT = [
-    { pageName: 'Home', url: 'localhost:3000' },
-    { pageName: 'Donor', url: 'localhost:3000' },
-    { pageName: 'All Lists', url: 'localhost:3000' },
+    { pageName: 'Home', url: '/' },
+    { pageName: userVariantText, url: '/' },
   ];
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -132,15 +139,14 @@ function UserIndexPage() {
         <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
         <div className={styles.headerBar}>
           <h2 className={styles.headerLeft}>
-            ALL LISTS
-            {userVariant}
+            {userVariantText}
           </h2>
           <div className={styles.headerRight}>
             <Search className={styles.headerItem} />
             <input
               className={styles.viewAllButton}
               type="submit"
-              value="View all list"
+              value={`All ${userVariantText}`}
             />
           </div>
         </div>
