@@ -5,6 +5,7 @@ import {
   Navbar as BootstrapNavbar,
   NavbarBrand,
   NavbarText,
+  NavLink,
   NavItem,
   Row,
   Col,
@@ -48,7 +49,9 @@ function Navbar(props) {
           <Icon name="tasks" size={35} />
         </NavItem>
         <NavItem className={styles.navIcon}>
-          <Icon name="ellipse" size={35} />
+          <NavLink href="/settings">
+            <Icon name="ellipse" size={35} />
+          </NavLink>
         </NavItem>
       </Nav>
     </BootstrapNavbar>
