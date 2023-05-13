@@ -21,7 +21,6 @@ function App() {
             <Route exact path="/home" element={<HomePage />} />
             <Route exact path="/settings" element={<SettingsPage />} />
             <Route exact path="/review-applications" element={<ReviewApplicationPage />} />
-            <Route exact path="/users" element={<UserIndexPage userVariant="all" />} />
             <Route exact path="/users/:userVariant" element={<UserIndexPage />} />
             <Route exact path="/review-applications" element={<ReviewApplicationPage />} />
           </Routes>

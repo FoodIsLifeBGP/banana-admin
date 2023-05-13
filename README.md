@@ -17,7 +17,7 @@ Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails
 
 Then if you haven't already done so, clone the repository to your desired project folder and install dependencies: `git clone https://github.com/FoodIsLifeBGP/banana-admin && cd banana-admin`
 
-otherwise you can just navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-app`)
+otherwise you can just navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-admin`)
 
 # Installation (Mac/OSX)
 
