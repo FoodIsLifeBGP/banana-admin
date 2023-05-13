@@ -1,9 +1,9 @@
 import React from 'react';
-import UserIndexPage from '../Pages/UsersPage';
+import UserIndexPage from '../Pages/UserIndexPage';
 
 export default {
   title: 'UserIndexPage',
   component: UserIndexPage,
 };
 
-export const presentation = () => <UserIndexPage userVariant="all" />;
+export const presentation = () => <UserIndexPage />;

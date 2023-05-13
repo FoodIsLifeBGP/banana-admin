@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
+import { useParams } from 'react-router-dom';
 
 import BreadCrumb from '../../Components/BreadCrumb';
 import Navbar from '../../Components/Navbar';
@@ -85,8 +86,9 @@ const testData = [
   },
 ];
 
-// NOTE: user variant is either "donor", "client" or "all"
-function UserDetailPage(userVariant = 'all') {
+// NOTE: user variant can only be either "donor", "client" or "all"
+function UserDetailPage() {
+  const { userVariant } = useParams();
   console.log('userVariant:', userVariant);
 
   const entriesPerPage = 10;
@@ -130,7 +132,11 @@ function UserDetailPage(userVariant = 'all') {
       <div className={styles.belowNav}>
         <BreadCrumb breadCrumbTrail={UserDetailPageBCT} />
         <div className={styles.headerBar}>
-          <h2 className={styles.headerLeft}>NEW APPLICATIONS (DONOR)</h2>
+          <h2 className={styles.headerLeft}>
+            NEW APPLICATIONS (
+            {userVariant}
+            )
+          </h2>
           <div className={styles.headerRight}>
             <Search className={styles.headerItem} />
             <input

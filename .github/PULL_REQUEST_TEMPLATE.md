@@ -2,15 +2,13 @@
 
 #### Please check if the PR fulfills these requirements
 
-- [ ] The changes don't come from your master branch. ([Source](https://blog.jasonmeridth.com/posts/do-not-issue-pull-requests-from-your-master-branch/)) 
+- [ ] The changes don't come from your master branch. ([Source](https://blog.jasonmeridth.com/posts/do-not-issue-pull-requests-from-your-master-branch/))
 
 ---
 
 ### [Trello Card](trello.com/LINK-TO-TRELLO-CARD)
 
-#### What kind of change does this PR introduce? (bug fix, feature, docs update, ...)
-
-Please delete options that are not relevant.
+#### What kind of change does this PR introduce? [check at least one box] (bug fix, feature, docs update, ...)
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
@@ -48,7 +46,7 @@ Please delete options that are not relevant.
 ---
 
 
-#### TODO:
+#### TODO: [delete if there are no relevant TODOs after this PR is merged]
 - this
 - that
 - other

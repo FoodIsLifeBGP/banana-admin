@@ -6,4 +6,4 @@ export default {
   component: UserDetailPage,
 };
 
-export const presentation = () => <UserDetailPage userVariant="all" />;
+export const presentation = () => <UserDetailPage />;

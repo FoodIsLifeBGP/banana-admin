@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
+import { useParams } from 'react-router-dom';
 
 import BreadCrumb from '../../Components/BreadCrumb';
 import Navbar from '../../Components/Navbar';
@@ -84,8 +85,9 @@ const testData = [
     status: 'active',
   },
 ];
-// NOTE: user variant is either "donor", "client" or "all"
-function UserIndexPage(userVariant = 'all') {
+// NOTE: user variant can only be either "donor", "client" or "all"
+function UserIndexPage() {
+  const { userVariant } = useParams();
   console.log('userVariant:', userVariant);
 
   const entriesPerPage = 10;
@@ -129,7 +131,10 @@ function UserIndexPage(userVariant = 'all') {
       <div className={styles.belowNav}>
         <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
         <div className={styles.headerBar}>
-          <h2 className={styles.headerLeft}>ALL LISTS (DONOR)</h2>
+          <h2 className={styles.headerLeft}>
+            ALL LISTS
+            {userVariant}
+          </h2>
           <div className={styles.headerRight}>
             <Search className={styles.headerItem} />
             <input

@@ -15,9 +15,9 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 
 Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo.
 
-Then if you havent already done so, clone the repository to your desired project folder and install dependencies: `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
+Then if you haven't already done so, clone the repository to your desired project folder and install dependencies: `git clone https://github.com/FoodIsLifeBGP/banana-admin && cd banana-admin`
 
-otherwise you can just navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-rn`)
+otherwise you can just navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-app`)
 
 # Installation (Mac/OSX)
 
