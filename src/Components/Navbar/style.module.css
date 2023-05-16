@@ -40,10 +40,17 @@ text-decoration: none;
 
 /* Navy Blue */
 
-color: #083A9B;
+color: var(--NAVY_BLUE);
 
 }
 
 .navIcon {
   margin-right: 4rem;
+}
+
+a {
+  font-family: Open Sans;
+  font-style: normal;
+  line-height: 34px;
+  color: var(--NAVY_BLUE)
 }
