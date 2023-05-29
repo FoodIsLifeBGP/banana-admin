@@ -19,7 +19,7 @@ function Paginator(props) {
   return (
     <Pagination aria-label="Page navigation" className={styles.paginationStyle}>
       <PaginationItem onClick={() => priorPage(currentPage)} disabled={currentPage === 1}>
-        <PaginationLink href="#">
+        <PaginationLink>
           <span className={currentPage !== 1 ? styles.pagTabText : ''}>
             &laquo;
           </span>
@@ -30,8 +30,9 @@ function Paginator(props) {
           onClick={() => paginate(number)}
           className={number === currentPage ? 'activeSquare paginationItemStyle' : 'paginationItemStyle'}
           active={number === currentPage}
+          key={number + 1}
         >
-          <PaginationLink href="#" className={number === currentPage ? styles.paginationLinkStyle : ''}>
+          <PaginationLink className={number === currentPage ? styles.paginationLinkStyle : ''}>
             <span className={styles.pagTabText}>
               {number}
             </span>
@@ -39,7 +40,7 @@ function Paginator(props) {
         </PaginationItem>
       ))}
       <PaginationItem onClick={() => nextPage(currentPage)} disabled={currentPage === pages}>
-        <PaginationLink href="#">
+        <PaginationLink>
           <span className={currentPage !== pages ? styles.pagTabText : ''}>
             &raquo;
           </span>

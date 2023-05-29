@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 function ApplicationStatusForm({ title, handleSubmit }) {
   return (

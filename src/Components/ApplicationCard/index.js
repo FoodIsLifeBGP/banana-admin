@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 import Icon from '../Icon';
 
 function ApplicationCard(props) {
@@ -26,7 +26,7 @@ function ApplicationCard(props) {
   return (
     <div className={styles.container} type={type}>
       <div className={styles.icon}>
-        <Icon className={styles.icon} name={iconName} size={70} />
+        <Icon className={styles.icon} name={iconName} />
       </div>
       <div className={styles.body}>
         {userCount.toLocaleString(undefined, { minimumIntegerDigits: 2, useGrouping: false })}

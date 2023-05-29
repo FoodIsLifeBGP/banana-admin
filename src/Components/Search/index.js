@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Icon from '../Icon';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 function Search() {
   const [search, setSearch] = useState('');

@@ -9,7 +9,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 import Icon from '../Icon';
 
 function Navbar(props) {
@@ -24,7 +24,7 @@ function Navbar(props) {
       <NavbarBrand href="/">
         <Row className="align-items-center">
           <Col>
-            <Icon name="bananaIcon" size={75} />
+            <Icon name="bananaIcon" />
           </Col>
           <Col>
             <NavbarText className={styles.bananaPortalNav}>
@@ -37,13 +37,13 @@ function Navbar(props) {
       </NavbarBrand>
       <Nav pills>
         <NavItem className={styles.navIcon}>
-          <Icon name="alertBell" size={35} />
+          <Icon name="alertBell" />
         </NavItem>
         <NavItem className={styles.navIcon}>
-          <Icon name="tasks" size={35} />
+          <Icon name="tasks" />
         </NavItem>
         <NavItem className={styles.navIcon}>
-          <Icon name="ellipse" size={35} />
+          <Icon name="ellipse" />
         </NavItem>
       </Nav>
     </BootstrapNavbar>

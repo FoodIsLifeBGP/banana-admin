@@ -29,7 +29,7 @@ function DonationCard(props) {
         <Row>
           <Col className={styles.body}>{`${fractionDonated}%`}</Col>
           <Col className={styles.alignRight}>
-            <Icon name="donationStatus" size={85} />
+            <Icon name="donationStatus" />
           </Col>
         </Row>
         <Row>

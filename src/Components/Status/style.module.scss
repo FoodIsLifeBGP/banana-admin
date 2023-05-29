@@ -1,0 +1,33 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+.applicationStatusLabel {
+  padding: 5px 10px;
+  border-radius: 8px;
+  width: fit-content;
+
+  &.pending {
+    color: var(--BLACK);
+    background-color: var(--BANANA_YELLOW);
+  }
+  &.active {
+    color: var(--BLACK);
+    background-color: var(--GREEN);
+  }
+  &.inactive {
+    color: var(--BLACK);
+    background-color: #C8CED3;
+  }
+  &.incomplete {
+    color: var(--BLACK);
+    background-color: var(--ORANGE);
+  }
+  &.suspended {
+    color: var(--BLACK);
+    background-color: var(--SUSPENDED_RED);
+  }
+  &.closed {
+    color: var(--BLACK);
+    background-color: #6D6D6D;
+  }
+}

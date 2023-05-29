@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 import BANANA from '../../Image/BANANA.svg';
 
 const classNames = require('classnames');

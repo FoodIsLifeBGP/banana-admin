@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 function SuccessPopUp(props) {
   const [show, setShow] = useState(true);

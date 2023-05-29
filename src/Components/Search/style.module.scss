@@ -1,10 +1,11 @@
 .searchComponent {
-  width: 403px;
   height: 73px;
   display: flex;
   flex-direction: row;
   background: var(--LIGHT_GRAY);
   border-radius: 8px;
+  margin-top: 1rem;
+  margin-right: 1rem;
 }
 
 .vector {
@@ -19,7 +20,7 @@
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
+  font-size: 1.25rem;
   line-height: 33px;
   border: none;
   background: rgba(0,0,0,0);

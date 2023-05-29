@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../Components/Navbar';
 import ProfilePicture from '../../Components/ProfilePicture';
 import Button from '../../Components/Button';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 const userStub = {
   firstName: 'John',

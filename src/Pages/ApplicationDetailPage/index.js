@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
+import { useParams } from 'react-router-dom';
 
 import BreadCrumb from '../../Components/BreadCrumb';
 import Navbar from '../../Components/Navbar';
@@ -7,7 +8,7 @@ import Search from '../../Components/Search';
 import Paginator from '../../Components/Paginator';
 import Status from '../../Components/Status';
 
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 // TODO: Pull real data, not dummy data
 const testData = [
@@ -15,77 +16,81 @@ const testData = [
     name: 'Zach Gallaway',
     businessName: 'Food 4 U',
     dateSubmitted: '2023/01/19',
-    status: 'active',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 2',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'active',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 3',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'inactive',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 4',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'incomplete',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 5',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'suspended',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 6',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'active',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 7',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'active',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 8',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'inactive',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 9',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'inactive',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 10',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'suspended',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 11',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'active',
+    status: 'pending',
   },
   {
     name: 'Jason Derulo 12',
     businessName: 'Autotunes, Inc',
     dateSubmitted: '2023/01/17',
-    status: 'active',
+    status: 'pending',
   },
 ];
 
-function AllDonorsPage() {
+// NOTE: user variant can only be either "donor", "client" or "all"
+function UserDetailPage() {
+  const { userVariant } = useParams();
+  console.log('userVariant:', userVariant);
+
   const entriesPerPage = 10;
   const [displayData, setDisplayData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -113,10 +118,10 @@ function AllDonorsPage() {
     }
   };
 
-  const newDonorPageBCT = [
+  const UserDetailPageBCT = [
     { pageName: 'Home', url: 'localhost:3000' },
     { pageName: 'Donor', url: 'localhost:3000' },
-    { pageName: 'All Lists', url: 'localhost:3000' },
+    { pageName: 'New Donor Applications', url: 'localhost:3000' },
   ];
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -125,15 +130,19 @@ function AllDonorsPage() {
     <div>
       <Navbar />
       <div className={styles.belowNav}>
-        <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
+        <BreadCrumb breadCrumbTrail={UserDetailPageBCT} />
         <div className={styles.headerBar}>
-          <h2 className={styles.headerLeft}>ALL LISTS (DONOR)</h2>
+          <h2 className={styles.headerLeft}>
+            NEW APPLICATIONS (
+            {userVariant}
+            )
+          </h2>
           <div className={styles.headerRight}>
             <Search className={styles.headerItem} />
             <input
               className={styles.viewAllButton}
               type="submit"
-              value="View all list"
+              value="All Applications"
             />
           </div>
         </div>
@@ -170,4 +179,4 @@ function AllDonorsPage() {
   );
 }
 
-export default AllDonorsPage;
+export default UserDetailPage;
