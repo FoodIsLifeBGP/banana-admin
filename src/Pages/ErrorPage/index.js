@@ -4,9 +4,6 @@ import styles from './style.module.scss';
 import Icon from '../../Components/Icon';
 
 function ErrorPage() {
-  const ladyWidth = 400;
-  const bananaWidth = 60;
-
   useEffect(() => {
     document.body.classList.add('theBody');
   }, []);
@@ -32,9 +29,9 @@ function ErrorPage() {
           </div>
         </div>
         <div className={styles.rightBody}>
-          <Icon name="upsetWoman" size={ladyWidth} />
+          <Icon name="upsetWoman" />
           <div className={styles.bananaPeel}>
-            <Icon name="bananaPeel" size={bananaWidth} />
+            <Icon name="bananaPeel" />
           </div>
         </div>
       </div>

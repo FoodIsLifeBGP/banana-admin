@@ -1,9 +1,9 @@
 import React from 'react';
-import UserDetailPage from '../Pages/UserDetailPage';
+import ApplicationDetailPage from '../Pages/ApplicationDetailPage';
 
 export default {
-  title: 'UserDetailPage',
-  component: UserDetailPage,
+  title: 'ApplicationDetailPage',
+  component: ApplicationDetailPage,
 };
 
-export const presentation = () => <UserDetailPage />;
+export const presentation = () => <ApplicationDetailPage />;

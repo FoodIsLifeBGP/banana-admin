@@ -1,9 +1,9 @@
 import React from 'react';
-import UserIndexPage from '../Pages/UserIndexPage';
+import ApplicationIndexPage from '../Pages/ApplicationIndexPage';
 
 export default {
-  title: 'UserIndexPage',
-  component: UserIndexPage,
+  title: 'ApplicationIndexPage',
+  component: ApplicationIndexPage,
 };
 
-export const presentation = () => <UserIndexPage />;
+export const presentation = () => <ApplicationIndexPage />;
