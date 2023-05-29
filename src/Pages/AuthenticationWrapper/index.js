@@ -1,6 +1,9 @@
-// import React from 'react';
+import React from 'react';
 // import AuthService from './Services/AuthService';
 // import { Redirect, Route } from 'react-router-dom';
+
+import { Outlet, Navigate } from 'react-router-dom';
+import useGlobal from '../../state';
 
 // TODO:
 // 1. set user and JWT to localStorage
@@ -25,3 +28,13 @@
 // };
 
 // export default PrivateRoute;
+
+function PrivateRoute() {
+  const [{ jwt, user }] = useGlobal();
+  if (!user || !jwt) {
+    return <Navigate to="/" replace />;
+  }
+  return <Outlet />;
+}
+
+export default PrivateRoute;

@@ -17,6 +17,8 @@ export async function logIn(store, { email, password }) {
     });
 
     store.setState({ email: '', password: '' });
+    localStorage.setItem('Banana JWT', response.data.jwt || '');
+    localStorage.setItem('Banana User', JSON.stringify(response.data[USER_IDENTITY]) || '{}');
     return response.request.status;
   } catch (error) {
     const e = error.toString().toLowerCase().split(' status code ');
