@@ -9,6 +9,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 import styles from './style.module.css';
 import Icon from '../Icon';
 
@@ -16,7 +17,6 @@ function Navbar(props) {
   // eslint-disable-next-line no-unused-vars
   const { showMenu, showNotification } = props;
   // const [dropdownOpen, setDropdownOpen] = useState(false);
-
   // const toggle = () => setDropdownOpen(!dropdownOpen);
 
   return (
@@ -37,13 +37,20 @@ function Navbar(props) {
       </NavbarBrand>
       <Nav pills>
         <NavItem className={styles.navIcon}>
-          <Icon name="alertBell" size={35} />
+          <NavLink to="/notifications">
+            <Icon name="alertBell" size={35} />
+          </NavLink>
         </NavItem>
         <NavItem className={styles.navIcon}>
-          <Icon name="tasks" size={35} />
+          {/*  TODO: Which Page should this link to? */}
+          <NavLink to="/">
+            <Icon name="tasks" size={35} />
+          </NavLink>
         </NavItem>
         <NavItem className={styles.navIcon}>
-          <Icon name="ellipse" size={35} />
+          <NavLink to="/settings">
+            <Icon name="ellipse" size={35} />
+          </NavLink>
         </NavItem>
       </Nav>
     </BootstrapNavbar>

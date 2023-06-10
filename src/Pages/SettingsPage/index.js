@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import useGlobal from '../../state';
 import Navbar from '../../Components/Navbar';
 import ProfilePicture from '../../Components/ProfilePicture';
 import Button from '../../Components/Button';
@@ -18,6 +20,19 @@ const userStub = {
 };
 
 export default function SettingsPage() {
+  const [store, { logOut }] = useGlobal();
+
+  const navigate = useNavigate();
+
+  /* TODO:
+   possibly fix:
+  `Warning: Can't perform a React state update on an unmounted component.` (occurs on login)
+  */
+  const handleLogout = async () => {
+    await logOut(store);
+    navigate('/login');
+  };
+
   return (
     <div>
       <Navbar />
@@ -52,7 +67,7 @@ export default function SettingsPage() {
               <a className={styles.editPassword} href="/">Update</a>
             </div>
             <div className={styles.buttonContainer}>
-              <Button text="Logout" style={{ width: '100px', height: '50px', fontWeight: 'bold' }} />
+              <Button text="Logout" style={{ width: '100px', height: '50px', fontWeight: 'bold' }} action={handleLogout} />
             </div>
           </div>
         </div>

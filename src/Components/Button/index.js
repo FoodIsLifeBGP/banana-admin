@@ -3,19 +3,16 @@ import PropTypes from 'prop-types';
 import styles from './style.module.css';
 
 function Button(props) {
-  const { text, style } = props;
-
+  const { text, style, action } = props;
   return (
-    <div className={styles.buttonContainer} style={style}>
+    <button type="button" onClick={action} className={styles.buttonContainer} style={style}>
       {text}
-    </div>
+    </button>
   );
 }
-
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   // eslint-disable-next-line react/require-default-props
   style: PropTypes.object,
 };
-
 export default Button;

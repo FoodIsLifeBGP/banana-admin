@@ -15,8 +15,8 @@ const initialState = {
   USER_IDENTITY: 'admin',
   API_BASE_URL: getServerEndPoint(),
   alert: undefined,
-  jwt: JSON.parse(localStorage.getItem('bananaJwt')) || undefined,
-  user: JSON.parse(localStorage.getItem('bananaUser')) || undefined,
+  jwt: JSON.parse(localStorage.getItem('jwt')) || undefined,
+  user: JSON.parse(localStorage.getItem('user')) || undefined,
 };
 
 export default initialState;

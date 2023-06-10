@@ -11,12 +11,12 @@ const ApiService = () => {
       'Content-Type': 'application/json',
     };
 
-    const userToken = localStorage.getItem('userToken');
+    const jwt = localStorage.getItem('jwt');
     let AUTH_HEADER = {};
 
-    if (userToken) {
+    if (jwt) {
       AUTH_HEADER = {
-        Authorization: `Bearer ${JSON.parse(userToken).jwt}`,
+        Authorization: `Bearer ${jwt}`,
       };
     }
 
@@ -28,23 +28,8 @@ const ApiService = () => {
     });
   };
 
-  const storeJwt = (token) => {
-    if (token && token.jwt) {
-      localStorage.setItem('userToken', JSON.stringify(token));
-      return true;
-    }
-    return false;
-  };
-
-  const clearJwt = () => {
-    localStorage.removeItem('userToken');
-    return true;
-  };
-
   return {
     axiosRequest,
-    storeJwt,
-    clearJwt,
   };
 };
 

@@ -5,52 +5,31 @@ import {
   Route,
 } from 'react-router-dom';
 import styles from './App.module.css';
-import HomePage from './Pages/HomePage';
-import SettingsPage from './Pages/SettingsPage';
-import ReviewApplicationPage from './Pages/ReviewApplicationPage';
+import HomePage from './Pages/HomePage/index';
+import SettingsPage from './Pages/SettingsPage/index';
+import ReviewApplicationPage from './Pages/ReviewApplicationPage/index';
 import LoginPage from './Pages/LoginPage/index';
-import useGlobal from "./state";
-import PrivateRoute from "./Pages/AuthenticationWrapper";
+import ErrorPage from './Pages/ErrorPage/index';
+import { AuthWrapper } from './Services/AuthWrapper';
 
 function App() {
-  const [globalState] = useGlobal();
-  const [localState, setLocalState] = React.useState(0);
-  //TODO: Remove these console.logs
-  console.log(localState);
-  console.log(globalState);
+  const AuthHomePage = AuthWrapper(HomePage);
+  const AuthSettingsPage = AuthWrapper(SettingsPage);
+  const AuthReviewApplicationPage = AuthWrapper(ReviewApplicationPage);
 
   return (
     <div className={styles.App}>
-      <button type="button" onClick={() => setLocalState(localState + 1)}>
-        Add 1
-      </button>
       <Router>
-        <div>
-          <Routes>
-            <Route exact path="/" element={<LoginPage />} />
-            <Route element={<PrivateRoute />}>
-              <Route exact path="/home" element={<HomePage />} />
-              <Route exact path="/settings" element={<SettingsPage />} />
-            </Route>
-            <Route
-              exact
-              path="/review-applications"
-              element={<ReviewApplicationPage />}
-            />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<AuthHomePage />} />
+          <Route path="/settings" element={<AuthSettingsPage />} />
+          <Route path="/review-applications" element={<AuthReviewApplicationPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
       </Router>
     </div>
   );
 }
 
 export default App;
-
-// initialState = {
-//   LOGIN_URL: 'admin_auth',
-//   USER_IDENTITY: 'admin',
-//   API_BASE_URL: getServerEndPoint(),
-//   alert: undefined,
-//   jwt: undefined /* TODO: pull `jwt` from localStorage here, otherwise set undefined */,
-//   user: undefined /* TODO: pull `user` from localStorage here, otherwise set undefined */,
-// }

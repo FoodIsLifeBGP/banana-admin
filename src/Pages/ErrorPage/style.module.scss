@@ -92,37 +92,37 @@ p{
   .sb-show-main.sb-main-padded.theBody{
     padding: 0rem;
   }
-  
+
   .body{
     padding: 5vh 0px;
     display: flex;
     justify-content: center;
     align-items: start;
   }
-  
+
   .rightBody{
     display: flex;
   }
-  
+
   .buttonContainer{
     display: flex;
     justify-content: center;
   }
-  
+
   h1, p {
     color: var(--NAVY_BLUE);
     text-align: center;
   }
-  
+
   h1 {
     font: "open sans";
     font-size: 5rem;
   }
-  
+
   p{
     font-size: 1.5rem;
   }
-  
+
   .goBackButton{
     width: 21vw;
     height: 7vw;
@@ -139,8 +139,8 @@ p{
     border-width: 0px;
     margin: 10px 10px 10px 1vw;
   }
-  
-  .homeButton{
+
+  .homeButton {
     width: 21vw;
     height: 7vw;
     display: flex;
@@ -162,7 +162,7 @@ p{
     left: -60px;
     top: 349px;
   }
-  
+
   .bottomBar{
     height: 15vh;
     background-color: var(--BANANA_YELLOW);
