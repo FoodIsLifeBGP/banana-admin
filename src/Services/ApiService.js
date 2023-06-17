@@ -11,10 +11,11 @@ const ApiService = () => {
       'Content-Type': 'application/json',
     };
 
-    const jwt = localStorage.getItem('jwt');
+    let jwt = localStorage.getItem('jwt');
     let AUTH_HEADER = {};
 
     if (jwt) {
+      jwt = jwt.slice(1, -1);
       AUTH_HEADER = {
         Authorization: `Bearer ${jwt}`,
       };
