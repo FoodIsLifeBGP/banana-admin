@@ -1,32 +1,11 @@
 .container{
-/* Rectangle 147 */
-/* 
-position: absolute;
-left: 0%;
-right: 0%;
-top: 0%;
-bottom: 0%; */
-
-/* height: 100px; */
-
 background: #FFFFFF;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-ul {
-    /* list-style-type: none; */
 }
 
 
 .bananaPortalNav {
 /* BANANA PORTAL */
-
-
-/* position: absolute;
-left: 10.83%;
-right: 80.69%;
-top: 29.73%;
-bottom: 24.32%; */
 
 font-family: Open Sans;
 font-style: normal;
