@@ -5,16 +5,26 @@ import {
   Route,
 } from 'react-router-dom';
 import styles from './App.module.css';
-import HomePage from './Pages/HomePage';
-import SettingsPage from './Pages/SettingsPage';
-import ReviewApplicationPage from './Pages/ReviewApplicationPage';
+import HomePage from './Pages/HomePage/index';
+import SettingsPage from './Pages/SettingsPage/index';
+import ReviewApplicationPage from './Pages/ReviewApplicationPage/index';
 import LoginPage from './Pages/LoginPage/index';
+<<<<<<< HEAD
 import NotificationPage from './Pages/NotificationPage';
+=======
+import ErrorPage from './Pages/ErrorPage/index';
+import { AuthWrapper } from './Services/AuthWrapper';
+>>>>>>> master
 
 function App() {
+  const AuthHomePage = AuthWrapper(HomePage);
+  const AuthSettingsPage = AuthWrapper(SettingsPage);
+  const AuthReviewApplicationPage = AuthWrapper(ReviewApplicationPage);
+
   return (
     <div className={styles.App}>
       <Router>
+<<<<<<< HEAD
         <div>
           <Routes>
             <Route exact path="/" element={<LoginPage />} />
@@ -24,6 +34,15 @@ function App() {
             <Route exact path="/notifications" element={<NotificationPage />} />
           </Routes>
         </div>
+=======
+        <Routes>
+          <Route path="/" element={<AuthHomePage />} />
+          <Route path="/settings" element={<AuthSettingsPage />} />
+          <Route path="/review-applications" element={<AuthReviewApplicationPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+>>>>>>> master
       </Router>
     </div>
   );

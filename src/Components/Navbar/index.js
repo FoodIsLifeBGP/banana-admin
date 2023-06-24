@@ -14,12 +14,14 @@ import {
   DropdownToggle,
   DropdownMenu,
 } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 import styles from './style.module.css';
 import Icon from '../Icon';
 
 function Navbar(props) {
   // eslint-disable-next-line no-unused-vars
   const { showMenu, showNotification } = props;
+<<<<<<< HEAD
 
   // Bell: /notifications
   // Banana Portal: /home
@@ -29,6 +31,10 @@ function Navbar(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(!dropdownOpen);
+=======
+  // const [dropdownOpen, setDropdownOpen] = useState(false);
+  // const toggle = () => setDropdownOpen(!dropdownOpen);
+>>>>>>> master
 
   return (
     <BootstrapNavbar className={styles.container}>
@@ -48,11 +54,16 @@ function Navbar(props) {
       </NavbarBrand>
       <Nav pills>
         <NavItem className={styles.navIcon}>
+<<<<<<< HEAD
           <NavLink href="/notifications">
+=======
+          <NavLink to="/notifications">
+>>>>>>> master
             <Icon name="alertBell" size={35} />
           </NavLink>
         </NavItem>
         <NavItem className={styles.navIcon}>
+<<<<<<< HEAD
           <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
             {dropdownOpen ? (
               <DropdownToggle nav caret style={{ backgroundColor: '#F0EEEE' }}>
@@ -79,6 +90,15 @@ function Navbar(props) {
         </NavItem>
         <NavItem className={styles.navIcon}>
           <NavLink href="/settings">
+=======
+          {/*  TODO: Which Page should this link to? */}
+          <NavLink to="/">
+            <Icon name="tasks" size={35} />
+          </NavLink>
+        </NavItem>
+        <NavItem className={styles.navIcon}>
+          <NavLink to="/settings">
+>>>>>>> master
             <Icon name="ellipse" size={35} />
           </NavLink>
         </NavItem>

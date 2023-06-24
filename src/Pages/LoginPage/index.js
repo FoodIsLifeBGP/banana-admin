@@ -33,7 +33,7 @@ export default function LoginPage() {
     switch (statusCode) {
     case 202: {
       clearEmailAndPassword();
-      navigate('/home');
+      navigate('/');
       return;
     }
     /* TODO: create `Alert` component instead of using default JS `alert()` */
@@ -86,7 +86,7 @@ export default function LoginPage() {
                 <div className="mt-5 mx-5 row row-cols-2 formSubmit">
                   <BootstrapButton
                     className={`col ${styles.button}`}
-                    onClick={handleLogin}
+                    onClick={(event) => handleLogin(event)}
                   >
                     Login
                   </BootstrapButton>
