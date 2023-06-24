@@ -80,11 +80,6 @@ function Navbar(props) {
         </NavItem>
         <NavItem className={styles.navIcon}>
           <NavLink href="/settings">
-            <Icon name="tasks" size={35} />
-          </NavLink>
-        </NavItem>
-        <NavItem className={styles.navIcon}>
-          <NavLink to="/settings">
             <Icon name="ellipse" size={35} />
           </NavLink>
         </NavItem>
