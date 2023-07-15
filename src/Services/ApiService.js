@@ -15,7 +15,7 @@ const ApiService = () => {
     let AUTH_HEADER = {};
 
     if (jwt) {
-      jwt = jwt.slice(1, -1);
+      jwt = JSON.parse(jwt);
       AUTH_HEADER = {
         Authorization: `Bearer ${jwt}`,
       };
