@@ -8,6 +8,7 @@ function DonationCard(props) {
   // eslint-disable-next-line no-unused-vars
   const { totalDonation, claimedDonation } = props;
   const fractionDonated = Math.round((claimedDonation / totalDonation) * 100);
+  console.log(fractionDonated);
 
   const timeOptions = {
     hour: 'numeric',
@@ -33,7 +34,7 @@ function DonationCard(props) {
           </Col>
         </Row>
         <Row>
-          <progress className={styles.progressBar} max={1} value={fractionDonated} />
+          <progress className={styles.progressBar} max={100} value={fractionDonated} />
         </Row>
         <Row>
           <Col className={styles.date}>{`${time} ${fdate}`}</Col>
