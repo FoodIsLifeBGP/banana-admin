@@ -8,7 +8,6 @@ function DonationCard(props) {
   // eslint-disable-next-line no-unused-vars
   const { totalDonation, claimedDonation } = props;
   const fractionDonated = Math.round((claimedDonation / totalDonation) * 100);
-  console.log(fractionDonated);
 
   const timeOptions = {
     hour: 'numeric',
