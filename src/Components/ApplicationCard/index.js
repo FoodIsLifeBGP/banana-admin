@@ -4,8 +4,7 @@ import styles from './style.module.css';
 import Icon from '../Icon';
 
 function ApplicationCard(props) {
-  const { type, userCount, approvedCount } = props;
-  const fractionApproved = approvedCount / (userCount || 1);
+  const { type, userCount } = props;
   let newUserLabel = '';
   let iconName = '';
   switch (type) {
@@ -33,7 +32,6 @@ function ApplicationCard(props) {
       </div>
       <div className={styles.footer}>
         <div className={styles.footerlabel}>{newUserLabel}</div>
-        <progress className={styles.progressbar} max={1} value={fractionApproved} />
       </div>
     </div>
   );
@@ -42,13 +40,11 @@ function ApplicationCard(props) {
 ApplicationCard.propTypes = {
   type: PropTypes.string,
   userCount: PropTypes.number,
-  approvedCount: PropTypes.number,
 };
 
 ApplicationCard.defaultProps = {
   type: 'donor',
   userCount: 0,
-  approvedCount: 0,
 };
 
 export default ApplicationCard;
