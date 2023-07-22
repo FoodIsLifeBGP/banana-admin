@@ -21,19 +21,11 @@ function App() {
   return (
     <div className={styles.App}>
       <Router>
-        <div>
-          <Routes>
-            <Route exact path="/" element={<LoginPage />} />
-            <Route exact path="/home" element={<HomePage />} />
-            <Route exact path="/settings" element={<SettingsPage />} />
-            <Route exact path="/review-applications" element={<ReviewApplicationPage />} />
-            <Route exact path="/notifications" element={<NotificationPage />} />
-          </Routes>
-        </div>
         <Routes>
           <Route path="/" element={<AuthHomePage />} />
           <Route path="/settings" element={<AuthSettingsPage />} />
           <Route path="/review-applications" element={<AuthReviewApplicationPage />} />
+          <Route path="/notifications" element={<NotificationPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
