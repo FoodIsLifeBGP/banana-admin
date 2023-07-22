@@ -9,6 +9,7 @@ import HomePage from './Pages/HomePage/index';
 import SettingsPage from './Pages/SettingsPage/index';
 import ReviewApplicationPage from './Pages/ReviewApplicationPage/index';
 import LoginPage from './Pages/LoginPage/index';
+import NotificationPage from './Pages/NotificationPage';
 import ErrorPage from './Pages/ErrorPage/index';
 import { AuthWrapper } from './Services/AuthWrapper';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<AuthHomePage />} />
           <Route path="/settings" element={<AuthSettingsPage />} />
           <Route path="/review-applications" element={<AuthReviewApplicationPage />} />
+          <Route path="/notifications" element={<NotificationPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
