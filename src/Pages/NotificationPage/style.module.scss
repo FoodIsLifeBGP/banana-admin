@@ -2,6 +2,13 @@
 
 /* styling for mobile */
 
+.iconPic{
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  align-items: space-around;
+}
+
 body{
   padding: 0rem;
 }
@@ -26,11 +33,20 @@ h1, p {
 
 h1 {
   font: "open sans";
-  font-size: 8rem;
+  font-size: 5rem;
 }
 
 p{
   font-size: 1.5rem;
+}
+
+.navyText{
+  color: var(--NAVY_BLUE);
+  flex-direction: row;
+}
+
+.grayText{
+  color: '#fff'
 }
 
 .goBackButton{
@@ -112,11 +128,6 @@ p{
   h1, p {
     color: var(--NAVY_BLUE);
     text-align: center;
-  }
-  
-  h1 {
-    font: "open sans";
-    font-size: 5rem;
   }
   
   p{
