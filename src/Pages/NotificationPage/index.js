@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import {
+  Card, CardBody, Col, Container, Row,
+} from 'reactstrap';
 import Navbar from '../../Components/Navbar';
 import styles from './style.module.scss';
-import logo from '../../logo.svg';
+
 // import Icon from '../../Components/Icon';
 
 function NotificationPage() {
@@ -11,10 +14,11 @@ function NotificationPage() {
   // data to populate notifications
   const notifications = [
     {
-      profilePic: `${logo}`,
+      profilePic: 'https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png',
       adminName: 'Admin 1',
-      applicantName: 'creative ',
+      applicantName: 'Johnny ',
       status: 'DENIED - INCOMPLETE',
+      adminAction: 'reviewed',
       date: {
         hour: '11',
         minute: '30',
@@ -25,9 +29,10 @@ function NotificationPage() {
       },
     },
     {
-      profilePic: `${logo}`,
+      profilePic: '',
       adminName: 'Admin 1',
-      applicantName: 'creative ',
+      applicantName: 'Johnny ',
+      adminAction: 'changed',
       status: 'DENIED - SUSPENDED',
       date: {
         hour: '11',
@@ -39,9 +44,10 @@ function NotificationPage() {
       },
     },
     {
-      profilePic: `${logo}`,
+      profilePic: '',
       adminName: 'Admin 1',
-      applicantName: 'creative ',
+      applicantName: 'Johnny ',
+      adminAction: 'reviewed',
       status: 'CLOSED',
       date: {
         hour: '11',
@@ -53,9 +59,10 @@ function NotificationPage() {
       },
     },
     {
-      profilePic: `${logo}`,
+      profilePic: '',
       adminName: 'Admin 1',
-      applicantName: 'creative ',
+      applicantName: 'Johnny ',
+      adminAction: 'changed',
       status: 'APPROVED',
       date: {
         hour: '11',
@@ -67,9 +74,10 @@ function NotificationPage() {
       },
     },
     {
-      profilePic: `${logo}`,
+      profilePic: '',
       adminName: 'Admin 1',
-      applicantName: 'creative ',
+      applicantName: 'Johnny ',
+      adminAction: 'reviewed',
       status: 'INACTIVE',
       date: {
         hour: '11',
@@ -86,7 +94,49 @@ function NotificationPage() {
   return (
     <div>
       <Navbar />
-      <h1 className={styles.body}>Notifications</h1>
+      <Container>
+        <Row style={{ margin: '1rem' }}>
+          <h1 className={styles.body}>Notifications</h1>
+        </Row>
+        {notifications.map((notification, index) => (
+          <Card
+          // eslint-disable-next-line react/no-array-index-key
+            key={`${notification.applicantName}-${index}`}
+            style={{ margin: '2rem', backgroundColor: '#F4F5F6' }}
+          >
+            <CardBody style={{ paddingBottom: '1rem' }}>
+              <Row>
+                <Col xs="auto">
+                  <img src={`${notification.profilePic}`} alt="profile pic" className={styles.iconPic} />
+                </Col>
+                <Col style={{ flexDirection: 'column' }}>
+                  <div className={styles.navyText}>
+                    {`${notification.adminName} ${notification.adminAction} ${notification.applicantName} application as &nsbp`}
+                    <span style={{ fontWeight: 'bolder' }}>
+                      {` ${notification.status}`}
+                    </span>
+                    .
+                  </div>
+                  <div style={{ color: '#C4C4C4' }}>
+                    {' '}
+                    {notification.date.hour}
+                    :
+                    {notification.date.minute}
+                    {' '}
+                    {notification.date.period}
+                    {' '}
+                    {notification.date.month}
+                    /
+                    {notification.date.day}
+                    /
+                    {notification.date.year}
+                  </div>
+                </Col>
+              </Row>
+            </CardBody>
+          </Card>
+        ))}
+      </Container>
     </div>
   );
 }
