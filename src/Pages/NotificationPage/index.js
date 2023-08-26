@@ -102,7 +102,7 @@ function NotificationPage() {
           <Card
           // eslint-disable-next-line react/no-array-index-key
             key={`${notification.applicantName}-${index}`}
-            style={{ margin: '2rem', backgroundColor: '#F4F5F6' }}
+            style={{ margin: '1rem', backgroundColor: '#F4F5F6' }}
           >
             <CardBody style={{ paddingBottom: '1rem' }}>
               <Row>
