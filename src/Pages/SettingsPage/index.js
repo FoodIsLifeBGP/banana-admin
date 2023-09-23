@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useGlobal from '../../state';
 import Navbar from '../../Components/Navbar';
 import ProfilePicture from '../../Components/ProfilePicture';
 import Button from '../../Components/Button';
 import styles from './style.module.css';
+import ApiService from '../../Services/ApiService';
 
 const userStub = {
   firstName: 'John',
@@ -22,6 +23,7 @@ const userStub = {
 export default function SettingsPage() {
   const [store, { logOut }] = useGlobal();
 
+  const { axiosRequest } = ApiService();
   const navigate = useNavigate();
 
   /* TODO:
@@ -33,13 +35,33 @@ export default function SettingsPage() {
     navigate('/login');
   };
 
+  const [avatarUrl, setAvatarUrl] = useState('url');
+
+  const getAdmin = async () => {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      const user1 = JSON.parse(userStr);
+
+      const response = await axiosRequest(
+        'GET',
+        `admins/${user1.id}`,
+      );
+      console.log(response.data);
+      setAvatarUrl(response.data.admin.avatar_url);
+    }
+  };
+
+  useEffect(() => {
+    getAdmin();
+  });
+
   return (
     <div>
       <Navbar />
       <div className={styles.background}>
         <div className={styles.content}>
           <h2 className={styles.nameHeader}>{`${userStub.firstName} ${userStub.lastName}`.toUpperCase()}</h2>
-          <ProfilePicture blueBorder srcImage={userStub.profPic} />
+          <ProfilePicture blueBorder srcImage={avatarUrl} />
           {/* TODO - The link below needs to be added */}
           <a className={styles.editLink} href="/">Edit</a>
           <div className={styles.infoContainer}>
