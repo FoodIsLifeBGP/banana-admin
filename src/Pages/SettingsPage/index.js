@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useGlobal from '../../state';
 import Navbar from '../../Components/Navbar';
-import ProfilePicture from '../../Components/ProfilePicture';
+// import ProfilePicture from '../../Components/ProfilePicture';
 import Button from '../../Components/Button';
 import styles from './style.module.css';
 import ApiService from '../../Services/ApiService';
@@ -23,22 +23,27 @@ const userStub = {
 export default function SettingsPage() {
   const [store, { logOut }] = useGlobal();
 
-  const { axiosRequest } = ApiService();
+  const { axiosRequest, axiosFormRequest } = ApiService();
   const navigate = useNavigate();
 
   /* TODO:
    possibly fix:
   `Warning: Can't perform a React state update on an unmounted component.` (occurs on login)
   */
+
+  /* TODO: needs a lot of cleanup, got profile image and upload basics working */
+
   const handleLogout = async () => {
     await logOut(store);
     navigate('/login');
   };
 
-  const [avatarUrl, setAvatarUrl] = useState('url');
+  const [avatarUrl, setAvatarUrl] = useState('');
 
   const getAdmin = async () => {
+    console.log('get admin fired');
     const userStr = localStorage.getItem('user');
+
     if (userStr) {
       const user1 = JSON.parse(userStr);
 
@@ -46,7 +51,7 @@ export default function SettingsPage() {
         'GET',
         `admins/${user1.id}`,
       );
-      console.log(response.data);
+      console.log('response.data.admin.avatar_url', response.data.admin);
       setAvatarUrl(response.data.admin.avatar_url);
     }
   };
@@ -55,14 +60,40 @@ export default function SettingsPage() {
     getAdmin();
   });
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('admin[avatar]', e.target[0].files[0]);
+
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      const user1 = JSON.parse(userStr);
+
+      const response = await axiosFormRequest(
+        'POST',
+        `admins/${user1.id}/update`,
+        formData,
+      );
+
+      // console.log('response', response);
+      setAvatarUrl(response.data.admin.avatar_url);
+    }
+  };
+
   return (
     <div>
       <Navbar />
       <div className={styles.background}>
         <div className={styles.content}>
           <h2 className={styles.nameHeader}>{`${userStub.firstName} ${userStub.lastName}`.toUpperCase()}</h2>
-          <ProfilePicture blueBorder srcImage={avatarUrl} />
-          {/* TODO - The link below needs to be added */}
+          {/* <ProfilePicture blueBorder srcImage={avatarUrl} /> */}
+          <img style={{ width: '100px', height: '100px' }} src={`http://localhost:3000${avatarUrl}`} alt="" />
+          {/* TODO - this form needs a lot more work lol */}
+          <form onSubmit={handleSubmit}>
+            <input type="file" />
+            <input type="submit" />
+          </form>
           <a className={styles.editLink} href="/">Edit</a>
           <div className={styles.infoContainer}>
             <p className={styles.infoItem}>
