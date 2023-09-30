@@ -88,6 +88,7 @@ export default function SettingsPage() {
         <div className={styles.content}>
           <h2 className={styles.nameHeader}>{`${userStub.firstName} ${userStub.lastName}`.toUpperCase()}</h2>
           {/* <ProfilePicture blueBorder srcImage={avatarUrl} /> */}
+          {/* TODO: change from localhost to BASE_URL const */}
           <img style={{ width: '100px', height: '100px' }} src={`http://localhost:3000${avatarUrl}`} alt="" />
           {/* TODO - this form needs a lot more work lol */}
           <form onSubmit={handleSubmit}>
