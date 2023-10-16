@@ -137,7 +137,7 @@ export default {
   component: Button,
 };
 
-export const presentation = () => <Button/>;
+export function Presentation() => return <Button/>;
 
 ```
 
@@ -209,7 +209,7 @@ export default {
   component: Button,
 };
 
-export const presentation = () => <Button text="ButtonText" />;
+export const Presentation = () => <Button text="ButtonText" />;
 
 ```
 

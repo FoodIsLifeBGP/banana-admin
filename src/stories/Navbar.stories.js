@@ -6,4 +6,6 @@ export default {
   component: NavBar,
 };
 
-export const presentation = () => <NavBar />;
+export function Presentation() {
+  return <NavBar />;
+}

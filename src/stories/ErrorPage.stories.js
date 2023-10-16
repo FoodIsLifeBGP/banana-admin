@@ -6,4 +6,6 @@ export default {
   component: ErrorPage,
 };
 
-export const presentation = () => <ErrorPage />;
+export function Presentation() {
+  return <ErrorPage />;
+}

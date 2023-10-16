@@ -6,4 +6,6 @@ export default {
   component: LoginPage,
 };
 
-export const loginPage = () => <LoginPage />;
+export function LoginPageComponent() {
+  return <LoginPage />;
+}

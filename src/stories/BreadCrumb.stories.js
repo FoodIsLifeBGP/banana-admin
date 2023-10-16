@@ -6,4 +6,6 @@ export default {
   component: BreadCrumb,
 };
 
-export const presentation = () => <BreadCrumb />;
+export function Presentation() {
+  return <BreadCrumb />;
+}
