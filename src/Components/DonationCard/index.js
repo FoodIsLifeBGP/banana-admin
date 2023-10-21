@@ -33,7 +33,7 @@ function DonationCard(props) {
           </Col>
         </Row>
         <Row>
-          <progress className={styles.progressBar} max={1} value={fractionDonated} />
+          <progress className={styles.progressBar} max={100} value={fractionDonated} />
         </Row>
         <Row>
           <Col className={styles.date}>{`${time} ${fdate}`}</Col>
