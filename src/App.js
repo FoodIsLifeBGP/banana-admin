@@ -10,20 +10,18 @@ import SettingsPage from './Pages/SettingsPage/index';
 import ReviewApplicationPage from './Pages/ReviewApplicationPage/index';
 import LoginPage from './Pages/LoginPage/index';
 import ErrorPage from './Pages/ErrorPage/index';
-import { AuthWrapper } from './Services/AuthWrapper';
+import AuthWrapper from './Services/AuthWrapper';
+import AllDonorsPage from './Pages/AllDonorsPage';
 
 function App() {
-  const AuthHomePage = AuthWrapper(HomePage);
-  const AuthSettingsPage = AuthWrapper(SettingsPage);
-  const AuthReviewApplicationPage = AuthWrapper(ReviewApplicationPage);
-
   return (
     <div className={styles.App}>
       <Router>
         <Routes>
-          <Route path="/" element={<AuthHomePage />} />
-          <Route path="/settings" element={<AuthSettingsPage />} />
-          <Route path="/review-applications" element={<AuthReviewApplicationPage />} />
+          <Route path="/" element={<AuthWrapper component={HomePage} router={Routes} />} />
+          <Route path="/settings" element={<AuthWrapper component={SettingsPage} router={Routes} />} />
+          <Route path="/review-applications" element={<AuthWrapper component={ReviewApplicationPage} router={Routes} />} />
+          <Route path="/donors" element={<AuthWrapper component={AllDonorsPage} router={Routes} />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
