@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Container,
-  Col,
-  Row,
-} from 'reactstrap';
+import { Container, Col, Row } from 'reactstrap';
 import Navbar from '../../Components/Navbar';
 import ApplicationCard from '../../Components/ApplicationCard';
 import DonationCard from '../../Components/DonationCard';
@@ -21,10 +17,7 @@ export default function HomePage() {
     const { axiosRequest } = ApiService();
 
     try {
-      const response = await axiosRequest(
-        'GET',
-        'admins/home',
-      );
+      const response = await axiosRequest('GET', 'admins/home');
 
       setNewClients(response.data.new_clients);
       setNewDonors(response.data.new_donors);
@@ -32,10 +25,8 @@ export default function HomePage() {
       setActiveDonations(response.data.total_active_donations);
       return response.data;
     } catch (error) {
-      const e = error.toString().toLowerCase.split(' status code ');
-      return e.length > 1
-        ? parseInt(e.slice(-1), 10)
-        : 418;
+      const e = error.toString().toLowerCase().split(' status code ');
+      return e.length > 1 ? parseInt(e.slice(-1), 10) : 418;
     }
   }
 
@@ -55,10 +46,7 @@ export default function HomePage() {
           </Col>
           <Col md="6">
             <h3>Donation Status</h3>
-            <DonationCard
-              claimedDonation={claimedDonations}
-              totalDonation={activeDonations}
-            />
+            <DonationCard claimedDonation={claimedDonations} totalDonation={activeDonations} />
           </Col>
         </Row>
       </Container>

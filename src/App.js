@@ -15,20 +15,46 @@ function App() {
     <div className={styles.App}>
       <Router>
         <Routes>
-          <Route path="/" element={<AuthWrapper component={HomePage} router={Routes} />} />
+          <Route
+            path="/"
+            element={(
+              <AuthWrapper>
+                <HomePage />
+              </AuthWrapper>
+            )}
+          />
           <Route
             path="/settings"
-            element={<AuthWrapper component={SettingsPage} router={Routes} />}
+            element={(
+              <AuthWrapper>
+                <SettingsPage />
+              </AuthWrapper>
+            )}
           />
           <Route
             path="/review-applications"
-            element={<AuthWrapper component={ReviewApplicationPage} router={Routes} />}
+            element={(
+              <AuthWrapper>
+                <ReviewApplicationPage />
+              </AuthWrapper>
+            )}
           />
           <Route
             path="/donors"
-            element={<AuthWrapper component={AllDonorsPage} router={Routes} />}
+            element={(
+              <AuthWrapper>
+                <AllDonorsPage />
+              </AuthWrapper>
+            )}
           />
-          <Route path="/notifications" element={<NotificationPage />} />
+          <Route
+            path="/notifications"
+            element={(
+              <AuthWrapper>
+                <NotificationPage />
+              </AuthWrapper>
+            )}
+          />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

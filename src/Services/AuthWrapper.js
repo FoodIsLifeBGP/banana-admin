@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export const isAuthenticated = () => {
@@ -7,9 +7,10 @@ export const isAuthenticated = () => {
   return user && token;
 };
 
-function AuthWrapper({ component, router }) {
+function AuthWrapper({ children }) {
   const navigate = useNavigate();
-  const { pathname } = useLocation(router);
+  const { pathname } = useLocation();
+
   const onUserIndex = pathname.includes('users');
 
   useEffect(() => {
@@ -20,8 +21,9 @@ function AuthWrapper({ component, router }) {
     }
   }, [navigate, onUserIndex]);
 
-  const WrappedComponent = React.createElement(router, null, React.createElement(component));
-  return WrappedComponent;
+  // If the above useEffect triggers a navigate, this component won't actually render the children.
+  // The navigation action will take precedence.
+  return children;
 }
 
 export default AuthWrapper;

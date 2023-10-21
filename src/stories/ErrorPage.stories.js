@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import ErrorPage from '../Pages/ErrorPage';
 
 export default {
@@ -7,5 +8,9 @@ export default {
 };
 
 export function Presentation() {
-  return <ErrorPage />;
+  return (
+    <MemoryRouter>
+      <ErrorPage />
+    </MemoryRouter>
+  );
 }
