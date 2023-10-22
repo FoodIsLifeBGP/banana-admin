@@ -1,3 +1,7 @@
+// const os = require('os');
+
+// console.log('OS: ', os);
+
 module.exports = {
   env: {
     browser: true,
@@ -23,5 +27,6 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'react/prop-types': 0,
     indent: ['error', 2],
+    // ...os.platform() === 'win32' && { 'linebreak-style': ['error', 'unix'] },
   },
 };
