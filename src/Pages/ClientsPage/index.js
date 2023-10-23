@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DataTable, Pagination } from "src/Components/DataTable";
 import Navbar from "src/Components/Navbar";
+import { SearchBox } from "src/Components/SearchBox.js";
 
 const mockData = [
   { no: 1, name: "John", dateSubmitted: "2023-10-22", status: "pending" },
@@ -21,12 +22,12 @@ function ClientsPage() {
   const [sortColumn, setSortColumn] = useState({ path: "no", order: "asc" });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
   useEffect(async () => {
-    const clients = await getClients();
-    setClients(clients);
-    setItemsCount(mockData.length);
-  }, [currentPage, sortColumn]);
+    setClients(await getClients());
+  }, [currentPage, sortColumn, searchQuery]);
 
   //Todo: call the api
   const getClients = async () => {
@@ -47,6 +48,12 @@ function ClientsPage() {
       }
     });
 
+    if (searchQuery)
+      data = data.filter((c) =>
+        c.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+    setItemsCount(data.length);
     return data.slice(startEntry, endEntry);
   };
 
@@ -72,7 +79,6 @@ function ClientsPage() {
     },
   ];
 
-  //Todo: call the api
   const handleSort = (sortColumn) => {
     setSortColumn(sortColumn);
     setCurrentPage(1);
@@ -82,19 +88,26 @@ function ClientsPage() {
     setCurrentPage(page);
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
   return (
     <div>
       <Navbar />
       <div className="container">
         <div className="row mt-4 mb-4">
-          <div className="col-5">
+          <div className="col-6">
             <h2>New Applications (Client)</h2>
           </div>
           <div className="col-3">
-            <h5>Search</h5>
+            <SearchBox value={searchQuery} onChange={handleSearch} />
           </div>
-          <div className="col-3">
-            <button>Filter</button>
+          <div className="col-3 float-end">
+            <button type="button" class="btn btn-primary btn-lg ">
+              All Applications
+            </button>
           </div>
         </div>
         <div className="row">
@@ -104,7 +117,7 @@ function ClientsPage() {
             sortColumn={sortColumn}
             onSort={handleSort}
           />
-          
+
           <Pagination
             itemsCount={itemsCount}
             pageSize={defaultPageSize}
