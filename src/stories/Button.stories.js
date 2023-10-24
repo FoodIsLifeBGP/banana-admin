@@ -6,4 +6,6 @@ export default {
   component: Button,
 };
 
-export const presentation = () => <Button text="ButtonText" />;
+export function Presentation() {
+  return <Button text="ButtonText" />;
+}

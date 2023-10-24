@@ -6,4 +6,6 @@ export default {
   component: NewAdminForm,
 };
 
-export const presentation = () => <NewAdminForm />;
+export function Presentation() {
+  return <NewAdminForm />;
+}

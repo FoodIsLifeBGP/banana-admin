@@ -6,4 +6,12 @@ export default {
   component: BreadCrumb,
 };
 
-export const presentation = () => <BreadCrumb />;
+export function Presentation() {
+  const sampleTrail = [
+    { pageName: 'Home', url: 'localhost:3000' },
+    { pageName: 'Donors', url: 'localhost:3000' },
+    { pageName: 'New Applications', url: 'localhost:3000' },
+  ];
+
+  return <BreadCrumb breadCrumbTrail={sampleTrail} />;
+}
