@@ -6,4 +6,6 @@ export default {
   component: SuccessPopUp,
 };
 
-export const presentation = () => <SuccessPopUp />;
+export function Presentation() {
+  return <SuccessPopUp />;
+}

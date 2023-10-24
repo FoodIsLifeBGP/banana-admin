@@ -6,4 +6,6 @@ export default {
   component: DonorPage,
 };
 
-export const presentation = () => <DonorPage />;
+export function Presentation() {
+  return <DonorPage />;
+}

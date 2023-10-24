@@ -6,4 +6,6 @@ export default {
   component: Paginator,
 };
 
-export const presentation = () => <Paginator />;
+export function Presentation() {
+  return <Paginator />;
+}

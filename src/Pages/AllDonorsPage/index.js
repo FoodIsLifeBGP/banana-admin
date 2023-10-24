@@ -139,24 +139,30 @@ function AllDonorsPage() {
         </div>
         {/* Replace table with dynamic table component when it's ready */}
         <table className={styles.newDonorTable}>
-          <tr>
-            <th>No.</th>
-            <th>Name</th>
-            <th>Business Name</th>
-            <th>Date Registered</th>
-            <th>Status</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th>Business Name</th>
+              <th>Date Registered</th>
+              <th>Status</th>
+            </tr>
+          </thead>
           {/* Replace testData.map with line below for production
           {data.map((entry, index) => {  */}
-          {displayData.map((entry, index) => (
-            <tr key={v4()}>
-              <td>{index + 1}</td>
-              <td>{entry.name}</td>
-              <td>{entry.businessName}</td>
-              <td>{entry.dateSubmitted}</td>
-              <td className={styles.status}><Status statusState={entry.status} /></td>
-            </tr>
-          ))}
+          <tbody>
+            {displayData.map((entry, index) => (
+              <tr key={v4()}>
+                <td>{index + 1}</td>
+                <td>{entry.name}</td>
+                <td>{entry.businessName}</td>
+                <td>{entry.dateSubmitted}</td>
+                <td className={styles.status}>
+                  <Status statusState={entry.status} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
         <Paginator
           pages={pages}
