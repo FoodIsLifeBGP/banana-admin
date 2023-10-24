@@ -67,13 +67,13 @@ function Navbar(props) {
 
             <DropdownMenu>
               <DropdownItem>
-                <NavLink href="/users/all">All</NavLink>
+                <NavLink href="/all">All</NavLink>
               </DropdownItem>
               <DropdownItem>
-                <NavLink href="/users/clients">Clients</NavLink>
+                <NavLink href="/clients">Clients</NavLink>
               </DropdownItem>
               <DropdownItem>
-                <NavLink href="/users/donors">Donors</NavLink>
+                <NavLink href="/donors">Donors</NavLink>
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>

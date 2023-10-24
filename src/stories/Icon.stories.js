@@ -6,4 +6,6 @@ export default {
   component: Icon,
 };
 
-export const presentation = () => <Icon name="user" size={100} />;
+export function Presentation() {
+  return <Icon name="user" size={100} />;
+}

@@ -6,4 +6,6 @@ export default {
   component: ConfirmationModal,
 };
 
-export const presentation = () => <ConfirmationModal />;
+export function Presentation() {
+  return <ConfirmationModal />;
+}

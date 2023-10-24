@@ -6,4 +6,6 @@ export default {
   component: NotificationPage,
 };
 
-export const presentation = () => <NotificationPage />;
+export function Presentation() {
+  return <NotificationPage />;
+}
