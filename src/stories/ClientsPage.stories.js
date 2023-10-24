@@ -6,4 +6,6 @@ export default {
   component: ClientsPage,
 };
 
-export const presentation = () => <ClientsPage />;
+export function Presentation() {
+  return <ClientsPage />;
+}

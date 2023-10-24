@@ -6,4 +6,6 @@ export default {
   component: SearchBox,
 };
 
-export const presentation = () => <SearchBox />;
+export function Presentation() {
+  return <SearchBox />;
+}

@@ -6,7 +6,7 @@ export default {
   component: DataTable,
 };
 
-export const presentation = () => {
+export function Presentation() {
   const currentPage = 1;
   const pageSize = 4;
   const sortColumn = { path: 'firstName', order: 'asc' };
@@ -55,4 +55,4 @@ export const presentation = () => {
       />
     </>
   );
-};
+}

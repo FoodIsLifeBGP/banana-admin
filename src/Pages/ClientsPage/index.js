@@ -75,7 +75,7 @@ function ClientsPage() {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Todo: call the api
-  const getClients = async () => {
+  const getClients = () => {
     const startEntry = (currentPage - 1) * defaultPageSize;
     let endEntry = 0; // arbitrary
     if (currentPage * defaultPageSize <= mockData.length) {
@@ -136,8 +136,8 @@ function ClientsPage() {
     setCurrentPage(1);
   };
 
-  useEffect(async () => {
-    setClients(await getClients());
+  useEffect(() => {
+    setClients(getClients());
   }, [currentPage, sortColumn, searchQuery]);
 
   return (
