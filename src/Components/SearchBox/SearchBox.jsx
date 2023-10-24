@@ -1,9 +1,11 @@
 import React from 'react';
 
-const SearchBox = ({ value, onChange }) => {
+function SearchBox({ value, onChange }) {
   return (
-    <div class="input-group">
-      <span class="input-group-text border-0 p-3"><i class="fas fa-search"></i></span>
+    <div className="input-group">
+      <span className="input-group-text border-0 p-3">
+        <i className="fas fa-search" />
+      </span>
       <input
         type="text"
         name="query"
@@ -14,6 +16,6 @@ const SearchBox = ({ value, onChange }) => {
       />
     </div>
   );
-};
+}
 
 export default SearchBox;

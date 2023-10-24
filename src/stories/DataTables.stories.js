@@ -1,42 +1,41 @@
-import { DataTable, Pagination } from "../Components/DataTable";
+import React from 'react';
+import { DataTable, Pagination } from '../Components/DataTable';
 
 export default {
-  title: "DataTable",
+  title: 'DataTable',
   component: DataTable,
 };
 
 export const presentation = () => {
   const currentPage = 1;
   const pageSize = 4;
-  const searchQuery = "";
-  const sortColumn = { path: "firstName", order: "asc" };
+  const sortColumn = { path: 'firstName', order: 'asc' };
   const columns = [
-    { path: "firstName", label: "FirstName" },
-    { path: "lastName", label: "LastName" },
+    { path: 'firstName', label: 'FirstName' },
+    { path: 'lastName', label: 'LastName' },
     {
-      key: "detail",
-      label: "Detail",
-      content: (user) => <a href="">{`${user.firstName} ${user.lastName}`}</a>,
+      key: 'detail',
+      label: 'Detail',
+      content: (user) => <a href="test">{`${user.firstName} ${user.lastName}`}</a>,
     },
   ];
   const allUsers = [
-    { id: "1", firstName: "John", lastName: "Doe" },
-    { id: "2", firstName: "Jane", lastName: "Smith" },
-    { id: "3", firstName: "Michael", lastName: "Johnson" },
-    { id: "4", firstName: "Emily", lastName: "Davis" },
-    { id: "5", firstName: "William", lastName: "Brown" },
-    { id: "6", firstName: "Olivia", lastName: "Garcia" },
-    { id: "7", firstName: "James", lastName: "Martinez" },
-    { id: "8", firstName: "Sophia", lastName: "Anderson" },
-    { id: "9", firstName: "Benjamin", lastName: "Wilson" },
-    { id: "10", firstName: "Isabella", lastName: "Taylor" },
+    { id: '1', firstName: 'John', lastName: 'Doe' },
+    { id: '2', firstName: 'Jane', lastName: 'Smith' },
+    { id: '3', firstName: 'Michael', lastName: 'Johnson' },
+    { id: '4', firstName: 'Emily', lastName: 'Davis' },
+    { id: '5', firstName: 'William', lastName: 'Brown' },
+    { id: '6', firstName: 'Olivia', lastName: 'Garcia' },
+    { id: '7', firstName: 'James', lastName: 'Martinez' },
+    { id: '8', firstName: 'Sophia', lastName: 'Anderson' },
+    { id: '9', firstName: 'Benjamin', lastName: 'Wilson' },
+    { id: '10', firstName: 'Isabella', lastName: 'Taylor' },
   ];
-  const users = allUsers[0..pageSize]; 
 
-  const handleSort = (sortColumn) => {
+  const handleSort = () => {
 
   };
-  const handlePageChange = (page) => {
+  const handlePageChange = () => {
 
   };
 
