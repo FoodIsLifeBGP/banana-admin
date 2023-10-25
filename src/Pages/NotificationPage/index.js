@@ -2,19 +2,17 @@ import React from 'react';
 import {
   Card, CardBody, Col, Container, Row,
 } from 'reactstrap';
+import Paginator from '../../Components/Paginator';
 import Navbar from '../../Components/Navbar';
 import styles from './style.module.scss';
 
-// import Icon from '../../Components/Icon';
+import Icon from '../../Components/Icon';
 
 function NotificationPage() {
-  // const ladyWidth = 400;
-  // const bananaWidth = 60;
-
   // data to populate notifications
   const notifications = [
     {
-      profilePic: 'https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png',
+      profilePic: 'https://i.pravatar.cc/80',
       adminName: 'Admin 1',
       applicantName: 'Johnny ',
       status: 'DENIED - INCOMPLETE',
@@ -88,7 +86,6 @@ function NotificationPage() {
         year: '2023',
       },
     },
-
   ];
 
   return (
@@ -96,28 +93,34 @@ function NotificationPage() {
       <Navbar />
       <Container>
         <Row style={{ margin: '1rem' }}>
-          <h1 className={styles.body}>Notifications</h1>
+          <h1 className={styles.header}>Notifications</h1>
         </Row>
         {notifications.map((notification, index) => (
           <Card
-          // eslint-disable-next-line react/no-array-index-key
+            // eslint-disable-next-line react/no-array-index-key
             key={`${notification.applicantName}-${index}`}
-            style={{ margin: '1rem', backgroundColor: '#F4F5F6' }}
+            className={styles.card}
           >
             <CardBody style={{ paddingBottom: '1rem' }}>
               <Row>
                 <Col xs="auto">
-                  <img src={`${notification.profilePic}`} alt="profile pic" className={styles.iconPic} />
+                  {notification.profilePic ? (
+                    <img
+                      src={`${notification.profilePic}`}
+                      alt="profile pic"
+                      className={styles.iconPic}
+                    />
+                  ) : (
+                    <Icon name="avatar" size={80} />
+                  )}
                 </Col>
-                <Col style={{ flexDirection: 'column' }}>
+                <Col className={styles.notificationText}>
                   <div className={styles.navyText}>
-                    {`${notification.adminName} ${notification.adminAction} ${notification.applicantName} application as &nsbp`}
-                    <span style={{ fontWeight: 'bolder' }}>
-                      {` ${notification.status}`}
-                    </span>
+                    {`${notification.adminName} ${notification.adminAction} ${notification.applicantName} application as\u00A0`}
+                    <span style={{ fontWeight: 'bolder' }}>{`${notification.status}`}</span>
                     .
                   </div>
-                  <div style={{ color: '#C4C4C4' }}>
+                  <div className={styles.dateTime}>
                     {' '}
                     {notification.date.hour}
                     :
@@ -136,6 +139,10 @@ function NotificationPage() {
             </CardBody>
           </Card>
         ))}
+        {/* TODO: add paginator logic */}
+        <Row className={styles.paginatorContainer}>
+          <Paginator />
+        </Row>
       </Container>
     </div>
   );
