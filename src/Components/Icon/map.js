@@ -1,3 +1,4 @@
+import AVATAR_SVG from '../../Image/AVATAR.svg';
 import BANANA_SVG from '../../Image/BANANA.svg';
 import CLIENT_PLUS_SVG from '../../Image/CLIENT_PLUS.svg';
 import DONOR_PLUS_SVG from '../../Image/DONOR_PLUS.svg';
@@ -14,6 +15,7 @@ import UPSET_PERSON_SVG from '../../Image/UPSET_PERSON.svg';
 
 const icons = {
   alertBell: ALERTBELL_SVG,
+  avatar: AVATAR_SVG,
   bananaIcon: BANANA_SVG,
   clientPlusIcon: CLIENT_PLUS_SVG,
   donationStatus: DONATION_STATUS,
