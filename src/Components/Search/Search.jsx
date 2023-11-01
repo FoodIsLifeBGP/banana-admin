@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SearchBox({ value, onChange }) {
+function Search({ value, onChange }) {
   return (
     <div className="input-group">
       <span className="input-group-text border-0 p-3">
@@ -18,4 +18,4 @@ function SearchBox({ value, onChange }) {
   );
 }
 
-export default SearchBox;
+export default Search;

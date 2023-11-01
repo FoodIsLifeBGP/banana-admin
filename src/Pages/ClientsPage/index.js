@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DataTable, Pagination } from '../../Components/DataTable';
 import Navbar from '../../Components/Navbar';
-import SearchBox from '../../Components/SearchBox';
+import SearchBox from '../../Components/Search';
 
 const mockData = [
   {
