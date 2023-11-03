@@ -1,16 +1,80 @@
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import BreadCrumb from '../../Components/BreadCrumb';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
-
 import styles from './style.module.css';
+import { GetDonors } from '../../Services/DonorsService';
+import { DataTable, Pagination } from '../../Components/DataTable';
 
 function AllDonorsPage() {
-  // TODO: Update to pull data from the backend
-  useEffect(() => {
+  const defaultPageSize = 8;
+  const [donors, setDonors] = useState([]);
+  const [sortColumn, setSortColumn] = useState({ path: 'no', order: 'asc' });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsCount, setItemsCount] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  });
+  const getDonors = async () => {
+    try {
+      const response = await GetDonors(currentPage, defaultPageSize);
+      setDonors(response);
+    } catch (error) {
+      setItemsCount(0);
+      setDonors([]);
+    }
+
+    // let data = mockData.sort((a, b) => {
+    //   if (sortColumn.order === 'asc') {
+    //     return a[sortColumn.path] > b[sortColumn.path] ? 1 : -1;
+    //   }
+    //   return a[sortColumn.path] < b[sortColumn.path] ? 1 : -1;
+    // });
+
+    // if (searchQuery) {
+    //   data = data.filter((c) => c.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    // }
+  };
+
+  const columns = [
+    { path: 'id', label: 'id' },
+    { path: 'name', label: 'Name', content: (d) => `${d.first_name} ${d.last_name}` },
+    { path: 'organization_name', label: 'Organization' },
+    { path: 'created_at', label: 'Created At' },
+    {
+      key: 'account_status',
+      label: 'Status',
+      content: (d) => {
+        switch (d.account_status) {
+        case 'approved':
+          return <span className="badge badge-success">{d.account_status}</span>;
+        case 'rejected':
+          return <span className="badge badge-danger">{d.account_status}</span>;
+        case 'pending':
+          return <span className="badge badge-warning">{d.account_status}</span>;
+        default:
+          return <span className="badge">{d.account_status}</span>;
+        }
+      },
+    },
+  ];
+
+  const handleSort = (sortcolumn) => {
+    setSortColumn(sortcolumn);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
+  useEffect(() => {
+    getDonors();
+  }, [currentPage, sortColumn, searchQuery]);
 
   const newDonorPageBCT = [
     { pageName: 'Home', url: 'localhost:3000' },
@@ -26,7 +90,7 @@ function AllDonorsPage() {
         <div className={styles.headerBar}>
           <h2 className={styles.headerLeft}>ALL LISTS (DONOR)</h2>
           <div className={styles.headerRight}>
-            <Search className={styles.headerItem} />
+            <Search value={searchQuery} onChange={handleSearch} />
             <input
               className={styles.viewAllButton}
               type="submit"
@@ -34,23 +98,21 @@ function AllDonorsPage() {
             />
           </div>
         </div>
-        {/* Replace table with dynamic table component when it's ready */}
-        <table className={styles.newDonorTable}>
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Name</th>
-              <th>Business Name</th>
-              <th>Date Registered</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          {/* Replace testData.map with line below for production
-          {data.map((entry, index) => {  */}
-          <tbody>
-            <tr />
-          </tbody>
-        </table>
+        <div className="row">
+          <DataTable
+            columns={columns}
+            data={donors}
+            sortColumn={sortColumn}
+            onSort={handleSort}
+          />
+
+          <Pagination
+            itemsCount={itemsCount}
+            pageSize={defaultPageSize}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </div>
       </div>
     </div>
   );

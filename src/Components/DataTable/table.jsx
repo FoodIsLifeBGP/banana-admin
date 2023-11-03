@@ -7,7 +7,7 @@ function Table({
   columns, sortColumn, onSort, data,
 }) {
   return (
-    <table className="col-12">
+    <table className="table">
       <TableHeader columns={columns} sortColumn={sortColumn} onSort={onSort} />
       <TableBody columns={columns} data={data} />
     </table>
