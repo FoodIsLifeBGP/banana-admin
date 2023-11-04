@@ -38,9 +38,9 @@ jobs:
         run: |
           ssh $VM_USERNAME@$VM_IP 
           echo "sudo systemctl status nginx"
-          sudo cd /home/githubactionuser/banana-admin
-          sudo git pull origin feature/gitworkflow
-          sudo npm run build
+          cd /home/githubactionuser/banana-admin
+          git pull origin feature/gitworkflow
+          npm run build
           sudo systemctl restart nginx
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
