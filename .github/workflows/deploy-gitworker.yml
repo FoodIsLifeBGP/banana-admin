@@ -36,7 +36,7 @@ jobs:
 
       - name: Access VM and Check Nginx Status
         run: |
-          ssh $VM_USERNAME@$VM_IP
+          ssh $VM_USERNAME@$VM_IP <<EOF
           pwd
           sudo systemctl status nginx
           cd /home/githubactionuser/banana-admin
@@ -44,6 +44,7 @@ jobs:
           git pull origin feature/gitworkflow
           npm run build
           sudo systemctl restart nginx
+          EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VM_IP: ${{ secrets.VM_IP }}
