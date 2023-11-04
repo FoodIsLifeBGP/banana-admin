@@ -23,10 +23,22 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VM_IP: ${{ secrets.VM_IP }}
 
-      - name: Access VM and Check Nginx Status
-        run: |
-          ssh $VM_USERNAME@$VM_IP "sudo systemctl status nginx"
-          ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && git pull origin feature/gitworkflow && yarn run build && sudo systemctl restart nginx"
+      - name: Update code on VM
+        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && git pull origin feature/gitworkflow"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VM_IP: ${{ secrets.VM_IP }}
+          VM_USERNAME: ${{ secrets.VM_USERNAME }}
+
+      - name: Build code on VM
+        run: ssh $VM_USERNAME@$VM_IP "yarn run build"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VM_IP: ${{ secrets.VM_IP }}
+          VM_USERNAME: ${{ secrets.VM_USERNAME }}
+
+      - name: Restart Nginx server
+        run: ssh $VM_USERNAME@$VM_IP "sudo systemctl restart nginx"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VM_IP: ${{ secrets.VM_IP }}
