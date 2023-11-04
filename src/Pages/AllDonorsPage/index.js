@@ -9,7 +9,7 @@ import { DataTable, Pagination } from '../../Components/DataTable';
 function AllDonorsPage() {
   const defaultPageSize = 8;
   const [donors, setDonors] = useState([]);
-  const [sortColumn, setSortColumn] = useState({ path: 'no', order: 'asc' });
+  const [sortColumn, setSortColumn] = useState({ sort_by: 'no', order: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,17 +22,6 @@ function AllDonorsPage() {
       setItemsCount(0);
       setDonors([]);
     }
-
-    // let data = mockData.sort((a, b) => {
-    //   if (sortColumn.order === 'asc') {
-    //     return a[sortColumn.path] > b[sortColumn.path] ? 1 : -1;
-    //   }
-    //   return a[sortColumn.path] < b[sortColumn.path] ? 1 : -1;
-    // });
-
-    // if (searchQuery) {
-    //   data = data.filter((c) => c.name.toLowerCase().includes(searchQuery.toLowerCase()));
-    // }
   };
 
   const columns = [
