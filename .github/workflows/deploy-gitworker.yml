@@ -31,14 +31,14 @@ jobs:
           VM_USERNAME: ${{ secrets.VM_USERNAME }}
 
       - name: Check node version
-        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && node -v"
+        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VM_IP: ${{ secrets.VM_IP }}
           VM_USERNAME: ${{ secrets.VM_USERNAME }}
 
       - name: Build code on VM
-        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && yarn run build"
+        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && nvm use 19 && yarn run build"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VM_IP: ${{ secrets.VM_IP }}
