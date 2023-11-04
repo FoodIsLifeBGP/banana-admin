@@ -7,77 +7,57 @@ import Button from '../../Components/Button';
 import styles from './style.module.css';
 import ApiService from '../../Services/ApiService';
 
-const userStub = {
-  firstName: 'John',
-  lastName: 'Doe',
-  profPic: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
-  signInDate: new Date('04-02-2020'),
-  role: 'Admin',
-  email: 'hunter2@gmail.com',
-  // Not sure how we want to handle outputting asterisks for the length of the password.
-  // Should we send the encrypted password from the backend of just the length of the password
-  // Not a great idea to use the plain text password
-  // Should we ever return any information about the password to the front-end at all
+const formatAdminData = (admin) => ({
+  firstName: admin.first_name,
+  lastName: admin.last_name,
+  avatarUrl: admin.avatar_url,
+  createdAt: new Date(admin.created_at),
+  role: admin.user_type,
+  email: admin.email,
+});
+
+const formatDate = (date) => {
+  if (date) {
+    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+  return new Date();
 };
 
 export default function SettingsPage() {
   const [store, { logOut }] = useGlobal();
-
   const { axiosRequest, axiosFormRequest } = ApiService();
   const navigate = useNavigate();
+  const [admin, setAdminData] = useState({});
 
-  /* TODO:
-   possibly fix:
-  `Warning: Can't perform a React state update on an unmounted component.` (occurs on login)
-  */
+  useEffect(() => {
+    const fetchAdmin = async () => {
+      const userStr = localStorage.getItem('user');
+      if (userStr) {
+        const currentUser = JSON.parse(userStr);
+        const response = await axiosRequest('GET', `admins/${currentUser.id}`);
 
-  /* TODO: needs a lot of cleanup, got profile image and upload basics working */
+        if (response?.data?.admin) {
+          setAdminData(formatAdminData(response.data.admin));
+        }
+      }
+    };
+    fetchAdmin();
+  }, []);
 
   const handleLogout = async () => {
     await logOut(store);
     navigate('/login');
   };
 
-  const [avatarUrl, setAvatarUrl] = useState('');
-
-  const getAdmin = async () => {
-    console.log('get admin fired');
-    const userStr = localStorage.getItem('user');
-
-    if (userStr) {
-      const user1 = JSON.parse(userStr);
-
-      const response = await axiosRequest(
-        'GET',
-        `admins/${user1.id}`,
-      );
-      console.log('response.data.admin.avatar_url', response.data.admin);
-      setAvatarUrl(response.data.admin.avatar_url);
-    }
-  };
-
-  useEffect(() => {
-    getAdmin();
-  });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append('admin[avatar]', e.target[0].files[0]);
 
-    const userStr = localStorage.getItem('user');
-    if (userStr) {
-      const user1 = JSON.parse(userStr);
-
-      const response = await axiosFormRequest(
-        'POST',
-        `admins/${user1.id}/update`,
-        formData,
-      );
-
-      // console.log('response', response);
-      setAvatarUrl(response.data.admin.avatar_url);
+    const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+    const response = await axiosFormRequest('PATCH', `admins/${currentUser.id}/update`, formData);
+    if (response?.data?.admin) {
+      setAdminData(formatAdminData(response.data.admin));
     }
   };
 
@@ -86,43 +66,32 @@ export default function SettingsPage() {
       <Navbar />
       <div className={styles.background}>
         <div className={styles.content}>
-          <h2 className={styles.nameHeader}>{`${userStub.firstName} ${userStub.lastName}`.toUpperCase()}</h2>
-          {/* <ProfilePicture blueBorder srcImage={avatarUrl} /> */}
-          {/* TODO: change from localhost to BASE_URL const */}
-          <img style={{ width: '100px', height: '100px' }} src={`http://localhost:3000${avatarUrl}`} alt="" />
-          {/* TODO - this form needs a lot more work lol */}
+          <h2 className={styles.nameHeader}>{`${admin.firstName || ''} ${admin.lastName || ''}`.toUpperCase()}</h2>
+          <img style={{ width: '2rem', height: '2rem' }} src={admin.avatarUrl ? `${store.API_BASE_URL}${admin.avatarUrl}` : ''} alt="Profile" />
           <form onSubmit={handleSubmit}>
             <input type="file" />
-            <input type="submit" />
+            <button type="submit">Upload</button>
           </form>
           <a className={styles.editLink} href="/">Edit</a>
           <div className={styles.infoContainer}>
             <p className={styles.infoItem}>
-              Member since :
-              {userStub.signInDate.toLocaleDateString(
-                undefined,
-                { minimumIntegerDigits: 2, useGrouping: false },
-              )}
+              Member since:
+              {admin.createdAt ? formatDate(admin.createdAt) : ''}
             </p>
             <p className={styles.infoItem}>
-              Member Authorization :
-              {userStub.role}
+              Member Authorization:
+              {admin.role || ''}
             </p>
-            <div className={styles.borderBox} />
             <div className={styles.emailContainer}>
-              <div>Email Address: </div>
-              <div>{userStub.email}</div>
-              <br />
+              <span>Email Address:</span>
+              <span>{admin.email || ''}</span>
             </div>
             <div className={styles.passwordContainer}>
-              <div>Password:</div>
-              <div>{'*'.repeat(8)}</div>
-              {/* TODO - The link below needs to be added */}
+              <span>Password:</span>
+              <span>{'*'.repeat(8)}</span>
               <a className={styles.editPassword} href="/">Update</a>
             </div>
-            <div className={styles.buttonContainer}>
-              <Button text="Logout" style={{ width: '100px', height: '50px', fontWeight: 'bold' }} action={handleLogout} />
-            </div>
+            <Button text="Logout" style={{ width: '100px', height: '50px', fontWeight: 'bold' }} action={handleLogout} />
           </div>
         </div>
       </div>
