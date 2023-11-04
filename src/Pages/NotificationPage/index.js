@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Card, CardBody, Col, Container, Row,
 } from 'reactstrap';
-import Paginator from '../../Components/Paginator';
 import Navbar from '../../Components/Navbar';
 import styles from './style.module.scss';
 
@@ -140,9 +139,6 @@ function NotificationPage() {
           </Card>
         ))}
         {/* TODO: add paginator logic */}
-        <Row className={styles.paginatorContainer}>
-          <Paginator />
-        </Row>
       </Container>
     </div>
   );

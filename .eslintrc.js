@@ -20,5 +20,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'react/prop-types': 0,
     indent: ['error', 2],
+    'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
+    'react/no-unstable-nested-components': 'off',
   },
 };
