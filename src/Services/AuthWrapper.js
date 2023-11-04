@@ -1,34 +1,29 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const isAuthenticated = () => {
+export const isAuthenticated = () => {
   const user = localStorage.getItem('user');
   const token = localStorage.getItem('jwt');
-
   return user && token;
 };
 
-function AuthWrapper(WrappedComponent) {
-  return function WrapperComponent(props) {
-    const navigate = useNavigate();
+function AuthWrapper({ children }) {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-    const { pathname } = useLocation();
-    const { userVariant } = useParams();
+  const onUserIndex = pathname.includes('users');
 
-    const onUserIndex = pathname.includes('users');
-    const allowedUserVariant = ['donor', 'client', 'all'].includes(userVariant);
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate('/login');
+    } else if (onUserIndex) {
+      navigate('/error');
+    }
+  }, [navigate, onUserIndex]);
 
-    useEffect(() => {
-      if (!isAuthenticated()) {
-        navigate('/login');
-      } else if (onUserIndex && !allowedUserVariant) {
-        navigate('/error');
-      }
-    }, [onUserIndex, allowedUserVariant]);
-
-    return <WrappedComponent {...props} />;
-  };
+  // If the above useEffect triggers a navigate, this component won't actually render the children.
+  // The navigation action will take precedence.
+  return children;
 }
 
-export { AuthWrapper, isAuthenticated };
+export default AuthWrapper;

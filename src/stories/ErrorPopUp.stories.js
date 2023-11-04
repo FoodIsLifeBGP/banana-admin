@@ -6,4 +6,6 @@ export default {
   component: ErrorPopUp,
 };
 
-export const presentation = () => <ErrorPopUp />;
+export function Presentation() {
+  return <ErrorPopUp />;
+}

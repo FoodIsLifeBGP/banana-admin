@@ -2,12 +2,39 @@
 
 /* styling for mobile */
 
+.card {
+  margin: 1rem;
+  background-color: var(--LIGHT_GRAY);
+  border: none;
+}
+
+.iconPic{
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  align-items: space-around;
+}
+
+.notificationText {
+  align-self: center;
+  text-align: left;
+}
+
+.dateTime {
+  color: var(--DARK_GRAY);
+  font-weight: 700;
+}
+
 body{
   padding: 0rem;
 }
 
-.body{
-  padding: 5vh 0px;
+.header {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  padding-left: 0;
+  text-align: left;
 }
 
 .rightBody{
@@ -22,149 +49,22 @@ body{
 h1, p {
   color: var(--NAVY_BLUE);
   text-align: center;
-}
-
-h1 {
-  font: "open sans";
-  font-size: 8rem;
+  text-transform: uppercase;
 }
 
 p{
   font-size: 1.5rem;
 }
 
-.goBackButton{
-  width: 21vw;
-  height: 7vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--BANANA_YELLOW);
+.navyText{
   color: var(--NAVY_BLUE);
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  border-color: var(--BANANA_YELLOW);
-  border-width: 0px;
-  margin: 10px 10px 10px 1vw;
+  flex-direction: row;
 }
 
-.homeButton{
-  width: 21vw;
-  height: 7vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--WHITE);
-  color: var(--NAVY_BLUE);
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  border-color: var(--NAVY_BLUE);
-  border-width: 2px;
-  margin: 10px;
+.grayText{
+  color: '#fff'
 }
 
-.body .rightBody .bananaPeel {
-  position: relative;
-  left: -60px;
-  top: 349px;
-}
-
-.bottomBar{
-  height: 15vh;
-  background-color: var(--BANANA_YELLOW);
-}
-
-.rightBody{
-  justify-content: center;
-  margin-top: 5vh;
-}
-
-/* styling for PC */
-@media (min-width: 900px) {
-  body{
-    padding: 0rem;
-  }
-
-  .sb-show-main.sb-main-padded.theBody{
-    padding: 0rem;
-  }
-  
-  .body{
-    padding: 5vh 0px;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-  }
-  
-  .rightBody{
-    display: flex;
-  }
-  
-  .buttonContainer{
-    display: flex;
-    justify-content: center;
-  }
-  
-  h1, p {
-    color: var(--NAVY_BLUE);
-    text-align: center;
-  }
-  
-  h1 {
-    font: "open sans";
-    font-size: 5rem;
-  }
-  
-  p{
-    font-size: 1.5rem;
-  }
-  
-  .goBackButton{
-    width: 21vw;
-    height: 7vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--BANANA_YELLOW);
-    color: var(--NAVY_BLUE);
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    font-size: 1.5rem;
-    border-radius: 8px;
-    border-color: var(--BANANA_YELLOW);
-    border-width: 0px;
-    margin: 10px 10px 10px 1vw;
-  }
-  
-  .homeButton{
-    width: 21vw;
-    height: 7vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--WHITE);
-    color: var(--NAVY_BLUE);
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    font-size: 1.5rem;
-    border-radius: 8px;
-    border-color: var(--NAVY_BLUE);
-    border-width: 2px;
-    margin: 10px;
-  }
-
-  .body .rightBody .bananaPeel {
-    position: relative;
-    left: -60px;
-    top: 349px;
-  }
-  
-  .bottomBar{
-    height: 15vh;
-    background-color: var(--BANANA_YELLOW);
-  }
+.paginatorContainer {
+  padding: 1rem;
 }

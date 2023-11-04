@@ -5,53 +5,47 @@ import styles from './style.module.css';
 function Status(props) {
   const { statusState } = props;
 
-  if (statusState === 'pending') {
-    return (
-      <div className={styles.pendingDiv}>
-        <p className={styles.text}><strong>Pending</strong></p>
-      </div>
-    );
+  let statusText = '';
+  let statusClassName = '';
+
+  switch (statusState) {
+  case 'pending':
+    statusText = 'Pending';
+    statusClassName = styles.pendingDiv;
+    break;
+  case 'active':
+    statusText = 'Active';
+    statusClassName = styles.activeDiv;
+    break;
+  case 'inactive':
+    statusText = 'Inactive';
+    statusClassName = styles.inactiveDiv;
+    break;
+  case 'incomplete':
+    statusText = 'Incomplete';
+    statusClassName = styles.incompleteDiv;
+    break;
+  case 'suspended':
+    statusText = 'Suspended';
+    statusClassName = styles.suspendedDiv;
+    break;
+  case 'closed':
+    statusText = 'Closed';
+    statusClassName = styles.closedDiv;
+    break;
+  default:
+    statusText = 'Unknown';
   }
 
-  if (statusState === 'active') {
-    return (
-      <div className={styles.activeDiv}>
-        <p className={styles.text}><strong className={styles.whiteText}>Active</strong></p>
-      </div>
-    );
-  }
-
-  if (statusState === 'inactive') {
-    return (
-      <div className={styles.inactiveDiv}>
-        <p className={styles.text}><strong className={styles.navyBlueText}>Inactive</strong></p>
-      </div>
-    );
-  }
-
-  if (statusState === 'incomplete') {
-    return (
-      <div className={styles.incompleteDiv}>
-        <p className={styles.text}><strong>Incomplete</strong></p>
-      </div>
-    );
-  }
-
-  if (statusState === 'suspended') {
-    return (
-      <div className={styles.suspendedDiv}>
-        <p className={styles.text}><strong>Suspended</strong></p>
-      </div>
-    );
-  }
-
-  if (statusState === 'closed') {
-    return (
-      <div className={styles.closedDiv}>
-        <p className={styles.text}><strong className={styles.whiteText}>Closed</strong></p>
-      </div>
-    );
-  }
+  return (
+    <div className={statusClassName} aria-label={`Status: ${statusText}`}>
+      <p className={styles.text}>
+        <strong className={statusState === 'active' || statusState === 'closed' ? styles.whiteText : ''}>
+          {statusText}
+        </strong>
+      </p>
+    </div>
+  );
 }
 
 Status.propTypes = {

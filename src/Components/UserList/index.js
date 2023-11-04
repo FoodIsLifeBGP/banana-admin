@@ -1,6 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
-import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 import styles from './style.module.css';
 import Status from '../Status';
@@ -50,28 +48,30 @@ function UserList(props) {
 
   return (
     <table>
-      <tr>
-        <th>No.</th>
-        <th>Name</th>
-        <th>Business Name</th>
-        <th>Date Registered</th>
-        <th>Status</th>
-      </tr>
-
-      {/* Replace testData.map with line below for production
-        {data.map((entry, index) => {  */}
-      {testData.map((entry, index) => (
-        <tr key={v4()}>
-          <td>{index + 1}</td>
-          <td>{entry.name}</td>
-          <td>{entry.businessName}</td>
-          <td>{entry.dateRegistered}</td>
-          <td className={styles.status}><Status statusState={entry.status} /></td>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Business Name</th>
+          <th>Date Registered</th>
+          <th>Status</th>
         </tr>
-      ))}
-
+      </thead>
+      <tbody>
+        {testData.map((entry, index) => (
+          <tr key={v4()}>
+            <td>{index + 1}</td>
+            <td>{entry.name}</td>
+            <td>{entry.businessName}</td>
+            <td>{entry.dateRegistered}</td>
+            <td className={styles.status}>
+              {/* Assuming <Status> is not a form control */}
+              <Status statusState={entry.status} />
+            </td>
+          </tr>
+        ))}
+      </tbody>
     </table>
-
   );
 }
 

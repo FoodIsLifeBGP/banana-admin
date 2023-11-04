@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import ErrorPage from '../Pages/ErrorPage';
 
 export default {
@@ -6,4 +7,10 @@ export default {
   component: ErrorPage,
 };
 
-export const presentation = () => <ErrorPage />;
+export function Presentation() {
+  return (
+    <MemoryRouter>
+      <ErrorPage />
+    </MemoryRouter>
+  );
+}

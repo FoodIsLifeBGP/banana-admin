@@ -6,6 +6,6 @@ export default {
   component: ApplicationStatusForm,
 };
 
-export const presentation = () => (
-  <ApplicationStatusForm title="Change Status" handleSubmit={() => {}} />
-);
+export function Presentation() {
+  return <ApplicationStatusForm title="Change Status" handleSubmit={() => {}} />;
+}

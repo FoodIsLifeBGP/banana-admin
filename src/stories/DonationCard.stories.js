@@ -6,4 +6,6 @@ export default {
   component: DonationCard,
 };
 
-export const presentation = () => <DonationCard claimedDonation={29} totalDonation={50} />;
+export function Presentation() {
+  return <DonationCard claimedDonation={29} totalDonation={50} />;
+}

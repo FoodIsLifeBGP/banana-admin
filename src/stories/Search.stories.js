@@ -6,4 +6,6 @@ export default {
   component: Search,
 };
 
-export const presentation = () => <Search />;
+export function Presentation() {
+  return <Search />;
+}
