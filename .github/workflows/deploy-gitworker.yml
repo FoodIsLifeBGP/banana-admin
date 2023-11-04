@@ -30,6 +30,13 @@ jobs:
           VM_IP: ${{ secrets.VM_IP }}
           VM_USERNAME: ${{ secrets.VM_USERNAME }}
 
+      - name: Check node version
+        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && node -v"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VM_IP: ${{ secrets.VM_IP }}
+          VM_USERNAME: ${{ secrets.VM_USERNAME }}
+
       - name: Build code on VM
         run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && yarn run build"
         env:
