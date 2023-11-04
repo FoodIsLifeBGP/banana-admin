@@ -42,7 +42,7 @@ jobs:
           cd /home/githubactionuser/banana-admin
           ls
           git pull origin feature/gitworkflow
-          npm run build
+          yarn run build
           sudo systemctl restart nginx
           EOF
         env:
