@@ -45,7 +45,7 @@ jobs:
           VM_USERNAME: ${{ secrets.VM_USERNAME }}
 
       - name: Build code on VM
-        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && yarn run build"
+        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && node -v && yarn run build"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VM_IP: ${{ secrets.VM_IP }}
