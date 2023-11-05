@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useGlobal from '../../state';
 import Navbar from '../../Components/Navbar';
-// import ProfilePicture from '../../Components/ProfilePicture';
 import Button from '../../Components/Button';
 import styles from './style.module.css';
 import ApiService from '../../Services/ApiService';
@@ -55,7 +54,7 @@ export default function SettingsPage() {
     formData.append('admin[avatar]', e.target[0].files[0]);
 
     const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
-    const response = await axiosFormRequest('PATCH', `admins/${currentUser.id}/update`, formData);
+    const response = await axiosFormRequest('POST', `admins/${currentUser.id}/update`, formData);
     if (response?.data?.admin) {
       setAdminData(formatAdminData(response.data.admin));
     }
@@ -67,7 +66,7 @@ export default function SettingsPage() {
       <div className={styles.background}>
         <div className={styles.content}>
           <h2 className={styles.nameHeader}>{`${admin.firstName || ''} ${admin.lastName || ''}`.toUpperCase()}</h2>
-          <img style={{ width: '2rem', height: '2rem' }} src={admin.avatarUrl ? `${store.API_BASE_URL}${admin.avatarUrl}` : ''} alt="Profile" />
+          <img style={{ width: '2rem', height: '2rem' }} src={admin.avatarUrl ? `${store.API_BASE_URL}${admin.avatarUrl}` : ''} alt="profile pic" />
           <form onSubmit={handleSubmit}>
             <input type="file" />
             <button type="submit">Upload</button>
