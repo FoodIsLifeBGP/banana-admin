@@ -60,7 +60,7 @@ export default function LoginPage() {
                   <Icon name="bananaIcon" size={200} />
                 </Col>
                 <Col sm={6}>
-                  <h1 className={styles.title}>BRENDAN PORTAL 2</h1>
+                  <h1 className={styles.title}>BRENDAN PORTAL 3</h1>
                 </Col>
               </Row>
               <Form sm={12} className="mx-auto">
