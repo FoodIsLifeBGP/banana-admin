@@ -3,6 +3,7 @@ import { DataTable, Pagination } from '../../Components/DataTable';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
 import { GetClients } from '../../Services/ClientsService';
+import Status from '../../Components/Status';
 
 function ClientsPage() {
   const defaultPageSize = 8;
@@ -11,6 +12,14 @@ function ClientsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const convertDateTime = (createdDate) => {
+    const date = new Date(createdDate);
+    const year = date.getFullYear().toString();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = (date.getDay()).toString().padStart(2, '0');
+    return `${year}/${month}/${day}`;
+  };
 
   const getClients = async () => {
     try {
@@ -26,20 +35,34 @@ function ClientsPage() {
   const columns = [
     { path: 'email', label: 'Email' },
     { path: 'name', label: 'Name', content: (client) => `${client.first_name} ${client.last_name}` },
-    { path: 'created_at', label: 'Created At' },
+    {
+      path: 'created_at',
+      label: 'Created At',
+      content: (d) => `${convertDateTime(d.created_at)}`,
+    },
     {
       key: 'account_status',
       label: 'Status',
       content: (client) => {
         switch (client.account_status) {
         case 'active':
-          return <span className="badge badge-success">{client.account_status}</span>;
+          // return <span className="badge badge-success">{client.account_status}</span>;
+          return <Status statusState="active" />;
         case 'suspended':
-          return <span className="badge badge-danger">{client.account_status}</span>;
+          // return <span className="badge badge-danger">{client.account_status}</span>;
+          return <Status statusState="active" />;
         case 'processing':
-          return <span className="badge badge-warning">{client.account_status}</span>;
+          // return <span className="badge badge-warning">{client.account_status}</span>;
+          return <Status statusState="pending" />;
+        case 'inactive':
+          // return <span className="badge badge-warning">{client.account_status}</span>;
+          return <Status statusState="inactive" />;
+        case 'incomplete':
+          // return <span className="badge badge-warning">{client.account_status}</span>;
+          return <Status statusState="incomplete" />;
         default:
-          return <span className="badge">{client.account_status}</span>;
+          // return <span className="badge">{client.account_status}</span>;
+          return client.account_status;
         }
       },
     },

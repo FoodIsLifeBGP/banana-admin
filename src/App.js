@@ -9,6 +9,7 @@ import NotificationPage from './Pages/NotificationPage';
 import ErrorPage from './Pages/ErrorPage/index';
 import AuthWrapper from './Services/AuthWrapper';
 import AllDonorsPage from './Pages/AllDonorsPage';
+import ClientsPage from './Pages/ClientsPage';
 
 function App() {
   return (
@@ -44,6 +45,14 @@ function App() {
             element={(
               <AuthWrapper>
                 <AllDonorsPage />
+              </AuthWrapper>
+            )}
+          />
+          <Route
+            path="/clients"
+            element={(
+              <AuthWrapper>
+                <ClientsPage />
               </AuthWrapper>
             )}
           />

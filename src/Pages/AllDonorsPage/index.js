@@ -5,6 +5,7 @@ import Search from '../../Components/Search';
 import styles from './style.module.css';
 import { GetDonors } from '../../Services/DonorsService';
 import { DataTable, Pagination } from '../../Components/DataTable';
+import Status from '../../Components/Status';
 
 function AllDonorsPage() {
   const defaultPageSize = 8;
@@ -14,9 +15,18 @@ function AllDonorsPage() {
   const [itemsCount, setItemsCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const convertDateTime = (createdDate) => {
+    const date = new Date(createdDate);
+    const year = date.getFullYear().toString();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = (date.getDay()).toString().padStart(2, '0');
+    return `${year}/${month}/${day}`;
+  };
+
   const getDonors = async () => {
     try {
       const response = await GetDonors(currentPage, defaultPageSize);
+      console.log('RESPONSE: ', response);
       setDonors(response);
     } catch (error) {
       setItemsCount(0);
@@ -28,20 +38,31 @@ function AllDonorsPage() {
     { path: 'id', label: 'id' },
     { path: 'name', label: 'Name', content: (d) => `${d.first_name} ${d.last_name}` },
     { path: 'organization_name', label: 'Organization' },
-    { path: 'created_at', label: 'Created At' },
+    {
+      path: 'created_at',
+      label: 'Created At',
+      content: (d) => `${convertDateTime(d.created_at)}`,
+    },
     {
       key: 'account_status',
       label: 'Status',
       content: (d) => {
         switch (d.account_status) {
+        case 'active':
+          // return <span className="badge badge-success">{d.account_status}</span>;
+          return <Status statusState="active" />;
         case 'approved':
-          return <span className="badge badge-success">{d.account_status}</span>;
+          // return <span className="badge badge-success">{d.account_status}</span>;
+          return <Status statusState="active" />;
         case 'rejected':
-          return <span className="badge badge-danger">{d.account_status}</span>;
-        case 'pending':
-          return <span className="badge badge-warning">{d.account_status}</span>;
+          // return <span className="badge badge-danger">{d.account_status}</span>;
+          return d.account_status;
+        case 'processing':
+          // return <span className="badge badge-warning">{d.account_status}</span>;
+          return <Status statusState="pending" />;
         default:
-          return <span className="badge">{d.account_status}</span>;
+          // return <span className="badge">{d.account_status}</span>;
+          return d.account_status;
         }
       },
     },
