@@ -25,25 +25,15 @@ function ErrorPage() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.pageContainer}>
       {isAuthenticated() && <Navbar />}
       <div className={styles.body}>
         <div className={styles.leftBody}>
-          <h1>404</h1>
-          <p>Looks like this page went bananas.</p>
+          <h1 className={styles.heading}>404</h1>
+          <p className={styles.subhead}>Looks like this page went bananas.</p>
           <div className={styles.buttonContainer}>
-            <Button
-              className={styles.goBackButton}
-              type="submit"
-              text="Go back"
-              action={goBack}
-            />
-            <Button
-              className={styles.homeButton}
-              type="submit"
-              text="Home"
-              action={goHome}
-            />
+            <Button type="submit" variant="buttonSecondary" text="Go back" action={goBack} />
+            <Button type="submit" variant="buttonPrimary" text="Home" action={goHome} />
           </div>
         </div>
         <div className={styles.rightBody}>
