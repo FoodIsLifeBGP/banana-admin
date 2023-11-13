@@ -1,35 +1,73 @@
+@import "../../colors.module.css";
+
 .container{
-background: #FFFFFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0 1rem;
 }
 
-
 .bananaPortalNav {
-/* BANANA PORTAL */
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  color: var(--NAVY_BLUE);
+  text-align: left;
+}
 
-font-family: Open Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 25px;
-line-height: 34px;
-display: flex;
-align-items: center;
-letter-spacing: 0.04em;
-text-decoration: none;
+.navBarBrand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-/* Navy Blue */
-
-color: var(--NAVY_BLUE);
-
+.mobileNav {
+  align-items: start;
 }
 
 .navIcon {
-  margin-right: 4rem;
+  margin-right: 1.5rem;
+}
+
+.navbarText {
+  font-weight: 700;
 }
 
 a {
-  font-family: Open Sans;
+  font-family: "Open Sans";
   font-style: normal;
   line-height: 34px;
   color: var(--NAVY_BLUE)
+}
+
+.mobileDropdownTasks {
+  border: none;
+  min-width: none;
+  margin-left: 2.5rem;
+}
+
+.dropdownToggleMobile {
+  text-align: start;
+}
+
+@media (min-width: 576px) {
+  .displayMobile {
+    display: none;
+  }
+
+  .hideMobile {
+    display: inline-block;
+  }
+
+  .navIcon {
+    margin-right: auto;
+  }
+
+  .navBarBrand .navIcon {
+    margin-right: 1.5rem;
+  }
+
+  .mobileDropdownTasks {
+    border: 1px solid lightgray;
+    margin-left: auto;
+  }
 }
