@@ -25,10 +25,11 @@ function ErrorPage() {
   }, []);
 
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.container}>
       {isAuthenticated() && <Navbar />}
+
       <div className={styles.body}>
-        <div className={styles.leftBody}>
+        <div className={styles.bodyContent}>
           <h1 className={styles.heading}>404</h1>
           <p className={styles.subhead}>Looks like this page went bananas.</p>
           <div className={styles.buttonContainer}>
@@ -36,14 +37,13 @@ function ErrorPage() {
             <Button type="submit" variant="buttonPrimary" text="Home" action={goHome} />
           </div>
         </div>
-        <div className={styles.rightBody}>
+        <div className={`${styles.bodyContent} ${styles.rightBody}`}>
           <Icon name="upsetWoman" size={ladyWidth} />
-          <div className={styles.bananaPeel}>
-            <Icon name="bananaPeel" size={bananaWidth} />
-          </div>
+          <Icon name="bananaPeel" size={bananaWidth} className={styles.bananaPeel} />
         </div>
       </div>
-      <div className={styles.bottomBar} />
+
+      <div className={styles.footer} />
     </div>
   );
 }
