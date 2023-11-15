@@ -1,71 +1,63 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Nav,
-  Navbar as BootstrapNavbar,
+  Collapse,
+  Navbar,
+  NavbarToggler,
   NavbarBrand,
-  NavbarText,
-  NavLink,
+  Nav,
   NavItem,
-  Row,
-  Col,
-  Dropdown,
-  DropdownItem,
+  NavLink,
+  UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
+  DropdownItem,
+  NavbarText,
 } from 'reactstrap';
-import styles from './style.module.css';
+
 import Icon from '../Icon';
+import styles from './style.module.css';
 
-function Navbar(props) {
-  // eslint-disable-next-line no-unused-vars
-  const { showMenu, showNotification } = props;
-  // Bell: /notifications
-  // Banana Portal: /home
-  // Profile Pic: /settings
-  // List: /all-clients (or /all-donors depending on what list is more popular)
+function BananaAdminNavbar() {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggle = () => setDropdownOpen(!dropdownOpen);
-  // const [dropdownOpen, setDropdownOpen] = useState(false);
-  // const toggle = () => setDropdownOpen(!dropdownOpen);
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <BootstrapNavbar className={styles.container}>
-      <NavbarBrand href="/">
-        <Row className="align-items-center">
-          <Col>
-            <Icon name="bananaIcon" size={75} />
-          </Col>
-          <Col>
-            <NavbarText className={styles.bananaPortalNav}>
-              BANANA
-              <br />
-              PORTAL
-            </NavbarText>
-          </Col>
-        </Row>
+    // <div className={styles.container}>
+    <Navbar expand="sm" light className={styles.container}>
+      <NavbarBrand href="/" className={styles.navBarBrand}>
+        <Icon name="bananaIcon" size={75} className={styles.navIcon} />
+        <NavbarText className={styles.bananaPortalNav}>
+          BANANA
+          <br />
+          PORTAL
+        </NavbarText>
       </NavbarBrand>
-      <Nav pills>
-        <NavItem className={styles.navIcon}>
-          <NavLink href="/notifications">
-            <Icon name="alertBell" size={35} />
-          </NavLink>
-        </NavItem>
-        <NavItem className={styles.navIcon}>
-          <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
-            {dropdownOpen ? (
-              <DropdownToggle nav caret style={{ backgroundColor: '#F0EEEE' }}>
-                <Icon name="tasks" size={35} />
-              </DropdownToggle>
-            ) : (
-              <DropdownToggle nav caret>
-                <Icon name="tasks" size={35} />
-              </DropdownToggle>
-            )}
 
-            <DropdownMenu>
+      <NavbarToggler onClick={toggle} />
+
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className={`ms-auto + ${styles.mobileNav}`} navbar>
+          <NavItem className="w-100">
+            <NavLink href="/notifications" className="dropdown-item">
+              <Icon name="alertBell" size={32} className={styles.navIcon} />
+              <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
+                Notifications
+              </NavbarText>
+            </NavLink>
+          </NavItem>
+
+          <UncontrolledDropdown nav inNavbar className={`${styles.hideMobile} w-100`}>
+            <DropdownToggle
+              nav
+              caret
+              className={`${styles.dropdownToggleMobile} + ${styles.navbarText}`}
+            >
+              <Icon name="tasks" size={32} className={styles.navIcon} />
+              <NavbarText className={styles.displayMobile}>Tasks</NavbarText>
+            </DropdownToggle>
+            <DropdownMenu right className={styles.mobileDropdownTasks}>
               <DropdownItem>
                 <NavLink href="/all">All</NavLink>
               </DropdownItem>
@@ -76,17 +68,22 @@ function Navbar(props) {
                 <NavLink href="/donors">Donors</NavLink>
               </DropdownItem>
             </DropdownMenu>
-          </Dropdown>
-        </NavItem>
-        <NavItem className={styles.navIcon}>
-          <NavLink href="/settings">
-            <Icon name="ellipse" size={35} />
+          </UncontrolledDropdown>
+
+          <NavLink href="/settings" className="dropdown-item w-100">
+            <Icon name="avatar" size={35} className={styles.navIcon} />
+            <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
+              Profile
+            </NavbarText>
           </NavLink>
-        </NavItem>
-      </Nav>
-    </BootstrapNavbar>
+        </Nav>
+      </Collapse>
+    </Navbar>
+    // </div>
   );
 }
+
+export default BananaAdminNavbar;
 
 Navbar.propTypes = {
   showNotification: PropTypes.bool,
@@ -97,5 +94,3 @@ Navbar.defaultProps = {
   showNotification: true,
   showMenu: true,
 };
-
-export default Navbar;

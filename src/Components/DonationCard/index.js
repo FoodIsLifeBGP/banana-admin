@@ -27,7 +27,9 @@ function DonationCard(props) {
     <div className={styles.container}>
       <div className={styles.cardTop}>
         <Row>
-          <Col className={styles.body}>{`${fractionDonated}%`}</Col>
+          <Col className={styles.body}>
+            {Number.isNaN(fractionDonated) ? '0%' : `${fractionDonated}%`}
+          </Col>
           <Col className={styles.alignRight}>
             <Icon name="donationStatus" size={85} />
           </Col>
@@ -43,15 +45,11 @@ function DonationCard(props) {
       <div className={styles.cardBottom}>
         <Row>
           <Col className={styles.footerLabel}>Claimed Total</Col>
-          <Col className={`${styles.body} ${styles.alignRight}`}>
-            {claimedDonation}
-          </Col>
+          <Col className={`${styles.body} ${styles.alignRight}`}>{claimedDonation}</Col>
         </Row>
         <Row>
           <Col className={styles.footerLabel}>Active Total</Col>
-          <Col className={`${styles.body} ${styles.alignRight}`}>
-            {totalDonation}
-          </Col>
+          <Col className={`${styles.body} ${styles.alignRight}`}>{totalDonation}</Col>
         </Row>
       </div>
     </div>
@@ -63,7 +61,6 @@ DonationCard.propTypes = {
   claimedDonation: PropTypes.number.isRequired,
 };
 
-DonationCard.defaultProps = {
-};
+DonationCard.defaultProps = {};
 
 export default DonationCard;

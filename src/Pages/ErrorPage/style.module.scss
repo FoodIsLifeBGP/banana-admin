@@ -1,89 +1,73 @@
 @import "../../colors.module.css";
 
-/* styling for mobile */
+/* ---------------------------- Mobile styling ---------------------------- */
 
-.pageContainer {
-  height: 100%;
+.container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  height: 100vh;
 }
 
 .body {
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+  padding: 2rem .5rem;
+}
+
+.bodyContent {
+  margin: 0 1rem;
+}
+
+.rightBody {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bananaPeel {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .heading {
-  font-size: 9.375rem;
+  font-size: 7rem;
+  font-weight: 700;
 }
 
 .subhead {
-  font-size: 1.875rem;
+  font-size: 1.5rem;
+  font-weight: 600;
   text-transform: none;
 }
 
-.rightBody{
+.buttonContainer {
   display: flex;
-}
-
-.buttonContainer{
-  display: flex;
+  flex-direction: row;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
 }
 
-.buttonContainer button {
-  width: 75%;
-  margin: 0.75rem;
-}
-
-.body .rightBody .bananaPeel {
-  position: relative;
-  left: -60px;
-  top: 349px;
-}
-
-.bottomBar{
-  min-height: 15vh;
+.footer {
+  flex-grow: 1;
   background-color: var(--BANANA_YELLOW);
 }
 
-.rightBody{
-  justify-content: center;
-  margin-top: 5vh;
-}
-
-/* styling for PC */
-@media (min-width: 900px) {
-  .body{
-    padding: 5vh 0px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .pageContainer {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .buttonContainer {
+/* ---------------------------- Desktop styling ---------------------------- */
+@media (min-width: 992px) {
+  .body {
     flex-direction: row;
   }
 
-  .buttonContainer button {
-    width: auto;
-    margin: auto;
+  .heading {
+    font-size: 9.375rem;
   }
 
-  .bottomBar{
-    height: 15vh;
-  }
-
-  .rightBody{
-    display: flex;
+  .subhead {
+    font-size: 1.875rem;
   }
 }
