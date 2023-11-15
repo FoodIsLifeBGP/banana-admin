@@ -39,8 +39,8 @@ function BananaAdminNavbar() {
 
       <Collapse isOpen={isOpen} navbar>
         <Nav className={`ms-auto + ${styles.mobileNav}`} navbar>
-          <NavItem>
-            <NavLink href="/notifications">
+          <NavItem className="w-100">
+            <NavLink href="/notifications" className="dropdown-item">
               <Icon name="alertBell" size={32} className={styles.navIcon} />
               <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
                 Notifications
@@ -48,7 +48,7 @@ function BananaAdminNavbar() {
             </NavLink>
           </NavItem>
 
-          <UncontrolledDropdown nav inNavbar className={styles.hideMobile}>
+          <UncontrolledDropdown nav inNavbar className={`${styles.hideMobile} w-100`}>
             <DropdownToggle
               nav
               caret
@@ -70,7 +70,7 @@ function BananaAdminNavbar() {
             </DropdownMenu>
           </UncontrolledDropdown>
 
-          <NavLink href="/settings">
+          <NavLink href="/settings" className="dropdown-item w-100">
             <Icon name="avatar" size={35} className={styles.navIcon} />
             <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
               Profile
