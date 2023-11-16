@@ -2,7 +2,7 @@ import React from 'react';
 import ApplicationStatusForm from '../Components/ApplicationStatusForm';
 
 export default {
-  title: 'ApplicationStatusForm',
+  title: 'Components/Application Status Form',
   component: ApplicationStatusForm,
 };
 

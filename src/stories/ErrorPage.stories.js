@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import ErrorPage from '../Pages/ErrorPage';
 
 export default {
-  title: 'ErrorPage',
+  title: 'Pages/Error Page',
   component: ErrorPage,
 };
 

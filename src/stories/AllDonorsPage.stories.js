@@ -2,7 +2,7 @@ import React from 'react';
 import AllDonorsPage from '../Pages/AllDonorsPage';
 
 export default {
-  title: 'AllDonorsPage',
+  title: 'Pages/All Donors Page',
   component: AllDonorsPage,
 };
 

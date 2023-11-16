@@ -2,7 +2,7 @@ import React from 'react';
 import ConfirmationModal from '../Components/ConfirmationModal';
 
 export default {
-  title: 'ConfirmationModal',
+  title: 'Components/Confirmation Modal',
   component: ConfirmationModal,
 };
 

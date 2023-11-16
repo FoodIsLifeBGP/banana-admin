@@ -2,7 +2,7 @@ import React from 'react';
 import SuccessPopUp from '../Components/SuccessPopUp';
 
 export default {
-  title: 'SuccessPopUp',
+  title: 'Components/Success Pop Up',
   component: SuccessPopUp,
 };
 
