@@ -2,7 +2,7 @@ import React from 'react';
 import ErrorPopUp from '../Components/ErrorPopUp';
 
 export default {
-  title: 'ErrorPopUp',
+  title: 'Components/Error Pop Up',
   component: ErrorPopUp,
 };
 

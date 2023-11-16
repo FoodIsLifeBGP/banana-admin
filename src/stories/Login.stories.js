@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import LoginPage from '../Pages/LoginPage/index';
 
 export default {
-  title: 'Login Page',
+  title: 'Pages/Login Page',
   component: LoginPage,
 };
 

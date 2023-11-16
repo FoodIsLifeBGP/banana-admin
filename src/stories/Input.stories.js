@@ -3,7 +3,7 @@ import { Container } from 'reactstrap';
 import Input from '../Components/Input';
 
 export default {
-  title: 'Input',
+  title: 'Components/Input',
   component: Input,
 };
 

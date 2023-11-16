@@ -2,7 +2,7 @@ import React from 'react';
 import BreadCrumb from '../Components/BreadCrumb';
 
 export default {
-  title: 'BreadCrumb',
+  title: 'Components/Bread Crumb',
   component: BreadCrumb,
 };
 

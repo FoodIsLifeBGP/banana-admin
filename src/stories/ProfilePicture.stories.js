@@ -2,7 +2,7 @@ import React from 'react';
 import ProfilePicture from '../Components/ProfilePicture';
 
 export default {
-  title: 'ProfilePicture',
+  title: 'Components/Profile Picture',
   component: ProfilePicture,
 };
 

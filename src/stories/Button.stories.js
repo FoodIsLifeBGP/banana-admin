@@ -5,7 +5,8 @@ export default {
   component: Button,
   argTypes: {
     variant: {
-      control: { type: 'select', options: ['buttonPrimary', 'buttonSecondary'] },
+      options: ['buttonPrimary', 'buttonSecondary'],
+      control: { type: 'radio' },
     },
     text: { control: 'text' },
     onClick: { action: 'clicked' },

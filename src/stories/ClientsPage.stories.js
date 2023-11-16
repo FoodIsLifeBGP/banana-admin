@@ -2,7 +2,7 @@ import React from 'react';
 import ClientsPage from '../Pages/ClientsPage';
 
 export default {
-  title: 'ClientsPage',
+  title: 'Pages/Clients Page',
   component: ClientsPage,
 };
 
