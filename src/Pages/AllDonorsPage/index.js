@@ -29,10 +29,8 @@ function AllDonorsPage() {
       const response = await GetDonors(currentPage, defaultPageSize);
       // console.log(response.pagy.count);
       // setItemsCount(response.pagy.count);
-      console.log('response', response);
       setDonors(response);
     } catch (error) {
-      console.log('CAME INTO ERROR');
       setItemsCount(0);
       setDonors([]);
     }

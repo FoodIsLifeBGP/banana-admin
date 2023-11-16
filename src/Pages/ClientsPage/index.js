@@ -25,6 +25,7 @@ function ClientsPage() {
   const getClients = async () => {
     try {
       const response = await GetClients(currentPage, defaultPageSize);
+      console.log(response);
       setItemsCount(response.pagy.count);
       setClients(response.data);
     } catch (error) {
