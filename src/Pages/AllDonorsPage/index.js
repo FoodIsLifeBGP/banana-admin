@@ -4,15 +4,16 @@ import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
 import styles from './style.module.css';
 import { GetDonors } from '../../Services/DonorsService';
-import { DataTable, Pagination } from '../../Components/DataTable';
+import { DataTable } from '../../Components/DataTable';
 import Status from '../../Components/Status';
+import Paginator from '../../Components/Paginator';
 
 function AllDonorsPage() {
-  const defaultPageSize = 8;
+  const defaultPageSize = 7;
   const [donors, setDonors] = useState([]);
   const [sortColumn, setSortColumn] = useState({ sort_by: 'no', order: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsCount, setItemsCount] = useState(0);
+  const [itemsCount, setItemsCount] = useState(7);
   const [searchQuery, setSearchQuery] = useState('');
 
   const convertDateTime = (createdDate) => {
@@ -26,9 +27,12 @@ function AllDonorsPage() {
   const getDonors = async () => {
     try {
       const response = await GetDonors(currentPage, defaultPageSize);
-      console.log('RESPONSE: ', response);
+      // console.log(response.pagy.count);
+      // setItemsCount(response.pagy.count);
+      console.log('response', response);
       setDonors(response);
     } catch (error) {
+      console.log('CAME INTO ERROR');
       setItemsCount(0);
       setDonors([]);
     }
@@ -60,6 +64,12 @@ function AllDonorsPage() {
         case 'processing':
           // return <span className="badge badge-warning">{d.account_status}</span>;
           return <Status statusState="pending" />;
+        case 'inactive':
+          // return <span className="badge badge-warning">{d.account_status}</span>;
+          return <Status statusState="inactive" />;
+        case 'incomplete':
+          // return <span className="badge badge-warning">{d.account_status}</span>;
+          return <Status statusState="incomplete" />;
         default:
           // return <span className="badge">{d.account_status}</span>;
           return d.account_status;
@@ -73,9 +83,9 @@ function AllDonorsPage() {
     setCurrentPage(1);
   };
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  // const handlePageChange = (page) => {
+  //   setCurrentPage(page);
+  // };
 
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -116,12 +126,13 @@ function AllDonorsPage() {
             onSort={handleSort}
           />
 
-          <Pagination
+          {/* <Pagination
             itemsCount={itemsCount}
             pageSize={defaultPageSize}
             currentPage={currentPage}
             onPageChange={handlePageChange}
-          />
+          /> */}
+          <Paginator pages={Math.ceil(itemsCount / defaultPageSize)} currentPage={1} />
         </div>
       </div>
     </div>

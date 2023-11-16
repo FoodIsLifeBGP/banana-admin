@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { DataTable, Pagination } from '../../Components/DataTable';
+import { DataTable } from '../../Components/DataTable';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
 import { GetClients } from '../../Services/ClientsService';
 import Status from '../../Components/Status';
+import Paginator from '../../Components/Paginator';
 
 function ClientsPage() {
-  const defaultPageSize = 8;
+  const defaultPageSize = 10;
   const [clients, setClients] = useState([]);
   const [sortColumn, setSortColumn] = useState({ sort_by: 'no', order: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,8 +34,8 @@ function ClientsPage() {
   };
 
   const columns = [
-    { path: 'email', label: 'Email' },
     { path: 'name', label: 'Name', content: (client) => `${client.first_name} ${client.last_name}` },
+    { path: 'email', label: 'Email' },
     {
       path: 'created_at',
       label: 'Created At',
@@ -111,12 +112,13 @@ function ClientsPage() {
             onSort={handleSort}
           />
 
-          <Pagination
+          {/* <Pagination
             itemsCount={itemsCount}
             pageSize={defaultPageSize}
             currentPage={currentPage}
             onPageChange={handlePageChange}
-          />
+          /> */}
+          <Paginator pages={Math.ceil(itemsCount / defaultPageSize)} currentPage={1} />
         </div>
       </div>
     </div>
