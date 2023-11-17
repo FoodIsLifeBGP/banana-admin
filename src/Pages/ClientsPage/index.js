@@ -3,6 +3,7 @@ import { DataTable, Pagination } from '../../Components/DataTable';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
 import { GetClients } from '../../Services/ClientsService';
+import Spinner from '../../Components/Spinner/Spinner';
 
 function ClientsPage() {
   const defaultPageSize = 8;
@@ -10,9 +11,11 @@ function ClientsPage() {
   const [sortColumn, setSortColumn] = useState({ sort_by: 'no', order: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
   const getClients = async () => {
+    setLoading(true);
     try {
       const response = await GetClients(currentPage, defaultPageSize);
       setItemsCount(response.pagy.count);
@@ -21,6 +24,7 @@ function ClientsPage() {
       setItemsCount(0);
       setClients([]);
     }
+    setLoading(false);
   };
 
   const columns = [
@@ -81,6 +85,7 @@ function ClientsPage() {
           </div>
         </div>
         <div className="row">
+          <Spinner loading={loading} />
           <DataTable
             columns={columns}
             data={clients}

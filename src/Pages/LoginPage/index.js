@@ -11,6 +11,7 @@ import Input from '../../Components/Input/index';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
 import useGlobal from '../../state/index';
+import Spinner from '../../Components/Spinner/Spinner';
 
 export default function LoginPage() {
   const [, { logIn }] = useGlobal();
@@ -18,6 +19,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const clearEmailAndPassword = () => {
     setEmail('');
@@ -27,8 +29,10 @@ export default function LoginPage() {
   const handleLogin = async (event) => {
     event.preventDefault();
 
+    setLoading(true);
     /* NOTE: `store` is implicitly passed to an "action" */
     const statusCode = await logIn({ email, password });
+    setLoading(false);
 
     switch (statusCode) {
     case 202: {
@@ -50,6 +54,7 @@ export default function LoginPage() {
 
   return (
     <div className={styles.container}>
+      <Spinner loading={loading} fullscreen />
       <div className={styles.borderspace} />
       <div className={styles.mainspace}>
         <Container className="h-100 align-items-center d-flex justify-content-center">
