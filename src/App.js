@@ -33,10 +33,18 @@ function App() {
             )}
           />
           <Route
-            path="/review-applications"
+            path="/clients/:id"
             element={(
               <AuthWrapper>
-                <ReviewApplicationPage />
+                <ReviewApplicationPage type="client" />
+              </AuthWrapper>
+            )}
+          />
+          <Route
+            path="/donors/:id"
+            element={(
+              <AuthWrapper>
+                <ReviewApplicationPage type="donor" />
               </AuthWrapper>
             )}
           />
