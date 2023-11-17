@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row } from 'reactstrap';
-import { GetClient } from '../../Services/ClientsService';
-import { GetDonor } from '../../Services/DonorsService';
+import { GetClient, UpdateClientStatus } from '../../Services/ClientsService';
+import { GetDonor, UpdateDonorStatus } from '../../Services/DonorsService';
 import ApplicationReview from '../../Components/ApplicationReviewCard';
 import ApplicationStatusForm from '../../Components/ApplicationStatusForm';
 import Navbar from '../../Components/Navbar';
@@ -34,13 +34,46 @@ export default function ReviewApplicationPage(props) {
     init();
   }, []);
 
+  const handleSubmit = async (event, status, userId) => {
+    event.preventDefault();
+
+    if (!userId) {
+      console.error('User Id is missing');
+      return;
+    }
+
+    try {
+      let response;
+      switch (type) {
+      case 'client':
+        response = await UpdateClientStatus(userId, status);
+        break;
+      case 'donor':
+        response = await UpdateDonorStatus(userId, status);
+        break;
+      default:
+        throw new Error('Invalid user type');
+      }
+
+      console.log('Status Updated:', response);
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
+  };
+
   return (
     <div>
       <Navbar />
       <Container style={{ margin: '4rem auto' }}>
         <Row className="justify-content-center">
           <ApplicationReview client={client} donor={donor} />
-          <ApplicationStatusForm title="CHANGE STATUS" />
+          <ApplicationStatusForm
+            title="CHANGE STATUS"
+            client={client}
+            donor={donor}
+            handleSubmit={handleSubmit}
+            userId={client?.id || donor?.id}
+          />
         </Row>
       </Container>
     </div>
