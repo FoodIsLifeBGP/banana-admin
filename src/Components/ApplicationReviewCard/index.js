@@ -4,32 +4,30 @@ import ListItem from './ListItem';
 import styles from './style.module.css';
 
 function ApplicationReview(props) {
-  const {
-    type,
-    status,
-    name,
-    businessName,
-    businessStreetAddress,
-    businessCity,
-    businessState,
-    businessZipCode,
-  } = props;
+  const { client, donor } = props;
+
   return (
     <div className={styles.container}>
       <h3>General Info</h3>
       <div className={styles.infoList}>
-        <ListItem itemTitle="Status" itemValue={status} />
-        <ListItem itemTitle="Name" itemValue={name} />
-        {type === 'donor' && (
+        {client.id && (
           <>
-            <ListItem itemTitle="Business Name" itemValue={businessName} />
+            <ListItem itemTitle="Status" itemValue={client.account_status} />
+            <ListItem itemTitle="Name" itemValue={`${client.first_name} ${client.last_name}`} />
+          </>
+        )}
+        {donor.id && (
+          <>
+            <ListItem itemTitle="Status" itemValue={donor.account_status} />
+            <ListItem itemTitle="Name" itemValue={`${donor.first_name} ${donor.last_name}`} />
+            <ListItem itemTitle="Business Name" itemValue={donor.organization_name} />
             <ListItem
               itemTitle="Business Address"
-              itemValue={businessStreetAddress}
+              itemValue={donor.address_street}
             />
-            <ListItem itemTitle="City" itemValue={businessCity} />
-            <ListItem itemTitle="State" itemValue={businessState} />
-            <ListItem itemTitle="Zip Code" itemValue={businessZipCode} />
+            <ListItem itemTitle="City" itemValue={donor.address_city} />
+            <ListItem itemTitle="State" itemValue={donor.address_state} />
+            <ListItem itemTitle="Zip Code" itemValue={donor.address_zip} />
           </>
         )}
       </div>
@@ -38,22 +36,13 @@ function ApplicationReview(props) {
 }
 
 ApplicationReview.propTypes = {
-  type: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  businessName: PropTypes.string,
-  businessStreetAddress: PropTypes.string,
-  businessCity: PropTypes.string,
-  businessState: PropTypes.string,
-  businessZipCode: PropTypes.string,
+  donor: PropTypes.object,
+  client: PropTypes.object,
 };
 
 ApplicationReview.defaultProps = {
-  businessName: '',
-  businessStreetAddress: '',
-  businessCity: '',
-  businessState: '',
-  businessZipCode: '',
+  donor: {},
+  client: {},
 };
 
 export default ApplicationReview;
