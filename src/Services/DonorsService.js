@@ -1,7 +1,16 @@
 import ApiService from './ApiService';
 
+const { axiosRequest } = ApiService();
+
+const GetDonor = async (id) => {
+  const response = await axiosRequest(
+    'GET',
+    `/donors/${id}`,
+  );
+  return response.data.donor;
+};
+
 const GetDonors = async (pageNumber, pageSize) => {
-  const { axiosRequest } = ApiService();
   const response = await axiosRequest(
     'GET',
     `/donors?page=${pageNumber}&items=${pageSize}`,
@@ -10,8 +19,7 @@ const GetDonors = async (pageNumber, pageSize) => {
 };
 
 const samplecall2 = async (pageNumber, pageSize) => {
-  const { axiosRequest } = ApiService();
-  const response = await axiosRequest.get('/clients', {
+  const response = await axiosRequest.get('/donors', {
     params: {
       page: pageNumber,
       items: pageSize,
@@ -20,4 +28,4 @@ const samplecall2 = async (pageNumber, pageSize) => {
   return response.data;
 };
 
-export { GetDonors, samplecall2 };
+export { GetDonor, GetDonors, samplecall2 };

@@ -1,7 +1,16 @@
 import ApiService from './ApiService';
 
+const { axiosRequest } = ApiService();
+
+const GetClient = async (id) => {
+  const response = await axiosRequest(
+    'GET',
+    `/clients/${id}`,
+  );
+  return response.data.client;
+};
+
 const GetClients = async (pageNumber, pageSize) => {
-  const { axiosRequest } = ApiService();
   const response = await axiosRequest(
     'GET',
     `/clients?page=${pageNumber}&items=${pageSize}`,
@@ -10,7 +19,6 @@ const GetClients = async (pageNumber, pageSize) => {
 };
 
 const samplecall2 = async (pageNumber, pageSize) => {
-  const { axiosRequest } = ApiService();
   const response = await axiosRequest.get('/clients', {
     params: {
       page: pageNumber,
@@ -20,4 +28,4 @@ const samplecall2 = async (pageNumber, pageSize) => {
   return response.data;
 };
 
-export { GetClients, samplecall2 };
+export { GetClient, GetClients, samplecall2 };
