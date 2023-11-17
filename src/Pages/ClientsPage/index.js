@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { DataTable, Pagination } from '../../Components/DataTable';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
@@ -24,8 +25,18 @@ function ClientsPage() {
   };
 
   const columns = [
-    { path: 'email', label: 'Email' },
-    { path: 'name', label: 'Name', content: (client) => `${client.first_name} ${client.last_name}` },
+    {
+      key: 'email',
+      label: 'Email',
+      content: (client) => (
+        <Link to={`/clients/${client.id}`}>{client.email}</Link>
+      ),
+    },
+    {
+      path: 'name',
+      label: 'Name',
+      content: (client) => `${client.first_name} ${client.last_name}`,
+    },
     { path: 'created_at', label: 'Created At' },
     {
       key: 'account_status',
@@ -33,11 +44,23 @@ function ClientsPage() {
       content: (client) => {
         switch (client.account_status) {
         case 'active':
-          return <span className="badge badge-success">{client.account_status}</span>;
+          return (
+            <span className="badge badge-success">
+              {client.account_status}
+            </span>
+          );
         case 'suspended':
-          return <span className="badge badge-danger">{client.account_status}</span>;
+          return (
+            <span className="badge badge-danger">
+              {client.account_status}
+            </span>
+          );
         case 'processing':
-          return <span className="badge badge-warning">{client.account_status}</span>;
+          return (
+            <span className="badge badge-warning">
+              {client.account_status}
+            </span>
+          );
         default:
           return <span className="badge">{client.account_status}</span>;
         }

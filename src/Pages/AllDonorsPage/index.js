@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import BreadCrumb from '../../Components/BreadCrumb';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
@@ -25,7 +26,7 @@ function AllDonorsPage() {
   };
 
   const columns = [
-    { path: 'id', label: 'id' },
+    { key: 'id', label: 'id', content: (donor) => <Link to={`/donors/${donor.id}`}>{ donor.id }</Link> },
     { path: 'name', label: 'Name', content: (d) => `${d.first_name} ${d.last_name}` },
     { path: 'organization_name', label: 'Organization' },
     { path: 'created_at', label: 'Created At' },
