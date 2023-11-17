@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { DataTable, Pagination } from '../../Components/DataTable';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
@@ -23,6 +24,7 @@ function ClientsPage() {
     } catch (error) {
       setItemsCount(0);
       setClients([]);
+      toast.error('Failed to fetch data');
     }
     setLoading(false);
   };

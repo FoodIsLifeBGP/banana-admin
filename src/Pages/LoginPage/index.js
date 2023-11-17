@@ -7,6 +7,7 @@ import {
   Row,
   Form,
 } from 'reactstrap';
+import { ToastContainer, toast } from 'react-toastify';
 import Input from '../../Components/Input/index';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
@@ -40,20 +41,16 @@ export default function LoginPage() {
       navigate('/');
       return;
     }
-    /* TODO: create `Alert` component instead of using default JS `alert()` */
-    // eslint-disable-next-line no-alert
-    case 401: alert('Incorrect email or password'); return;
-    // eslint-disable-next-line no-alert
-    case 404: alert('Server not found - please try again'); return;
-    // eslint-disable-next-line no-alert
-    case 500: alert('Network error - please try again'); return;
-    // eslint-disable-next-line no-alert
-    default: alert(`Server replied with ${statusCode} status code`);
+    case 401: toast.warn('Incorrect email or password'); return;
+    case 404: toast.error('Server not found - please try again'); return;
+    case 500: toast.warn('Network error - please try again'); return;
+    default: toast.warn(`Server replied with ${statusCode} status code`);
     }
   };
 
   return (
     <div className={styles.container}>
+      <ToastContainer />
       <Spinner loading={loading} fullscreen />
       <div className={styles.borderspace} />
       <div className={styles.mainspace}>
