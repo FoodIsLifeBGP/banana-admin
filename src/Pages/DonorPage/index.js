@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import BreadCrumb from '../../Components/BreadCrumb';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
-import styles from './style.module.css';
 import { GetDonors } from '../../Services/DonorsService';
 import { DataTable, Pagination } from '../../Components/DataTable';
+
+import formatDateToPST from '../../util/utilities';
+
+import styles from './style.module.css';
 
 function DonorPage() {
   const defaultPageSize = 8;
@@ -25,10 +30,22 @@ function DonorPage() {
   };
 
   const columns = [
-    { path: 'id', label: 'id' },
-    { path: 'name', label: 'Name', content: (d) => `${d.first_name} ${d.last_name}` },
+    {
+      path: 'name',
+      label: 'Name',
+      content: (d) => <Link to={`/donors/${d.id}`}>{`${d.first_name} ${d.last_name}`}</Link>,
+    },
+    {
+      path: 'email',
+      label: 'Email',
+      content: (d) => d.email,
+    },
     { path: 'organization_name', label: 'Organization' },
-    { path: 'created_at', label: 'Created At' },
+    {
+      path: 'created_at',
+      label: 'Created At',
+      content: (d) => <span>{`${formatDateToPST(d.created_at)} PST`}</span>,
+    },
     {
       key: 'account_status',
       label: 'Status',
@@ -80,20 +97,11 @@ function DonorPage() {
           <h2 className={styles.headerLeft}>NEW APPLICATIONS (DONOR)</h2>
           <div className={styles.headerRight}>
             <Search value={searchQuery} onChange={handleSearch} />
-            <input
-              className={styles.viewAllButton}
-              type="submit"
-              value="View all list"
-            />
+            <input className={styles.viewAllButton} type="submit" value="View all list" />
           </div>
         </div>
         <div className="row">
-          <DataTable
-            columns={columns}
-            data={donors}
-            sortColumn={sortColumn}
-            onSort={handleSort}
-          />
+          <DataTable columns={columns} data={donors} sortColumn={sortColumn} onSort={handleSort} />
 
           <Pagination
             itemsCount={itemsCount}

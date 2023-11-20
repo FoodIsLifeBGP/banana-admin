@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { DataTable, Pagination } from '../../Components/DataTable';
 import Navbar from '../../Components/Navbar';
 import Search from '../../Components/Search';
+
 import { GetClients } from '../../Services/ClientsService';
+import formatDateToPST from '../../util/utilities';
 
 function ClientsPage() {
   const defaultPageSize = 8;
@@ -26,41 +29,33 @@ function ClientsPage() {
 
   const columns = [
     {
-      key: 'email',
-      label: 'Email',
+      path: 'name',
+      label: 'Name',
       content: (client) => (
-        <Link to={`/clients/${client.id}`}>{client.email}</Link>
+        <Link to={`/clients/${client.id}`}>{`${client.first_name} ${client.last_name}`}</Link>
       ),
     },
     {
-      path: 'name',
-      label: 'Name',
-      content: (client) => `${client.first_name} ${client.last_name}`,
+      key: 'email',
+      label: 'Email',
+      content: (client) => client.email,
     },
-    { path: 'created_at', label: 'Created At' },
+    {
+      path: 'created_at',
+      label: 'Created At',
+      content: (client) => <span>{`${formatDateToPST(client.created_at)} PST`}</span>,
+    },
     {
       key: 'account_status',
       label: 'Status',
       content: (client) => {
         switch (client.account_status) {
         case 'active':
-          return (
-            <span className="badge badge-success">
-              {client.account_status}
-            </span>
-          );
+          return <span className="badge badge-success">{client.account_status}</span>;
         case 'suspended':
-          return (
-            <span className="badge badge-danger">
-              {client.account_status}
-            </span>
-          );
+          return <span className="badge badge-danger">{client.account_status}</span>;
         case 'processing':
-          return (
-            <span className="badge badge-warning">
-              {client.account_status}
-            </span>
-          );
+          return <span className="badge badge-warning">{client.account_status}</span>;
         default:
           return <span className="badge">{client.account_status}</span>;
         }
@@ -104,12 +99,7 @@ function ClientsPage() {
           </div>
         </div>
         <div className="row">
-          <DataTable
-            columns={columns}
-            data={clients}
-            sortColumn={sortColumn}
-            onSort={handleSort}
-          />
+          <DataTable columns={columns} data={clients} sortColumn={sortColumn} onSort={handleSort} />
 
           <Pagination
             itemsCount={itemsCount}
