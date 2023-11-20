@@ -8,7 +8,7 @@ import LoginPage from './Pages/LoginPage/index';
 import NotificationPage from './Pages/NotificationPage';
 import ErrorPage from './Pages/ErrorPage/index';
 import AuthWrapper from './Services/AuthWrapper';
-import AllDonorsPage from './Pages/AllDonorsPage';
+import DonorPage from './Pages/DonorPage';
 import ClientsPage from './Pages/ClientsPage';
 
 function App() {
@@ -60,7 +60,7 @@ function App() {
             path="/donors"
             element={(
               <AuthWrapper>
-                <AllDonorsPage />
+                <DonorPage />
               </AuthWrapper>
             )}
           />
