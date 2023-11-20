@@ -45,11 +45,6 @@ export default function ReviewApplicationPage(props) {
   const handleSubmit = async (event, status, userId) => {
     event.preventDefault();
 
-    if (!userId) {
-      console.error('User Id is missing');
-      return;
-    }
-
     try {
       let response;
       switch (type) {
