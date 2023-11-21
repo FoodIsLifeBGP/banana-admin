@@ -1,13 +1,14 @@
-name: Build and Deploy to VM
+name: Build and Deploy to the Admin Portal VM
 
 on:
-  push:
+  pull_request:
     branches:
-      - feature/gitworkflow
+      - master
+    types: [closed]
 
 jobs:
-
   deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
