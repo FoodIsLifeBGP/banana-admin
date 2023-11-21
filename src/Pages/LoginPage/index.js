@@ -7,10 +7,12 @@ import {
   Row,
   Form,
 } from 'reactstrap';
+import { ToastContainer, toast } from 'react-toastify';
 import Input from '../../Components/Input/index';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
 import useGlobal from '../../state/index';
+import Spinner from '../../Components/Spinner/Spinner';
 
 export default function LoginPage() {
   const [, { logIn }] = useGlobal();
@@ -18,6 +20,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const clearEmailAndPassword = () => {
     setEmail('');
@@ -27,8 +30,10 @@ export default function LoginPage() {
   const handleLogin = async (event) => {
     event.preventDefault();
 
+    setLoading(true);
     /* NOTE: `store` is implicitly passed to an "action" */
     const statusCode = await logIn({ email, password });
+    setLoading(false);
 
     switch (statusCode) {
     case 202: {
@@ -36,20 +41,17 @@ export default function LoginPage() {
       navigate('/');
       return;
     }
-    /* TODO: create `Alert` component instead of using default JS `alert()` */
-    // eslint-disable-next-line no-alert
-    case 401: alert('Incorrect email or password'); return;
-    // eslint-disable-next-line no-alert
-    case 404: alert('Server not found - please try again'); return;
-    // eslint-disable-next-line no-alert
-    case 500: alert('Network error - please try again'); return;
-    // eslint-disable-next-line no-alert
-    default: alert(`Server replied with ${statusCode} status code`);
+    case 401: toast.warn('Incorrect email or password'); return;
+    case 404: toast.error('Server not found - please try again'); return;
+    case 500: toast.warn('Network error - please try again'); return;
+    default: toast.warn(`Server replied with ${statusCode} status code`);
     }
   };
 
   return (
     <div className={styles.container}>
+      <ToastContainer />
+      <Spinner loading={loading} fullscreen />
       <div className={styles.borderspace} />
       <div className={styles.mainspace}>
         <Container className="h-100 align-items-center d-flex justify-content-center">
