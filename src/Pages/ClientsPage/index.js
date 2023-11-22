@@ -109,7 +109,6 @@ function ClientsPage() {
           <DataTable columns={columns} data={clients} sortColumn={sortColumn} onSort={handleSort} />
 
           <Spinner loading={loading} />
-          <DataTable columns={columns} data={clients} sortColumn={sortColumn} onSort={handleSort} />
 
           <Pagination
             itemsCount={itemsCount}
