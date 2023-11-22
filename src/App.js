@@ -8,7 +8,7 @@ import LoginPage from './Pages/LoginPage/index';
 import NotificationPage from './Pages/NotificationPage';
 import ErrorPage from './Pages/ErrorPage/index';
 import AuthWrapper from './Services/AuthWrapper';
-import AllDonorsPage from './Pages/AllDonorsPage';
+import DonorPage from './Pages/DonorPage';
 import ClientsPage from './Pages/ClientsPage';
 
 function App() {
@@ -33,10 +33,18 @@ function App() {
             )}
           />
           <Route
-            path="/review-applications"
+            path="/clients/:id"
             element={(
               <AuthWrapper>
-                <ReviewApplicationPage />
+                <ReviewApplicationPage type="client" />
+              </AuthWrapper>
+            )}
+          />
+          <Route
+            path="/donors/:id"
+            element={(
+              <AuthWrapper>
+                <ReviewApplicationPage type="donor" />
               </AuthWrapper>
             )}
           />
@@ -52,7 +60,7 @@ function App() {
             path="/donors"
             element={(
               <AuthWrapper>
-                <AllDonorsPage />
+                <DonorPage />
               </AuthWrapper>
             )}
           />

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   Collapse,
   Navbar,
@@ -24,7 +23,6 @@ function BananaAdminNavbar() {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    // <div className={styles.container}>
     <Navbar expand="sm" light className={styles.container}>
       <NavbarBrand href="/" className={styles.navBarBrand}>
         <Icon name="bananaIcon" size={75} className={styles.navIcon} />
@@ -57,7 +55,7 @@ function BananaAdminNavbar() {
               <Icon name="tasks" size={32} className={styles.navIcon} />
               <NavbarText className={styles.displayMobile}>Tasks</NavbarText>
             </DropdownToggle>
-            <DropdownMenu right className={styles.mobileDropdownTasks}>
+            <DropdownMenu end className={styles.mobileDropdownTasks}>
               <DropdownItem>
                 <NavLink href="/all">All</NavLink>
               </DropdownItem>
@@ -79,18 +77,7 @@ function BananaAdminNavbar() {
         </Nav>
       </Collapse>
     </Navbar>
-    // </div>
   );
 }
 
 export default BananaAdminNavbar;
-
-Navbar.propTypes = {
-  showNotification: PropTypes.bool,
-  showMenu: PropTypes.bool,
-};
-
-Navbar.defaultProps = {
-  showNotification: true,
-  showMenu: true,
-};

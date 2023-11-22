@@ -29,7 +29,7 @@ function TableHeader({ columns, sortColumn, onSort }) {
           <th
             className="clickable"
             // key={column.path || column.key}
-            key={column.path}
+            key={column.path || column.key}
             onClick={() => raiseSort(column.path)}
           >
             {column.label}
