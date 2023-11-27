@@ -33,7 +33,7 @@
 .modalContent {
   position: relative;
   background-color: white;
-  width: 50%;
+  width: 90%;
 }
 
 .modalBody {
@@ -43,4 +43,17 @@
   padding: 4rem 2rem 1rem;
   display: flex;
   flex-direction: column;
+}
+
+.modalButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------------------------- Desktop styling ---------------------------- */
+@media (min-width: 992px) {
+  .modalContent {
+    width: 40%;
+  }
 }
