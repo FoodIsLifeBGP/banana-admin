@@ -7,12 +7,21 @@ import styles from './style.module.scss';
 
 function Modal(props) {
   const {
-    modalOpen, setModalOpen, modalContentRef, children, title, buttonsConfig,
+    modalOpen,
+    setModalOpen,
+    modalContentRef,
+    children,
+    title,
+    buttonsConfig,
   } = props;
 
   // Default button configuration if none is provided
   const defaultButtonConfig = [
-    { text: 'Okay', variant: 'buttonPrimary', action: () => setModalOpen(false) },
+    {
+      text: 'Okay',
+      variant: 'buttonPrimary',
+      action: () => setModalOpen(false),
+    },
   ];
 
   // Use provided buttonsConfig or default configuration
