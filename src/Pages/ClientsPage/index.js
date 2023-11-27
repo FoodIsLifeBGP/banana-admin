@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { DataTable, Pagination } from '../../Components/DataTable';
-import Navbar from '../../Components/Navbar';
+import Layout from '../../Components/Layout';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
 
@@ -89,8 +89,7 @@ function ClientsPage() {
   }, [currentPage, sortColumn, searchQuery]);
 
   return (
-    <div>
-      <Navbar />
+    <Layout>
       <div className="container">
         <div className="row mt-4 mb-4">
           <div className="col-6">
@@ -118,7 +117,7 @@ function ClientsPage() {
           />
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
