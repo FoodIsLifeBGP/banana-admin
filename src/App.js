@@ -8,6 +8,7 @@ import LoginPage from './Pages/LoginPage/index';
 import NotificationPage from './Pages/NotificationPage';
 import ErrorPage from './Pages/ErrorPage/index';
 import AuthWrapper from './Services/AuthWrapper';
+import AdminsPage from './Pages/AdminsPage';
 import DonorPage from './Pages/DonorPage';
 import ClientsPage from './Pages/ClientsPage';
 
@@ -45,6 +46,14 @@ function App() {
             element={(
               <AuthWrapper>
                 <ReviewApplicationPage type="donor" />
+              </AuthWrapper>
+            )}
+          />
+          <Route
+            path="/admins"
+            element={(
+              <AuthWrapper>
+                <AdminsPage />
               </AuthWrapper>
             )}
           />
