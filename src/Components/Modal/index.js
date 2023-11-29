@@ -15,7 +15,6 @@ function Modal(props) {
     buttonsConfig,
   } = props;
 
-  // Default button configuration if none is provided
   const defaultButtonConfig = [
     {
       text: 'Okay',
@@ -24,7 +23,6 @@ function Modal(props) {
     },
   ];
 
-  // Use provided buttonsConfig or default configuration
   const finalButtonsConfig = buttonsConfig || defaultButtonConfig;
 
   return modalOpen ? (
