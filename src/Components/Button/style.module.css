@@ -22,6 +22,29 @@
   color: var(--NAVY_BLUE);
 }
 
+.buttonSecondary {
+  background-color: var(--LIGHT_GRAY);
+  color: var(--NAVY_BLUE);
+}
+
+.buttonDanger {
+  background-color: var(--SUSPENDED_RED);
+  color: var(--NAVY_BLUE);
+  &:hover {
+    background-color: var(--RED);
+    color: var(--WHITE);
+  }
+}
+
+.buttonSuccess {
+  background-color: var(--GREEN);
+  color: var(--NAVY_BLUE);
+  &:hover {
+    background-color: var(--DARK_GREEN);
+    color: var(--WHITE);
+  }
+}
+
 .buttonPrimary:hover,
 .buttonSecondary:hover {
   background-color: var(--NAVY_BLUE);
@@ -32,9 +55,4 @@
 .buttonSecondary:active {
   background-color: var(--FADED_NAVY_BLUE);
   color: var(--LIGHT_GRAY);
-}
-
-.buttonSecondary {
-  background-color: var(--LIGHT_GRAY);
-  color: var(--NAVY_BLUE);
 }
