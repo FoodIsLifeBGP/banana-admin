@@ -2,7 +2,7 @@ import React from 'react';
 import { DataTable, Pagination } from '../Components/DataTable';
 
 export default {
-  title: 'DataTable',
+  title: 'Components/Data Table',
   component: DataTable,
 };
 
@@ -32,21 +32,12 @@ export function Presentation() {
     { id: '10', firstName: 'Isabella', lastName: 'Taylor' },
   ];
 
-  const handleSort = () => {
-
-  };
-  const handlePageChange = () => {
-
-  };
+  const handleSort = () => {};
+  const handlePageChange = () => {};
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={allUsers}
-        sortColumn={sortColumn}
-        onSort={handleSort}
-      />
+      <DataTable columns={columns} data={allUsers} sortColumn={sortColumn} onSort={handleSort} />
       <Pagination
         itemsCount={10}
         pageSize={pageSize}

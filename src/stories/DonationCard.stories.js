@@ -2,7 +2,7 @@ import React from 'react';
 import DonationCard from '../Components/DonationCard';
 
 export default {
-  title: 'DonationCard',
+  title: 'Components/Donation Card',
   component: DonationCard,
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Status from '../Components/Status';
 
 export default {
-  title: 'Status',
+  title: 'Components/Status',
   component: Status,
 };
 

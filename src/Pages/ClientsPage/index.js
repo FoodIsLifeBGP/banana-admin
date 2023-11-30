@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import { DataTable, Pagination } from '../../Components/DataTable';
-import Navbar from '../../Components/Navbar';
+import Layout from '../../Components/Layout';
 import Search from '../../Components/Search';
+import Spinner from '../../Components/Spinner/Spinner';
+
 import { GetClients } from '../../Services/ClientsService';
+
+import formatDateToPST from '../../util/utilities';
 
 function ClientsPage() {
   const defaultPageSize = 8;
@@ -10,9 +17,11 @@ function ClientsPage() {
   const [sortColumn, setSortColumn] = useState({ sort_by: 'no', order: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
   const getClients = async () => {
+    setLoading(true);
     try {
       const response = await GetClients(currentPage, defaultPageSize);
       setItemsCount(response.pagy.count);
@@ -20,13 +29,29 @@ function ClientsPage() {
     } catch (error) {
       setItemsCount(0);
       setClients([]);
+      toast.error('Failed to fetch data');
     }
+    setLoading(false);
   };
 
   const columns = [
-    { path: 'email', label: 'Email' },
-    { path: 'name', label: 'Name', content: (client) => `${client.first_name} ${client.last_name}` },
-    { path: 'created_at', label: 'Created At' },
+    {
+      path: 'name',
+      label: 'Name',
+      content: (client) => (
+        <Link to={`/clients/${client.id}`}>{`${client.first_name} ${client.last_name}`}</Link>
+      ),
+    },
+    {
+      key: 'email',
+      label: 'Email',
+      content: (client) => client.email,
+    },
+    {
+      path: 'created_at',
+      label: 'Created At',
+      content: (client) => <span>{`${formatDateToPST(client.created_at)} PST`}</span>,
+    },
     {
       key: 'account_status',
       label: 'Status',
@@ -64,8 +89,7 @@ function ClientsPage() {
   }, [currentPage, sortColumn, searchQuery]);
 
   return (
-    <div>
-      <Navbar />
+    <Layout>
       <div className="container">
         <div className="row mt-4 mb-4">
           <div className="col-6">
@@ -81,12 +105,9 @@ function ClientsPage() {
           </div>
         </div>
         <div className="row">
-          <DataTable
-            columns={columns}
-            data={clients}
-            sortColumn={sortColumn}
-            onSort={handleSort}
-          />
+          <DataTable columns={columns} data={clients} sortColumn={sortColumn} onSort={handleSort} />
+
+          <Spinner loading={loading} />
 
           <Pagination
             itemsCount={itemsCount}
@@ -96,7 +117,7 @@ function ClientsPage() {
           />
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 

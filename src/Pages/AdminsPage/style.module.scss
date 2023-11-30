@@ -1,0 +1,33 @@
+@import "../../colors.module.css";
+
+.adminsPage {
+  width: 100%;
+}
+
+.editButton {
+  background-color: var(--GREEN);
+  border-radius: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--DARK_GREEN);
+    color: var(--WHITE);
+  }
+}
+
+.deactivateButton {
+  background-color: var(--SUSPENDED_RED);
+  border-radius: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--RED);
+    color: var(--WHITE);
+  }
+}

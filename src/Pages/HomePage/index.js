@@ -39,12 +39,12 @@ export default function HomePage() {
       <Navbar />
       <Container style={{ margin: '4rem auto' }}>
         <Row>
-          <Col md="6">
+          <Col lg="6">
             <h3>New Applications</h3>
             <ApplicationCard type="client" userCount={newClients} />
             <ApplicationCard type="donor" userCount={newDonors} />
           </Col>
-          <Col md="6">
+          <Col lg="6">
             <h3>Donation Status</h3>
             <DonationCard claimedDonation={claimedDonations} totalDonation={activeDonations} />
           </Col>

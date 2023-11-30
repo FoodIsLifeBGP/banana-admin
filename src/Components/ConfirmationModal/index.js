@@ -16,16 +16,12 @@ function ConfirmationModal(props) {
   }
 
   return (
-    <div>
+    <dialog>
       {show && (
         <div className={styles.container}>
-          <div className={styles.topBar}>
-            CONFIRMATION
-          </div>
+          <div className={styles.topBar}>CONFIRMATION</div>
           <div className={styles.mainBody}>
-            <p>
-              {successMessage}
-            </p>
+            <p>{successMessage}</p>
             <div className={styles.buttonContainer}>
               <input
                 className={styles.okayButton}
@@ -37,7 +33,7 @@ function ConfirmationModal(props) {
           </div>
         </div>
       )}
-    </div>
+    </dialog>
   );
 }
 

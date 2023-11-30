@@ -3,13 +3,56 @@
 
 
 .buttonContainer{
-  width: 150px;
-  height: 70px;
+  min-width: 150px;
+  min-height: 72px;
+  margin: 2rem;
+  padding: 1.25rem 2.875rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 0.5rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+}
+
+.buttonPrimary {
   background-color: var(--BANANA_YELLOW);
   color: var(--NAVY_BLUE);
-  border-radius: 8px;
-  font-family: 'Open Sans', sans-serif;
+}
+
+.buttonSecondary {
+  background-color: var(--LIGHT_GRAY);
+  color: var(--NAVY_BLUE);
+}
+
+.buttonDanger {
+  background-color: var(--SUSPENDED_RED);
+  color: var(--NAVY_BLUE);
+  &:hover {
+    background-color: var(--RED);
+    color: var(--WHITE);
+  }
+}
+
+.buttonSuccess {
+  background-color: var(--GREEN);
+  color: var(--NAVY_BLUE);
+  &:hover {
+    background-color: var(--DARK_GREEN);
+    color: var(--WHITE);
+  }
+}
+
+.buttonPrimary:hover,
+.buttonSecondary:hover {
+  background-color: var(--NAVY_BLUE);
+  color: var(--BANANA_YELLOW);
+}
+
+.buttonPrimary:active,
+.buttonSecondary:active {
+  background-color: var(--FADED_NAVY_BLUE);
+  color: var(--LIGHT_GRAY);
 }
