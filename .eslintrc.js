@@ -22,5 +22,6 @@ module.exports = {
     indent: ['error', 2],
     'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
     'react/no-unstable-nested-components': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
   },
 };

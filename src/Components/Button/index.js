@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import styles from './style.module.css';
 
 function Button({
-  text, style, action, variant,
+  text, style, action, variant, buttonType = 'button',
 }) {
   const buttonClass = `${styles.buttonContainer} ${styles[variant] || styles.buttonDefault}`;
 
   return (
-    <button type="button" onClick={action} className={buttonClass} style={style}>
+    // eslint-disable-next-line react/button-has-type
+    <button type={buttonType} onClick={action} className={buttonClass} style={style}>
       {text}
     </button>
   );
