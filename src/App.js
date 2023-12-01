@@ -11,6 +11,7 @@ import AuthWrapper from './Services/AuthWrapper';
 import AdminsPage from './Pages/AdminsPage';
 import DonorPage from './Pages/DonorPage';
 import ClientsPage from './Pages/ClientsPage';
+import NewAdminForm from './Components/NewAdminForm';
 
 function App() {
   return (
@@ -54,6 +55,22 @@ function App() {
             element={(
               <AuthWrapper>
                 <AdminsPage />
+              </AuthWrapper>
+            )}
+          />
+          <Route
+            path="/admins/:id?"
+            element={(
+              <AuthWrapper>
+                <NewAdminForm />
+              </AuthWrapper>
+            )}
+          />
+          <Route
+            path="/admins/new"
+            element={(
+              <AuthWrapper>
+                <NewAdminForm />
               </AuthWrapper>
             )}
           />

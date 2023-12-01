@@ -9,15 +9,17 @@ const GetAdmins = async (pageNumber, pageSize) => {
 
 const GetAdmin = async (id) => {
   const response = await axiosRequest('GET', `/admins/${id}`);
-  return response.data.client;
+  return response.data;
 };
 
 const CreateAdmin = async (firstName, lastName, email, password) => {
   const response = await axiosRequest('POST', '/admins/create', {
-    firstName,
-    lastName,
-    email,
-    password,
+    admin: {
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      password,
+    },
   });
   return response.data;
 };
