@@ -24,7 +24,7 @@
     "uuid": "^9.0.1"
   },
   "scripts": {
-    "start": "set PORT=3004 & react-scripts start",
+    "start": "PORT=3004 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint ./src --fix",
