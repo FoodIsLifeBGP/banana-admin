@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import {
-  Col, Form, FormGroup, Label, Input,
+  Form, FormGroup, Label, Input, Container,
 } from 'reactstrap';
 import useGlobal from '../../state';
 import Navbar from '../../Components/Navbar';
@@ -11,7 +11,7 @@ import styles from './style.module.scss';
 import ApiService from '../../Services/ApiService';
 import Modal from '../../Components/Modal';
 import fallbackPic from '../../Image/banana.png';
-import Icon from '../../Components/Icon';
+import Spinner from '../../Components/Spinner/Spinner';
 
 const formatDate = (date) => {
   if (date) {
@@ -28,8 +28,14 @@ const formatAdminData = (admin) => ({
   firstName: admin.first_name,
   lastName: admin.last_name,
   avatarUrl: admin.avatar_url,
-  createdAt: formatDate(admin.created_at), // TODO: update backend to send this
+  createdAt: formatDate(admin.created_at),
   role: admin.user_type,
+  email: admin.email,
+});
+
+const formatAdminUpdateData = (admin) => ({
+  firstName: admin.first_name,
+  lastName: admin.last_name,
   email: admin.email,
 });
 
@@ -38,24 +44,33 @@ export default function SettingsPage() {
   const { axiosRequest, axiosFormRequest } = ApiService();
   const navigate = useNavigate();
   const [admin, setAdminData] = useState({});
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [adminUpdate, setAdminUpdate] = useState({});
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editingProfilePic, setEditingProfilePic] = useState(false);
   const [fileSelected, setFileSelected] = useState(false);
+  const [selectedFileName, setSelectedFileName] = useState('');
+  const [loading, setLoading] = useState(false);
   const modalContentRef = useRef(null);
 
   useEffect(() => {
     const fetchAdmin = async () => {
       const userStr = localStorage.getItem('user');
       if (userStr) {
-        const currentUser = JSON.parse(userStr);
-        const response = await axiosRequest('GET', `admins/${currentUser.id}`);
+        try {
+          setLoading(true);
+          const currentUser = JSON.parse(userStr);
+          const response = await axiosRequest('GET', `admins/${currentUser.id}`);
 
-        if (response?.data?.admin) {
-          setAdminData(formatAdminData(response.data.admin));
-          console.log(response.data.admin);
+          if (response?.data?.admin) {
+            setAdminData(formatAdminData(response.data.admin));
+            setAdminUpdate(formatAdminUpdateData(response.data.admin));
+          } else if (response?.data?.errors) {
+            console.error('Error updating profile pic', JSON.stringify(response?.data?.errors));
+          }
+        } catch (error) {
+          console.error('Error fetching admin', JSON.stringify(error));
         }
+        setLoading(false);
       }
     };
     fetchAdmin();
@@ -67,10 +82,14 @@ export default function SettingsPage() {
   };
 
   const handleFileChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
+    setLoading(false);
+    const file = e.target.files[0];
+    if (file) {
       setFileSelected(true);
+      setSelectedFileName(file.name);
     } else {
       setFileSelected(false);
+      setSelectedFileName('');
     }
   };
 
@@ -80,28 +99,60 @@ export default function SettingsPage() {
     formData.append('admin[avatar]', e.target[0].files[0]);
 
     const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
-    const response = await axiosFormRequest(
-      'POST',
-      `admins/${currentUser.id}/update`,
-      formData,
-    );
-    if (response?.data?.admin) {
-      setAdminData(formatAdminData(response.data.admin));
-      setEditingProfilePic(false);
-    } else {
-      console.error('Error updating profile pic', JSON.stringify(response));
+    try {
+      setLoading(true);
+      const response = await axiosFormRequest(
+        'PATCH',
+        `admins/${currentUser.id}/update`,
+        formData,
+      );
+      if (response?.data?.admin) {
+        setAdminData(formatAdminData(response.data.admin));
+        setEditingProfilePic(false);
+      } else if (response?.data?.errors) {
+        console.error('Error updating profile pic', JSON.stringify(response?.data?.errors));
+      }
+    } catch (error) {
+      console.error('Error updating profile pic', JSON.stringify(error));
     }
+    setLoading(false);
   };
 
   const handleUserInfoFormSubmit = async (e) => {
     e.preventDefault();
-    // TODO: implement
+    const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+
+    const adminUpdateParams = {
+      first_name: adminUpdate.firstName,
+      last_name: adminUpdate.lastName,
+      email: adminUpdate.email,
+    };
+
+    try {
+      setLoading(true);
+      const response = await axiosFormRequest(
+        'PATCH',
+        `admins/${currentUser.id}/update`,
+        { admin: adminUpdateParams },
+      );
+
+      if (response?.data?.admin) {
+        setAdminData(formatAdminData(response.data.admin));
+        setAdminUpdate(formatAdminUpdateData(response.data.admin));
+      } else if (response?.data?.errors) {
+        console.error('Error updating profile pic', JSON.stringify(response?.data?.errors));
+      }
+    } catch (error) {
+      console.error('Error updating admin', JSON.stringify(error));
+    }
+    setLoading(false);
+    setEditModalOpen(false);
   };
 
   return (
     <div>
       <Navbar />
-      <div className={styles.background}>
+      <Container className={styles.container}>
         <div className={styles.content}>
           <h2 className={styles.nameHeader}>
             {`${admin.firstName || ''} ${admin.lastName || ''}`.toUpperCase()}
@@ -114,22 +165,30 @@ export default function SettingsPage() {
             />
           </div>
           <form className={styles.profilePicForm} onSubmit={handleProfilePicFormSubmit}>
-            {!editingProfilePic && (
-              <Button
-                text="Edit"
-                className={styles.profilePicButton}
-                action={() => setEditingProfilePic(true)}
-              />
-            )}
             {editingProfilePic && (
               <>
                 <input type="file" id="fileUpload" onChange={handleFileChange} />
-                <label htmlFor="fileUpload" className={styles.customFileUpload}>
-                  Choose File
+                <label htmlFor="fileUpload" onClick={() => setLoading(true)} className={styles.fileUploadButton}>
+                  Select Photo
                 </label>
-                {fileSelected && <button className={styles.profilePicButton} type="submit">Upload</button>}
+                {fileSelected && (
+                  <div>
+                    <button className={styles.profilePicButton} type="submit">Save</button>
+                    <p className={styles.selectedFileName}>{selectedFileName}</p>
+                  </div>
+                )}
               </>
             )}
+            {!editingProfilePic && (
+              <button
+                type="button"
+                className={styles.profilePicButton}
+                onClick={() => setEditingProfilePic(true)}
+              >
+                Change Photo
+              </button>
+            )}
+            <Spinner loading={loading} />
           </form>
           <div className={styles.infoContainer}>
             <p className={styles.infoItem}>
@@ -142,6 +201,7 @@ export default function SettingsPage() {
               {' '}
               <span className="adminInfo">{admin.role || 'N/A'}</span>
             </p>
+            <hr />
             <div className={styles.emailContainer}>
               <span>Email Address:</span>
               {' '}
@@ -165,7 +225,7 @@ export default function SettingsPage() {
             />
           </div>
         </div>
-      </div>
+      </Container>
       <Modal
         modalOpen={editModalOpen}
         setModalOpen={setEditModalOpen}
@@ -185,62 +245,45 @@ export default function SettingsPage() {
           },
         ]}
       >
-        <Form onSubmit={handleUserInfoFormSubmit}>
-          <FormGroup row>
-            <Label for="firstName" sm={2}>First:</Label>
-            <Col sm={10}>
-              <Input
-                id="firstName"
-                type="text"
-                value={admin.firstName || ''}
-                onChange={(e) => setAdminData({ ...admin, firstName: e.target.value })}
-              />
-            </Col>
+        <Form onSubmit={handleUserInfoFormSubmit} className={styles.userInfoForm}>
+          <FormGroup floating>
+            <Input
+              id="firstName"
+              type="text"
+              value={adminUpdate.firstName || ''}
+              onChange={(e) => setAdminUpdate({ ...adminUpdate, firstName: e.target.value })}
+            />
+            <Label for="firstName">
+              First Name
+            </Label>
           </FormGroup>
 
-          <FormGroup row>
-            <Label for="lastName" sm={2}>Last:</Label>
-            <Col sm={10}>
-              <Input
-                id="lastName"
-                type="text"
-                value={admin.lastName || ''}
-                onChange={(e) => setAdminData({ ...admin, lastName: e.target.value })}
-              />
-            </Col>
+          <FormGroup floating>
+            <Input
+              id="lastName"
+              type="text"
+              value={adminUpdate.lastName || ''}
+              onChange={(e) => setAdminUpdate({ ...adminUpdate, lastName: e.target.value })}
+            />
+            <Label for="lastName">
+              Last Name
+            </Label>
           </FormGroup>
 
-          <FormGroup row>
-            <Label for="email" sm={2}>Email:</Label>
-            <Col sm={10}>
-              <Input
-                id="email"
-                type="email"
-                value={admin.email || ''}
-                onChange={(e) => setAdminData({ ...admin, email: e.target.value })}
-              />
-            </Col>
-          </FormGroup>
-
-          <FormGroup row>
-            <Label for="password" sm={2}>Password:</Label>
-            <Col sm={10}>
-              <Input
-                id="password"
-                value={password}
-                type={showPassword ? 'text' : 'password'}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Button
-                variant="buttonIcon"
-                className={styles.togglePassword}
-                action={() => setShowPassword(!showPassword)}
-                text={showPassword ? (<Icon name="visibleEye" />) : (<Icon name="hiddenEye" />)}
-              />
-            </Col>
+          <FormGroup floating>
+            <Input
+              id="email"
+              type="email"
+              value={adminUpdate.email || ''}
+              onChange={(e) => setAdminUpdate({ ...adminUpdate, email: e.target.value })}
+            />
+            <Label for="email">
+              Email
+            </Label>
           </FormGroup>
         </Form>
       </Modal>
+      <Spinner loading={loading} />
     </div>
   );
 }

@@ -2,22 +2,20 @@
 @import "../../fonts.module.css";
 
 .content {
-    display: flex;
-    flex-direction: column;
-    margin-top: 100px;
-    justify-content: center;
-    padding-top: 2em;
-    align-content: center;
-    max-width: 400px;
-    width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 4rem 0;
+  width: 55%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
-.background {
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    background-color: var(--WHITE);
+.container {
+  display: flex;
+  justify-content: center;
 }
 
 .profilePicWrapper {
@@ -38,6 +36,13 @@
   align-items: center;
   flex-direction: column;
   margin-top: 1em;
+
+  .selectedFileName {
+    font-style: italic;
+    color: var(--DARK_GRAY);
+    margin-top: 0.5em;
+    font-size: 1rem;
+  }
 }
 
 .profilePicForm input[type="file"] {
@@ -45,114 +50,107 @@
 }
 
 .profilePicButton {
+  width: 8rem;
   background-color: var(--BANANA_YELLOW);
   color: var(--NAVY_BLUE);
   border: none;
   margin: 0.25rem;
   padding: 0.45rem 0.85rem;
   border-radius: 5px;
-  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
     background-color: var(--FADED_NAVY_BLUE);
+    cursor: pointer;
   }
 }
 
-.customFileUpload {
+.fileUploadButton {
+  width: 8rem;
   background-color: var(--LIGHT_GRAY);
   color: var(--NAVY_BLUE);
   margin: 0.25rem;
   padding: 0.45rem 0.85rem;
   border-radius: 5px;
-  font-family: 'Open Sans', sans-serif;
   font-weight: bold;
   cursor: pointer;
   border: none;
   display: inline-block;
 }
 
-.customFileUpload:hover {
+.fileUploadButton:hover {
+  cursor: pointer;
   background-color: var(--FADED_NAVY_BLUE);
 }
 
-
 .editPassword {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: bold;
-    color: var(--NAVY_BLUE);
-    text-decoration: none;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  color: var(--NAVY_BLUE);
+  text-decoration: none;
 }
 
 .nameHeader {
-    font-family: Open Sans;
-    font-style: normal;
-    color: var(--NAVY_BLUE);
-    letter-spacing: 0.04em;
-    font-weight: bold;
-    margin-bottom: .8em;
+  font-family: Open Sans;
+  font-style: normal;
+  color: var(--NAVY_BLUE);
+  letter-spacing: 0.04em;
+  font-weight: bold;
+  margin-bottom: 0.8em;
 }
 
 .passwordContainer {
-    margin-top: 2em;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-between;
 }
 
 .editLink {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: bold;
-    color: var(--NAVY_BLUE);
-    text-decoration: none;
-    margin-top: .6em;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  color: var(--NAVY_BLUE);
+  text-decoration: none;
+  margin-top: 0.6em;
 }
 
 .infoContainer {
-    margin-top: 1em;
-    font-family: Open Sans;
-    font-style: normal;
-    color: var(--NAVY_BLUE);
-    letter-spacing: 0.02em;
+  margin-top: 1em;
+  font-family: Open Sans;
+  font-style: normal;
+  color: var(--NAVY_BLUE);
+  letter-spacing: 0.02em;
 }
 
 .infoItem {
-    margin-top: .5em;
-}
-
-.logOut {
-    width: 100px;
-    height: 45px;
-    color: var(--NAVY_BLUE);
-    background-color: var(--BANANA_YELLOW);
-    margin-top: 2em;
-    border: none;
-    border-radius: 7px;
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: bold;
+  margin-top: 0.5em;
 }
 
 .emailContainer {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .topBreak {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 
 .borderBox {
-    border-top: 2px solid var(--LIGHT_GRAY);
-    margin-top: 1.7em;
-    margin-bottom: 1.7em;
+  border-top: 2px solid var(--LIGHT_GRAY);
+  margin-top: 1.7em;
+  margin-bottom: 1.7em;
 }
 
 .buttonContainer {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 2em;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2em;
+}
+
+.userInfoForm {
+  margin-bottom: 2.5rem;
 }

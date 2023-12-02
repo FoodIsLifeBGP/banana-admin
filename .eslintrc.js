@@ -23,5 +23,7 @@ module.exports = {
     'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
     'react/no-unstable-nested-components': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
   },
 };

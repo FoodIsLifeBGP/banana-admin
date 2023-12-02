@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import map from './map';
 
 function Icon(props) {
+  // TODO: we should either be passing in fixed set of predefined sizes (sm, md, lg, xl) or nothing.
+  // passing in specific px values is not best practice,
+  // might as well just alter with css if we need specific pixel sizes
   const { name, size, className } = props;
   const fileRef = map[name];
 
@@ -12,17 +15,18 @@ function Icon(props) {
     return <img src={fileRef} className={className} style={{ width: size, height: size }} alt="" />;
   }
 
-  return <i className={combinedClassName} style={{ fontSize: `${size} + px` }} />;
+  return <i className={combinedClassName} />;
 }
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired,
+  size: PropTypes.number,
   className: PropTypes.string,
 };
 
 Icon.defaultProps = {
-  className: '', // Default to an empty string if not provided
+  className: '',
+  size: 20,
 };
 
 export default Icon;

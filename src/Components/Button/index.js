@@ -16,7 +16,10 @@ function Button({
 }
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]).isRequired,
   style: PropTypes.object,
   action: PropTypes.func,
   variant: PropTypes.oneOf([

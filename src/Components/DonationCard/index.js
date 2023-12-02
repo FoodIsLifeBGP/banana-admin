@@ -35,6 +35,7 @@ function DonationCard(props) {
           </Col>
         </Row>
         <Row>
+          {/* TODO: change to <Progress/> component from reactstrap */}
           <progress className={styles.progressBar} max={100} value={fractionDonated} />
         </Row>
         <Row>
