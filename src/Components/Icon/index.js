@@ -6,6 +6,7 @@ function Icon(props) {
   // TODO: we should either be passing in fixed set of predefined sizes (sm, md, lg, xl) or nothing.
   // passing in specific px values is not best practice,
   // might as well just alter with css if we need specific pixel sizes
+  // also isn't there already a reactstrap component for icons?
   const { name, size, className } = props;
   const fileRef = map[name];
 
