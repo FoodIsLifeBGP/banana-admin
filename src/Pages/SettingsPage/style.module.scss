@@ -20,6 +20,65 @@
     background-color: var(--WHITE);
 }
 
+.profilePicWrapper {
+  width: 100%;
+
+  .profilePic {
+    width: 6rem;
+    height: 6rem;
+    border: 4px solid var(--NAVY_BLUE);
+    border-radius: 50%;
+    padding: 6px;
+  }
+}
+
+.profilePicForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.profilePicForm input[type="file"] {
+  display: none;
+}
+
+.profilePicButton {
+  background-color: var(--BANANA_YELLOW);
+  color: var(--NAVY_BLUE);
+  border: none;
+  margin: 0.25rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--FADED_NAVY_BLUE);
+  }
+}
+
+.customFileUpload {
+  background-color: var(--LIGHT_GRAY);
+  color: var(--NAVY_BLUE);
+  margin: 0.25rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+}
+
+.customFileUpload:hover {
+  background-color: var(--FADED_NAVY_BLUE);
+}
+
+
 .editPassword {
     font-family: Open Sans;
     font-style: normal;
@@ -94,6 +153,6 @@
 
 .buttonContainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 2em;
 }

@@ -1,0 +1,99 @@
+@import "../../colors.module.css";
+@import "../../fonts.module.css";
+
+.buttonContainer{
+  width: 9rem;
+  height: 1rem;
+  padding: 2.15rem 3.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+}
+
+/* Extending .buttonContainer styles to primary, secondary, danger, and success buttons */
+.buttonPrimary,
+.buttonSecondary,
+.buttonDanger,
+.buttonSuccess {
+  @extend .buttonContainer;
+  /* Unique background and text colors for each button type */
+  &.buttonPrimary {
+    background-color: var(--BANANA_YELLOW);
+    color: var(--NAVY_BLUE);
+  }
+
+  &.buttonSecondary {
+    background-color: var(--LIGHT_GRAY);
+    color: var(--NAVY_BLUE);
+  }
+
+  &.buttonDanger {
+    background-color: var(--SUSPENDED_RED);
+    color: var(--NAVY_BLUE);
+  }
+
+  &.buttonSuccess {
+    background-color: var(--GREEN);
+    color: var(--NAVY_BLUE);
+  }
+}
+
+.buttonPrimary:hover,
+.buttonSecondary:hover {
+  background-color: var(--NAVY_BLUE);
+  color: var(--BANANA_YELLOW);
+}
+
+.buttonPrimary:active,
+.buttonSecondary:active {
+  background-color: var(--FADED_NAVY_BLUE);
+  color: var(--LIGHT_GRAY);
+}
+
+.buttonPlainText {
+  background-color: transparent;
+  color: var(--NAVY_BLUE);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.buttonPlainText:hover {
+  text-decoration: underline;
+  color: var(--HIGHLIGHT_COLOR);
+}
+
+.buttonIcon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  .icon {
+    font-size: 1.5rem;
+    color: var(--NAVY_BLUE);
+  }
+}
+
+.buttonIcon:hover {
+  background-color: var(--LIGHT_HOVER);
+  .icon {
+    color: var(--HIGHLIGHT_COLOR);
+  }
+}
