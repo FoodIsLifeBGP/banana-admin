@@ -6,6 +6,7 @@ import { DataTable, Pagination } from '../../Components/DataTable';
 import Layout from '../../Components/Layout';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
+import Badge from '../../Components/Badge';
 
 import { GetClients } from '../../Services/ClientsService';
 
@@ -58,18 +59,7 @@ function ClientsPage() {
       path: 'account_status',
       key: 'account_status',
       label: 'Status',
-      content: (client) => {
-        switch (client.account_status) {
-        case 'active':
-          return <span className="badge badge-success text-success">{client.account_status}</span>;
-        case 'suspended':
-          return <span className="badge badge-danger text-danger">{client.account_status}</span>;
-        case 'processing':
-          return <span className="badge badge-warning text-warning">{client.account_status}</span>;
-        default:
-          return <span className="badge text-dark">{client.account_status}</span>;
-        }
-      },
+      content: (client) => <Badge text={client.account_status} status={client.account_status} />,
     },
   ];
 

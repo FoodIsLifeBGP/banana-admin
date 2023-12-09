@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import Badge from '../../Components/Badge';
 import BreadCrumb from '../../Components/BreadCrumb';
 import Layout from '../../Components/Layout';
 import Search from '../../Components/Search';
@@ -57,18 +58,7 @@ function DonorPage() {
       path: 'account_status',
       key: 'account_status',
       label: 'Status',
-      content: (d) => {
-        switch (d.account_status) {
-        case 'approved':
-          return <span className="badge badge-success text-success">{d.account_status}</span>;
-        case 'rejected':
-          return <span className="badge badge-danger text-danger">{d.account_status}</span>;
-        case 'pending':
-          return <span className="badge badge-warning text-warning">{d.account_status}</span>;
-        default:
-          return <span className="badge text-dark">{d.account_status}</span>;
-        }
-      },
+      content: (d) => <Badge text={d.account_status} status={d.account_status} />,
     },
   ];
 
