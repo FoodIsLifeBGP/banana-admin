@@ -24,6 +24,18 @@ const CreateAdmin = async (firstName, lastName, email, password) => {
   return response.data;
 };
 
+const UpdateAdmin = async (id, firstName, lastName, email, password) => {
+  const response = await axiosRequest('PATCH', `/admins/${id}`, {
+    admin: {
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      password,
+    },
+  });
+  return response.data;
+};
+
 const UpdateAdminStatus = async (id, status) => {
   const response = await axiosRequest('PATCH', `clients/${id}/update_status`, {
     id,
@@ -33,5 +45,5 @@ const UpdateAdminStatus = async (id, status) => {
 };
 
 export {
-  GetAdmins, GetAdmin, CreateAdmin, UpdateAdminStatus,
+  GetAdmins, GetAdmin, CreateAdmin, UpdateAdmin, UpdateAdminStatus,
 };
