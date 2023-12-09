@@ -21,48 +21,9 @@
 .buttonContainer {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 5%;
   padding-right: 11%;
-}
-
-
-#buttonConfirm {
-  width: 15%;
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid var(--LIGHT_GRAY);
-  background: var(--BANANA_YELLOW);
-  color: var(--NAVY_BLUE);
-  border-radius: 8px;
-  font-family: "Open Sans", sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 33px;
-  letter-spacing: 0.04em;
-  margin: 40px 0 10px 0;
-}
-
-#buttonBack {
-  width: 15%;
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid var(--LIGHT_GRAY);
-  background: var(--LIGHT_GRAY);
-  color: var(--NAVY_BLUE);
-  border-radius: 8px;
-  font-family: "Open Sans", sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 33px;
-  letter-spacing: 0.04em;
-  margin: 40px 0 10px 0;
 }
 
 .labelName {

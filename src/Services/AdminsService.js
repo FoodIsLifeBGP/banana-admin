@@ -9,15 +9,29 @@ const GetAdmins = async (pageNumber, pageSize) => {
 
 const GetAdmin = async (id) => {
   const response = await axiosRequest('GET', `/admins/${id}`);
-  return response.data.client;
+  return response.data;
 };
 
 const CreateAdmin = async (firstName, lastName, email, password) => {
   const response = await axiosRequest('POST', '/admins/create', {
-    firstName,
-    lastName,
-    email,
-    password,
+    admin: {
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      password,
+    },
+  });
+  return response.data;
+};
+
+const UpdateAdmin = async (id, firstName, lastName, email, password) => {
+  const response = await axiosRequest('PATCH', `/admins/${id}`, {
+    admin: {
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      password,
+    },
   });
   return response.data;
 };
@@ -31,5 +45,5 @@ const UpdateAdminStatus = async (id, status) => {
 };
 
 export {
-  GetAdmins, GetAdmin, CreateAdmin, UpdateAdminStatus,
+  GetAdmins, GetAdmin, CreateAdmin, UpdateAdmin, UpdateAdminStatus,
 };
