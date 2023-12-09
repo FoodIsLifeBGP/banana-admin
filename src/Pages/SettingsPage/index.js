@@ -12,16 +12,19 @@ import ApiService from '../../Services/ApiService';
 import Modal from '../../Components/Modal';
 import fallbackPic from '../../Image/banana.png';
 import Spinner from '../../Components/Spinner/Spinner';
+import Badge from '../../Components/Badge';
 
 const formatDate = (date) => {
-  if (date) {
-    return date.toLocaleDateString(undefined, {
+  const dateObj = new Date(date);
+
+  if (dateObj) {
+    return dateObj.toLocaleDateString(undefined, {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     });
   }
-  return '';
+  return 'N/A';
 };
 
 const formatAdminData = (admin) => ({
@@ -45,11 +48,12 @@ export default function SettingsPage() {
   const navigate = useNavigate();
   const [admin, setAdminData] = useState({});
   const [adminUpdate, setAdminUpdate] = useState({});
-  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [editingProfilePic, setEditingProfilePic] = useState(false);
   const [fileSelected, setFileSelected] = useState(false);
   const [selectedFileName, setSelectedFileName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [responseError, setResponseError] = useState(undefined);
   const modalContentRef = useRef(null);
 
   useEffect(() => {
@@ -65,10 +69,12 @@ export default function SettingsPage() {
             setAdminData(formatAdminData(response.data.admin));
             setAdminUpdate(formatAdminUpdateData(response.data.admin));
           } else if (response?.data?.errors) {
-            console.error('Error updating profile pic', JSON.stringify(response?.data?.errors));
+            setResponseError(`Error fetching admin: ${response.data.errors}`);
+            setModalOpen(true);
           }
         } catch (error) {
-          console.error('Error fetching admin', JSON.stringify(error));
+          setResponseError(`Error fetching admin: ${error.message}`);
+          setModalOpen(true);
         }
         setLoading(false);
       }
@@ -110,10 +116,12 @@ export default function SettingsPage() {
         setAdminData(formatAdminData(response.data.admin));
         setEditingProfilePic(false);
       } else if (response?.data?.errors) {
-        console.error('Error updating profile pic', JSON.stringify(response?.data?.errors));
+        setResponseError(`Error updating profile pic: ${response.data.errors}`);
+        setModalOpen(true);
       }
     } catch (error) {
-      console.error('Error updating profile pic', JSON.stringify(error));
+      setResponseError(`Error updating profile pic: ${error.message}`);
+      setModalOpen(true);
     }
     setLoading(false);
   };
@@ -140,13 +148,36 @@ export default function SettingsPage() {
         setAdminData(formatAdminData(response.data.admin));
         setAdminUpdate(formatAdminUpdateData(response.data.admin));
       } else if (response?.data?.errors) {
-        console.error('Error updating profile pic', JSON.stringify(response?.data?.errors));
+        setResponseError(`Error updating admin: ${response.data.errors}`);
+        setModalOpen(true);
       }
     } catch (error) {
-      console.error('Error updating admin', JSON.stringify(error));
+      setResponseError(`Error updating admin: ${error.message}`);
+      setModalOpen(true);
     }
     setLoading(false);
-    setEditModalOpen(false);
+    setModalOpen(false);
+  };
+
+  const modalButtonConfig = () => {
+    const cancelButton = {
+      text: 'Cancel',
+      variant: 'buttonSecondary',
+      action: () => setModalOpen(false),
+    };
+
+    if (responseError) {
+      return [cancelButton];
+    }
+
+    const updateButton = {
+      text: 'Update',
+      type: 'submit',
+      variant: 'buttonPrimary',
+      action: handleUserInfoFormSubmit,
+    };
+
+    return [updateButton, cancelButton];
   };
 
   return (
@@ -199,7 +230,7 @@ export default function SettingsPage() {
             <p className={styles.infoItem}>
               Member Authorization:
               {' '}
-              <span className="adminInfo">{admin.role || 'N/A'}</span>
+              <Badge text={admin.role ? admin.role : ''} status={admin.status} />
             </p>
             <hr />
             <div className={styles.emailContainer}>
@@ -216,7 +247,7 @@ export default function SettingsPage() {
             <Button
               text="Update"
               style={{ width: '20%' }}
-              action={() => setEditModalOpen(true)}
+              action={() => setModalOpen(true)}
             />
             <Button
               text="Logout"
@@ -227,61 +258,53 @@ export default function SettingsPage() {
         </div>
       </Container>
       <Modal
-        modalOpen={editModalOpen}
-        setModalOpen={setEditModalOpen}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
         modalContentRef={modalContentRef}
-        title="Edit Profile"
-        buttonsConfig={[
-          {
-            text: 'Update',
-            type: 'submit',
-            variant: 'buttonPrimary',
-            action: handleUserInfoFormSubmit,
-          },
-          {
-            text: 'Cancel',
-            variant: 'buttonSecondary',
-            action: () => setEditModalOpen(false),
-          },
-        ]}
+        title={responseError ? 'Error Occurred' : 'Edit Profile'}
+        buttonsConfig={modalButtonConfig()}
       >
-        <Form onSubmit={handleUserInfoFormSubmit} className={styles.userInfoForm}>
-          <FormGroup floating>
-            <Input
-              id="firstName"
-              type="text"
-              value={adminUpdate.firstName || ''}
-              onChange={(e) => setAdminUpdate({ ...adminUpdate, firstName: e.target.value })}
-            />
-            <Label for="firstName">
-              First Name
-            </Label>
-          </FormGroup>
+        {responseError ? (
+          <p>{responseError}</p>
+        ) : (
+          <Form onSubmit={handleUserInfoFormSubmit} className={styles.userInfoForm}>
+            <FormGroup floating>
+              <Input
+                id="firstName"
+                type="text"
+                value={adminUpdate.firstName || ''}
+                onChange={(e) => setAdminUpdate({ ...adminUpdate, firstName: e.target.value })}
+              />
+              <Label for="firstName">
+                First Name
+              </Label>
+            </FormGroup>
 
-          <FormGroup floating>
-            <Input
-              id="lastName"
-              type="text"
-              value={adminUpdate.lastName || ''}
-              onChange={(e) => setAdminUpdate({ ...adminUpdate, lastName: e.target.value })}
-            />
-            <Label for="lastName">
-              Last Name
-            </Label>
-          </FormGroup>
+            <FormGroup floating>
+              <Input
+                id="lastName"
+                type="text"
+                value={adminUpdate.lastName || ''}
+                onChange={(e) => setAdminUpdate({ ...adminUpdate, lastName: e.target.value })}
+              />
+              <Label for="lastName">
+                Last Name
+              </Label>
+            </FormGroup>
 
-          <FormGroup floating>
-            <Input
-              id="email"
-              type="email"
-              value={adminUpdate.email || ''}
-              onChange={(e) => setAdminUpdate({ ...adminUpdate, email: e.target.value })}
-            />
-            <Label for="email">
-              Email
-            </Label>
-          </FormGroup>
-        </Form>
+            <FormGroup floating>
+              <Input
+                id="email"
+                type="email"
+                value={adminUpdate.email || ''}
+                onChange={(e) => setAdminUpdate({ ...adminUpdate, email: e.target.value })}
+              />
+              <Label for="email">
+                Email
+              </Label>
+            </FormGroup>
+          </Form>
+        )}
       </Modal>
       <Spinner loading={loading} />
     </div>
