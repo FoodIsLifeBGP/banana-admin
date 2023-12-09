@@ -59,7 +59,7 @@ function App() {
             )}
           />
           <Route
-            path="/admins/:id?"
+            path="/admins/:id"
             element={(
               <AuthWrapper>
                 <NewAdminForm />
@@ -67,7 +67,7 @@ function App() {
             )}
           />
           <Route
-            path="/admins/new"
+            path="/admins/create"
             element={(
               <AuthWrapper>
                 <NewAdminForm />
