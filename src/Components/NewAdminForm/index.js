@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import styles from './style.module.css';
+
+import Button from '../Button';
 import Icon from '../Icon';
-import { GetAdmin, CreateAdmin } from '../../Services/AdminsService';
-import Spinner from '../Spinner/Spinner';
 import Layout from '../Layout';
+import Spinner from '../Spinner/Spinner';
+
+import { GetAdmin, CreateAdmin, UpdateAdmin } from '../../Services/AdminsService';
+
+import styles from './style.module.css';
 
 function NewAdminForm() {
   const initialFormData = {
@@ -18,8 +22,9 @@ function NewAdminForm() {
   const { id } = useParams();
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   function handlePassword() {
     setShowPassword(!showPassword);
@@ -35,43 +40,53 @@ function NewAdminForm() {
   }
 
   const getAdminById = async () => {
+    if (!id) return;
+
     setLoading(true);
     try {
       const response = await GetAdmin(id);
-      setFormData(response.admin);
+      if (response && response.admin) {
+        setFormData({
+          ...initialFormData,
+          firstName: response.admin.first_name,
+          lastName: response.admin.last_name,
+          email: response.admin.email,
+          password: '',
+        });
+      } else {
+        toast.error(`Admin data not found: ${id}`);
+      }
     } catch (error) {
       toast.error(`Failed to get admin with Id ${id}`);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
-    if (id) getAdminById();
-  }, []);
+    getAdminById();
+  }, [id]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    if (id) {
-      toast.error('update API not implemented yet');
-      return;
-    }
-
     setLoading(true);
-    const fm = formData;
-    try {
-      await CreateAdmin(fm.firstName, fm.lastName, fm.email, fm.password);
-      toast.success('Operation done successfully');
-    } catch (error) {
-      const err = error?.response?.data;
-      if (err.error) toast.error(err.error);
 
-      if (err?.errors) {
-        err?.errors.forEach((e) => {
-          toast.error(e);
-        });
+    try {
+      if (id) {
+        await UpdateAdmin(id, formData);
+        toast.success('Admin updated successfully');
+        navigate('/admins');
+      } else {
+        await CreateAdmin(formData.firstName, formData.lastName, formData.email, formData.password);
+        toast.success('Admin created successfully');
+        navigate('/admins');
       }
+    } catch (error) {
+      const errorMessage = error?.response?.data?.error || 'Operation failed';
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -126,16 +141,17 @@ function NewAdminForm() {
               value={formData.password}
             />
             <radio onClick={handlePassword} onKeyDown={() => {}}>
-              {showPassword ? (
-                <Icon name="visibleEye" />
-              ) : (
-                <Icon name="hiddenEye" />
-              )}
+              {showPassword ? <Icon name="visibleEye" /> : <Icon name="hiddenEye" />}
             </radio>
           </label>
           <div className={styles.buttonContainer}>
-            <Link to="/admins" id={styles.buttonBack}>Back</Link>
-            <input type="submit" value="Confirm" id={styles.buttonConfirm} />
+            <Button
+              type="submit"
+              variant="buttonSecondary"
+              text="Back"
+              action={() => navigate('/admins')}
+            />
+            <Button type="submit" variant="buttonPrimary" text="Confirm" action={onSubmit} />
           </div>
         </form>
         <Spinner loading={loading} />
