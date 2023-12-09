@@ -62,6 +62,7 @@ export default function ReviewApplicationPage(props) {
       setApplicationStatusChange(response.message);
     } catch (error) {
       setResponseError(error.message);
+      setModalOpen(true);
     }
   };
 
