@@ -7,18 +7,8 @@ const GetClient = async (id) => {
   return response.data.client;
 };
 
-const GetClients = async (pageNumber, pageSize) => {
-  const response = await axiosRequest('GET', `/clients?page=${pageNumber}&items=${pageSize}`);
-  return response.data;
-};
-
-const samplecall2 = async (pageNumber, pageSize) => {
-  const response = await axiosRequest.get('/clients', {
-    params: {
-      page: pageNumber,
-      items: pageSize,
-    },
-  });
+const GetClients = async (pageNumber, pageSize, sortBy, orderBy) => {
+  const response = await axiosRequest('GET', `/clients?page=${pageNumber}&count=${pageSize}&sort_by=${sortBy}&order_by=${orderBy}`);
   return response.data;
 };
 
@@ -31,5 +21,5 @@ const UpdateClientStatus = async (id, status) => {
 };
 
 export {
-  GetClient, GetClients, samplecall2, UpdateClientStatus,
+  GetClient, GetClients, UpdateClientStatus,
 };

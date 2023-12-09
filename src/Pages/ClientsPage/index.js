@@ -14,7 +14,7 @@ import formatDateToPST from '../../util/utilities';
 function ClientsPage() {
   const defaultPageSize = 8;
   const [clients, setClients] = useState([]);
-  const [sortColumn, setSortColumn] = useState({ sort_by: 'no', order: 'asc' });
+  const [sortColumn, setSortColumn] = useState({ path: 'id', order: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,8 @@ function ClientsPage() {
   const getClients = async () => {
     setLoading(true);
     try {
-      const response = await GetClients(currentPage, defaultPageSize);
+      const { path, order } = sortColumn;
+      const response = await GetClients(currentPage, defaultPageSize, path, order);
       setItemsCount(response.pagy.count);
       setClients(response.data);
     } catch (error) {
@@ -36,13 +37,14 @@ function ClientsPage() {
 
   const columns = [
     {
-      path: 'name',
+      path: 'first_name',
       label: 'Name',
       content: (client) => (
         <Link to={`/clients/${client.id}`}>{`${client.first_name} ${client.last_name}`}</Link>
       ),
     },
     {
+      path: 'email',
       key: 'email',
       label: 'Email',
       content: (client) => client.email,
@@ -53,18 +55,19 @@ function ClientsPage() {
       content: (client) => <span>{`${formatDateToPST(client.created_at)} PST`}</span>,
     },
     {
+      path: 'account_status',
       key: 'account_status',
       label: 'Status',
       content: (client) => {
         switch (client.account_status) {
         case 'active':
-          return <span className="badge badge-success">{client.account_status}</span>;
+          return <span className="badge badge-success text-success">{client.account_status}</span>;
         case 'suspended':
-          return <span className="badge badge-danger">{client.account_status}</span>;
+          return <span className="badge badge-danger text-danger">{client.account_status}</span>;
         case 'processing':
-          return <span className="badge badge-warning">{client.account_status}</span>;
+          return <span className="badge badge-warning text-warning">{client.account_status}</span>;
         default:
-          return <span className="badge">{client.account_status}</span>;
+          return <span className="badge text-dark">{client.account_status}</span>;
         }
       },
     },
