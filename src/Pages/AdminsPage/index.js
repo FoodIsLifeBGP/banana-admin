@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { DataTable, Pagination } from '../../Components/DataTable';
@@ -28,6 +28,8 @@ function AdminsPage() {
   const [selectedAdmin, setSelectedAdmin] = useState(null);
 
   const modalContentRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const mockAdmins = [
     {
@@ -154,7 +156,7 @@ function AdminsPage() {
           <button
             type="button"
             className={`col btn btn-sm ${styles.editButton}`}
-            onClick={() => alert('Edit')}
+            onClick={() => navigate(`/admins/${admin.id}`)}
           >
             <Icon name="edit" size={24} className="me-2" />
             Edit
