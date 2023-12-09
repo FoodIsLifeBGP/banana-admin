@@ -7,18 +7,8 @@ const GetDonor = async (id) => {
   return response.data.donor;
 };
 
-const GetDonors = async (pageNumber, pageSize) => {
-  const response = await axiosRequest('GET', `/donors?page=${pageNumber}&items=${pageSize}`);
-  return response.data;
-};
-
-const samplecall2 = async (pageNumber, pageSize) => {
-  const response = await axiosRequest.get('/donors', {
-    params: {
-      page: pageNumber,
-      items: pageSize,
-    },
-  });
+const GetDonors = async (pageNumber, pageSize, sortBy, orderBy) => {
+  const response = await axiosRequest('GET', `/donors?page=${pageNumber}&count=${pageSize}&sort_by=${sortBy}&order_by=${orderBy}`);
   return response.data;
 };
 
@@ -31,5 +21,5 @@ const UpdateDonorStatus = async (id, status) => {
 };
 
 export {
-  GetDonor, GetDonors, samplecall2, UpdateDonorStatus,
+  GetDonor, GetDonors, UpdateDonorStatus,
 };
