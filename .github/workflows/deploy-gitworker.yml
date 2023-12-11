@@ -1,0 +1,65 @@
+name: Build and Deploy to the Admin Portal VM
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -t rsa $VM_IP >> ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VM_IP: ${{ secrets.VM_IP }}
+
+      - name: Install nvm
+        run: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+            source ~/.nvm/nvm.sh
+            nvm install 19
+      
+      - name: Update code on VM
+        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && git pull origin feature/gitworkflow"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VM_IP: ${{ secrets.VM_IP }}
+          VM_USERNAME: ${{ secrets.VM_USERNAME }}
+
+      - name: Check node version
+        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VM_IP: ${{ secrets.VM_IP }}
+          VM_USERNAME: ${{ secrets.VM_USERNAME }}
+
+      - name: Build code on VM
+        run: ssh $VM_USERNAME@$VM_IP "cd /home/githubactionuser/banana-admin && source ~/.nvm/nvm.sh && nvm use 19 && yarn run build"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VM_IP: ${{ secrets.VM_IP }}
+          VM_USERNAME: ${{ secrets.VM_USERNAME }}
+
+      - name: Restart Nginx server
+        run: ssh $VM_USERNAME@$VM_IP "sudo systemctl restart nginx"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VM_IP: ${{ secrets.VM_IP }}
+          VM_USERNAME: ${{ secrets.VM_USERNAME }}
+
+      - name: Clean up SSH key
+        run: |
+          rm -f ~/.ssh/id_rsa
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
