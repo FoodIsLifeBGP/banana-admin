@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { DataTable, Pagination } from '../../Components/DataTable';
-import Layout from '../../Components/Layout';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
 import Badge from '../../Components/Badge';
@@ -82,35 +81,33 @@ function ClientsPage() {
   }, [currentPage, sortColumn, searchQuery]);
 
   return (
-    <Layout>
-      <div className="container">
-        <div className="row mt-4 mb-4">
-          <div className="col-6">
-            <h2>New Applications (Client)</h2>
-          </div>
-          <div className="col-3">
-            <Search value={searchQuery} onChange={handleSearch} />
-          </div>
-          <div className="col-3 float-end">
-            <button type="button" className="btn btn-primary btn-lg ">
-              All Applications
-            </button>
-          </div>
+    <div className="container">
+      <div className="row mt-4 mb-4">
+        <div className="col-6">
+          <h2>New Applications (Client)</h2>
         </div>
-        <div className="row">
-          <DataTable columns={columns} data={clients} sortColumn={sortColumn} onSort={handleSort} />
-
-          <Spinner loading={loading} />
-
-          <Pagination
-            itemsCount={itemsCount}
-            pageSize={defaultPageSize}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
+        <div className="col-3">
+          <Search value={searchQuery} onChange={handleSearch} />
+        </div>
+        <div className="col-3 float-end">
+          <button type="button" className="btn btn-primary btn-lg ">
+            All Applications
+          </button>
         </div>
       </div>
-    </Layout>
+      <div className="row">
+        <DataTable columns={columns} data={clients} sortColumn={sortColumn} onSort={handleSort} />
+
+        <Spinner loading={loading} />
+
+        <Pagination
+          itemsCount={itemsCount}
+          pageSize={defaultPageSize}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      </div>
+    </div>
   );
 }
 

@@ -1,0 +1,113 @@
+@import "../../colors.module.css";
+
+.container {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0.5rem 1rem;
+  min-height: fit-content;
+}
+
+.bananaPortalNav, a, .tasksDropdown > button > a {
+  font-style: normal;
+  color: var(--NAVY_BLUE) !important;
+}
+
+.bananaPortalNav {
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  text-align: left;
+}
+
+.navBarBrand, .navItem:hover {
+  display: flex;
+  align-items: center;
+  background-color: #e9ecef;
+}
+
+.navBarBrand {
+  flex-direction: row;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.mobileNav > li, .mobileText span {
+  align-items: start;
+  text-align: start;
+  width: 100%;
+}
+
+.navItem .navLink {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+span.mobileText {
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.navIcon {
+  margin-right: 1.5rem;
+}
+
+.navbarText, a, .tasksDropdown > button > a, .navItem span {
+  font-weight: 700;
+  font-family: "Open Sans";
+  line-height: 34px;
+
+  &:active {
+    background-color: var(--LIGHT_BLUE);
+  }
+}
+
+.tasksDropdown {
+  border: none;
+  min-width: none;
+  margin-left: 2.5rem;
+
+  & button {
+    padding: 0;
+  }
+}
+
+.dropdownToggleMobile {
+  text-align: start;
+}
+
+span.mobileText {
+  display: inline;
+  width: 100%;
+
+  @media (min-width: 576px) {
+    display: none;
+  }
+}
+
+.displayMobile {
+  display: none;
+
+  @media (min-width: 576px) {
+    display: inline-block;
+  }
+}
+
+.hideMobile {
+  display: inline-block;
+}
+
+@media (min-width: 576px) {
+  .navIcon {
+    margin-right: auto;
+  }
+
+  .navBarBrand .navIcon {
+    margin-right: 1.5rem;
+  }
+
+  .tasksDropdown {
+    right: 0.125rem;
+    border: 1px solid lightgray;
+  }
+}

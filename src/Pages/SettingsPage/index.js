@@ -1,18 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import {
   Form, FormGroup, Label, Input, Container,
 } from 'reactstrap';
+
 import useGlobal from '../../state';
-import Navbar from '../../Components/Navbar';
-import Button from '../../Components/Button';
-import styles from './style.module.scss';
-import ApiService from '../../Services/ApiService';
-import Modal from '../../Components/Modal';
-import fallbackPic from '../../Image/banana.png';
-import Spinner from '../../Components/Spinner/Spinner';
+
 import Badge from '../../Components/Badge';
+import Button from '../../Components/Button';
+import fallbackPic from '../../Image/banana.png';
+import Modal from '../../Components/Modal';
+import Spinner from '../../Components/Spinner/Spinner';
+
+import ApiService from '../../Services/ApiService';
+
+import styles from './style.module.scss';
 
 const formatDate = (date) => {
   const dateObj = new Date(date);
@@ -107,11 +109,7 @@ export default function SettingsPage() {
     const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
     try {
       setLoading(true);
-      const response = await axiosFormRequest(
-        'PATCH',
-        `admins/${currentUser.id}/update`,
-        formData,
-      );
+      const response = await axiosFormRequest('PATCH', `admins/${currentUser.id}/update`, formData);
       if (response?.data?.admin) {
         setAdminData(formatAdminData(response.data.admin));
         setEditingProfilePic(false);
@@ -138,11 +136,9 @@ export default function SettingsPage() {
 
     try {
       setLoading(true);
-      const response = await axiosFormRequest(
-        'PATCH',
-        `admins/${currentUser.id}/update`,
-        { admin: adminUpdateParams },
-      );
+      const response = await axiosFormRequest('PATCH', `admins/${currentUser.id}/update`, {
+        admin: adminUpdateParams,
+      });
 
       if (response?.data?.admin) {
         setAdminData(formatAdminData(response.data.admin));
@@ -181,8 +177,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <div>
-      <Navbar />
+    <>
       <Container className={styles.container}>
         <div className={styles.content}>
           <h2 className={styles.nameHeader}>
@@ -199,12 +194,18 @@ export default function SettingsPage() {
             {editingProfilePic && (
               <>
                 <input type="file" id="fileUpload" onChange={handleFileChange} />
-                <label htmlFor="fileUpload" onClick={() => setLoading(true)} className={styles.fileUploadButton}>
+                <label
+                  htmlFor="fileUpload"
+                  onClick={() => setLoading(true)}
+                  className={styles.fileUploadButton}
+                >
                   Select Photo
                 </label>
                 {fileSelected && (
                   <div>
-                    <button className={styles.profilePicButton} type="submit">Save</button>
+                    <button className={styles.profilePicButton} type="submit">
+                      Save
+                    </button>
                     <p className={styles.selectedFileName}>{selectedFileName}</p>
                   </div>
                 )}
@@ -244,16 +245,8 @@ export default function SettingsPage() {
             </div>
           </div>
           <div className={styles.buttonContainer}>
-            <Button
-              text="Update"
-              style={{ width: '20%' }}
-              action={() => setModalOpen(true)}
-            />
-            <Button
-              text="Logout"
-              style={{ width: '20%' }}
-              action={handleLogout}
-            />
+            <Button text="Update" style={{ width: '20%' }} action={() => setModalOpen(true)} />
+            <Button text="Logout" style={{ width: '20%' }} action={handleLogout} />
           </div>
         </div>
       </Container>
@@ -275,9 +268,7 @@ export default function SettingsPage() {
                 value={adminUpdate.firstName || ''}
                 onChange={(e) => setAdminUpdate({ ...adminUpdate, firstName: e.target.value })}
               />
-              <Label for="firstName">
-                First Name
-              </Label>
+              <Label for="firstName">First Name</Label>
             </FormGroup>
 
             <FormGroup floating>
@@ -287,9 +278,7 @@ export default function SettingsPage() {
                 value={adminUpdate.lastName || ''}
                 onChange={(e) => setAdminUpdate({ ...adminUpdate, lastName: e.target.value })}
               />
-              <Label for="lastName">
-                Last Name
-              </Label>
+              <Label for="lastName">Last Name</Label>
             </FormGroup>
 
             <FormGroup floating>
@@ -299,14 +288,12 @@ export default function SettingsPage() {
                 value={adminUpdate.email || ''}
                 onChange={(e) => setAdminUpdate({ ...adminUpdate, email: e.target.value })}
               />
-              <Label for="email">
-                Email
-              </Label>
+              <Label for="email">Email</Label>
             </FormGroup>
           </Form>
         )}
       </Modal>
       <Spinner loading={loading} />
-    </div>
+    </>
   );
 }

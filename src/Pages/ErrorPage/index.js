@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../../Components/Navbar';
-import styles from './style.module.scss';
-import Icon from '../../Components/Icon';
-import { isAuthenticated } from '../../Services/AuthWrapper';
+
 import Button from '../../Components/Button';
+import Icon from '../../Components/Icon';
+
+import styles from './style.module.scss';
 
 function ErrorPage() {
   const ladyWidth = 400;
@@ -26,8 +26,6 @@ function ErrorPage() {
 
   return (
     <div className={styles.container}>
-      {isAuthenticated() && <Navbar />}
-
       <div className={styles.body}>
         <div className={styles.bodyContent}>
           <h1 className={styles.heading}>404</h1>
@@ -42,8 +40,6 @@ function ErrorPage() {
           <Icon name="bananaPeel" size={bananaWidth} className={styles.bananaPeel} />
         </div>
       </div>
-
-      <div className={styles.footer} />
     </div>
   );
 }

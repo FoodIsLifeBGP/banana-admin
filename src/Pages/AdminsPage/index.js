@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 
 import { DataTable, Pagination } from '../../Components/DataTable';
 import Icon from '../../Components/Icon';
-import Layout from '../../Components/Layout';
 import Modal from '../../Components/Modal';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
@@ -196,7 +195,7 @@ function AdminsPage() {
   }, [currentPage, sortColumn, searchQuery]);
 
   return (
-    <Layout>
+    <>
       <div className={`${styles.adminsPage}`}>
         <div className="row mt-4 mb-4 d-flex">
           <h1 className="col-8 text-start">All Admins</h1>
@@ -244,7 +243,7 @@ function AdminsPage() {
           <p>{`Are you sure you want to deactivate ${selectedAdmin.first_name} ${selectedAdmin.last_name}'s access?`}</p>
         )}
       </Modal>
-    </Layout>
+    </>
   );
 }
 

@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 
 import Badge from '../../Components/Badge';
 import BreadCrumb from '../../Components/BreadCrumb';
-import Layout from '../../Components/Layout';
-import Search from '../../Components/Search';
-import Spinner from '../../Components/Spinner/Spinner';
-
 import { GetDonors } from '../../Services/DonorsService';
 import { DataTable, Pagination } from '../../Components/DataTable';
+import Search from '../../Components/Search';
+import Spinner from '../../Components/Spinner/Spinner';
 
 import formatDateToPST from '../../util/utilities';
 
@@ -87,39 +85,28 @@ function DonorPage() {
   ];
 
   return (
-    <Layout>
-      <div className="container">
-        <div className={styles.belowNav}>
-          <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
-          <div className={styles.headerBar}>
-            <h2 className={styles.headerLeft}>NEW APPLICATIONS (DONOR)</h2>
-            <div className={styles.headerRight}>
-              <Search value={searchQuery} onChange={handleSearch} />
-              <input
-                className={styles.viewAllButton}
-                type="submit"
-                value="View all list"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <DataTable
-              columns={columns}
-              data={donors}
-              sortColumn={sortColumn}
-              onSort={handleSort}
-            />
-            <Spinner loading={loading} />
-            <Pagination
-              itemsCount={itemsCount}
-              pageSize={defaultPageSize}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-            />
+    <div className="container">
+      <div className={styles.belowNav}>
+        <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
+        <div className={styles.headerBar}>
+          <h2 className={styles.headerLeft}>NEW APPLICATIONS (DONOR)</h2>
+          <div className={styles.headerRight}>
+            <Search value={searchQuery} onChange={handleSearch} />
+            <input className={styles.viewAllButton} type="submit" value="View all list" />
           </div>
         </div>
+        <div className="row">
+          <DataTable columns={columns} data={donors} sortColumn={sortColumn} onSort={handleSort} />
+          <Spinner loading={loading} />
+          <Pagination
+            itemsCount={itemsCount}
+            pageSize={defaultPageSize}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </div>
       </div>
-    </Layout>
+    </div>
   );
 }
 

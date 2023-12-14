@@ -4,7 +4,6 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import Button from '../Button';
 import Icon from '../Icon';
-import Layout from '../Layout';
 import Spinner from '../Spinner/Spinner';
 
 import { GetAdmin, CreateAdmin, UpdateAdmin } from '../../Services/AdminsService';
@@ -90,74 +89,72 @@ function NewAdminForm() {
   };
 
   return (
-    <Layout>
-      <div className="container" onSubmit={onSubmit}>
-        <h3>
-          {id ? 'Modify ' : 'Add New '}
-          Admin
-        </h3>
-        <form className={styles.newAdminForm}>
-          <label htmlFor="firstName" className={styles.fieldContainer}>
-            <div className={styles.labelName}>First Name</div>
-            <input
-              id="firstName"
-              onChange={handleOnChange}
-              type="text"
-              name="firstName"
-              placeholder="First name"
-              value={formData.firstName}
-            />
-          </label>
-          <label htmlFor="lastName" className={styles.fieldContainer}>
-            <div className={styles.labelName}>Last name</div>
-            <input
-              id="lastName"
-              onChange={handleOnChange}
-              type="text"
-              name="lastName"
-              placeholder="Last name"
-              value={formData.lastName}
-            />
-          </label>
-          <label htmlFor="email" className={styles.fieldContainer}>
-            <div className={styles.labelName}>Email</div>
-            <input
-              id="email"
-              onChange={handleOnChange}
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-            />
-          </label>
-          <label htmlFor="password" className={styles.fieldContainer}>
-            <div className={styles.labelName}>Enter Password</div>
-            <input
-              id="password"
-              onChange={handleOnChange}
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="New admin password"
-              value={formData.password}
-            />
-            <radio onClick={handlePassword} onKeyDown={() => {}}>
-              {showPassword ? <Icon name="visibleEye" /> : <Icon name="hiddenEye" />}
-            </radio>
-          </label>
-          <div className={styles.buttonContainer}>
-            <Button
-              type="submit"
-              variant="buttonSecondary"
-              text="Back"
-              action={() => navigate('/admins')}
-            />
-            <Button type="submit" variant="buttonPrimary" text="Confirm" action={onSubmit} />
-          </div>
-        </form>
-        <Spinner loading={loading} />
-        <ToastContainer />
-      </div>
-    </Layout>
+    <div className="container" onSubmit={onSubmit}>
+      <h3>
+        {id ? 'Modify ' : 'Add New '}
+        Admin
+      </h3>
+      <form className={styles.newAdminForm}>
+        <label htmlFor="firstName" className={styles.fieldContainer}>
+          <div className={styles.labelName}>First Name</div>
+          <input
+            id="firstName"
+            onChange={handleOnChange}
+            type="text"
+            name="firstName"
+            placeholder="First name"
+            value={formData.firstName}
+          />
+        </label>
+        <label htmlFor="lastName" className={styles.fieldContainer}>
+          <div className={styles.labelName}>Last name</div>
+          <input
+            id="lastName"
+            onChange={handleOnChange}
+            type="text"
+            name="lastName"
+            placeholder="Last name"
+            value={formData.lastName}
+          />
+        </label>
+        <label htmlFor="email" className={styles.fieldContainer}>
+          <div className={styles.labelName}>Email</div>
+          <input
+            id="email"
+            onChange={handleOnChange}
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+          />
+        </label>
+        <label htmlFor="password" className={styles.fieldContainer}>
+          <div className={styles.labelName}>Enter Password</div>
+          <input
+            id="password"
+            onChange={handleOnChange}
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            placeholder="New admin password"
+            value={formData.password}
+          />
+          <radio onClick={handlePassword} onKeyDown={() => {}}>
+            {showPassword ? <Icon name="visibleEye" /> : <Icon name="hiddenEye" />}
+          </radio>
+        </label>
+        <div className={styles.buttonContainer}>
+          <Button
+            type="submit"
+            variant="buttonSecondary"
+            text="Back"
+            action={() => navigate('/admins')}
+          />
+          <Button type="submit" variant="buttonPrimary" text="Confirm" action={onSubmit} />
+        </div>
+      </form>
+      <Spinner loading={loading} />
+      <ToastContainer />
+    </div>
   );
 }
 

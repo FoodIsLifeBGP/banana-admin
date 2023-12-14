@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Button as BootstrapButton,
-  Container,
-  Col,
-  Row,
-  Form,
+  Button as BootstrapButton, Container, Col, Row, Form,
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
-import Input from '../../Components/Input/index';
+
 import Icon from '../../Components/Icon';
-import styles from './style.module.scss';
+import Input from '../../Components/Input/index';
 import useGlobal from '../../state/index';
 import Spinner from '../../Components/Spinner/Spinner';
+
+import styles from './style.module.scss';
 
 export default function LoginPage() {
   const [, { logIn }] = useGlobal();
@@ -41,10 +39,17 @@ export default function LoginPage() {
       navigate('/');
       return;
     }
-    case 401: toast.warn('Incorrect email or password'); return;
-    case 404: toast.error('Server not found - please try again'); return;
-    case 500: toast.warn('Network error - please try again'); return;
-    default: toast.warn(`Server replied with ${statusCode} status code`);
+    case 401:
+      toast.warn('Incorrect email or password');
+      return;
+    case 404:
+      toast.error('Server not found - please try again');
+      return;
+    case 500:
+      toast.warn('Network error - please try again');
+      return;
+    default:
+      toast.warn(`Server replied with ${statusCode} status code`);
     }
   };
 

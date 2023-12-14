@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Col, Row } from 'reactstrap';
-import Navbar from '../../Components/Navbar';
+
 import ApplicationCard from '../../Components/ApplicationCard';
 import DonationCard from '../../Components/DonationCard';
+
 import ApiService from '../../Services/ApiService';
 
 export default function HomePage() {
@@ -35,21 +36,18 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
-      <Navbar />
-      <Container style={{ margin: '4rem auto' }}>
-        <Row>
-          <Col lg="6">
-            <h3>New Applications</h3>
-            <ApplicationCard type="client" userCount={newClients} />
-            <ApplicationCard type="donor" userCount={newDonors} />
-          </Col>
-          <Col lg="6">
-            <h3>Donation Status</h3>
-            <DonationCard claimedDonation={claimedDonations} totalDonation={activeDonations} />
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <Container style={{ margin: '4rem auto' }}>
+      <Row>
+        <Col lg="6">
+          <h3>New Applications</h3>
+          <ApplicationCard type="client" userCount={newClients} />
+          <ApplicationCard type="donor" userCount={newDonors} />
+        </Col>
+        <Col lg="6">
+          <h3>Donation Status</h3>
+          <DonationCard claimedDonation={claimedDonations} totalDonation={activeDonations} />
+        </Col>
+      </Row>
+    </Container>
   );
 }

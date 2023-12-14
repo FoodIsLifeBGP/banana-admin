@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -15,7 +14,7 @@ import {
 } from 'reactstrap';
 
 import Icon from '../Icon';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 function BananaAdminNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,56 +23,56 @@ function BananaAdminNavbar() {
 
   return (
     <Navbar expand="sm" light className={styles.container}>
-      <NavbarBrand href="/" className={styles.navBarBrand}>
+      <Link to="/" className={styles.navBarBrand}>
         <Icon name="bananaIcon" size={75} className={styles.navIcon} />
         <NavbarText className={styles.bananaPortalNav}>
           BANANA
           <br />
           PORTAL
         </NavbarText>
-      </NavbarBrand>
+      </Link>
 
       <NavbarToggler onClick={toggle} />
 
       <Collapse isOpen={isOpen} navbar>
-        <Nav className={`ms-auto + ${styles.mobileNav}`} navbar>
-          <NavItem className="w-100">
-            <NavLink href="/notifications" className="dropdown-item">
+        <Nav className={`ms-auto ${styles.mobileNav}`} navbar>
+          <NavItem className={styles.navItem}>
+            <Link to="/notifications" className="nav-link">
               <Icon name="alertBell" size={32} className={styles.navIcon} />
-              <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
-                Notifications
-              </NavbarText>
-            </NavLink>
+              <span className={styles.mobileText}>Notifications</span>
+            </Link>
           </NavItem>
 
-          <UncontrolledDropdown nav inNavbar className={`${styles.hideMobile} w-100`}>
-            <DropdownToggle
-              nav
-              caret
-              className={`${styles.dropdownToggleMobile} + ${styles.navbarText}`}
-            >
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
               <Icon name="tasks" size={32} className={styles.navIcon} />
-              <NavbarText className={styles.displayMobile}>Tasks</NavbarText>
+              <span className={styles.mobileText}>Tasks</span>
             </DropdownToggle>
-            <DropdownMenu end className={styles.mobileDropdownTasks}>
+            <DropdownMenu className={styles.tasksDropdown}>
               <DropdownItem>
-                <NavLink href="/all">All</NavLink>
+                <Link to="/admins" className="dropdown-item">
+                  Admins
+                </Link>
               </DropdownItem>
               <DropdownItem>
-                <NavLink href="/clients">Clients</NavLink>
+                <Link to="/clients" className="dropdown-item">
+                  Clients
+                </Link>
               </DropdownItem>
               <DropdownItem>
-                <NavLink href="/donors">Donors</NavLink>
+                <Link to="/donors" className="dropdown-item">
+                  Donors
+                </Link>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
 
-          <NavLink href="/settings" className="dropdown-item w-100">
-            <Icon name="avatar" size={35} className={styles.navIcon} />
-            <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
-              Profile
-            </NavbarText>
-          </NavLink>
+          <NavItem className={styles.navItem}>
+            <Link to="/settings" className="nav-link">
+              <Icon name="avatar" size={35} className={styles.navIcon} />
+              <span className={styles.mobileText}>Profile</span>
+            </Link>
+          </NavItem>
         </Nav>
       </Collapse>
     </Navbar>
