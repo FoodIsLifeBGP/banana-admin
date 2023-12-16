@@ -5,6 +5,8 @@ export async function logIn(store, { email, password }) {
   const { LOGIN_URL, USER_IDENTITY } = initialState;
   const { axiosRequest } = ApiService();
 
+  console.log(email, password);
+
   const storeJwtAndUser = (token, user) => {
     if (token && user) {
       localStorage.setItem('jwt', JSON.stringify(token));
@@ -28,6 +30,8 @@ export async function logIn(store, { email, password }) {
     storeJwtAndUser(jwt, user);
 
     store.setState({ email: '', password: '' });
+
+    // TODO: Update Layout user, jwt state values
     return response.request.status;
   } catch (error) {
     const e = error.toString().toLowerCase().split(' status code ');
@@ -38,7 +42,11 @@ export async function logIn(store, { email, password }) {
 }
 
 export async function logOut(store) {
+  console.log('start');
+  console.log(initialState);
   await store.setState(initialState);
   localStorage.removeItem('jwt');
   localStorage.removeItem('user');
+  console.log(localStorage);
+  console.log('end');
 }
