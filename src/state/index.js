@@ -1,7 +1,7 @@
-import globalHook from 'use-global-hook';
+import useStore from 'use-global-hook';
 import initialState from '../util/environment';
 import * as actions from './actions';
 
-const useGlobal = globalHook(initialState, actions);
+const useGlobal = useStore(initialState, actions);
 
 export default useGlobal;
