@@ -30,7 +30,7 @@
   background-color: transparent;
 }
 
-.mobileNav > li, .mobileText span {
+.mobileNav>li {
   align-items: start;
   text-align: start;
   width: 100%;
@@ -40,12 +40,6 @@
   display: flex;
   align-items: center;
   width: 100%;
-}
-
-span.mobileText {
-  display: inline-block;
-  width: 100%;
-  white-space: nowrap;
 }
 
 .navIcon {
@@ -77,7 +71,7 @@ span.mobileText {
 }
 
 span.mobileText {
-  display: inline;
+  display: inline-block;
   width: 100%;
 
   @media (min-width: 576px) {
