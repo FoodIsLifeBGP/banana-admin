@@ -2,8 +2,11 @@ import ApiService from './ApiService';
 
 const { axiosRequest } = ApiService();
 
-const GetAdmins = async (pageNumber, pageSize) => {
-  const response = await axiosRequest('GET', `/admins?page=${pageNumber}&items=${pageSize}`);
+const GetAdmins = async (pageNumber, pageSize, sortBy, orderBy) => {
+  const response = await axiosRequest(
+    'GET',
+    `/admins?page=${pageNumber}&count=${pageSize}&sort_by=${sortBy}&order_by=${orderBy}`,
+  );
   return response.data;
 };
 
@@ -25,7 +28,7 @@ const CreateAdmin = async (firstName, lastName, email, password) => {
 };
 
 const UpdateAdmin = async (id, firstName, lastName, email, password) => {
-  const response = await axiosRequest('PATCH', `/admins/${id}`, {
+  const response = await axiosRequest('PATCH', `/admins/${id}/update`, {
     admin: {
       first_name: firstName,
       last_name: lastName,
