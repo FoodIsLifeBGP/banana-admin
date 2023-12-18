@@ -7,12 +7,7 @@ import styles from './style.module.scss';
 
 function Modal(props) {
   const {
-    modalOpen,
-    setModalOpen,
-    modalContentRef,
-    children,
-    title,
-    buttonsConfig,
+    modalOpen, setModalOpen, modalContentRef, children, title, buttonsConfig,
   } = props;
 
   const defaultButtonConfig = [
@@ -53,7 +48,7 @@ Modal.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   setModalOpen: PropTypes.func.isRequired,
   modalContentRef: PropTypes.object.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   title: PropTypes.string.isRequired,
   buttonsConfig: PropTypes.arrayOf(
     PropTypes.shape({
@@ -62,6 +57,10 @@ Modal.propTypes = {
       action: PropTypes.func.isRequired,
     }),
   ).isRequired,
+};
+
+Modal.defaultProps = {
+  children: null,
 };
 
 export default Modal;
