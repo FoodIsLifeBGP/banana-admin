@@ -27,6 +27,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-, "src/App.js"  ]
+    "src/**/*",
+  ]
 }
