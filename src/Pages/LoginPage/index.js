@@ -5,15 +5,20 @@ import {
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
 
+import { useAppContext } from '../../contexts/AppContext';
+import ApiService from '../../Services/ApiService';
+
 import Icon from '../../Components/Icon';
 import Input from '../../Components/Input/index';
-import useGlobal from '../../state/index';
+// import useGlobal from '../../state/index';
 import Spinner from '../../Components/Spinner/Spinner';
 
 import styles from './style.module.scss';
 
 export default function LoginPage() {
-  const [, { logIn }] = useGlobal();
+  // const [, { logIn }] = useGlobal();
+  const { setAdmin, setJwt } = useAppContext();
+  const { axiosRequest } = ApiService();
 
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -30,10 +35,18 @@ export default function LoginPage() {
 
     setLoading(true);
     /* NOTE: `store` is implicitly passed to an "action" */
-    const statusCode = await logIn({ email, password });
+    // const statusCode = await logIn({ email, password });
+    const response = await axiosRequest(
+      'POST',
+      'admin_auth',
+      JSON.stringify({ admin: { email, password } }),
+    );
+    console.log(response);
+    setJwt(response.data.jwt);
+    setAdmin(response.data.admin);
     setLoading(false);
 
-    switch (statusCode) {
+    switch (response.status) {
     case 202: {
       clearEmailAndPassword();
       navigate('/');
@@ -49,7 +62,7 @@ export default function LoginPage() {
       toast.warn('Network error - please try again');
       return;
     default:
-      toast.warn(`Server replied with ${statusCode} status code`);
+      toast.warn(`Server replied with ${response.status} status code`);
     }
   };
 
