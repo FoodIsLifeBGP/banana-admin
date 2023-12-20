@@ -1,10 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import BananaAdminNavbar from '../Navbar';
+import { useAppContext } from 'src/contexts/AppContext';
 import AuthWrapper, { isAuthenticated } from '../../Services/AuthWrapper';
 
 import AdminsPage from '../../Pages/AdminsPage';
+import BananaAdminNavbar from '../Navbar';
 import ClientsPage from '../../Pages/ClientsPage';
 import DonorPage from '../../Pages/DonorPage';
 import ErrorPage from '../../Pages/ErrorPage';
@@ -17,6 +18,8 @@ import SettingsPage from '../../Pages/SettingsPage/index';
 import styles from './style.module.scss';
 
 function Layout() {
+  const { admin, jwt } = useAppContext();
+  console.log('layout', admin, jwt);
   const protectedRoutes = [
     { path: '/', element: <HomePage /> },
     { path: '/settings', element: <SettingsPage /> },
