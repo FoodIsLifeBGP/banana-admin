@@ -2,18 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import map from './map';
 
+/* NOTE: Icon names can be found here https://materializecss.com/icons.html */
 function Icon(props) {
-  // TODO: we should either be passing in fixed set of predefined sizes (sm, md, lg, xl) or nothing.
-  // passing in specific px values is not best practice,
-  // might as well just alter with css if we need specific pixel sizes
-  // also isn't there already a reactstrap component for icons?
   const { name, size, className } = props;
   const fileRef = map[name];
 
-  const combinedClassName = className ? `fa fa-${name} ${className}` : `fa fa-${name}`;
+  // Map size props to CSS classes
+  const sizeClass = {
+    sm: 'icon-sm',
+    md: 'icon-md',
+    lg: 'icon-lg',
+    xl: 'icon-xl',
+  }[size];
+
+  const combinedClassName = className ? `fa fa-${name} ${className} ${sizeClass}` : `fa fa-${name} ${sizeClass}`;
 
   if (fileRef) {
-    return <img src={fileRef} className={className} style={{ width: size, height: size }} alt="" />;
+    return <img src={fileRef} className={`${className} ${sizeClass}`} alt="" />;
   }
 
   return <i className={combinedClassName} />;
@@ -21,13 +26,13 @@ function Icon(props) {
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.number,
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
   className: PropTypes.string,
 };
 
 Icon.defaultProps = {
   className: '',
-  size: 20,
+  size: 'md',
 };
 
 export default Icon;

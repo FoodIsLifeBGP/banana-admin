@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Button as BootstrapButton,
   Container,
   Col,
   Row,
   Form,
+  InputGroup,
+  InputGroupText,
+  Input as BootstrapInput,
+
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
-import Input from '../../Components/Input/index';
+import Button from '../../Components/Button';
 import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
 import useGlobal from '../../state/index';
@@ -59,39 +62,45 @@ export default function LoginPage() {
             <Col lg={10} className="mx-auto">
               <Row className={styles.titlerow}>
                 <Col sm={6}>
-                  <Icon name="bananaIcon" size={200} />
+                  <Icon name="bananaIcon" size="lg" />
                 </Col>
                 <Col sm={6}>
                   <h1 className={styles.title}>BANANA PORTAL</h1>
                 </Col>
               </Row>
               <Form sm={12} className="mx-auto">
-                <Input
-                  id="email"
-                  name="email"
-                  iconName="user"
-                  placeholder="Email"
-                  className={styles.inputrow}
-                  value={email}
-                  onChange={({ target }) => setEmail(target.value)}
-                />
-                <Input
-                  id="password"
-                  name="password"
-                  iconName="lock"
-                  placeholder="Password"
-                  type="password"
-                  className={styles.inputrow}
-                  value={password}
-                  onChange={({ target }) => setPassword(target.value)}
-                />
+                <InputGroup className={styles.inputrow}>
+                  <InputGroupText>
+                    <Icon name="user" size="sm" className={styles.icon} />
+                  </InputGroupText>
+                  <BootstrapInput
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={({ target }) => setEmail(target.value)}
+                  />
+                </InputGroup>
+
+                <InputGroup className={styles.inputrow}>
+                  <InputGroupText>
+                    <Icon name="lock" size="sm" className={styles.icon} />
+                  </InputGroupText>
+                  <BootstrapInput
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    value={password}
+                    onChange={({ target }) => setPassword(target.value)}
+                  />
+                </InputGroup>
                 <div className="mt-5 mx-5 row row-cols-2 formSubmit">
-                  <BootstrapButton
+                  <Button
+                    text="Login"
                     className={`col ${styles.button}`}
                     onClick={(event) => handleLogin(event)}
-                  >
-                    Login
-                  </BootstrapButton>
+                  />
                   <a href="/" className="col">
                     <p>Forgot password?</p>
                   </a>
