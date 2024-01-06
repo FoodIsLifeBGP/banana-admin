@@ -81,7 +81,7 @@ export default function LoginPage() {
                     onChange={({ target }) => setEmail(target.value)}
                   />
                 </InputGroup>
-
+                {/* TODO: update all input components to use this format */}
                 <InputGroup className={styles.inputrow}>
                   <InputGroupText>
                     <Icon name="lock" size="sm" className={styles.icon} />
@@ -101,6 +101,7 @@ export default function LoginPage() {
                     className={`col ${styles.button}`}
                     onClick={(event) => handleLogin(event)}
                   />
+                  {/* TODO: update this to use above button component */}
                   <a href="/" className="col">
                     <p>Forgot password?</p>
                   </a>
