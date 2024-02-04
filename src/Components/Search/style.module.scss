@@ -1,0 +1,16 @@
+.searchButton {
+  flex: 0 1 auto !important;
+  min-width: fit-content !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--BANANA_YELLOW);
+  color: var(--NAVY_BLUE);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-radius: .5rem;
+  border-color: var(--BANANA_YELLOW);
+  border-width: 0rem;
+  margin-left: 1rem;
+}

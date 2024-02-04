@@ -1,5 +1,5 @@
-@import "../../colors.module.css";
-@import "../../fonts.module.css";
+@import "../../colors.module.scss";
+@import "../../fonts.module.scss";
 
 .newAdminForm {
   width: 100%;
@@ -36,7 +36,7 @@ input {
   border: 2px solid var(--LIGHT_GRAY);
   box-sizing: border-box;
   border-radius: 8px;
-  font-family: Open Sans;
+  font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -44,6 +44,11 @@ input {
   letter-spacing: 0.04em;
   color: var(--NAVY_BLUE);
   padding-left: 2%;
+
+  img {
+    width: 26px;
+    height: 26px;
+  }
 }
 
 h3 {
@@ -70,4 +75,14 @@ radio {
 inputForm {
     border: 2px solid var(--LIGHT_GRAY);
     border-radius: 8px;
+}
+
+.formSubmit {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5%;
+
+  button {
+    margin: 5px;
+  }
 }
