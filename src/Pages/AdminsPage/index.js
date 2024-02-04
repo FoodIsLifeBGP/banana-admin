@@ -3,17 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { DataTable, Pagination } from '../../Components/DataTable';
-import Icon from '../../Components/Icon';
 import Layout from '../../Components/Layout';
 import Modal from '../../Components/Modal';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
+import Button from '../../Components/Button';
 
 // The next line will be uncommented when the back end is ready:
 // import { GetAdmins, UpdateAdminStatus } from '../../Services/AdminsService';
 
-import formatDateToPST from '../../util/utilities';
-
+import { formatDateToPST } from '../../util/utilities';
 import styles from './style.module.scss';
 
 function AdminsPage() {
@@ -153,32 +152,32 @@ function AdminsPage() {
       label: 'Actions',
       content: (admin) => (
         <div className="row space-between gap-3">
-          <button
+          <Button
             type="button"
+            iconName="edit"
             className={`col btn btn-sm ${styles.editButton}`}
             onClick={() => navigate(`/admins/${admin.id}`)}
           >
-            <Icon name="edit" size={24} className="me-2" />
             Edit
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            iconName="trash"
             className={`col btn btn-sm ${styles.deactivateButton}`}
             onClick={() => {
               setSelectedAdmin(admin);
               setModalOpen(true);
             }}
           >
-            <Icon name="trash" size={22} className="me-2" />
             Deactivate
-          </button>
+          </Button>
         </div>
       ),
     },
   ];
 
-  const handleSort = (sortcolumn) => {
-    setSortColumn(sortcolumn);
+  const handleSort = (sortBy) => {
+    setSortColumn(sortBy);
     setCurrentPage(1);
   };
 

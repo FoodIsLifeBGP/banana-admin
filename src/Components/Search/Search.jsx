@@ -1,20 +1,30 @@
 import React from 'react';
+import {
+  InputGroup, Input, InputGroupText,
+} from 'reactstrap';
+import styles from './style.module.scss';
 
 function Search({ value, onChange }) {
   return (
-    <div className="input-group">
-      <span className="input-group-text border-0 p-3">
+    <InputGroup>
+      <InputGroupText className="bg-light border-0">
         <i className="fas fa-search" />
-      </span>
-      <input
+      </InputGroupText>
+      <Input
         type="text"
         name="query"
-        className="form-control border-0 bg-light p-4"
+        className="form-control border-0 bg-light"
         placeholder="Search..."
         value={value}
-        onChange={(e) => onChange(e.currentTarget.value)}
+        onChange={(e) => onChange(e.target.value)}
       />
-    </div>
+      <Input
+        className={styles.searchButton}
+        type="button"
+        onClick={() => { alert('get all donors and clients'); }}
+        value="All"
+      />
+    </InputGroup>
   );
 }
 

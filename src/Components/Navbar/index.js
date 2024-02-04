@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 
 import Icon from '../Icon';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 function BananaAdminNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,8 +25,8 @@ function BananaAdminNavbar() {
   return (
     <Navbar expand="sm" light className={styles.container}>
       <NavbarBrand href="/" className={styles.navBarBrand}>
-        <Icon name="bananaIcon" size={75} className={styles.navIcon} />
-        <NavbarText className={styles.bananaPortalNav}>
+        <Icon name="bananaIcon" className={styles.bananaIcon} />
+        <NavbarText className={styles.navText}>
           BANANA
           <br />
           PORTAL
@@ -39,7 +39,7 @@ function BananaAdminNavbar() {
         <Nav className={`ms-auto + ${styles.mobileNav}`} navbar>
           <NavItem className="w-100">
             <NavLink href="/notifications" className="dropdown-item">
-              <Icon name="alertBell" size={32} className={styles.navIcon} />
+              <Icon name="alertBell" className={styles.navIcon} />
               <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
                 Notifications
               </NavbarText>
@@ -52,7 +52,7 @@ function BananaAdminNavbar() {
               caret
               className={`${styles.dropdownToggleMobile} + ${styles.navbarText}`}
             >
-              <Icon name="tasks" size={32} className={styles.navIcon} />
+              <Icon name="tasks" className={styles.navIcon} />
               <NavbarText className={styles.displayMobile}>Tasks</NavbarText>
             </DropdownToggle>
             <DropdownMenu end className={styles.mobileDropdownTasks}>
@@ -69,7 +69,7 @@ function BananaAdminNavbar() {
           </UncontrolledDropdown>
 
           <NavLink href="/settings" className="dropdown-item w-100">
-            <Icon name="avatar" size={35} className={styles.navIcon} />
+            <Icon name="avatar" className={styles.navIcon} />
             <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
               Profile
             </NavbarText>

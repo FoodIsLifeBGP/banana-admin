@@ -28,7 +28,9 @@ function Slide() {
       <div className={`${isOpen ? '' : 'hidden'} slide-form slide`}>
         <p className="general-title">
           General Info
-          <span className="close-button" onClick={handleSlideMove} aria-hidden="true"><Icon name="times" size="" /></span>
+          <span className="close-button" onClick={handleSlideMove} aria-hidden="true">
+            <Icon name="times" />
+          </span>
         </p>
         <div className="group">
           <div className="titles">

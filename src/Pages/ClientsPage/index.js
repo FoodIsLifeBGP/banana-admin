@@ -7,10 +7,10 @@ import Layout from '../../Components/Layout';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
 import Badge from '../../Components/Badge';
-
+import styles from './style.module.scss';
 import { GetClients } from '../../Services/ClientsService';
 
-import formatDateToPST from '../../util/utilities';
+import { formatDateToPST } from '../../util/utilities';
 
 function ClientsPage() {
   const defaultPageSize = 8;
@@ -85,16 +85,11 @@ function ClientsPage() {
     <Layout>
       <div className="container">
         <div className="row mt-4 mb-4">
-          <div className="col-6">
-            <h2>New Applications (Client)</h2>
-          </div>
-          <div className="col-3">
+          <div className={styles.headerBar}>
+            <div className="col-6">
+              <h2>NEW CLIENT APPLICATIONS</h2>
+            </div>
             <Search value={searchQuery} onChange={handleSearch} />
-          </div>
-          <div className="col-3 float-end">
-            <button type="button" className="btn btn-primary btn-lg ">
-              All Applications
-            </button>
           </div>
         </div>
         <div className="row">

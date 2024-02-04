@@ -1,0 +1,20 @@
+@import "colors.module.scss";
+@import "fonts.module.scss";
+
+.App {
+  text-align: center;
+  height: 100vh;
+}
+
+h3 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 46px;
+  color: var(--NAVY_BLUE);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin: 24px;
+}

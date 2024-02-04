@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   Container,
   Col,
-  Row,
   Form,
   InputGroup,
   InputGroupText,
@@ -16,6 +15,7 @@ import Icon from '../../Components/Icon';
 import styles from './style.module.scss';
 import useGlobal from '../../state/index';
 import Spinner from '../../Components/Spinner/Spinner';
+import useMediaQuery from '../../util/useMediaQuery';
 
 export default function LoginPage() {
   const [, { logIn }] = useGlobal();
@@ -25,9 +25,16 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const isSmallScreen = useMediaQuery('(max-width: 768px)');
+
   const clearEmailAndPassword = () => {
     setEmail('');
     setPassword('');
+  };
+
+  const handleForgotPassword = async () => {
+    // TODO: implement once backend is ready
+    console.log('lost PW');
   };
 
   const handleLogin = async (event) => {
@@ -58,20 +65,19 @@ export default function LoginPage() {
       <div className={styles.borderspace} />
       <div className={styles.mainspace}>
         <Container className="h-100 align-items-center d-flex justify-content-center">
-          <Row>
-            <Col lg={10} className="mx-auto">
-              <Row className={styles.titlerow}>
-                <Col sm={6}>
-                  <Icon name="bananaIcon" size="lg" />
-                </Col>
-                <Col sm={6}>
-                  <h1 className={styles.title}>BANANA PORTAL</h1>
-                </Col>
-              </Row>
-              <Form sm={12} className="mx-auto">
+          <Col sm={12} md={8}>
+            <div className="d-flex mb-5">
+              <Icon name="bananaIcon" className={styles.bananaIcon} />
+              <div className="d-flex flex-column">
+                <h1 className={styles.title}>Banana</h1>
+                <h1 className={styles.title}>Portal</h1>
+              </div>
+            </div>
+            <Col sm={12}>
+              <Form>
                 <InputGroup className={styles.inputrow}>
                   <InputGroupText>
-                    <Icon name="user" size="sm" className={styles.icon} />
+                    <Icon name="user" className={styles.inputIcon} />
                   </InputGroupText>
                   <BootstrapInput
                     id="email"
@@ -84,7 +90,7 @@ export default function LoginPage() {
                 {/* TODO: update all input components to use this format */}
                 <InputGroup className={styles.inputrow}>
                   <InputGroupText>
-                    <Icon name="lock" size="sm" className={styles.icon} />
+                    <Icon name="lock" className={styles.inputIcon} />
                   </InputGroupText>
                   <BootstrapInput
                     id="password"
@@ -95,20 +101,21 @@ export default function LoginPage() {
                     onChange={({ target }) => setPassword(target.value)}
                   />
                 </InputGroup>
-                <div className="mt-5 mx-5 row row-cols-2 formSubmit">
+                <div className={styles.formSubmit}>
                   <Button
                     text="Login"
-                    className={`col ${styles.button}`}
-                    onClick={(event) => handleLogin(event)}
+                    variant={isSmallScreen ? 'buttonSecondary' : 'buttonPrimary'}
+                    action={(event) => handleLogin(event)}
                   />
-                  {/* TODO: update this to use above button component */}
-                  <a href="/" className="col">
-                    <p>Forgot password?</p>
-                  </a>
+                  <Button
+                    text="Forgot password?"
+                    variant="buttonPlainText"
+                    action={(event) => handleForgotPassword(event)}
+                  />
                 </div>
               </Form>
             </Col>
-          </Row>
+          </Col>
         </Container>
       </div>
     </div>

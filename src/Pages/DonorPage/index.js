@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import Badge from '../../Components/Badge';
 import BreadCrumb from '../../Components/BreadCrumb';
 import Layout from '../../Components/Layout';
@@ -10,9 +9,9 @@ import Spinner from '../../Components/Spinner/Spinner';
 import { GetDonors } from '../../Services/DonorsService';
 import { DataTable, Pagination } from '../../Components/DataTable';
 
-import formatDateToPST from '../../util/utilities';
+import { formatDateToPST } from '../../util/utilities';
 
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 function DonorPage() {
   const defaultPageSize = 8;
@@ -92,15 +91,8 @@ function DonorPage() {
         <div className={styles.belowNav}>
           <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
           <div className={styles.headerBar}>
-            <h2 className={styles.headerLeft}>NEW APPLICATIONS (DONOR)</h2>
-            <div className={styles.headerRight}>
-              <Search value={searchQuery} onChange={handleSearch} />
-              <input
-                className={styles.viewAllButton}
-                type="submit"
-                value="View all list"
-              />
-            </div>
+            <h2 className={styles.headerLeft}>NEW DONOR APPLICATIONS</h2>
+            <Search value={searchQuery} onChange={handleSearch} />
           </div>
           <div className="row">
             <DataTable

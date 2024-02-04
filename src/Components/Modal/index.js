@@ -53,13 +53,14 @@ Modal.propTypes = {
   modalContentRef: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/require-default-props
   buttonsConfig: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string.isRequired,
       variant: PropTypes.string.isRequired,
       action: PropTypes.func.isRequired,
     }),
-  ).isRequired,
+  ),
 };
 
 export default Modal;
