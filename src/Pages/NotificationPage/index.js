@@ -110,7 +110,7 @@ function NotificationPage() {
                       className={styles.iconPic}
                     />
                   ) : (
-                    <Icon name="avatar" size={80} />
+                    <Icon name="avatar" className={styles.iconPic} />
                   )}
                 </Col>
                 <Col className={styles.notificationText}>
