@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import styles from './style.module.scss';
 
-function Search({ value, onChange }) {
+function Search({ value, onChange, searchButton = null }) {
   return (
     <InputGroup>
       <InputGroupText className="bg-light border-0">
@@ -18,12 +18,14 @@ function Search({ value, onChange }) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
-      <Input
-        className={styles.searchButton}
-        type="button"
-        onClick={() => { alert('get all donors and clients'); }}
-        value="All"
-      />
+      {searchButton && (
+        <Input
+          className={styles.searchButton}
+          type="button"
+          onClick={searchButton.action}
+          value={searchButton.text}
+        />
+      )}
     </InputGroup>
   );
 }

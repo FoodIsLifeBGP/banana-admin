@@ -89,7 +89,11 @@ function ClientsPage() {
             <div className="col-6">
               <h2>NEW CLIENT APPLICATIONS</h2>
             </div>
-            <Search value={searchQuery} onChange={handleSearch} />
+            <Search
+              value={searchQuery}
+              onChange={handleSearch}
+              searchButton={{ action: () => alert('get all clients and donors'), text: 'All' }}
+            />
           </div>
         </div>
         <div className="row">
