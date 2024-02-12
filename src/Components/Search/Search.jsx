@@ -2,13 +2,14 @@ import React from 'react';
 import {
   InputGroup, Input, InputGroupText,
 } from 'reactstrap';
+import Icon from '../Icon';
 import styles from './style.module.scss';
 
 function Search({ value, onChange, searchButton = null }) {
   return (
     <InputGroup>
       <InputGroupText className="bg-light border-0">
-        <i className="fas fa-search" />
+        <Icon name="search" />
       </InputGroupText>
       <Input
         type="text"
