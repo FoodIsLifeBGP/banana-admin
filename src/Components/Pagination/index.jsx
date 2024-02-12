@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pagination as ReactstrapPagination, PaginationItem, PaginationLink } from 'reactstrap';
-import './style.module.scss';
+import styles from './style.module.scss';
 
 function Pagination({
   itemsCount, pageSize, currentPage, onPageChange,
@@ -13,7 +13,10 @@ function Pagination({
     <ReactstrapPagination>
       {pages.map((page) => (
         <PaginationItem key={page} active={page === currentPage}>
-          <PaginationLink onClick={() => onPageChange(page)}>
+          <PaginationLink
+            className={`${styles.pageLink} ${page === currentPage ? styles.active : ''}`}
+            onClick={() => onPageChange(page)}
+          >
             {page}
           </PaginationLink>
         </PaginationItem>

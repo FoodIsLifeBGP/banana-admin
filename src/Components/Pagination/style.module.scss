@@ -1,23 +1,12 @@
-/* CustomStyles.scss */
-$custom-bg-color: #007bff;
-$custom-active-bg-color: #17a2b8;
+$activeBgColor: var(--BANANA_YELLOW);
+$activeFontColor: var(--WHITE);
+$fontColor: var(--NAVY_BLUE);
 
-.pagination {
-    .page-link {
-        color: #fff;
-        background-color: $custom-bg-color;
-        border-color: $custom-bg-color;
+.pageLink {
+  color: $fontColor !important;
+}
 
-        &:hover {
-            background-color: darken($custom-bg-color, 5%);
-            border-color: darken($custom-bg-color, 10%);
-        }
-    }
-
-    .page-item.active {
-        .page-link {
-            background-color: $custom-active-bg-color;
-            border-color: $custom-active-bg-color;
-        }
-    }
+.active {
+  background-color: $activeBgColor !important;
+  border-color: $activeBgColor !important;
 }
