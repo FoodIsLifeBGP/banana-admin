@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import map from './map'; /* add new icons here */
 import './style.module.scss';
 
-function Icon(props) {
-  const { name, className } = props;
+function Icon({ name, className }) {
   const fileRef = map[name];
 
   const combinedClassName = className ? `fa fa-${name} icon ${className}` : `fa fa-${name} icon`;
 
   if (fileRef) {
-    return <img src={fileRef} className={combinedClassName} alt="" />;
+    return <img src={fileRef} className={combinedClassName} alt={`${name} icon`} />;
   }
 
-  return <i className={combinedClassName} />;
+  return <i className={combinedClassName} alt={`${name} icon`} />;
 }
 
 Icon.propTypes = {
