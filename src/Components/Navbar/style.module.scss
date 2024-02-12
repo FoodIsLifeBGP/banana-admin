@@ -40,13 +40,25 @@
 
 a {
   font-style: normal;
-  color: var(--NAVY_BLUE)
+  color: var(--NAVY_BLUE);
 }
 
 .mobileDropdownTasks {
   border: none;
   min-width: none;
   margin-left: 2.5rem;
+  padding: 0;
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 5px;
+
+    &:hover {
+      background-color: var(--FADED_BLUE);
+    }
+  }
+
 }
 
 .dropdownToggleMobile {

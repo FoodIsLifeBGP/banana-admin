@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Badge from '../../Components/Badge';
 import BreadCrumb from '../../Components/BreadCrumb';
-import Layout from '../../Components/Layout';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
 
@@ -88,35 +87,33 @@ function DonorPage() {
   ];
 
   return (
-    <Layout>
-      <div className="container">
-        <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
-        <div className={styles.headerBar}>
-          <h2 className={styles.headerLeft}>NEW DONOR APPLICATIONS</h2>
-          <Search
-            value={searchQuery}
-            onChange={handleSearch}
-            searchButton={{ action: () => alert('TODO: get all clients and donors'), text: 'All' }}
-          />
-        </div>
-        <div className="row">
-          <DataTable
-            columns={columns}
-            data={donors}
-            sortColumn={sortColumn}
-            onSort={handleSort}
-            className={styles.newDonorTable}
-          />
-          <Spinner loading={loading} />
-          <Pagination
-            itemsCount={itemsCount}
-            pageSize={defaultPageSize}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-        </div>
+    <div className="container">
+      <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
+      <div className={styles.headerBar}>
+        <h2 className={styles.headerLeft}>NEW DONOR APPLICATIONS</h2>
+        <Search
+          value={searchQuery}
+          onChange={handleSearch}
+          searchButton={{ action: () => alert('TODO: get all clients and donors'), text: 'All' }}
+        />
       </div>
-    </Layout>
+      <div className="row">
+        <DataTable
+          columns={columns}
+          data={donors}
+          sortColumn={sortColumn}
+          onSort={handleSort}
+          className={styles.newDonorTable}
+        />
+        <Spinner loading={loading} />
+        <Pagination
+          itemsCount={itemsCount}
+          pageSize={defaultPageSize}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      </div>
+    </div>
   );
 }
 

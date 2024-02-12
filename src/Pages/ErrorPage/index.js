@@ -5,6 +5,7 @@ import styles from './style.module.scss';
 import Icon from '../../Components/Icon';
 import { isAuthenticated } from '../../Services/AuthWrapper';
 import Button from '../../Components/Button';
+import Footer from '../../Components/Footer';
 
 function ErrorPage() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ function ErrorPage() {
         </div>
       </div>
 
-      <div className={styles.footer} />
+      <Footer />
     </div>
   );
 }

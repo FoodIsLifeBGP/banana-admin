@@ -7,7 +7,6 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import Button from '../Button';
 import Icon from '../Icon';
-import Layout from '../Layout';
 import Spinner from '../Spinner/Spinner';
 
 import { GetAdmin, CreateAdmin, UpdateAdmin } from '../../Services/AdminsService';
@@ -84,80 +83,78 @@ function NewAdminForm() {
   };
 
   return (
-    <Layout>
-      <div className={styles.container}>
-        <ToastContainer />
-        <Spinner loading={loading} />
-        <Container className="h-100 align-items-center d-flex justify-content-center">
-          <Col sm={12}>
-            <h3>
-              {id ? 'Modify ' : 'Add New '}
-              {' '}
-              Admin
-            </h3>
-            <Form onSubmit={onSubmit}>
-              <InputGroup className={styles.inputrow}>
-                <Input
-                  id="firstName"
-                  name="firstName"
-                  placeholder="First name"
-                  value={formData.firstName}
-                  onChange={(e) => handleOnChange(e)}
-                />
-              </InputGroup>
+    <div className={styles.container}>
+      <ToastContainer />
+      <Spinner loading={loading} />
+      <Container className="h-100 align-items-center d-flex justify-content-center">
+        <Col sm={12}>
+          <h3>
+            {id ? 'Modify ' : 'Add New '}
+            {' '}
+            Admin
+          </h3>
+          <Form onSubmit={onSubmit}>
+            <InputGroup className={styles.inputrow}>
+              <Input
+                id="firstName"
+                name="firstName"
+                placeholder="First name"
+                value={formData.firstName}
+                onChange={(e) => handleOnChange(e)}
+              />
+            </InputGroup>
 
-              <InputGroup className={styles.inputrow}>
-                <Input
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Last name"
-                  value={formData.lastName}
-                  onChange={(e) => handleOnChange(e)}
-                />
-              </InputGroup>
+            <InputGroup className={styles.inputrow}>
+              <Input
+                id="lastName"
+                name="lastName"
+                placeholder="Last name"
+                value={formData.lastName}
+                onChange={(e) => handleOnChange(e)}
+              />
+            </InputGroup>
 
-              <InputGroup className={styles.inputrow}>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={(e) => handleOnChange(e)}
-                />
-              </InputGroup>
+            <InputGroup className={styles.inputrow}>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={(e) => handleOnChange(e)}
+              />
+            </InputGroup>
 
-              <InputGroup className={styles.inputrow}>
-                <Input
-                  id="password"
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={(e) => handleOnChange(e)}
-                />
-                <InputGroupText onClick={() => setShowPassword(!showPassword)}>
-                  {showPassword ? <Icon name="hiddenEye" /> : <Icon name="visibleEye" />}
-                </InputGroupText>
-              </InputGroup>
+            <InputGroup className={styles.inputrow}>
+              <Input
+                id="password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                value={formData.password}
+                onChange={(e) => handleOnChange(e)}
+              />
+              <InputGroupText onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? <Icon name="hiddenEye" /> : <Icon name="visibleEye" />}
+              </InputGroupText>
+            </InputGroup>
 
-              <div className={styles.formSubmit}>
-                <Button
-                  text="Back"
-                  variant="buttonSecondary"
-                  action={() => alert('implement me!')} /* TODO: implement */
-                />
-                <Button
-                  text="Confirm"
-                  variant="buttonPrimary"
-                  action={onSubmit}
-                />
-              </div>
-            </Form>
-          </Col>
-        </Container>
-      </div>
-    </Layout>
+            <div className={styles.formSubmit}>
+              <Button
+                text="Back"
+                variant="buttonSecondary"
+                action={() => alert('implement me!')} /* TODO: implement */
+              />
+              <Button
+                text="Confirm"
+                variant="buttonPrimary"
+                action={onSubmit}
+              />
+            </div>
+          </Form>
+        </Col>
+      </Container>
+    </div>
   );
 }
 

@@ -1,5 +1,8 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
+import styles from './style.module.scss';
 
 export const isAuthenticated = () => {
   const user = localStorage.getItem('user');
@@ -7,7 +10,7 @@ export const isAuthenticated = () => {
   return user && token;
 };
 
-function AuthWrapper({ children }) {
+export default function AuthWrapper({ children }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -23,7 +26,13 @@ function AuthWrapper({ children }) {
 
   // If the above useEffect triggers a navigate, this component won't actually render the children.
   // The navigation action will take precedence.
-  return children;
+  return (
+    <div className={styles.flexWrapper}>
+      <div className={styles.container}>
+        <Navbar />
+        {children}
+      </div>
+      <Footer className={styles.footer} />
+    </div>
+  );
 }
-
-export default AuthWrapper;

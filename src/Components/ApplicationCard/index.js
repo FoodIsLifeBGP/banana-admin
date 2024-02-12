@@ -30,9 +30,6 @@ function ApplicationCard(props) {
       <div className={styles.body}>
         {userCount.toLocaleString(undefined, { minimumIntegerDigits: 2, useGrouping: false })}
       </div>
-      <div className={styles.footer}>
-        <div className={styles.footerlabel}>{newUserLabel}</div>
-      </div>
     </div>
   );
 }

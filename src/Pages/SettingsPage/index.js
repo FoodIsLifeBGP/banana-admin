@@ -183,7 +183,6 @@ export default function SettingsPage() {
 
   return (
     <div>
-      <Navbar />
       {(admin && admin.email) && (
         <Container className={styles.container}>
           <div className={styles.content}>
