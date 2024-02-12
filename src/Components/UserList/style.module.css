@@ -27,7 +27,6 @@ td {
   border-bottom: 1px solid var(--LIGHT_GRAY_DISABLED);
   padding: 26px;
   text-align: center;
-  justify-content: center;
 }
 
 .status {

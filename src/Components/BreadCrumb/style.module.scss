@@ -3,7 +3,12 @@
 .breadcrumb {
   background: white;
   display: flex;
-  padding: 2rem 0rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+
+  ol {
+    margin: 0;
+  }
 }
 
 .linkStyle {

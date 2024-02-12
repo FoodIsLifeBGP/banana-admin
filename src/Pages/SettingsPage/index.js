@@ -34,6 +34,7 @@ const formatAdminData = (admin) => ({
   createdAt: formatDate(admin.created_at),
   role: admin.user_type,
   email: admin.email,
+  accountStatus: admin.account_status,
 });
 
 const formatAdminUpdateData = (admin) => ({
@@ -183,80 +184,81 @@ export default function SettingsPage() {
   return (
     <div>
       <Navbar />
-      <Container className={styles.container}>
-        <div className={styles.content}>
-          <h2 className={styles.nameHeader}>
-            {`${admin.firstName || ''} ${admin.lastName || ''}`.toUpperCase()}
-          </h2>
-          <div className={styles.profilePicWrapper}>
-            <img
-              alt="profile pic"
-              className={styles.profilePic}
-              src={admin.avatarUrl ? `${store.API_BASE_URL}${admin.avatarUrl}` : fallbackPic}
-            />
-          </div>
-          <form className={styles.profilePicForm} onSubmit={handleProfilePicFormSubmit}>
-            {editingProfilePic && (
-              <>
-                <input type="file" id="fileUpload" onChange={handleFileChange} />
-                <label htmlFor="fileUpload" onClick={() => setLoading(true)} className={styles.fileUploadButton}>
-                  Select Photo
-                </label>
-                {fileSelected && (
-                  <div>
-                    <button className={styles.profilePicButton} type="submit">Save</button>
-                    <p className={styles.selectedFileName}>{selectedFileName}</p>
-                  </div>
-                )}
-              </>
-            )}
-            {!editingProfilePic && (
-              <button
-                type="button"
-                className={styles.profilePicButton}
-                onClick={() => setEditingProfilePic(true)}
-              >
-                Change Photo
-              </button>
-            )}
-            <Spinner loading={loading} />
-          </form>
-          <div className={styles.infoContainer}>
-            <p className={styles.infoItem}>
-              Member Since:
-              {' '}
-              {admin.createdAt ? formatDate(admin.createdAt) : 'N/A'}
-            </p>
-            <p className={styles.infoItem}>
-              Member Authorization:
-              {' '}
-              <Badge text={admin.role ? admin.role : ''} status={admin.status} />
-            </p>
-            <hr />
-            <div className={styles.emailContainer}>
-              <span>Email Address:</span>
-              {' '}
-              <span className="adminInfo">{admin.email || 'N/A'}</span>
+      {(admin && admin.email) && (
+        <Container className={styles.container}>
+          <div className={styles.content}>
+            <h2 className={styles.nameHeader}>
+              {`${admin.firstName || ''} ${admin.lastName || ''}`.toUpperCase()}
+            </h2>
+            <div className={styles.profilePicWrapper}>
+              <img
+                alt="profile pic"
+                className={styles.profilePic}
+                src={admin.avatarUrl ? `${store.API_BASE_URL}${admin.avatarUrl}` : fallbackPic}
+              />
             </div>
-            <div className={styles.passwordContainer}>
-              <span>Password:</span>
-              <span className="adminInfo">{'*'.repeat(8)}</span>
+            <form className={styles.profilePicForm} onSubmit={handleProfilePicFormSubmit}>
+              {editingProfilePic && (
+                <>
+                  <input type="file" id="fileUpload" onChange={handleFileChange} />
+                  <label htmlFor="fileUpload" onClick={() => setLoading(true)} className={styles.fileUploadButton}>
+                    Select Photo
+                  </label>
+                  {fileSelected && (
+                    <div>
+                      <button className={styles.profilePicButton} type="submit">Save</button>
+                      <p className={styles.selectedFileName}>{selectedFileName}</p>
+                    </div>
+                  )}
+                </>
+              )}
+              {!editingProfilePic && (
+                <button
+                  type="button"
+                  className={styles.profilePicButton}
+                  onClick={() => setEditingProfilePic(true)}
+                >
+                  Change Photo
+                </button>
+              )}
+            </form>
+            <div className={styles.infoContainer}>
+              <p className={styles.infoItem}>
+                Member Since:
+                {' '}
+                {admin.createdAt ? formatDate(admin.createdAt) : 'N/A'}
+              </p>
+              <p className={styles.infoItem}>
+                Member Authorization:
+                {' '}
+                <Badge status={admin.accountStatus} text={admin.role ? admin.role : ''} />
+              </p>
+              <hr />
+              <div className={styles.emailContainer}>
+                <span>Email Address:</span>
+                {' '}
+                <span className="adminInfo">{admin.email || 'N/A'}</span>
+              </div>
+              <div className={styles.passwordContainer}>
+                <span>Password:</span>
+                <span className="adminInfo">{'*'.repeat(8)}</span>
+              </div>
+            </div>
+            <div className={styles.buttonContainer}>
+              <Button
+                text="Update"
+                style={{ width: '20%' }}
+                action={() => setModalOpen(true)}
+              />
+              <Button
+                text="Logout"
+                style={{ width: '20%' }}
+                action={handleLogout}
+              />
             </div>
           </div>
-          <div className={styles.buttonContainer}>
-            <Button
-              text="Update"
-              style={{ width: '20%' }}
-              action={() => setModalOpen(true)}
-            />
-            <Button
-              text="Logout"
-              style={{ width: '20%' }}
-              action={handleLogout}
-            />
-          </div>
-        </div>
-      </Container>
+        </Container>
+      )}
       <Modal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}

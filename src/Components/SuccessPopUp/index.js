@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import Button from '../Button';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
-function SuccessPopUp(props) {
+function SuccessPopUp({ apiSuccessMessage }) {
   const [show, setShow] = useState(true);
   let successMessage = 'The application status has been successfully updated.';
-  const { apiSuccessMessage } = props;
 
   if (apiSuccessMessage) {
     successMessage = apiSuccessMessage;
   }
 
   const handleUndo = () => {
-    // Implement the Undo functionality here
+    /* TODO: implement the Undo functionality here */
     console.log('Undo action triggered');
   };
 

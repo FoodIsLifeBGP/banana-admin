@@ -2,8 +2,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
+  h2 {
+    color: var(--NAVY_BLUE);
+    font-weight: bold;
+    text-align: left;
+    margin: 0;
+  }
+}
 table td {
   vertical-align: middle;
+
+  &:first-of-type {
+    text-align: left;
+  }
 }

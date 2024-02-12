@@ -30,7 +30,7 @@ function ErrorPage() {
           <h1 className={styles.heading}>404</h1>
           <p className={styles.subhead}>Looks like this page went bananas.</p>
           <div className={styles.buttonContainer}>
-            <Button type="submit" variant="buttonSecondary" text="Go Back" action={goBack} />
+            <Button type="submit" variant="buttonSecondary" text="Back" action={goBack} />
             <Button type="submit" variant="buttonPrimary" text="Home" action={goHome} />
           </div>
         </div>

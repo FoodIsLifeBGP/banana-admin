@@ -1,0 +1,23 @@
+/* CustomStyles.scss */
+$custom-bg-color: #007bff;
+$custom-active-bg-color: #17a2b8;
+
+.pagination {
+    .page-link {
+        color: #fff;
+        background-color: $custom-bg-color;
+        border-color: $custom-bg-color;
+
+        &:hover {
+            background-color: darken($custom-bg-color, 5%);
+            border-color: darken($custom-bg-color, 10%);
+        }
+    }
+
+    .page-item.active {
+        .page-link {
+            background-color: $custom-active-bg-color;
+            border-color: $custom-active-bg-color;
+        }
+    }
+}

@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { DataTable, Pagination } from '../../Components/DataTable';
+import DataTable from '../../Components/DataTable';
+import Pagination from '../../Components/Pagination';
 import Layout from '../../Components/Layout';
 import Modal from '../../Components/Modal';
 import Search from '../../Components/Search';
