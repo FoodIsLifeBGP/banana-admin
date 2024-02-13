@@ -1,22 +1,19 @@
-@import "../../colors.module.css";
-@import "../../fonts.module.css";
+@import "../../colors.module.scss";
+@import "../../fonts.module.scss";
 
 h3 {
-  font-family: Open Sans;
-  font-style: normal;
   font-weight: bold;
   font-size: 34px;
   line-height: 46px;
   color: var(--NAVY_BLUE);
   text-transform: uppercase;
-  margin: 40px 0 40px 0;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 600px;
+  width: 75%;
 }
 
 .infoList {
@@ -29,26 +26,29 @@ h3 {
 .infoItem {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 83px;
-  width: 100%;
 }
 
-.infoItem p {
-  font-family: Open Sans;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 33px;
-  letter-spacing: 0.04em;
-  color: var(--NAVY_BLUE);
-  text-align: center;
-  width: 50%;
-  margin: auto;
+.infoItem {
+  p:first-child {
+    margin-bottom: 0;
+  }
+
+  span {
+    margin: 10px;
+
+    &.description  {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 18px;
+      color: var(--NAVY_BLUE);
+    }
+  }
 }
 
 .emphasized {
   font-weight: bold;
+  margin-left: 10px;
 }
 
 div.infoItem:nth-child(odd) {

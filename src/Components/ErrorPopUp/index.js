@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../Button';
 import styles from './style.module.css';
 
 function ErrorPopUp(props) {
@@ -17,15 +18,12 @@ function ErrorPopUp(props) {
             ERROR OCCURRED
           </div>
           <div className={styles.mainBody}>
-            <p>
-              {errorMessage}
-            </p>
+            <p>{errorMessage}</p>
             <div className={styles.buttonContainer}>
-              <input
-                className={styles.okayButton}
-                type="submit"
-                value="Okay"
-                onClick={() => setShow(false)}
+              <Button
+                text="Okay"
+                variant="buttonPrimary"
+                action={() => setShow(false)}
               />
             </div>
           </div>

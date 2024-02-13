@@ -1,5 +1,5 @@
-@import "../../colors.module.css";
-@import "../../fonts.module.css";
+@import "../../colors.module.scss";
+@import "../../fonts.module.scss";
 
 th {
   font-family: Open Sans;
@@ -27,7 +27,6 @@ td {
   border-bottom: 1px solid var(--LIGHT_GRAY_DISABLED);
   padding: 26px;
   text-align: center;
-  justify-content: center;
 }
 
 .status {

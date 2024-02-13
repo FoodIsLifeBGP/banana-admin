@@ -1,57 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.module.css';
+import {
+  Container, Col, Form, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Input,
+} from 'reactstrap';
+import styles from './style.module.scss';
 
 function ApplicationStatusForm({
   title, handleSubmit, donor, client, userId,
 }) {
-  // State to store the selected account status
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
-    // Check if donor or client props are available and set the account status
+    // Set initial account status from donor or client
     if (donor && donor.account_status) {
       setSelectedStatus(donor.account_status);
     } else if (client && client.account_status) {
       setSelectedStatus(client.account_status);
     }
-  }, [donor, client]); // Dependencies for useEffect
+  }, [donor, client]);
+
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+
+  const handleDropdownSelect = (status) => {
+    setSelectedStatus(status);
+    setDropdownOpen(false);
+  };
 
   return (
-    <div className={styles.container}>
-      <h3>{title}</h3>
-      <form
-        className={styles.applicationStatusForm}
-        onSubmit={(e) => handleSubmit(e, selectedStatus, userId)}
-      >
-        <select
-          className={styles.dropdown}
-          value={selectedStatus}
-          onChange={(e) => setSelectedStatus(e.target.value)}
+    <Container className={styles.container}>
+      <Col sm={12} md={8}>
+        <h3 className={styles.title}>{title}</h3>
+        <Form
+          className={styles.applicationStatusForm}
+          onSubmit={(e) => handleSubmit(e, selectedStatus, userId)}
         >
-          <option value="">Please Select...</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-          <option value="suspended">Suspended</option>
-          <option value="incomplete">Incomplete</option>
-          <option value="closed">Closed</option>
-        </select>
-        <input className={styles.buttonContainer} type="submit" value="Confirm" />
-      </form>
-    </div>
+          <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} size="lg">
+            <DropdownToggle caret>
+              {selectedStatus || 'Please Select...'}
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem header>Status</DropdownItem>
+              <DropdownItem onClick={() => handleDropdownSelect('active')}>Active</DropdownItem>
+              <DropdownItem onClick={() => handleDropdownSelect('inactive')}>Inactive</DropdownItem>
+              <DropdownItem onClick={() => handleDropdownSelect('suspended')}>Suspended</DropdownItem>
+              <DropdownItem onClick={() => handleDropdownSelect('incomplete')}>Incomplete</DropdownItem>
+              <DropdownItem onClick={() => handleDropdownSelect('closed')}>Closed</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          <Input className={styles.buttonContainer} type="submit" value="Confirm" />
+        </Form>
+      </Col>
+    </Container>
   );
 }
 
 ApplicationStatusForm.propTypes = {
   title: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  donor: PropTypes.object, // Add PropTypes for donor
-  client: PropTypes.object, // Add PropTypes for client
+  donor: PropTypes.object,
+  client: PropTypes.object,
+  // userId: PropTypes.string.isRequired,
 };
 
 ApplicationStatusForm.defaultProps = {
-  donor: null, // Default prop for donor
-  client: null, // Default prop for client
+  donor: null,
+  client: null,
 };
 
 export default ApplicationStatusForm;

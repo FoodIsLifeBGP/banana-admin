@@ -1,23 +1,23 @@
-@import "../../colors.module.css";
-
-.container{
+.container {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 0 1rem;
 }
 
-.bananaPortalNav {
+.navText {
   font-style: normal;
   font-weight: bold;
   font-size: 1.5rem;
   display: flex;
-  color: var(--NAVY_BLUE);
+  color: var(--NAVY_BLUE) !important;
   text-align: left;
+  margin-left: 2rem;
 }
 
 .navBarBrand {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 1rem 0;
 }
 
 .mobileNav {
@@ -25,8 +25,13 @@
   text-align: start;
 }
 
+.bananaIcon {
+  width: 90px;
+}
+
 .navIcon {
   margin-right: 1.5rem;
+  width: 32px;
 }
 
 .navbarText {
@@ -34,16 +39,26 @@
 }
 
 a {
-  font-family: "Open Sans";
   font-style: normal;
-  line-height: 34px;
-  color: var(--NAVY_BLUE)
+  color: var(--NAVY_BLUE);
 }
 
 .mobileDropdownTasks {
   border: none;
   min-width: none;
   margin-left: 2.5rem;
+  padding: 0;
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 5px;
+
+    &:hover {
+      background-color: var(--FADED_BLUE);
+    }
+  }
+
 }
 
 .dropdownToggleMobile {

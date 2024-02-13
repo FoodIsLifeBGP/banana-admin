@@ -3,6 +3,7 @@ import {
   Card, CardBody, Col, Container, Row,
 } from 'reactstrap';
 import Navbar from '../../Components/Navbar';
+import Pagination from '../../Components/Pagination';
 import styles from './style.module.scss';
 
 import Icon from '../../Components/Icon';
@@ -96,7 +97,7 @@ function NotificationPage() {
         </Row>
         {notifications.map((notification, index) => (
           <Card
-            // eslint-disable-next-line react/no-array-index-key
+          // eslint-disable-next-line react/no-array-index-key
             key={`${notification.applicantName}-${index}`}
             className={styles.card}
           >
@@ -110,7 +111,7 @@ function NotificationPage() {
                       className={styles.iconPic}
                     />
                   ) : (
-                    <Icon name="avatar" size={80} />
+                    <Icon name="avatar" className={styles.iconPic} />
                   )}
                 </Col>
                 <Col className={styles.notificationText}>
@@ -139,6 +140,7 @@ function NotificationPage() {
           </Card>
         ))}
         {/* TODO: add paginator logic */}
+        <Pagination />
       </Container>
     </div>
   );

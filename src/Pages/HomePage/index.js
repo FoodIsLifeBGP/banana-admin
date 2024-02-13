@@ -37,7 +37,7 @@ export default function HomePage() {
   return (
     <div>
       <Navbar />
-      <Container style={{ margin: '4rem auto' }}>
+      <Container>
         <Row>
           <Col lg="6">
             <h3>New Applications</h3>

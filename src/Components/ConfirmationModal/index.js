@@ -1,39 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import Modal from '../Modal';
 import styles from './style.module.scss';
 
-function ConfirmationModal(props) {
+function ConfirmationModal({ apiSuccessMessage, firstName, lastName }) {
   const [show, setShow] = useState(true);
-  const { apiSuccessMessage, firstName, lastName } = props;
-  let fName = 'Johnny';
-  let lName = 'Appleseed';
-  if (firstName && lastName) {
-    fName = firstName;
-    lName = lastName;
-  }
+  const modalContentRef = useRef(null);
+
+  const fName = firstName || 'Johnny';
+  const lName = lastName || 'Appleseed';
   let successMessage = `${fName} ${lName} was added as admin.`;
+
   if (apiSuccessMessage) {
     successMessage = apiSuccessMessage;
   }
 
   return (
-    <dialog>
-      {show && (
-        <div className={styles.container}>
-          <div className={styles.topBar}>CONFIRMATION</div>
-          <div className={styles.mainBody}>
-            <p>{successMessage}</p>
-            <div className={styles.buttonContainer}>
-              <input
-                className={styles.okayButton}
-                type="submit"
-                value="Okay"
-                onClick={() => setShow(false)}
-              />
-            </div>
-          </div>
-        </div>
-      )}
-    </dialog>
+    <Modal
+      title="CONFIRMATION"
+      modalOpen={show}
+      setModalOpen={setShow}
+      toggle={() => setShow(!show)}
+      className={styles.container}
+      modalContentRef={modalContentRef}
+    >
+      <p>{successMessage}</p>
+    </Modal>
   );
 }
 

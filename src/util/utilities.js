@@ -1,4 +1,4 @@
-const formatDateToPST = (dateString) => {
+export const formatDateToPST = (dateString) => {
   const date = new Date(dateString);
 
   // Format the date to PST (UTC -8 hours)
@@ -16,4 +16,6 @@ const formatDateToPST = (dateString) => {
   return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 
-export default formatDateToPST;
+export function isValidNumber(value) {
+  return value !== null && value !== undefined && !Number.isNaN(value);
+}

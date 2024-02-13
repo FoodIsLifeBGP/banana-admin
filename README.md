@@ -94,14 +94,14 @@ banana-admin/src/Components $ mkdir Button
 banana-admin/src/Components $ cd Button
 ```
 
-Create `index.js` and `style.module.css`
+Create `index.js` and `style.module.scss`
 
 `index.js`
 
 ``` javascript
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 function Button(props) {
 
@@ -116,7 +116,7 @@ function Button(props) {
 export default Button;
 ```
 
-`style.module.css` is an empty file currently. Here we use css module to avoid class name conflict when the project become large ([Ref](https://css-tricks.com/css-modules-part-1-need/)).
+`style.module.scss` is an empty file currently. Here we use scss module to avoid class name conflict when the project become large ([Ref](https://css-tricks.com/css-modules-part-1-need/)).
 
 
 
@@ -156,7 +156,7 @@ Now you can add some style and props constraint to the files under `Button`,  an
 ```javascript
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 function Button(props) {
   const { text, style } = props;
@@ -177,11 +177,11 @@ export default Button;
 
 ```
 
-`style.module.css`
+`style.module.scss`
 
 ```javascript
-@import "../../colors.module.css";
-@import "../../fonts.module.css";
+@import "../../colors.module.scss";
+@import "../../fonts.module.scss";
 
 
 .buttonContainer{

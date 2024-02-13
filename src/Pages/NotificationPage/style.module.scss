@@ -1,4 +1,4 @@
-@import "../../colors.module.css";
+@import "../../colors.module.scss";
 
 /* styling for mobile */
 
@@ -10,7 +10,6 @@
 
 .iconPic{
   width: 80px;
-  height: 80px;
   border-radius: 100%;
   align-items: space-around;
 }

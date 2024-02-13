@@ -1,20 +1,33 @@
 import React from 'react';
+import {
+  InputGroup, Input, InputGroupText,
+} from 'reactstrap';
+import Icon from '../Icon';
+import styles from './style.module.scss';
 
-function Search({ value, onChange }) {
+function Search({ value, onChange, searchButton = null }) {
   return (
-    <div className="input-group">
-      <span className="input-group-text border-0 p-3">
-        <i className="fas fa-search" />
-      </span>
-      <input
+    <InputGroup>
+      <InputGroupText className="bg-light border-0">
+        <Icon name="search" />
+      </InputGroupText>
+      <Input
         type="text"
         name="query"
-        className="form-control border-0 bg-light p-4"
+        className="form-control border-0 bg-light"
         placeholder="Search..."
         value={value}
-        onChange={(e) => onChange(e.currentTarget.value)}
+        onChange={(e) => onChange(e.target.value)}
       />
-    </div>
+      {searchButton && (
+        <Input
+          className={styles.searchButton}
+          type="button"
+          onClick={searchButton.action}
+          value={searchButton.text}
+        />
+      )}
+    </InputGroup>
   );
 }
 

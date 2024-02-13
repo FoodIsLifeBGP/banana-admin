@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
 import {
   Collapse,
-  Navbar,
+  Navbar as ReactStrapNavbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   NavbarText,
 } from 'reactstrap';
+import { NavLink as RouterNavLink } from 'react-router-dom'; // Ensure this is imported
 
 import Icon from '../Icon';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
-function BananaAdminNavbar() {
+function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Navbar expand="sm" light className={styles.container}>
+    <ReactStrapNavbar expand="sm" light className={styles.container}>
       <NavbarBrand href="/" className={styles.navBarBrand}>
-        <Icon name="bananaIcon" size={75} className={styles.navIcon} />
-        <NavbarText className={styles.bananaPortalNav}>
+        <Icon name="bananaIcon" className={styles.bananaIcon} />
+        <NavbarText className={styles.navText}>
           BANANA
           <br />
           PORTAL
@@ -38,12 +38,12 @@ function BananaAdminNavbar() {
       <Collapse isOpen={isOpen} navbar>
         <Nav className={`ms-auto + ${styles.mobileNav}`} navbar>
           <NavItem className="w-100">
-            <NavLink href="/notifications" className="dropdown-item">
-              <Icon name="alertBell" size={32} className={styles.navIcon} />
+            <RouterNavLink to="/notifications" className="dropdown-item">
+              <Icon name="alertBell" className={styles.navIcon} />
               <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
                 Notifications
               </NavbarText>
-            </NavLink>
+            </RouterNavLink>
           </NavItem>
 
           <UncontrolledDropdown nav inNavbar className={`${styles.hideMobile} w-100`}>
@@ -52,32 +52,32 @@ function BananaAdminNavbar() {
               caret
               className={`${styles.dropdownToggleMobile} + ${styles.navbarText}`}
             >
-              <Icon name="tasks" size={32} className={styles.navIcon} />
+              <Icon name="tasks" className={styles.navIcon} />
               <NavbarText className={styles.displayMobile}>Tasks</NavbarText>
             </DropdownToggle>
             <DropdownMenu end className={styles.mobileDropdownTasks}>
-              <DropdownItem>
-                <NavLink href="/all">All</NavLink>
+              <DropdownItem className={styles.dropDownItem}>
+                <RouterNavLink to="/all" className={styles.dropdownLink}>All</RouterNavLink>
               </DropdownItem>
-              <DropdownItem>
-                <NavLink href="/clients">Clients</NavLink>
+              <DropdownItem className={styles.dropDownItem}>
+                <RouterNavLink to="/clients" className={styles.dropdownLink}>Clients</RouterNavLink>
               </DropdownItem>
-              <DropdownItem>
-                <NavLink href="/donors">Donors</NavLink>
+              <DropdownItem className={styles.dropDownItem}>
+                <RouterNavLink to="/donors" className={styles.dropdownLink}>Donors</RouterNavLink>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
 
-          <NavLink href="/settings" className="dropdown-item w-100">
-            <Icon name="avatar" size={35} className={styles.navIcon} />
+          <RouterNavLink to="/settings" className="dropdown-item w-100">
+            <Icon name="avatar" className={styles.navIcon} />
             <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
               Profile
             </NavbarText>
-          </NavLink>
+          </RouterNavLink>
         </Nav>
       </Collapse>
-    </Navbar>
+    </ReactStrapNavbar>
   );
 }
 
-export default BananaAdminNavbar;
+export default Navbar;

@@ -8,7 +8,7 @@ export default {
 };
 
 // Template for displaying each icon
-function IconTemplate({ name, size }) {
+function IconTemplate({ name }) {
   return (
     <div
       style={{
@@ -20,7 +20,7 @@ function IconTemplate({ name, size }) {
         minWidth: '60px',
       }}
     >
-      <Icon name={name} size={size} />
+      <Icon name={name} />
       <p>{name}</p>
     </div>
   );
@@ -30,7 +30,7 @@ function IconTemplate({ name, size }) {
 export function SingleIconExample() {
   return (
     <div style={{ textAlign: 'center' }}>
-      <Icon name="upsetWoman" size={200} />
+      <Icon name="upsetWoman" />
     </div>
   );
 }
@@ -42,7 +42,7 @@ SingleIconExample.parameters = {
       story: 'Example of how to use the Icon component for a single icon.',
     },
     source: {
-      code: '<Icon name="upsetWoman" size={200} />',
+      code: '<Icon name="upsetWoman" />',
     },
   },
 };
@@ -59,7 +59,7 @@ export function AllIcons() {
       }}
     >
       {Object.keys(icons).map((iconName) => (
-        <IconTemplate key={iconName} name={iconName} size={100} />
+        <IconTemplate key={iconName} name={iconName} />
       ))}
     </div>
   );

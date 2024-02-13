@@ -1,5 +1,6 @@
 import React from 'react';
-import { DataTable, Pagination } from '../Components/DataTable';
+import DataTable from '../Components/DataTable';
+import Pagination from '../Components/Pagination';
 
 export default {
   title: 'Components/Data Table',
@@ -11,8 +12,8 @@ export function Presentation() {
   const pageSize = 4;
   const sortColumn = { path: 'firstName', order: 'asc' };
   const columns = [
-    { path: 'firstName', label: 'FirstName' },
-    { path: 'lastName', label: 'LastName' },
+    { path: 'firstName', label: 'First Name' },
+    { path: 'lastName', label: 'Last Name' },
     {
       key: 'detail',
       label: 'Detail',

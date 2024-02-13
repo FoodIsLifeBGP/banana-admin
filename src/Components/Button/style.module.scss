@@ -1,5 +1,4 @@
-@import "../../colors.module.css";
-@import "../../fonts.module.css";
+$buttonFontSize: 1.25rem;
 
 .buttonContainer{
   width: 9rem;
@@ -10,18 +9,23 @@
   align-items: center;
   border-radius: 0.5rem;
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.5rem;
+  font-size: $buttonFontSize;
   font-weight: 700;
   border: none;
+  transition: all 0.35s ease;
+
+  img {
+    margin-right: 8px;
+  }
 }
 
-/* Extending .buttonContainer styles to primary, secondary, danger, and success buttons */
+/* extending `.buttonContainer` styles to primary, secondary, danger, and success buttons */
 .buttonPrimary,
 .buttonSecondary,
 .buttonDanger,
 .buttonSuccess {
   @extend .buttonContainer;
-  /* Unique background and text colors for each button type */
+  /* unique background and text colors for each button type */
   &.buttonPrimary {
     background-color: var(--BANANA_YELLOW);
     color: var(--NAVY_BLUE);
@@ -56,21 +60,24 @@
 }
 
 .buttonPlainText {
+  @extend .buttonContainer;
   background-color: transparent;
   color: var(--NAVY_BLUE);
   border: none;
-  padding: 0.5rem 1rem;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  transition: color 0.3s ease;
-}
 
-.buttonPlainText:hover {
-  text-decoration: underline;
-  color: var(--HIGHLIGHT_COLOR);
+  &:focus,
+  &:active,
+  &:hover {
+    color: var(--FADED_NAVY_BLUE);
+    text-decoration: underline;
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    outline: none;
+  }
 }
 
 .buttonIcon {
@@ -81,19 +88,17 @@
   border: none;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 
-  .icon {
-    font-size: 1.5rem;
-    color: var(--NAVY_BLUE);
+  img {
+    margin-right: 0;
   }
 }
 
 .buttonIcon:hover {
-  background-color: var(--LIGHT_HOVER);
+  background-color: var(--LIGHT_BLUE);
   .icon {
-    color: var(--HIGHLIGHT_COLOR);
+    color: var(--FADED_NAVY_BLUE);
   }
 }

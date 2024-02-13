@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { DataTable, Pagination } from '../../Components/DataTable';
-import Layout from '../../Components/Layout';
+import DataTable from '../../Components/DataTable';
+import Pagination from '../../Components/Pagination';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
 import Badge from '../../Components/Badge';
-
+import styles from './style.module.scss';
 import { GetClients } from '../../Services/ClientsService';
+import BreadCrumb from '../../Components/BreadCrumb';
+import Layout from '../../Components/Layout';
 
-import formatDateToPST from '../../util/utilities';
+import { formatDateToPST } from '../../util/utilities';
 
 function ClientsPage() {
   const defaultPageSize = 8;
@@ -59,7 +61,7 @@ function ClientsPage() {
       path: 'account_status',
       key: 'account_status',
       label: 'Status',
-      content: (client) => <Badge text={client.account_status} status={client.account_status} />,
+      content: (client) => <Badge status={client.account_status} />,
     },
   ];
 
@@ -81,20 +83,27 @@ function ClientsPage() {
     getClients();
   }, [currentPage, sortColumn, searchQuery]);
 
+  /* TODO: remove and base this off URL path */
+  const newDonorPageBCT = [
+    { pageName: 'Home', url: 'localhost:3000' },
+    { pageName: 'Client', url: 'localhost:3000' },
+    { pageName: 'All', url: 'localhost:3000' },
+  ];
+
   return (
     <Layout>
       <div className="container">
+        <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
         <div className="row mt-4 mb-4">
-          <div className="col-6">
-            <h2>New Applications (Client)</h2>
-          </div>
-          <div className="col-3">
-            <Search value={searchQuery} onChange={handleSearch} />
-          </div>
-          <div className="col-3 float-end">
-            <button type="button" className="btn btn-primary btn-lg ">
-              All Applications
-            </button>
+          <div className={styles.headerBar}>
+            <div className="col-6">
+              <h2>NEW CLIENT APPLICATIONS</h2>
+            </div>
+            <Search
+              value={searchQuery}
+              onChange={handleSearch}
+              searchButton={{ action: () => alert('TODO: get all clients and donors'), text: 'All' }}
+            />
           </div>
         </div>
         <div className="row">

@@ -1,15 +1,14 @@
 import React from 'react';
-
-import BananaAdminNavbar from '../Navbar';
-
+import Navbar from '../Navbar';
 import styles from './style.module.scss';
+import Footer from '../Footer';
 
 function Layout({ children }) {
   return (
     <div className={styles.pageContainer}>
-      <BananaAdminNavbar />
+      <Navbar />
       <main className="container">{children}</main>
-      <div className={styles.footer} />
+      <Footer />
     </div>
   );
 }
