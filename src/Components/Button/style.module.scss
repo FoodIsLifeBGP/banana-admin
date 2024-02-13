@@ -68,10 +68,15 @@ $buttonFontSize: 1.25rem;
   text-decoration: none;
   cursor: pointer;
 
+  &:focus,
+  &:active,
   &:hover {
     color: var(--FADED_NAVY_BLUE);
     text-decoration: underline;
     background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    outline: none;
   }
 }
 

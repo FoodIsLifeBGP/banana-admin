@@ -87,7 +87,6 @@ export default function LoginPage() {
                     onChange={({ target }) => setEmail(target.value)}
                   />
                 </InputGroup>
-                {/* TODO: update all input components to use this format */}
                 <InputGroup className={styles.inputrow}>
                   <InputGroupText>
                     <Icon name="lock" className={styles.inputIcon} />
@@ -104,7 +103,7 @@ export default function LoginPage() {
                 <div className={styles.formSubmit}>
                   <Button
                     text="Login"
-                    variant={isSmallScreen ? 'buttonSecondary' : 'buttonPrimary'}
+                    variant={isSmallScreen ? 'buttonPlainText' : 'buttonPrimary'}
                     action={(event) => handleLogin(event)}
                   />
                   <Button
