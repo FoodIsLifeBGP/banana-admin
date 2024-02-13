@@ -10,6 +10,7 @@ import Badge from '../../Components/Badge';
 import styles from './style.module.scss';
 import { GetClients } from '../../Services/ClientsService';
 import BreadCrumb from '../../Components/BreadCrumb';
+import Layout from '../../Components/Layout';
 
 import { formatDateToPST } from '../../util/utilities';
 
@@ -90,33 +91,35 @@ function ClientsPage() {
   ];
 
   return (
-    <div className="container">
-      <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
-      <div className="row mt-4 mb-4">
-        <div className={styles.headerBar}>
-          <div className="col-6">
-            <h2>NEW CLIENT APPLICATIONS</h2>
+    <Layout>
+      <div className="container">
+        <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
+        <div className="row mt-4 mb-4">
+          <div className={styles.headerBar}>
+            <div className="col-6">
+              <h2>NEW CLIENT APPLICATIONS</h2>
+            </div>
+            <Search
+              value={searchQuery}
+              onChange={handleSearch}
+              searchButton={{ action: () => alert('TODO: get all clients and donors'), text: 'All' }}
+            />
           </div>
-          <Search
-            value={searchQuery}
-            onChange={handleSearch}
-            searchButton={{ action: () => alert('TODO: get all clients and donors'), text: 'All' }}
+        </div>
+        <div className="row">
+          <DataTable columns={columns} data={clients} sortColumn={sortColumn} onSort={handleSort} />
+
+          <Spinner loading={loading} />
+
+          <Pagination
+            itemsCount={itemsCount}
+            pageSize={defaultPageSize}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
           />
         </div>
       </div>
-      <div className="row">
-        <DataTable columns={columns} data={clients} sortColumn={sortColumn} onSort={handleSort} />
-
-        <Spinner loading={loading} />
-
-        <Pagination
-          itemsCount={itemsCount}
-          pageSize={defaultPageSize}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      </div>
-    </div>
+    </Layout>
   );
 }
 

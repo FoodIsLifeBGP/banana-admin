@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Card, CardBody, Col, Container, Row,
 } from 'reactstrap';
+import Navbar from '../../Components/Navbar';
 import Pagination from '../../Components/Pagination';
 import styles from './style.module.scss';
 
@@ -88,57 +89,60 @@ function NotificationPage() {
   ];
 
   return (
-    <Container>
-      <Row style={{ margin: '1rem' }}>
-        <h1 className={styles.header}>Notifications</h1>
-      </Row>
-      {notifications.map((notification, index) => (
-        <Card
+    <div>
+      <Navbar />
+      <Container>
+        <Row style={{ margin: '1rem' }}>
+          <h1 className={styles.header}>Notifications</h1>
+        </Row>
+        {notifications.map((notification, index) => (
+          <Card
           // eslint-disable-next-line react/no-array-index-key
-          key={`${notification.applicantName}-${index}`}
-          className={styles.card}
-        >
-          <CardBody style={{ paddingBottom: '1rem' }}>
-            <Row>
-              <Col xs="auto">
-                {notification.profilePic ? (
-                  <img
-                    src={`${notification.profilePic}`}
-                    alt="profile pic"
-                    className={styles.iconPic}
-                  />
-                ) : (
-                  <Icon name="avatar" className={styles.iconPic} />
-                )}
-              </Col>
-              <Col className={styles.notificationText}>
-                <div className={styles.navyText}>
-                  {`${notification.adminName} ${notification.adminAction} ${notification.applicantName} application as\u00A0`}
-                  <span style={{ fontWeight: 'bolder' }}>{`${notification.status}`}</span>
-                  .
-                </div>
-                <div className={styles.dateTime}>
-                  {' '}
-                  {notification.date.hour}
-                  :
-                  {notification.date.minute}
-                  {' '}
-                  {notification.date.period}
-                  {' '}
-                  {notification.date.month}
-                  /
-                  {notification.date.day}
-                  /
-                  {notification.date.year}
-                </div>
-              </Col>
-            </Row>
-          </CardBody>
-        </Card>
-      ))}
-      {/* TODO: add paginator logic */}
-      <Pagination />
-    </Container>
+            key={`${notification.applicantName}-${index}`}
+            className={styles.card}
+          >
+            <CardBody style={{ paddingBottom: '1rem' }}>
+              <Row>
+                <Col xs="auto">
+                  {notification.profilePic ? (
+                    <img
+                      src={`${notification.profilePic}`}
+                      alt="profile pic"
+                      className={styles.iconPic}
+                    />
+                  ) : (
+                    <Icon name="avatar" className={styles.iconPic} />
+                  )}
+                </Col>
+                <Col className={styles.notificationText}>
+                  <div className={styles.navyText}>
+                    {`${notification.adminName} ${notification.adminAction} ${notification.applicantName} application as\u00A0`}
+                    <span style={{ fontWeight: 'bolder' }}>{`${notification.status}`}</span>
+                    .
+                  </div>
+                  <div className={styles.dateTime}>
+                    {' '}
+                    {notification.date.hour}
+                    :
+                    {notification.date.minute}
+                    {' '}
+                    {notification.date.period}
+                    {' '}
+                    {notification.date.month}
+                    /
+                    {notification.date.day}
+                    /
+                    {notification.date.year}
+                  </div>
+                </Col>
+              </Row>
+            </CardBody>
+          </Card>
+        ))}
+        {/* TODO: add paginator logic */}
+        <Pagination />
+      </Container>
+    </div>
   );
 }
 

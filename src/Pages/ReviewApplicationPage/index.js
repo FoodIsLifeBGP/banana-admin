@@ -4,6 +4,7 @@ import { Container, Row } from 'reactstrap';
 
 import ApplicationReview from '../../Components/ApplicationReviewCard';
 import ApplicationStatusForm from '../../Components/ApplicationStatusForm';
+import Navbar from '../../Components/Navbar';
 import Modal from '../../Components/Modal';
 
 import { GetClient, UpdateClientStatus } from '../../Services/ClientsService';
@@ -67,6 +68,7 @@ export default function ReviewApplicationPage(props) {
 
   return (
     <div>
+      <Navbar />
       <Container style={{ margin: '4rem auto' }}>
         <Row className="justify-content-center">
           <ApplicationReview client={client} donor={donor} />

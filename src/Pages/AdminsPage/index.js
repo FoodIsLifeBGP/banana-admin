@@ -8,6 +8,7 @@ import Modal from '../../Components/Modal';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
 import Button from '../../Components/Button';
+import Layout from '../../Components/Layout';
 
 // The next line will be uncommented when the back end is ready:
 // import { GetAdmins, UpdateAdminStatus } from '../../Services/AdminsService';
@@ -195,7 +196,7 @@ function AdminsPage() {
   }, [currentPage, sortColumn, searchQuery]);
 
   return (
-    <div>
+    <Layout>
       <div className={`${styles.adminsPage}`}>
         <div className="row mt-4 mb-4 d-flex">
           <h1 className="col-8 text-start">All Admins</h1>
@@ -243,7 +244,7 @@ function AdminsPage() {
           <p>{`Are you sure you want to deactivate ${selectedAdmin.first_name} ${selectedAdmin.last_name}'s access?`}</p>
         )}
       </Modal>
-    </div>
+    </Layout>
   );
 }
 
