@@ -15,6 +15,7 @@ import UPSET_PERSON_SVG from '../../Image/UPSET_PERSON.svg';
 import VEGGIES_SVG from '../../Image/VEGGIES.svg';
 import VISIBLE_EYE_SVG from '../../Image/VISIBLE_EYE.svg';
 
+/* NOTE: Icon names can be found here https://materializecss.com/icons.html */
 const icons = {
   alertBell: ALERTBELL_SVG,
   avatar: AVATAR_SVG,

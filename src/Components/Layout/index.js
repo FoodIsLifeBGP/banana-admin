@@ -5,7 +5,6 @@ import { useAppContext } from 'src/contexts/AppContext';
 import AuthWrapper, { isAuthenticated } from '../../Services/AuthWrapper';
 
 import AdminsPage from '../../Pages/AdminsPage';
-import BananaAdminNavbar from '../Navbar';
 import ClientsPage from '../../Pages/ClientsPage';
 import DonorPage from '../../Pages/DonorPage';
 import ErrorPage from '../../Pages/ErrorPage';
@@ -14,12 +13,16 @@ import NewAdminForm from '../NewAdminForm';
 import NotificationPage from '../../Pages/NotificationPage';
 import ReviewApplicationPage from '../../Pages/ReviewApplicationPage/index';
 import SettingsPage from '../../Pages/SettingsPage/index';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
 import styles from './style.module.scss';
 
 function Layout() {
   const { admin, jwt } = useAppContext();
   console.log('layout', admin, jwt);
+  //TODO: why are we accessing these?
+
   const protectedRoutes = [
     { path: '/', element: <HomePage /> },
     { path: '/settings', element: <SettingsPage /> },
@@ -38,7 +41,7 @@ function Layout() {
 
   return (
     <div className={styles.pageContainer}>
-      {isLoggedIn && <BananaAdminNavbar />}
+      {isLoggedIn && <Navbar />}
       <main className="container">
         <Routes>
           {protectedRoutes.map((route) => (
@@ -50,7 +53,7 @@ function Layout() {
           ))}
         </Routes>
       </main>
-      {isLoggedIn && <div className={styles.footer} />}
+      <Footer />
     </div>
   );
 }

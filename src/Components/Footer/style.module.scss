@@ -1,0 +1,12 @@
+.footer {
+  background-color: var(--BANANA_YELLOW);
+  height: 8vh;
+  display: flex;
+  justify-content: flex-start;
+
+  p {
+    margin: auto 1rem;
+    font-size: .95rem;
+    color: var(--NAVY_BLUE);
+  }
+}

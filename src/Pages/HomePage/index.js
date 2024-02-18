@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Col, Row } from 'reactstrap';
 
+import Navbar from 'src/Components/Navbar';
 import ApplicationCard from '../../Components/ApplicationCard';
 import DonationCard from '../../Components/DonationCard';
 
@@ -36,18 +37,21 @@ export default function HomePage() {
   }, []);
 
   return (
-    <Container style={{ margin: '4rem auto' }}>
-      <Row>
-        <Col lg="6">
-          <h3>New Applications</h3>
-          <ApplicationCard type="client" userCount={newClients} />
-          <ApplicationCard type="donor" userCount={newDonors} />
-        </Col>
-        <Col lg="6">
-          <h3>Donation Status</h3>
-          <DonationCard claimedDonation={claimedDonations} totalDonation={activeDonations} />
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Navbar />
+      <Container>
+        <Row>
+          <Col lg="6">
+            <h3>New Applications</h3>
+            <ApplicationCard type="client" userCount={newClients} />
+            <ApplicationCard type="donor" userCount={newDonors} />
+          </Col>
+          <Col lg="6">
+            <h3>Donation Status</h3>
+            <DonationCard claimedDonation={claimedDonations} totalDonation={activeDonations} />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }

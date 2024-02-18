@@ -1,97 +1,79 @@
-@import "../../colors.module.css";
-
 .container {
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 0.5rem 1rem;
-  min-height: fit-content;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0 1rem;
 }
 
-.bananaPortalNav, a, .tasksDropdown > button > a {
+.navText {
   font-style: normal;
-  color: var(--NAVY_BLUE) !important;
-}
-
-.bananaPortalNav {
   font-weight: bold;
   font-size: 1.5rem;
   display: flex;
+  color: var(--NAVY_BLUE) !important;
   text-align: left;
-}
-
-.navBarBrand, .navItem:hover {
-  display: flex;
-  align-items: center;
-  background-color: #e9ecef;
+  margin-left: 2rem;
 }
 
 .navBarBrand {
+  display: flex;
   flex-direction: row;
-  text-decoration: none;
-  background-color: transparent;
+  align-items: center;
+  margin: 1rem 0;
 }
 
-.mobileNav>li {
+.mobileNav {
   align-items: start;
   text-align: start;
-  width: 100%;
 }
 
-.navItem .navLink {
-  display: flex;
-  align-items: center;
-  width: 100%;
+.bananaIcon {
+  width: 90px;
 }
 
 .navIcon {
   margin-right: 1.5rem;
+  width: 32px;
 }
 
-.navbarText, a, .tasksDropdown > button > a, .navItem span {
+.navbarText {
   font-weight: 700;
-  font-family: "Open Sans";
-  line-height: 34px;
-
-  &:active {
-    background-color: var(--LIGHT_BLUE);
-  }
 }
 
-.tasksDropdown {
+a {
+  font-style: normal;
+  color: var(--NAVY_BLUE);
+}
+
+.mobileDropdownTasks {
   border: none;
   min-width: none;
   margin-left: 2.5rem;
+  padding: 0;
 
-  & button {
-    padding: 0;
+  a {
+    display: block;
+    width: 100%;
+    padding: 5px;
+
+    &:hover {
+      background-color: var(--FADED_BLUE);
+    }
   }
+
 }
 
 .dropdownToggleMobile {
   text-align: start;
 }
 
-span.mobileText {
-  display: inline-block;
-  width: 100%;
-
-  @media (min-width: 576px) {
+@media (min-width: 576px) {
+  .displayMobile {
     display: none;
   }
-}
 
-.displayMobile {
-  display: none;
-
-  @media (min-width: 576px) {
+  .hideMobile {
     display: inline-block;
   }
-}
 
-.hideMobile {
-  display: inline-block;
-}
-
-@media (min-width: 576px) {
   .navIcon {
     margin-right: auto;
   }
@@ -100,8 +82,8 @@ span.mobileText {
     margin-right: 1.5rem;
   }
 
-  .tasksDropdown {
-    right: 0.125rem;
+  .mobileDropdownTasks {
     border: 1px solid lightgray;
+    margin-left: auto;
   }
 }

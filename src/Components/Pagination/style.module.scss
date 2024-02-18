@@ -1,0 +1,12 @@
+$activeBgColor: var(--BANANA_YELLOW);
+$activeFontColor: var(--WHITE);
+$fontColor: var(--NAVY_BLUE);
+
+.pageLink {
+  color: $fontColor !important;
+}
+
+.active {
+  background-color: $activeBgColor !important;
+  border-color: $activeBgColor !important;
+}

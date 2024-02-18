@@ -1,33 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import map from './map';
+import map from './map'; /* add new icons here */
+import './style.module.scss';
 
-function Icon(props) {
-  // TODO: we should either be passing in fixed set of predefined sizes (sm, md, lg, xl) or nothing.
-  // passing in specific px values is not best practice,
-  // might as well just alter with css if we need specific pixel sizes
-  // also isn't there already a reactstrap component for icons?
-  const { name, size, className } = props;
+function Icon({ name, className }) {
   const fileRef = map[name];
 
-  const combinedClassName = className ? `fa fa-${name} ${className}` : `fa fa-${name}`;
+  const combinedClassName = className ? `fa fa-${name} icon ${className}` : `fa fa-${name} icon`;
 
   if (fileRef) {
-    return <img src={fileRef} className={className} style={{ width: size, height: size }} alt="" />;
+    return <img src={fileRef} className={combinedClassName} alt={`${name} icon`} />;
   }
 
-  return <i className={combinedClassName} />;
+  return <i className={combinedClassName} alt={`${name} icon`} />;
 }
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.number,
   className: PropTypes.string,
 };
 
 Icon.defaultProps = {
-  className: '',
-  size: 20,
+  className: 'icon',
 };
 
 export default Icon;

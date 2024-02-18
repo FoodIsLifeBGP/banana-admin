@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Badge as ReactStrapBadge } from 'reactstrap';
 
 function Badge({
-  text, status,
+  status, text = status,
 }) {
   // NOTE Badge Types: Primary Secondary Success Danger Warning Info Light Dark
-  // Status Types: approved, active, rejected, suspended, inactive, closed, pending
+  // Status Types: `approved`, `active`, `rejected`, `suspended`, `inactive`, `closed`, `pending`
 
   const badgeColor = () => {
     switch (status) {
@@ -41,7 +41,6 @@ function Badge({
 }
 
 Badge.propTypes = {
-  text: PropTypes.string.isRequired,
   status: PropTypes.oneOf([
     'approved',
     'rejected',
@@ -52,11 +51,7 @@ Badge.propTypes = {
     'closed',
     'processing',
     'incomplete',
-  ]),
-};
-
-Badge.defaultProps = {
-  status: 'pending',
+  ]).isRequired,
 };
 
 export default Badge;

@@ -1,5 +1,5 @@
-@import "../../colors.module.css";
-@import "../../fonts.module.css";
+@import "../../colors.module.scss";
+@import "../../fonts.module.scss";
 
 
   .text {
@@ -86,7 +86,7 @@
   border-radius: 8px;
 }
 
-.incompleteDiv { 
+.incompleteDiv {
   display: flex;
   flex-direction: row;
   align-items: center;

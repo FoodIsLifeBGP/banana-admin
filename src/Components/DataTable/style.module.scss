@@ -1,0 +1,11 @@
+thead {
+  color: var(--NAVY_BLUE);
+
+  th {
+    cursor: 'pointer';
+
+    &:first-of-type {
+      text-align: left;
+    }
+  }
+}

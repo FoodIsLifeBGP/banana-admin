@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import {
-  Button as BootstrapButton, Container, Col, Row, Form,
+  Container,
+  Col,
+  Form,
+  InputGroup,
+  InputGroupText,
+  Input as BootstrapInput,
+
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
-
 import { useAppContext } from '../../contexts/AppContext';
 import ApiService from '../../Services/ApiService';
 
+import Button from '../../Components/Button';
 import Icon from '../../Components/Icon';
-import Input from '../../Components/Input/index';
 // import useGlobal from '../../state/index';
 import Spinner from '../../Components/Spinner/Spinner';
+import useMediaQuery from '../../util/useMediaQuery';
 
 import styles from './style.module.scss';
 
@@ -25,9 +32,16 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const isSmallScreen = useMediaQuery('(max-width: 768px)');
+
   const clearEmailAndPassword = () => {
     setEmail('');
     setPassword('');
+  };
+
+  const handleForgotPassword = async () => {
+    // TODO: implement once backend is ready
+    console.log('lost PW');
   };
 
   const handleLogin = async (event) => {
@@ -73,50 +87,56 @@ export default function LoginPage() {
       <div className={styles.borderspace} />
       <div className={styles.mainspace}>
         <Container className="h-100 align-items-center d-flex justify-content-center">
-          <Row>
-            <Col lg={10} className="mx-auto">
-              <Row className={styles.titlerow}>
-                <Col sm={6}>
-                  <Icon name="bananaIcon" size={200} />
-                </Col>
-                <Col sm={6}>
-                  <h1 className={styles.title}>BANANA PORTAL</h1>
-                </Col>
-              </Row>
-              <Form sm={12} className="mx-auto">
-                <Input
-                  id="email"
-                  name="email"
-                  iconName="user"
-                  placeholder="Email"
-                  className={styles.inputrow}
-                  value={email}
-                  onChange={({ target }) => setEmail(target.value)}
-                />
-                <Input
-                  id="password"
-                  name="password"
-                  iconName="lock"
-                  placeholder="Password"
-                  type="password"
-                  className={styles.inputrow}
-                  value={password}
-                  onChange={({ target }) => setPassword(target.value)}
-                />
-                <div className="mt-5 mx-5 row row-cols-2 formSubmit">
-                  <BootstrapButton
-                    className={`col ${styles.button}`}
-                    onClick={(event) => handleLogin(event)}
-                  >
-                    Login
-                  </BootstrapButton>
-                  <a href="/" className="col">
-                    <p>Forgot password?</p>
-                  </a>
+          <Col sm={12} md={8}>
+            <div className="d-flex mb-5">
+              <Icon name="bananaIcon" className={styles.bananaIcon} />
+              <div className="d-flex flex-column">
+                <h1 className={styles.title}>Banana</h1>
+                <h1 className={styles.title}>Portal</h1>
+              </div>
+            </div>
+            <Col sm={12}>
+              <Form>
+                <InputGroup className={styles.inputrow}>
+                  <InputGroupText>
+                    <Icon name="user" className={styles.inputIcon} />
+                  </InputGroupText>
+                  <BootstrapInput
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={({ target }) => setEmail(target.value)}
+                  />
+                </InputGroup>
+                <InputGroup className={styles.inputrow}>
+                  <InputGroupText>
+                    <Icon name="lock" className={styles.inputIcon} />
+                  </InputGroupText>
+                  <BootstrapInput
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    value={password}
+                    onChange={({ target }) => setPassword(target.value)}
+                  />
+                </InputGroup>
+                <div className={styles.formSubmit}>
+                  <Button
+                    text="Login"
+                    variant={isSmallScreen ? 'buttonPlainText' : 'buttonPrimary'}
+                    action={(event) => handleLogin(event)}
+                  />
+                  <Button
+                    text="Forgot password?"
+                    variant="buttonPlainText"
+                    action={(event) => handleForgotPassword(event)}
+                  />
                 </div>
               </Form>
             </Col>
-          </Row>
+          </Col>
         </Container>
       </div>
     </div>
