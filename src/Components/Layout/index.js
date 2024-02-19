@@ -1,8 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-import { useAppContext } from 'src/contexts/AppContext';
-import AuthWrapper, { isAuthenticated } from '../../Services/AuthWrapper';
+import AuthWrapper from '../../Services/AuthWrapper';
 
 import AdminsPage from '../../Pages/AdminsPage';
 import ClientsPage from '../../Pages/ClientsPage';
@@ -19,9 +17,6 @@ import Footer from '../Footer';
 import styles from './style.module.scss';
 
 function Layout() {
-  const { admin, jwt } = useAppContext();
-  console.log('layout', admin, jwt);
-
   const protectedRoutes = [
     { path: '/', element: <HomePage /> },
     { path: '/settings', element: <SettingsPage /> },
@@ -36,11 +31,11 @@ function Layout() {
     { path: '*', element: <ErrorPage /> },
   ];
 
-  const isLoggedIn = isAuthenticated();
-
   return (
     <div className={styles.pageContainer}>
-      {isLoggedIn && <Navbar />}
+      <AuthWrapper>
+        <Navbar />
+      </AuthWrapper>
       <main className="container">
         <Routes>
           {protectedRoutes.map((route) => (

@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 
+// TODO: change this to use reactstrap components
 function Decisions() {
   return (
     <form>

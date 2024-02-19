@@ -1,28 +1,19 @@
 import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-
-export const isAuthenticated = () => {
-  const user = localStorage.getItem('user');
-  const token = localStorage.getItem('jwt');
-  return user && token;
-};
+import { useNavigate } from 'react-router-dom';
+import { useGlobalStateContext } from '../contexts/GlobalStateContext';
 
 function AuthWrapper({ children }) {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { jwt } = useGlobalStateContext();
+  const isAuthenticated = Boolean(jwt);
 
-  const onUserIndex = pathname.includes('users');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated()) {
-      navigate('/login');
-    } else if (onUserIndex) {
-      navigate('/error');
+    if (!isAuthenticated) {
+      navigate('/login', { replace: true });
     }
-  }, [navigate, onUserIndex]);
+  }, [jwt]);
 
-  // If the above useEffect triggers a navigate, this component won't actually render the children.
-  // The navigation action will take precedence.
   return children;
 }
 

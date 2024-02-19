@@ -4,7 +4,7 @@ import {
   Form, FormGroup, Label, Input, Container,
 } from 'reactstrap';
 
-import useGlobal from '../../state';
+import { useGlobalStateContext } from 'src/contexts/GlobalStateContext';
 
 import Badge from '../../Components/Badge';
 import Button from '../../Components/Button';
@@ -15,6 +15,7 @@ import Spinner from '../../Components/Spinner/Spinner';
 import ApiService from '../../Services/ApiService';
 
 import styles from './style.module.scss';
+import initialState from '../../util/environment';
 
 const formatDate = (date) => {
   const dateObj = new Date(date);
@@ -46,9 +47,10 @@ const formatAdminUpdateData = (admin) => ({
 });
 
 export default function SettingsPage() {
-  const [store, { logOut }] = useGlobal();
+  const { logOut, admin: savedUser } = useGlobalStateContext();
   const { axiosRequest, axiosFormRequest } = ApiService();
   const navigate = useNavigate();
+
   const [admin, setAdminData] = useState({});
   const [adminUpdate, setAdminUpdate] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
@@ -61,12 +63,10 @@ export default function SettingsPage() {
 
   useEffect(() => {
     const fetchAdmin = async () => {
-      const userStr = localStorage.getItem('user');
-      if (userStr) {
+      if (savedUser) {
         try {
           setLoading(true);
-          const currentUser = JSON.parse(userStr);
-          const response = await axiosRequest('GET', `admins/${currentUser.id}`);
+          const response = await axiosRequest('GET', `admins/${savedUser.id}`);
 
           if (response?.data?.admin) {
             setAdminData(formatAdminData(response.data.admin));
@@ -86,7 +86,7 @@ export default function SettingsPage() {
   }, []);
 
   const handleLogout = async () => {
-    await logOut(store);
+    await logOut();
     navigate('/login');
   };
 
@@ -107,10 +107,9 @@ export default function SettingsPage() {
     const formData = new FormData();
     formData.append('admin[avatar]', e.target[0].files[0]);
 
-    const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
     try {
       setLoading(true);
-      const response = await axiosFormRequest('PATCH', `admins/${currentUser.id}/update`, formData);
+      const response = await axiosFormRequest('PATCH', `admins/${savedUser.id}/update`, formData);
       if (response?.data?.admin) {
         setAdminData(formatAdminData(response.data.admin));
         setEditingProfilePic(false);
@@ -127,7 +126,6 @@ export default function SettingsPage() {
 
   const handleUserInfoFormSubmit = async (e) => {
     e.preventDefault();
-    const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
 
     const adminUpdateParams = {
       first_name: adminUpdate.firstName,
@@ -137,7 +135,7 @@ export default function SettingsPage() {
 
     try {
       setLoading(true);
-      const response = await axiosFormRequest('PATCH', `admins/${currentUser.id}/update`, {
+      const response = await axiosFormRequest('PATCH', `admins/${savedUser.id}/update`, {
         admin: adminUpdateParams,
       });
 
@@ -158,7 +156,7 @@ export default function SettingsPage() {
 
   const modalButtonConfig = () => {
     const cancelButton = {
-      text: 'Cancel',
+      text: 'Okay',
       variant: 'buttonSecondary',
       action: () => setModalOpen(false),
     };
@@ -189,7 +187,7 @@ export default function SettingsPage() {
               <img
                 alt="profile pic"
                 className={styles.profilePic}
-                src={admin.avatarUrl ? `${store.API_BASE_URL}${admin.avatarUrl}` : fallbackPic}
+                src={admin.avatarUrl ? `${initialState.API_BASE_URL}${admin.avatarUrl}` : fallbackPic}
               />
             </div>
             <form className={styles.profilePicForm} onSubmit={handleProfilePicFormSubmit}>

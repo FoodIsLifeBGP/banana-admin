@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { AppContextProvider } from './contexts/AppContext.tsx';
+import { GlobalStateProvider } from './contexts/GlobalStateContext';
 
 import Layout from './Components/Layout/index';
 import LoginPage from './Pages/LoginPage';
 
 function App() {
   return (
-    <AppContextProvider>
+    <GlobalStateProvider>
       <Router>
         <Routes>
           {/* Public route */}
@@ -18,7 +18,7 @@ function App() {
           <Route path="/*" element={<Layout />} />
         </Routes>
       </Router>
-    </AppContextProvider>
+    </GlobalStateProvider>
   );
 }
 

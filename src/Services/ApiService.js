@@ -10,10 +10,10 @@ const ApiService = () => {
 
   const getAuthHeader = () => {
     const jwt = localStorage.getItem('jwt');
+
     if (jwt) {
-      const parsedJwt = JSON.parse(jwt);
       return {
-        Authorization: `Bearer ${parsedJwt}`,
+        Authorization: `Bearer ${jwt}`,
       };
     }
     return {};
@@ -30,14 +30,14 @@ const ApiService = () => {
     url: endpoint,
     method,
     headers: getHeaders(),
-    data: body,
+    data: body ? JSON.stringify(body) : null,
   });
 
   const axiosFormRequest = (method, endpoint, body = null) => axiosInstance({
     url: endpoint,
     method,
     headers: getHeaders({ 'Content-Type': 'multipart/form-data' }),
-    data: body,
+    data: body ? JSON.stringify(body) : null,
   });
 
   return {

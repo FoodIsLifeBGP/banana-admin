@@ -11,21 +11,17 @@ import {
 
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
-import { useAppContext } from '../../contexts/AppContext';
-import ApiService from '../../Services/ApiService';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import Button from '../../Components/Button';
 import Icon from '../../Components/Icon';
-// import useGlobal from '../../state/index';
 import Spinner from '../../Components/Spinner/Spinner';
 import useMediaQuery from '../../util/useMediaQuery';
 
 import styles from './style.module.scss';
 
 export default function LoginPage() {
-  // const [, { logIn }] = useGlobal();
-  const { setAdmin, setJwt } = useAppContext();
-  const { axiosRequest } = ApiService();
+  const { logIn } = useGlobalStateContext();
 
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -47,37 +43,34 @@ export default function LoginPage() {
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    setLoading(true);
-    /* NOTE: `store` is implicitly passed to an "action" */
-    // const statusCode = await logIn({ email, password });
-    const response = await axiosRequest(
-      'POST',
-      'admin_auth',
-      JSON.stringify({ admin: { email, password } }),
-    );
-    console.log(response);
-    setJwt(response.data.jwt);
-    setAdmin(response.data.admin);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const status = await logIn({ email, password });
 
-    switch (response.status) {
-    case 202: {
-      clearEmailAndPassword();
-      navigate('/');
-      return;
+      // TODO: should probably be abstracted into a global "error parsing & toast" helper function
+      switch (status) {
+      case 202: {
+        clearEmailAndPassword();
+        navigate('/');
+        return;
+      }
+      case 401:
+        toast.warn('Incorrect email or password');
+        return;
+      case 404:
+        toast.error('Server not found - please try again');
+        return;
+      case 500:
+        toast.warn('Network error - please try again');
+        return;
+      default:
+        toast.warn(`Server replied with ${status} status code`);
+      }
+      setLoading(false);
+    } catch (error) {
+      toast.error(error);
     }
-    case 401:
-      toast.warn('Incorrect email or password');
-      return;
-    case 404:
-      toast.error('Server not found - please try again');
-      return;
-    case 500:
-      toast.warn('Network error - please try again');
-      return;
-    default:
-      toast.warn(`Server replied with ${response.status} status code`);
-    }
+    setLoading(false);
   };
 
   return (
