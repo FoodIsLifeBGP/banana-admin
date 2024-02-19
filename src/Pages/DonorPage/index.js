@@ -113,16 +113,6 @@ function DonorPage() {
           onPageChange={handlePageChange}
         />
       </div>
-      <div className="row">
-        <DataTable columns={columns} data={donors} sortColumn={sortColumn} onSort={handleSort} />
-        <Spinner loading={loading} />
-        <Pagination
-          itemsCount={itemsCount}
-          pageSize={defaultPageSize}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      </div>
     </div>
   );
 }

@@ -21,7 +21,6 @@ import styles from './style.module.scss';
 function Layout() {
   const { admin, jwt } = useAppContext();
   console.log('layout', admin, jwt);
-  //TODO: why are we accessing these?
 
   const protectedRoutes = [
     { path: '/', element: <HomePage /> },

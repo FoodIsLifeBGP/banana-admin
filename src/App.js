@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { AppContextProvider } from './contexts/AppContext';
+import { AppContextProvider } from './contexts/AppContext.tsx';
 
 import Layout from './Components/Layout/index';
-import LoginPage from './Pages/LoginPage/index';
+import LoginPage from './Pages/LoginPage';
 
 function App() {
   return (

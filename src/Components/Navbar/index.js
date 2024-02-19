@@ -50,7 +50,7 @@ function Navbar() {
             <DropdownToggle
               nav
               caret
-              className={`${styles.dropdownToggleMobile} + ${styles.navbarText}`}
+              className={`${styles.dropdownToggle} + ${styles.navbarText}`}
             >
               <Icon name="tasks" className={styles.navIcon} />
               <NavbarText className={styles.displayMobile}>Tasks</NavbarText>
@@ -68,9 +68,9 @@ function Navbar() {
             </DropdownMenu>
           </UncontrolledDropdown>
 
-          <RouterNavLink to="/settings" className="dropdown-item w-100">
+          <RouterNavLink to="/settings" className={styles.settingsNavLink}>
             <Icon name="avatar" className={styles.navIcon} />
-            <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
+            <NavbarText className={`${styles.displayMobile} ${styles.navbarText}`}>
               Profile
             </NavbarText>
           </RouterNavLink>

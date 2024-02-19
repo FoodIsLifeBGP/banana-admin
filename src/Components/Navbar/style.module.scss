@@ -43,6 +43,16 @@ a {
   color: var(--NAVY_BLUE);
 }
 
+.settingsNavLink {
+  background-color: transparent;
+  padding: 4px 12px;
+
+  &:hover {
+    color: #1e2125;
+    background-color: #e9ecef;
+  }
+}
+
 .mobileDropdownTasks {
   border: none;
   min-width: none;
@@ -61,8 +71,14 @@ a {
 
 }
 
-.dropdownToggleMobile {
+.dropdownToggle {
   text-align: start;
+  padding-top: 3px;
+
+  &:hover {
+    color: #1e2125;
+    background-color: #e9ecef;
+  }
 }
 
 @media (min-width: 576px) {

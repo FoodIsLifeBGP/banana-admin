@@ -105,17 +105,14 @@ function ClientsPage() {
             />
           </div>
         </div>
-        <div className="col-3">
-          <Search value={searchQuery} onChange={handleSearch} />
-        </div>
-        <div className="col-3 float-end">
-          <button type="button" className="btn btn-primary btn-lg ">
-            All Applications
-          </button>
-        </div>
       </div>
       <div className="row">
-        <DataTable columns={columns} data={clients} sortColumn={sortColumn} onSort={handleSort} />
+        <DataTable
+          data={clients}
+          columns={columns}
+          onSort={handleSort}
+          sortColumn={sortColumn}
+        />
 
         <Spinner loading={loading} />
 

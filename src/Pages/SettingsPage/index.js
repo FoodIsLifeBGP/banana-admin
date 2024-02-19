@@ -11,7 +11,6 @@ import Button from '../../Components/Button';
 import fallbackPic from '../../Image/banana.png';
 import Modal from '../../Components/Modal';
 import Spinner from '../../Components/Spinner/Spinner';
-import Navbar from '../../Components/Navbar';
 
 import ApiService from '../../Services/ApiService';
 
@@ -180,7 +179,6 @@ export default function SettingsPage() {
 
   return (
     <>
-      <Navbar />
       {(admin && admin.email) && (
         <Container className={styles.container}>
           <div className={styles.content}>

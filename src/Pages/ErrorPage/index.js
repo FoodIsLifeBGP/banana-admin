@@ -5,7 +5,6 @@ import Button from '../../Components/Button';
 import Icon from '../../Components/Icon';
 
 import styles from './style.module.scss';
-import Footer from '../../Components/Footer';
 
 function ErrorPage() {
   const navigate = useNavigate();
@@ -38,7 +37,6 @@ function ErrorPage() {
           <Icon name="bananaPeel" className={styles.bananaPeel} />
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

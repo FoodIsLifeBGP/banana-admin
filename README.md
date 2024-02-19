@@ -36,7 +36,7 @@ First we install NVM and Node
 2) Once that's done, run `nvm use` (Banana App's config are compatible with Node version <= 14.17.0) and if you dont have the necessary version follow the prompt to install it (e.g. `nvm install 14.17.0`).
    - [NOTE: Run `nvm list` or `nvm ls` to see all of your saved versions of Node. You can use the same command `nvm use [version]` to switch].
 
-3) Finally run `yarn install && yarn start`
+3) Finally run `npm install && npm start`
 
 ## Environment Variables
 
@@ -58,24 +58,24 @@ This will then set the appropriate server endpoint in `environment.ts`
 Run project:
 
 ```
-yarn start
+npm run start
 ```
 
 Run storybook server
 
 ```
-yarn run storybook
+npm run storybook
 ```
 
 Run ESLint (you'll need to ensure you fix any linter errors and visually double-check your components in storybook before submitting/merging your PR so our build-checks pass)
 
 ```
-yarn lint
+npm run lint
 ```
 
 ...and infrequently you may need to build the project:
 ```
-yarn run build
+npm run build
 ```
 
 navigate to `http://localhost:3004` (port set in `package.json`)
@@ -143,7 +143,7 @@ export function Presentation() => return <Button/>;
 
 Now run
 
-`yarn run storybook` to open storybook server, you should see `Button` at component list at left bar, and by clicking it you could see the component.
+`npm run storybook` to open storybook server, you should see `Button` at component list at left bar, and by clicking it you could see the component.
 
 ![image-20200715000943318](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggrobpixauj31k20u0aci.jpg)
 
@@ -218,7 +218,7 @@ export const Presentation = () => <Button text="ButtonText" />;
 ## Creating a Pull Request
 Prior to creating a pull request, please correct any eslint errors presented upon running:
 ```
-  yarn lint
+  npm lint
 ```
 Please fill out the pull request template as thoroughly and thoughtfully as possible.
 
