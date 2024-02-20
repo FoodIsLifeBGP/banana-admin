@@ -39,7 +39,6 @@
 .modalBody {
   overflow-y: scroll;
   height: 100%;
-  max-height: 50vh;
   padding: 4rem 2rem 2rem;
   display: flex;
   flex-direction: column;
@@ -50,11 +49,16 @@
   align-items: center;
   justify-content: space-evenly;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
+
+  button {
+    margin: 0.5rem;
+  }
 }
 
 /* ---------------------------- Desktop styling ---------------------------- */
 @media (min-width: 992px) {
   .modalContent {
-    width: 40%;
+    width: 55%;
   }
 }

@@ -109,7 +109,11 @@ export default function SettingsPage() {
 
     try {
       setLoading(true);
-      const response = await axiosFormRequest('PATCH', `admins/${savedUser.id}/update`, formData);
+      const response = await axiosFormRequest(
+        'PATCH',
+        `admins/${savedUser.id}/update`,
+        formData,
+      );
       if (response?.data?.admin) {
         setAdminData(formatAdminData(response.data.admin));
         setEditingProfilePic(false);
@@ -135,9 +139,13 @@ export default function SettingsPage() {
 
     try {
       setLoading(true);
-      const response = await axiosFormRequest('PATCH', `admins/${savedUser.id}/update`, {
-        admin: adminUpdateParams,
-      });
+      const response = await axiosFormRequest(
+        'PATCH',
+        `admins/${savedUser.id}/update`,
+        {
+          [initialState.USER_IDENTITY]: adminUpdateParams,
+        },
+      );
 
       if (response?.data?.admin) {
         setAdminData(formatAdminData(response.data.admin));
@@ -156,7 +164,7 @@ export default function SettingsPage() {
 
   const modalButtonConfig = () => {
     const cancelButton = {
-      text: 'Okay',
+      text: 'Back',
       variant: 'buttonSecondary',
       action: () => setModalOpen(false),
     };
@@ -177,7 +185,7 @@ export default function SettingsPage() {
 
   return (
     <>
-      {(admin && admin.email) && (
+      {admin && admin.email && (
         <Container className={styles.container}>
           <div className={styles.content}>
             <h2 className={styles.nameHeader}>
@@ -187,20 +195,39 @@ export default function SettingsPage() {
               <img
                 alt="profile pic"
                 className={styles.profilePic}
-                src={admin.avatarUrl ? `${initialState.API_BASE_URL}${admin.avatarUrl}` : fallbackPic}
+                src={
+                  admin.avatarUrl
+                    ? `${initialState.API_BASE_URL}${admin.avatarUrl}`
+                    : fallbackPic
+                }
               />
             </div>
-            <form className={styles.profilePicForm} onSubmit={handleProfilePicFormSubmit}>
+            <form
+              className={styles.profilePicForm}
+              onSubmit={handleProfilePicFormSubmit}
+            >
               {editingProfilePic && (
                 <>
-                  <input type="file" id="fileUpload" onChange={handleFileChange} />
-                  <label htmlFor="fileUpload" onClick={() => setLoading(true)} className={styles.fileUploadButton}>
+                  <input
+                    type="file"
+                    id="fileUpload"
+                    onChange={handleFileChange}
+                  />
+                  <label
+                    htmlFor="fileUpload"
+                    onClick={() => setLoading(true)}
+                    className={styles.fileUploadButton}
+                  >
                     Select Photo
                   </label>
                   {fileSelected && (
                     <div>
-                      <button className={styles.profilePicButton} type="submit">Save</button>
-                      <p className={styles.selectedFileName}>{selectedFileName}</p>
+                      <button className={styles.profilePicButton} type="submit">
+                        Save
+                      </button>
+                      <p className={styles.selectedFileName}>
+                        {selectedFileName}
+                      </p>
                     </div>
                   )}
                 </>
@@ -224,7 +251,10 @@ export default function SettingsPage() {
               <p className={styles.infoItem}>
                 Member Authorization:
                 {' '}
-                <Badge status={admin.accountStatus} text={admin.role ? admin.role : ''} />
+                <Badge
+                  status={admin.accountStatus}
+                  text={admin.role ? admin.role : ''}
+                />
               </p>
               <hr />
               <div className={styles.emailContainer}>
@@ -262,7 +292,10 @@ export default function SettingsPage() {
         {responseError ? (
           <p>{responseError}</p>
         ) : (
-          <Form onSubmit={handleUserInfoFormSubmit} className={styles.userInfoForm}>
+          <Form
+            onSubmit={handleUserInfoFormSubmit}
+            className={styles.userInfoForm}
+          >
             <FormGroup floating>
               <Input
                 id="firstName"
