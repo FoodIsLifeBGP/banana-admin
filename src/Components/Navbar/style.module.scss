@@ -20,9 +20,8 @@
   margin: 1rem 0;
 }
 
-.mobileNav {
-  align-items: start;
-  text-align: start;
+.navContainer {
+  align-items: center;
 }
 
 .bananaIcon {
@@ -71,9 +70,17 @@ a {
 
 }
 
+.notificationContainer:hover {
+  color: #1e2125;
+  background-color: #e9ecef;
+}
+
+.notificationLink {
+  background-color: transparent !important;
+}
+
 .dropdownToggle {
   text-align: start;
-  padding-top: 3px;
 
   &:hover {
     color: #1e2125;
@@ -81,12 +88,17 @@ a {
   }
 }
 
+.tasksDropdown {
+  padding: 0;
+  padding-left: 1rem;
+}
+
 @media (min-width: 576px) {
   .displayMobile {
     display: none;
   }
 
-  .hideMobile {
+  .tasksDropdown {
     display: inline-block;
   }
 
@@ -101,5 +113,20 @@ a {
   .mobileDropdownTasks {
     border: 1px solid lightgray;
     margin-left: auto;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .navContainer {
+    align-items: start;
+  }
+
+  .tasksDropdown {
+    padding-left: 0;
+  }
+
+  .settingsNavLink {
+    padding-left: 0;
+    margin-bottom: 1rem;
   }
 }

@@ -36,9 +36,9 @@ function Navbar() {
       <NavbarToggler onClick={toggle} />
 
       <Collapse isOpen={isOpen} navbar>
-        <Nav className={`ms-auto + ${styles.mobileNav}`} navbar>
-          <NavItem className="w-100">
-            <RouterNavLink to="/notifications" className="dropdown-item">
+        <Nav className={`ms-auto + ${styles.navContainer}`} navbar>
+          <NavItem className={styles.notificationContainer}>
+            <RouterNavLink to="/notifications" className={styles.notificationLink}>
               <Icon name="alertBell" className={styles.navIcon} />
               <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
                 Notifications
@@ -46,7 +46,7 @@ function Navbar() {
             </RouterNavLink>
           </NavItem>
 
-          <UncontrolledDropdown nav inNavbar className={`${styles.hideMobile} w-100`}>
+          <UncontrolledDropdown nav inNavbar className={`${styles.tasksDropdown}`}>
             <DropdownToggle
               nav
               caret
