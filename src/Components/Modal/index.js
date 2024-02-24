@@ -5,7 +5,12 @@ import styles from './style.module.scss';
 
 function Modal(props) {
   const {
-    modalOpen, setModalOpen, modalContentRef, children, title, buttonsConfig,
+    modalOpen,
+    setModalOpen,
+    modalContentRef,
+    children,
+    title,
+    buttonsConfig,
   } = props;
 
   const defaultButtonConfig = [

@@ -16,7 +16,7 @@ import styles from './style.module.scss';
 function DonorPage() {
   const defaultPageSize = 8;
   const [donors, setDonors] = useState([]);
-  const [sortColumn, setSortColumn] = useState({ path: 'id', order: 'asc' });
+  const [sortColumn, setSortColumn] = useState({ sortBy: 'id', orderBy: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,8 +25,8 @@ function DonorPage() {
   const getDonors = async () => {
     setLoading(true);
     try {
-      const { path, order } = sortColumn;
-      const response = await GetDonors(currentPage, defaultPageSize, path, order);
+      const { sortBy, orderBy } = sortColumn;
+      const response = await GetDonors(currentPage, defaultPageSize, sortBy, orderBy);
       setDonors(response.data);
       setItemsCount(response.pagy.count);
     } catch (error) {
@@ -38,23 +38,23 @@ function DonorPage() {
 
   const columns = [
     {
-      path: 'first_name',
+      sortBy: 'first_name',
       label: 'Name',
       content: (d) => <Link to={`/donors/${d.id}`}>{`${d.first_name} ${d.last_name}`}</Link>,
     },
     {
-      path: 'email',
+      sortBy: 'email',
       label: 'Email',
       content: (d) => d.email,
     },
-    { path: 'organization_name', label: 'Organization' },
+    { sortBy: 'organization_name', label: 'Organization' },
     {
-      path: 'created_at',
+      sortBy: 'created_at',
       label: 'Created At',
       content: (d) => <span>{`${formatDateToPST(d.created_at)} PST`}</span>,
     },
     {
-      path: 'account_status',
+      sortBy: 'account_status',
       key: 'account_status',
       label: 'Status',
       content: (d) => <Badge status={d.account_status} />,
@@ -79,7 +79,7 @@ function DonorPage() {
     getDonors();
   }, [currentPage, sortColumn, searchQuery]);
 
-  /* TODO: remove and base this off URL path */
+  /* TODO: remove and base this off URL sortBy */
   const newDonorPageBCT = [
     { pageName: 'Home', url: 'localhost:3000' },
     { pageName: 'Donor', url: 'localhost:3000' },

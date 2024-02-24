@@ -18,7 +18,7 @@ import styles from './style.module.scss';
 function AdminsPage() {
   const defaultPageSize = 8;
   const [admins, setAdmins] = useState([]);
-  const [sortColumn, setSortColumn] = useState({ path: 'id', order: 'asc' });
+  const [sortColumn, setSortColumn] = useState({ sortBy: 'id', orderBy: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -33,8 +33,8 @@ function AdminsPage() {
   const getAdmins = async () => {
     setLoading(true);
     try {
-      const { path, order } = sortColumn;
-      const response = await GetAdmins(currentPage, defaultPageSize, path, order);
+      const { sortBy, orderBy } = sortColumn;
+      const response = await GetAdmins(currentPage, defaultPageSize, sortBy, orderBy);
       setItemsCount(response.pagy.count);
       setAdmins(response.data);
     } catch (error) {
@@ -57,7 +57,7 @@ function AdminsPage() {
 
   const columns = [
     {
-      path: 'name',
+      sortBy: 'name',
       label: 'Name',
       content: (admin) => (
         <Link to={`/admins/${admin.id}`}>{`${admin.first_name} ${admin.last_name}`}</Link>
@@ -69,7 +69,7 @@ function AdminsPage() {
       content: (client) => client.email,
     },
     {
-      path: 'created_at',
+      sortBy: 'created_at',
       label: 'Created At',
       content: (admin) => <span>{`${formatDateToPST(admin.created_at)} PST`}</span>,
     },
