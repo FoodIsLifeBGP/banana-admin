@@ -8,7 +8,9 @@ import { isValidNumber } from '../../util/utilities';
 function DonationCard(props) {
   // eslint-disable-next-line no-unused-vars
   const { totalDonation, claimedDonation } = props;
-  const fractionDonated = Math.round((claimedDonation / totalDonation) * 100);
+  const fractionDonated = totalDonation !== 0
+    ? Math.round((claimedDonation / totalDonation) * 100)
+    : 0;
 
   const timeOptions = {
     hour: 'numeric',

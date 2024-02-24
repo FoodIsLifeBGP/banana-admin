@@ -1,18 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import {
   Form, FormGroup, Label, Input, Container,
 } from 'reactstrap';
-import useGlobal from '../../state';
-import Navbar from '../../Components/Navbar';
-import Button from '../../Components/Button';
-import styles from './style.module.scss';
-import ApiService from '../../Services/ApiService';
-import Modal from '../../Components/Modal';
-import fallbackPic from '../../Image/banana.png';
-import Spinner from '../../Components/Spinner/Spinner';
+
+import { useGlobalStateContext } from 'src/contexts/GlobalStateContext';
+
 import Badge from '../../Components/Badge';
+import Button from '../../Components/Button';
+import fallbackPic from '../../Image/banana.png';
+import Modal from '../../Components/Modal';
+import Spinner from '../../Components/Spinner/Spinner';
+
+import ApiService from '../../Services/ApiService';
+
+import styles from './style.module.scss';
+import initialState from '../../util/environment';
 
 const formatDate = (date) => {
   const dateObj = new Date(date);
@@ -44,9 +47,10 @@ const formatAdminUpdateData = (admin) => ({
 });
 
 export default function SettingsPage() {
-  const [store, { logOut }] = useGlobal();
+  const { logOut, admin: savedUser } = useGlobalStateContext();
   const { axiosRequest, axiosFormRequest } = ApiService();
   const navigate = useNavigate();
+
   const [admin, setAdminData] = useState({});
   const [adminUpdate, setAdminUpdate] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
@@ -59,12 +63,10 @@ export default function SettingsPage() {
 
   useEffect(() => {
     const fetchAdmin = async () => {
-      const userStr = localStorage.getItem('user');
-      if (userStr) {
+      if (savedUser) {
         try {
           setLoading(true);
-          const currentUser = JSON.parse(userStr);
-          const response = await axiosRequest('GET', `admins/${currentUser.id}`);
+          const response = await axiosRequest('GET', `admins/${savedUser.id}`);
 
           if (response?.data?.admin) {
             setAdminData(formatAdminData(response.data.admin));
@@ -84,7 +86,7 @@ export default function SettingsPage() {
   }, []);
 
   const handleLogout = async () => {
-    await logOut(store);
+    await logOut();
     navigate('/login');
   };
 
@@ -105,12 +107,11 @@ export default function SettingsPage() {
     const formData = new FormData();
     formData.append('admin[avatar]', e.target[0].files[0]);
 
-    const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
     try {
       setLoading(true);
       const response = await axiosFormRequest(
         'PATCH',
-        `admins/${currentUser.id}/update`,
+        `admins/${savedUser.id}/update`,
         formData,
       );
       if (response?.data?.admin) {
@@ -129,7 +130,6 @@ export default function SettingsPage() {
 
   const handleUserInfoFormSubmit = async (e) => {
     e.preventDefault();
-    const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
 
     const adminUpdateParams = {
       first_name: adminUpdate.firstName,
@@ -141,8 +141,10 @@ export default function SettingsPage() {
       setLoading(true);
       const response = await axiosFormRequest(
         'PATCH',
-        `admins/${currentUser.id}/update`,
-        { admin: adminUpdateParams },
+        `admins/${savedUser.id}/update`,
+        {
+          [initialState.USER_IDENTITY]: adminUpdateParams,
+        },
       );
 
       if (response?.data?.admin) {
@@ -162,7 +164,7 @@ export default function SettingsPage() {
 
   const modalButtonConfig = () => {
     const cancelButton = {
-      text: 'Cancel',
+      text: 'Back',
       variant: 'buttonSecondary',
       action: () => setModalOpen(false),
     };
@@ -182,9 +184,8 @@ export default function SettingsPage() {
   };
 
   return (
-    <div>
-      <Navbar />
-      {(admin && admin.email) && (
+    <>
+      {admin && admin.email && (
         <Container className={styles.container}>
           <div className={styles.content}>
             <h2 className={styles.nameHeader}>
@@ -194,20 +195,39 @@ export default function SettingsPage() {
               <img
                 alt="profile pic"
                 className={styles.profilePic}
-                src={admin.avatarUrl ? `${store.API_BASE_URL}${admin.avatarUrl}` : fallbackPic}
+                src={
+                  admin.avatarUrl
+                    ? `${initialState.API_BASE_URL}${admin.avatarUrl}`
+                    : fallbackPic
+                }
               />
             </div>
-            <form className={styles.profilePicForm} onSubmit={handleProfilePicFormSubmit}>
+            <form
+              className={styles.profilePicForm}
+              onSubmit={handleProfilePicFormSubmit}
+            >
               {editingProfilePic && (
                 <>
-                  <input type="file" id="fileUpload" onChange={handleFileChange} />
-                  <label htmlFor="fileUpload" onClick={() => setLoading(true)} className={styles.fileUploadButton}>
+                  <input
+                    type="file"
+                    id="fileUpload"
+                    onChange={handleFileChange}
+                  />
+                  <label
+                    htmlFor="fileUpload"
+                    onClick={() => setLoading(true)}
+                    className={styles.fileUploadButton}
+                  >
                     Select Photo
                   </label>
                   {fileSelected && (
                     <div>
-                      <button className={styles.profilePicButton} type="submit">Save</button>
-                      <p className={styles.selectedFileName}>{selectedFileName}</p>
+                      <button className={styles.profilePicButton} type="submit">
+                        Save
+                      </button>
+                      <p className={styles.selectedFileName}>
+                        {selectedFileName}
+                      </p>
                     </div>
                   )}
                 </>
@@ -231,7 +251,10 @@ export default function SettingsPage() {
               <p className={styles.infoItem}>
                 Member Authorization:
                 {' '}
-                <Badge status={admin.accountStatus} text={admin.role ? admin.role : ''} />
+                <Badge
+                  status={admin.accountStatus}
+                  text={admin.role ? admin.role : ''}
+                />
               </p>
               <hr />
               <div className={styles.emailContainer}>
@@ -269,7 +292,10 @@ export default function SettingsPage() {
         {responseError ? (
           <p>{responseError}</p>
         ) : (
-          <Form onSubmit={handleUserInfoFormSubmit} className={styles.userInfoForm}>
+          <Form
+            onSubmit={handleUserInfoFormSubmit}
+            className={styles.userInfoForm}
+          >
             <FormGroup floating>
               <Input
                 id="firstName"
@@ -277,9 +303,7 @@ export default function SettingsPage() {
                 value={adminUpdate.firstName || ''}
                 onChange={(e) => setAdminUpdate({ ...adminUpdate, firstName: e.target.value })}
               />
-              <Label for="firstName">
-                First Name
-              </Label>
+              <Label for="firstName">First Name</Label>
             </FormGroup>
 
             <FormGroup floating>
@@ -289,9 +313,7 @@ export default function SettingsPage() {
                 value={adminUpdate.lastName || ''}
                 onChange={(e) => setAdminUpdate({ ...adminUpdate, lastName: e.target.value })}
               />
-              <Label for="lastName">
-                Last Name
-              </Label>
+              <Label for="lastName">Last Name</Label>
             </FormGroup>
 
             <FormGroup floating>
@@ -301,14 +323,12 @@ export default function SettingsPage() {
                 value={adminUpdate.email || ''}
                 onChange={(e) => setAdminUpdate({ ...adminUpdate, email: e.target.value })}
               />
-              <Label for="email">
-                Email
-              </Label>
+              <Label for="email">Email</Label>
             </FormGroup>
           </Form>
         )}
       </Modal>
       <Spinner loading={loading} />
-    </div>
+    </>
   );
 }

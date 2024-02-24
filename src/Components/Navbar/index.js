@@ -3,7 +3,6 @@ import {
   Collapse,
   Navbar as ReactStrapNavbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   UncontrolledDropdown,
@@ -11,6 +10,7 @@ import {
   DropdownMenu,
   DropdownItem,
   NavbarText,
+  NavbarBrand,
 } from 'reactstrap';
 import { NavLink as RouterNavLink } from 'react-router-dom'; // Ensure this is imported
 
@@ -36,9 +36,9 @@ function Navbar() {
       <NavbarToggler onClick={toggle} />
 
       <Collapse isOpen={isOpen} navbar>
-        <Nav className={`ms-auto + ${styles.mobileNav}`} navbar>
-          <NavItem className="w-100">
-            <RouterNavLink to="/notifications" className="dropdown-item">
+        <Nav className={`ms-auto + ${styles.navContainer}`} navbar>
+          <NavItem className={styles.notificationContainer}>
+            <RouterNavLink to="/notifications" className={styles.notificationLink}>
               <Icon name="alertBell" className={styles.navIcon} />
               <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
                 Notifications
@@ -46,11 +46,11 @@ function Navbar() {
             </RouterNavLink>
           </NavItem>
 
-          <UncontrolledDropdown nav inNavbar className={`${styles.hideMobile} w-100`}>
+          <UncontrolledDropdown nav inNavbar className={`${styles.tasksDropdown}`}>
             <DropdownToggle
               nav
               caret
-              className={`${styles.dropdownToggleMobile} + ${styles.navbarText}`}
+              className={`${styles.dropdownToggle} + ${styles.navbarText}`}
             >
               <Icon name="tasks" className={styles.navIcon} />
               <NavbarText className={styles.displayMobile}>Tasks</NavbarText>
@@ -68,9 +68,9 @@ function Navbar() {
             </DropdownMenu>
           </UncontrolledDropdown>
 
-          <RouterNavLink to="/settings" className="dropdown-item w-100">
+          <RouterNavLink to="/settings" className={styles.settingsNavLink}>
             <Icon name="avatar" className={styles.navIcon} />
-            <NavbarText className={`${styles.displayMobile} + ${styles.navbarText}`}>
+            <NavbarText className={`${styles.displayMobile} ${styles.navbarText}`}>
               Profile
             </NavbarText>
           </RouterNavLink>

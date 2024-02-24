@@ -51,7 +51,7 @@ Modal.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   setModalOpen: PropTypes.func.isRequired,
   modalContentRef: PropTypes.object.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   title: PropTypes.string.isRequired,
   // eslint-disable-next-line react/require-default-props
   buttonsConfig: PropTypes.arrayOf(
@@ -61,6 +61,10 @@ Modal.propTypes = {
       action: PropTypes.func.isRequired,
     }),
   ),
+};
+
+Modal.defaultProps = {
+  children: null,
 };
 
 export default Modal;

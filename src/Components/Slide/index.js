@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Decisions from '../Decisions';
-import Status from '../Status/index';
+import Badge from '../Badge/index';
 import Icon from '../Icon/index';
-import './style.css';
+import './style.scss';
 
 // TODO: Remove this object once the API is connected
 const business = {
@@ -43,7 +43,7 @@ function Slide() {
             <p>Zip Code</p>
           </div>
           <div className="information">
-            <p><Status statusState="inactive" /></p>
+            <p><Badge status="inactive" /></p>
             <p>{business.businessName}</p>
             <p>{business.name}</p>
             <p>{business.address}</p>

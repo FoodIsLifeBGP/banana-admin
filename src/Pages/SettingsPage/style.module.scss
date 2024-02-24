@@ -5,8 +5,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 4rem 0;
+  align-items: center;
+  margin: 1rem 0;
   width: 55%;
+  text-align: center;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -50,7 +52,7 @@
 }
 
 .profilePicButton {
-  width: 8rem;
+  width: fit-content;
   background-color: var(--BANANA_YELLOW);
   color: var(--NAVY_BLUE);
   border: none;

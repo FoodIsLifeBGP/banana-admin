@@ -1,6 +1,6 @@
 import React from 'react';
 import HashLoader from 'react-spinners/HashLoader';
-import './style.css';
+import './style.scss';
 
 const overlay = {
   position: 'fixed',

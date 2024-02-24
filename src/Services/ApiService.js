@@ -10,27 +10,34 @@ const ApiService = () => {
 
   const getAuthHeader = () => {
     const jwt = localStorage.getItem('jwt');
+
     if (jwt) {
-      const parsedJwt = JSON.parse(jwt);
       return {
-        Authorization: `Bearer ${parsedJwt}`,
+        Authorization: `Bearer ${jwt}`,
       };
     }
     return {};
   };
 
-  const getHeaders = (additionalHeaders) => ({
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    ...getAuthHeader(),
-    ...additionalHeaders,
-  });
+  const getHeaders = (isFormData = false) => {
+    const headers = {
+      Accept: 'application/json',
+      ...getAuthHeader(),
+    };
+
+    /* omitting `Content-Type` for formData-- the browser automatically sets it */
+    if (!isFormData) {
+      headers['Content-Type'] = 'application/json';
+    }
+
+    return headers;
+  };
 
   const axiosRequest = (method, endpoint, body = null) => axiosInstance({
     url: endpoint,
     method,
     headers: getHeaders(),
-    data: body,
+    data: body ? JSON.stringify(body) : null,
   });
 
   const axiosFormRequest = (method, endpoint, body = null) => axiosInstance({
