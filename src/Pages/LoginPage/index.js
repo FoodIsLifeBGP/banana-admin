@@ -118,7 +118,7 @@ export default function LoginPage() {
                 <div className={styles.formSubmit}>
                   <Button
                     text="Login"
-                    variant={isSmallScreen ? 'buttonPlainText' : 'buttonPrimary'}
+                    variant={isSmallScreen ? 'buttonSecondary' : 'buttonPrimary'}
                     action={(event) => handleLogin(event)}
                   />
                   <Button
