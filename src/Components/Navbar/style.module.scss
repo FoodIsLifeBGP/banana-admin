@@ -47,8 +47,8 @@ a {
   padding: 4px 12px;
 
   &:hover {
-    color: #1e2125;
-    background-color: #e9ecef;
+    background-color: transparent;
+    opacity: 0.65;
   }
 }
 
@@ -72,19 +72,21 @@ a {
 
 .notificationContainer:hover {
   color: #1e2125;
-  background-color: #e9ecef;
 }
 
 .notificationLink {
   background-color: transparent !important;
+
+  &:hover {
+    opacity: 0.65;
+  }
 }
 
 .dropdownToggle {
   text-align: start;
 
   &:hover {
-    color: #1e2125;
-    background-color: #e9ecef;
+    opacity: 0.65;
   }
 }
 
@@ -119,6 +121,16 @@ a {
 @media (max-width: 575.98px) {
   .navContainer {
     align-items: start;
+
+    li {
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+    }
   }
 
   .tasksDropdown {

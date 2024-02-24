@@ -2,6 +2,7 @@ import React from 'react';
 import { v4 } from 'uuid';
 import styles from './style.module.css';
 import Status from '../Status';
+import Badge from '../Badge';
 
 const testData = [
   {
@@ -65,8 +66,8 @@ function UserList(props) {
             <td>{entry.businessName}</td>
             <td>{entry.dateRegistered}</td>
             <td className={styles.status}>
-              {/* Assuming <Status> is not a form control */}
-              <Status statusState={entry.status} />
+              {/* Assuming <Badge> is not a form control */}
+              <Badge status={entry.status} />
             </td>
           </tr>
         ))}
