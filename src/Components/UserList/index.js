@@ -1,7 +1,6 @@
 import React from 'react';
 import { v4 } from 'uuid';
-import styles from './style.module.css';
-import Status from '../Status';
+import styles from './style.module.scss';
 import Badge from '../Badge';
 
 const testData = [

@@ -29,8 +29,6 @@ export function GlobalStateProvider({ children }) {
 
   const { axiosRequest } = ApiService();
 
-  /* TODO: get `expiresIn` from backend once 'jwt expiry flow' is implemented and store it */
-  // e.g. data.jwt_expiry
   const storeJwtAndUser = (token, user) => {
     if (token && user) {
       localStorage.setItem('jwt', token);
