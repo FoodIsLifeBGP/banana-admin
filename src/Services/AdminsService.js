@@ -1,8 +1,9 @@
+import initialState from 'src/util/environment';
 import ApiService from './ApiService';
 
 const { axiosRequest } = ApiService();
 
-const GetAdmins = async (pageNumber, pageSize, sortBy, orderBy) => {
+const getAdminIndex = async (pageNumber, pageSize, sortBy, orderBy) => {
   const response = await axiosRequest(
     'GET',
     `/admins?page=${pageNumber}&count=${pageSize}&sort_by=${sortBy}&order_by=${orderBy}`,
@@ -10,12 +11,12 @@ const GetAdmins = async (pageNumber, pageSize, sortBy, orderBy) => {
   return response.data;
 };
 
-const GetAdmin = async (id) => {
+const getAdmin = async (id) => {
   const response = await axiosRequest('GET', `/admins/${id}`);
   return response.data;
 };
 
-const CreateAdmin = async (firstName, lastName, email, password) => {
+const createAdmin = async (firstName, lastName, email, password) => {
   const response = await axiosRequest('POST', '/admins/create', {
     admin: {
       first_name: firstName,
@@ -27,7 +28,7 @@ const CreateAdmin = async (firstName, lastName, email, password) => {
   return response.data;
 };
 
-const UpdateAdmin = async (id, firstName, lastName, email, password) => {
+const updateAdmin = async (id, firstName, lastName, email, password) => {
   const response = await axiosRequest('PATCH', `/admins/${id}/update`, {
     admin: {
       first_name: firstName,
@@ -39,7 +40,7 @@ const UpdateAdmin = async (id, firstName, lastName, email, password) => {
   return response.data;
 };
 
-const UpdateAdminStatus = async (id, status) => {
+const updateAdminStatus = async (id, status) => {
   const response = await axiosRequest('PATCH', `clients/${id}/update_status`, {
     id,
     status,
@@ -47,6 +48,20 @@ const UpdateAdminStatus = async (id, status) => {
   return response.data;
 };
 
+const initiatePasswordReset = async (email) => {
+  const response = await axiosRequest('POST', '/password/reset', {
+    [initialState.USER_IDENTITY]: {
+      email,
+    },
+  });
+  return response.data;
+};
+
 export {
-  GetAdmins, GetAdmin, CreateAdmin, UpdateAdmin, UpdateAdminStatus,
+  getAdminIndex,
+  getAdmin,
+  createAdmin,
+  updateAdmin,
+  updateAdminStatus,
+  initiatePasswordReset,
 };

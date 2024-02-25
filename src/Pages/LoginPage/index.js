@@ -5,18 +5,23 @@ import {
   Container,
   Col,
   Form,
+  FormGroup,
   InputGroup,
   InputGroupText,
-  Input as BootstrapInput,
+  Label,
+  Input,
 
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
+import { initiatePasswordReset } from 'src/Services/AdminsService';
 import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
+import Modal from '../../Components/Modal';
 import Button from '../../Components/Button';
 import Icon from '../../Components/Icon';
 import Spinner from '../../Components/Spinner/Spinner';
 import useMediaQuery from '../../util/useMediaQuery';
+import { isValidEmail } from '../../util/utilities';
 
 import styles from './style.module.scss';
 
@@ -28,6 +33,10 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const [passwordResetEmail, setPasswordResetEmail] = useState('');
+  const [responseMessage, setResponseMessage] = useState(null);
+
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
   const clearEmailAndPassword = () => {
@@ -35,9 +44,9 @@ export default function LoginPage() {
     setPassword('');
   };
 
-  const handleForgotPassword = async () => {
-    // TODO: implement once backend is ready
-    console.log('lost PW');
+  const handleEmailChange = (value) => {
+    setEmail(value);
+    setPasswordResetEmail(value);
   };
 
   const handleLogin = async (event) => {
@@ -69,16 +78,56 @@ export default function LoginPage() {
       setLoading(false);
     } catch (error) {
       toast.error(error);
+      setLoading(false);
     }
-    setLoading(false);
+  };
+
+  const openForgotPasswordModal = async () => {
+    setModalOpen(true);
+  };
+
+  const handleSubmitForgotPassword = async (event) => {
+    event.preventDefault();
+
+    if (isValidEmail(passwordResetEmail)) {
+      try {
+        const { message, status } = await initiatePasswordReset(passwordResetEmail);
+        console.log('status', status);
+        setResponseMessage(message);
+      } catch (error) {
+        console.error(error);
+        setResponseMessage(error.message);
+      }
+    } else {
+      toast.error('Invalid email.');
+    }
+  };
+
+  const modalButtonConfig = () => {
+    const cancelButton = {
+      text: 'Back',
+      variant: 'buttonSecondary',
+      action: () => setModalOpen(false),
+    };
+
+    if (responseMessage) return [cancelButton];
+
+    const updateButton = {
+      text: 'Submit',
+      type: 'submit',
+      variant: 'buttonPrimary',
+      action: handleSubmitForgotPassword,
+    };
+
+    return [cancelButton, updateButton];
   };
 
   return (
     <div className={styles.container}>
-      <ToastContainer />
       <Spinner loading={loading} fullscreen />
       <div className={styles.borderspace} />
       <div className={styles.mainspace}>
+        <ToastContainer />
         <Container className="h-100 align-items-center d-flex justify-content-center">
           <Col sm={12} md={8}>
             <div className="d-flex mb-5">
@@ -94,19 +143,19 @@ export default function LoginPage() {
                   <InputGroupText>
                     <Icon name="user" className={styles.inputIcon} />
                   </InputGroupText>
-                  <BootstrapInput
+                  <Input
                     id="email"
                     name="email"
                     placeholder="Email"
                     value={email}
-                    onChange={({ target }) => setEmail(target.value)}
+                    onChange={({ target }) => handleEmailChange(target.value)}
                   />
                 </InputGroup>
                 <InputGroup className={styles.inputrow}>
                   <InputGroupText>
                     <Icon name="lock" className={styles.inputIcon} />
                   </InputGroupText>
-                  <BootstrapInput
+                  <Input
                     id="password"
                     name="password"
                     placeholder="Password"
@@ -124,7 +173,7 @@ export default function LoginPage() {
                   <Button
                     text="Forgot password?"
                     variant="buttonPlainText"
-                    action={(event) => handleForgotPassword(event)}
+                    action={() => openForgotPasswordModal()}
                   />
                 </div>
               </Form>
@@ -132,6 +181,31 @@ export default function LoginPage() {
           </Col>
         </Container>
       </div>
+      <Modal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        title="Send Password Reset Email"
+        buttonsConfig={modalButtonConfig()}
+      >
+        {responseMessage ? (
+          <p>{responseMessage}</p>
+        ) : (
+          <Form
+            onSubmit={handleSubmitForgotPassword}
+            className={styles.passwordResetForm}
+          >
+            <FormGroup floating>
+              <Input
+                id="email"
+                type="email"
+                value={passwordResetEmail}
+                onChange={({ target }) => setPasswordResetEmail(target.value)}
+              />
+              <Label for="email">Email</Label>
+            </FormGroup>
+          </Form>
+        )}
+      </Modal>
     </div>
   );
 }

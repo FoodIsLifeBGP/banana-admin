@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Form, FormGroup, Label, Input, Container,
@@ -59,7 +59,6 @@ export default function SettingsPage() {
   const [selectedFileName, setSelectedFileName] = useState('');
   const [loading, setLoading] = useState(false);
   const [responseError, setResponseError] = useState(undefined);
-  const modalContentRef = useRef(null);
 
   useEffect(() => {
     const fetchAdmin = async () => {
@@ -180,7 +179,7 @@ export default function SettingsPage() {
       action: handleUserInfoFormSubmit,
     };
 
-    return [updateButton, cancelButton];
+    return [cancelButton, updateButton];
   };
 
   return (
@@ -285,7 +284,6 @@ export default function SettingsPage() {
       <Modal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        modalContentRef={modalContentRef}
         title={responseError ? 'Error Occurred' : 'Edit Profile'}
         buttonsConfig={modalButtonConfig()}
       >

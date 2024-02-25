@@ -7,7 +7,6 @@ function Modal(props) {
   const {
     modalOpen,
     setModalOpen,
-    modalContentRef,
     children,
     title,
     buttonsConfig,
@@ -25,7 +24,7 @@ function Modal(props) {
 
   return modalOpen ? (
     <dialog className={styles.modal}>
-      <div className={styles.modalContent} ref={modalContentRef}>
+      <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
           {title && <p className={styles.modalTitle}>{title}</p>}
         </div>
@@ -50,7 +49,6 @@ function Modal(props) {
 Modal.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   setModalOpen: PropTypes.func.isRequired,
-  modalContentRef: PropTypes.object.isRequired,
   children: PropTypes.node,
   title: PropTypes.string.isRequired,
   // eslint-disable-next-line react/require-default-props

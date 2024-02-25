@@ -9,7 +9,7 @@ import Button from '../Button';
 import Icon from '../Icon';
 import Spinner from '../Spinner/Spinner';
 
-import { GetAdmin, CreateAdmin, UpdateAdmin } from '../../Services/AdminsService';
+import { getAdmin, createAdmin, updateAdmin } from '../../Services/AdminsService';
 
 import styles from './style.module.scss';
 
@@ -39,7 +39,7 @@ function NewAdminForm() {
       if (!id) return;
       setLoading(true);
       try {
-        const response = await GetAdmin(id);
+        const response = await getAdmin(id);
         if (response && response.admin) {
           setFormData({
             ...initialFormData,
@@ -66,11 +66,11 @@ function NewAdminForm() {
     setLoading(true);
     try {
       if (id) {
-        await UpdateAdmin(id, formData);
+        await updateAdmin(id, formData);
         toast.success('Admin updated successfully');
         // navigate('/admins');
       } else {
-        await CreateAdmin(formData);
+        await createAdmin(formData);
         toast.success('Admin created successfully');
         // navigate('/admins');
       }

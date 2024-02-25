@@ -8,7 +8,6 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,.5);
-  padding: 2rem;
   justify-content: center;
   align-items: center;
   z-index: 101;
@@ -33,7 +32,8 @@
 .modalContent {
   position: relative;
   background-color: white;
-  width: 90%;
+  width: 100%;
+  max-width: 600px;
 }
 
 .modalBody {
@@ -42,6 +42,10 @@
   padding: 4rem 2rem 2rem;
   display: flex;
   flex-direction: column;
+
+  p {
+    margin-bottom: 2.5rem;
+  }
 }
 
 .modalButtons {
@@ -57,7 +61,7 @@
 }
 
 /* ---------------------------- Desktop styling ---------------------------- */
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .modalContent {
     width: 55%;
   }

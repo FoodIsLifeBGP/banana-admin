@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -9,8 +9,7 @@ import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
 import Button from '../../Components/Button';
 
-// The next line will be uncommented when the back end is ready:
-import { GetAdmins, UpdateAdminStatus } from '../../Services/AdminsService';
+import { getAdminIndex, updateAdminStatus } from '../../Services/AdminsService';
 
 import { formatDateToPST } from '../../util/utilities';
 import styles from './style.module.scss';
@@ -26,15 +25,13 @@ function AdminsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedAdmin, setSelectedAdmin] = useState(null);
 
-  const modalContentRef = useRef(null);
-
   const navigate = useNavigate();
 
   const getAdmins = async () => {
     setLoading(true);
     try {
       const { sortBy, orderBy } = sortColumn;
-      const response = await GetAdmins(currentPage, defaultPageSize, sortBy, orderBy);
+      const response = await getAdminIndex(currentPage, defaultPageSize, sortBy, orderBy);
       setItemsCount(response.pagy.count);
       setAdmins(response.data);
     } catch (error) {
@@ -48,7 +45,7 @@ function AdminsPage() {
   const deactivateAdmin = async (admin) => {
     setLoading(true);
     try {
-      await UpdateAdminStatus(admin.id, 'inactive');
+      await updateAdminStatus(admin.id, 'inactive');
       setLoading(false);
     } catch (error) {
       toast.error('Failed to deactivate admin');
@@ -145,7 +142,6 @@ function AdminsPage() {
       <Modal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        modalContentRef={modalContentRef}
         title="DEACTIVATE ADMIN?"
         buttonsConfig={[
           {

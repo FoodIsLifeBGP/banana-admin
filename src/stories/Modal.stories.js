@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Modal from '../Components/Modal';
 import Button from '../Components/Button';
 
@@ -12,7 +12,6 @@ export default {
 
 function Template(args) {
   const [modalOpen, setModalOpen] = useState(true);
-  const modalContentRef = useRef(null);
   const { children, title } = args;
 
   return (
@@ -23,7 +22,6 @@ function Template(args) {
       <Modal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        modalContentRef={modalContentRef}
         title={title}
       >
         {children}

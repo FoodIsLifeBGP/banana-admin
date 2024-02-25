@@ -1,10 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Modal from '../Modal';
 import styles from './style.module.scss';
 
 function ConfirmationModal({ apiSuccessMessage, firstName, lastName }) {
   const [show, setShow] = useState(true);
-  const modalContentRef = useRef(null);
 
   const fName = firstName || 'Johnny';
   const lName = lastName || 'Appleseed';
@@ -21,7 +20,6 @@ function ConfirmationModal({ apiSuccessMessage, firstName, lastName }) {
       setModalOpen={setShow}
       toggle={() => setShow(!show)}
       className={styles.container}
-      modalContentRef={modalContentRef}
     >
       <p>{successMessage}</p>
     </Modal>
