@@ -57,6 +57,15 @@ const initiatePasswordReset = async (email) => {
   return response.data;
 };
 
+const passwordReset = async (token, password) => {
+  const response = await axiosRequest('PATCH', `/password/reset/${token}`, {
+    [initialState.USER_IDENTITY]: {
+      password,
+    },
+  });
+  return response.data;
+};
+
 export {
   getAdminIndex,
   getAdmin,
@@ -64,4 +73,5 @@ export {
   updateAdmin,
   updateAdminStatus,
   initiatePasswordReset,
+  passwordReset,
 };
