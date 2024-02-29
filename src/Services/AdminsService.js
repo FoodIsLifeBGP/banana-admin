@@ -58,8 +58,9 @@ const initiatePasswordReset = async (email) => {
 };
 
 const passwordReset = async (token, password) => {
-  const response = await axiosRequest('PATCH', `/password/reset/${token}`, {
+  const response = await axiosRequest('PATCH', '/password/reset', {
     [initialState.USER_IDENTITY]: {
+      token,
       password,
     },
   });

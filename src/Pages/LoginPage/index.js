@@ -36,6 +36,8 @@ export default function LoginPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [passwordResetEmail, setPasswordResetEmail] = useState('');
   const [responseMessage, setResponseMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordToggleActivated, setPasswordToggleActivated] = useState(false);
 
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
@@ -122,6 +124,13 @@ export default function LoginPage() {
     return [cancelButton, updateButton];
   };
 
+  const togglePasswordVisibility = () => {
+    if (showPassword) {
+      return <Icon name="visibleEye" className={styles.passwordIcon} />;
+    }
+    return <Icon name="hiddenEye" className={styles.passwordIcon} />;
+  };
+
   return (
     <div className={styles.container}>
       <Spinner loading={loading} fullscreen />
@@ -139,7 +148,7 @@ export default function LoginPage() {
             </div>
             <Col sm={12}>
               <Form>
-                <InputGroup className={styles.inputrow}>
+                <InputGroup className={styles.inputRow}>
                   <InputGroupText>
                     <Icon name="user" className={styles.inputIcon} />
                   </InputGroupText>
@@ -151,16 +160,23 @@ export default function LoginPage() {
                     onChange={({ target }) => handleEmailChange(target.value)}
                   />
                 </InputGroup>
-                <InputGroup className={styles.inputrow}>
-                  <InputGroupText>
-                    <Icon name="lock" className={styles.inputIcon} />
+                <InputGroup className={styles.inputRow}>
+                  <InputGroupText
+                    onClick={
+                      passwordToggleActivated
+                        ? () => setShowPassword(!showPassword)
+                        : null
+                    }
+                  >
+                    {passwordToggleActivated ? togglePasswordVisibility(showPassword) : <Icon name="lock" className={styles.passwordIcon} />}
                   </InputGroupText>
                   <Input
                     id="password"
                     name="password"
                     placeholder="Password"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     value={password}
+                    onFocus={() => setPasswordToggleActivated(true)}
                     onChange={({ target }) => setPassword(target.value)}
                   />
                 </InputGroup>

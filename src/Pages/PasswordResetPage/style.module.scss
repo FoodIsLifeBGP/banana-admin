@@ -3,30 +3,6 @@
   width: 100vw;
 }
 
-.borderspace {
-  background-color: var(--BANANA_YELLOW);
-  height: 100%;
-  width: 10vw;
-  float: left;
-  position: relative;
-}
-
-.mainspace {
-  background-color: var(--WHITE);
-  height: 100%;
-  width: 100%;
-  float: right;
-  position: relative;
-}
-
-.formcontainer {
-  margin: 0 auto;
-}
-
-.inputrow {
-  margin: 0.5rem 0;
-}
-
 .title {
   font-weight: bold;
   font-size: 38px;
@@ -36,8 +12,9 @@
   margin-left: 0;
 }
 
-.bananaIcon {
-  width: 160px;
+.passwordIcon {
+  width: 20px;
+  cursor: pointer;
 }
 
 .formSubmit {
@@ -49,24 +26,6 @@
     white-space: nowrap;
     width: fit-content;
   }
-}
-
-@media (min-width: 768px) {
-  .borderspace {
-    width: 25%;
-  }
-  .mainspace {
-    width: 75%;
-  }
-}
-
-@media (max-width: 768px) {
-	.borderspace {
-		display: none;
-	}
-	.mainspace {
-		background-color: var(--BANANA_YELLOW);
-	}
 }
 
 .passwordResetForm {

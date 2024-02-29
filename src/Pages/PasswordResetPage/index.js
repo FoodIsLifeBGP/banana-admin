@@ -60,9 +60,9 @@ export default function PasswordResetPage() {
 
   const togglePasswordVisibility = (showPassword) => {
     if (showPassword) {
-      return <Icon name="visibleEye" />;
+      return <Icon name="visibleEye" className={styles.passwordIcon} />;
     }
-    return <Icon name="hiddenEye" />;
+    return <Icon name="hiddenEye" className={styles.passwordIcon} />;
   };
 
   return (
@@ -82,7 +82,7 @@ export default function PasswordResetPage() {
                       : null
                   }
                 >
-                  {passwordToggleActivated ? togglePasswordVisibility(showFirstPassword) : <Icon name="lock" />}
+                  {passwordToggleActivated ? togglePasswordVisibility(showFirstPassword) : <Icon name="lock" className={styles.passwordIcon} />}
                 </InputGroupText>
                 <Input
                   type={showFirstPassword ? 'text' : 'password'}
@@ -103,7 +103,7 @@ export default function PasswordResetPage() {
                       : null
                   }
                 >
-                  {passwordToggleActivated ? togglePasswordVisibility(showSecondPassword) : <Icon name="lock" />}
+                  {passwordToggleActivated ? togglePasswordVisibility(showSecondPassword) : <Icon name="lock" className={styles.passwordIcon} />}
                 </InputGroupText>
                 <Input
                   type={showSecondPassword ? 'text' : 'password'}
@@ -117,8 +117,8 @@ export default function PasswordResetPage() {
             </FormGroup>
             <div className={styles.formSubmit}>
               <Button
-                text="Login"
-                variant="buttonSecondary"
+                text="Cancel"
+                variant="buttonDanger"
                 action={() => navigate('/login')}
               />
               <Button

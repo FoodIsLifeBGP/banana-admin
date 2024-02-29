@@ -19,11 +19,11 @@
   position: relative;
 }
 
-.formcontainer {
+.formContainer {
   margin: 0 auto;
 }
 
-.inputrow {
+.inputRow {
   margin: 0.5rem 0;
 }
 
@@ -38,6 +38,15 @@
 
 .bananaIcon {
   width: 160px;
+}
+
+.inputIcon {
+  width: 20px;
+}
+
+.passwordIcon {
+  width: 20px;
+  cursor: pointer;
 }
 
 .formSubmit {

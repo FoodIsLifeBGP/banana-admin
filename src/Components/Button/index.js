@@ -6,7 +6,24 @@ import Icon from '../Icon';
 import iconMap from '../Icon/map';
 
 /**
- * Custom bootstrap button component with optional icon support.
+ * Custom Bootstrap Button Component
+ *
+ * Props:
+ * - `text` (string|object): The content to be displayed on the button. Required.
+ * - `style` (object): Custom style properties to apply to the button. Default is an empty object.
+ * - `action` (function): The function to call when the button is clicked. Required.
+ * - `variant` (string): Defines the button's appearance style. Options include:
+ *   - `buttonPrimary`: Primary button styling.
+ *   - `buttonSecondary`: Secondary button styling.
+ *   - `buttonDanger`: Danger or warning button styling.
+ *   - `buttonSuccess`: Success button styling.
+ *   - `buttonPlainText`: Plain text button styling without background.
+ *   - `buttonIcon`: Button styling specifically for buttons containing only an icon.
+ *   Default is `buttonSecondary`.
+ * - `buttonType` (string): The native HTML type attribute for the button (`button`, `submit`, etc.)
+ * - `iconName` (string): Name of the icon to display from the `iconMap`. This is optional.
+ *
+ * Additional props (`...rest`) are spread onto the underlying BootstrapButton component.
  */
 function Button({
   text, style, action, variant, buttonType = 'button', iconName, ...rest
