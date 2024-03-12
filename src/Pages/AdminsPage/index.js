@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import DataTable from '../../Components/DataTable';
 import Pagination from '../../Components/Pagination';
@@ -8,6 +7,7 @@ import Modal from '../../Components/Modal';
 import Search from '../../Components/Search';
 import Spinner from '../../Components/Spinner/Spinner';
 import Button from '../../Components/Button';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import { getAdminIndex, updateAdminStatus } from '../../Services/AdminsService';
 
@@ -26,6 +26,7 @@ function AdminsPage() {
   const [selectedAdmin, setSelectedAdmin] = useState(null);
 
   const navigate = useNavigate();
+  const { showToast } = useGlobalStateContext();
 
   const getAdmins = async () => {
     setLoading(true);
@@ -37,7 +38,7 @@ function AdminsPage() {
     } catch (error) {
       setItemsCount(0);
       setAdmins([]);
-      toast.error('Failed to fetch data');
+      showToast({ message: 'Failed to fetch data', variant: 'danger' });
     }
     setLoading(false);
   };
@@ -48,7 +49,7 @@ function AdminsPage() {
       await updateAdminStatus(admin.id, 'inactive');
       setLoading(false);
     } catch (error) {
-      toast.error('Failed to deactivate admin');
+      showToast({ message: 'Failed to deactivate admin', variant: 'danger' });
     }
   };
 
@@ -74,26 +75,22 @@ function AdminsPage() {
       key: 'account_status',
       label: 'Actions',
       content: (admin) => (
-        <div className="row space-between gap-3">
+        <div className="d-flex">
           <Button
             type="button"
             iconName="edit"
             className={`col btn btn-sm ${styles.editButton}`}
-            onClick={() => navigate(`/admins/${admin.id}`)}
-          >
-            Edit
-          </Button>
+            action={() => navigate(`/admins/${admin.id}`)}
+          />
           <Button
             type="button"
             iconName="trash"
-            className={`col btn btn-sm ${styles.deactivateButton}`}
-            onClick={() => {
+            className={`col btn btn-sm ${styles.deactivateButton} mx-1`}
+            action={() => {
               setSelectedAdmin(admin);
               setModalOpen(true);
             }}
-          >
-            Deactivate
-          </Button>
+          />
         </div>
       ),
     },

@@ -49,7 +49,7 @@ Button.propTypes = {
   text: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
-  ]).isRequired,
+  ]),
   style: PropTypes.object,
   action: PropTypes.func.isRequired,
   variant: PropTypes.oneOf([
@@ -67,6 +67,7 @@ Button.defaultProps = {
   style: {},
   variant: 'buttonSecondary',
   iconName: null,
+  text: '',
 };
 
 export default Button;

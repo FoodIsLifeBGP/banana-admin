@@ -12,7 +12,6 @@ import {
   Input,
 
 } from 'reactstrap';
-import { ToastContainer, toast } from 'react-toastify';
 import { initiatePasswordReset } from 'src/Services/AdminsService';
 import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
@@ -26,7 +25,7 @@ import { isValidEmail } from '../../util/utilities';
 import styles from './style.module.scss';
 
 export default function LoginPage() {
-  const { logIn } = useGlobalStateContext();
+  const { logIn, showToast } = useGlobalStateContext();
 
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -58,7 +57,7 @@ export default function LoginPage() {
       setLoading(true);
       const status = await logIn({ email, password });
 
-      // TODO: should probably be abstracted into a global "error parsing & toast" helper function
+      // TODO: should probably be abstracted into a global "error parsing & toast" helper function?
       switch (status) {
       case 202: {
         clearEmailAndPassword();
@@ -66,20 +65,20 @@ export default function LoginPage() {
         return;
       }
       case 401:
-        toast.warn('Incorrect email or password');
+        showToast({ message: 'Incorrect email or password.', variant: 'warning' });
         return;
       case 404:
-        toast.error('Server not found - please try again');
+        showToast({ message: 'Server not found - please try again.', variant: 'danger' });
         return;
       case 500:
-        toast.warn('Network error - please try again');
+        showToast({ message: 'Network error - please try again', variant: 'warning' });
         return;
       default:
-        toast.warn(`Server replied with ${status} status code`);
+        showToast({ message: `Server replied with ${status} status code`, variant: 'warning' });
       }
       setLoading(false);
     } catch (error) {
-      toast.error(error);
+      showToast({ message: error, variant: 'error' });
       setLoading(false);
     }
   };
@@ -101,7 +100,7 @@ export default function LoginPage() {
         setResponseMessage(error.message);
       }
     } else {
-      toast.error('Invalid email.');
+      showToast({ message: 'Invalid email.', variant: 'warning' });
     }
   };
 
@@ -136,7 +135,6 @@ export default function LoginPage() {
       <Spinner loading={loading} fullscreen />
       <div className={styles.borderspace} />
       <div className={styles.mainspace}>
-        <ToastContainer />
         <Container className="h-100 align-items-center d-flex justify-content-center">
           <Col sm={12} md={8}>
             <div className="d-flex mb-5">

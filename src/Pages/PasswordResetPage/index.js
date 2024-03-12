@@ -9,7 +9,7 @@ import {
   InputGroupText,
   Input,
 } from 'reactstrap';
-import { ToastContainer, toast } from 'react-toastify';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 import Button from '../../Components/Button';
 import { passwordReset } from '../../Services/AdminsService';
 
@@ -30,22 +30,23 @@ export default function PasswordResetPage() {
   const [showSecondPassword, setShowSecondPassword] = useState(false);
   const [passwordToggleActivated, setPasswordToggleActivated] = useState(false);
 
+  const { showToast } = useGlobalStateContext();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
 
     if (newPassword !== confirmPassword) {
-      toast.error("Passwords don't match.");
+      showToast({ message: "Passwords don't match.", variant: 'warning' });
       setLoading(false);
       return;
     }
 
     try {
       const response = await passwordReset(token, newPassword);
-      console.log(response);
       setLoading(true);
-      if (response.status === 200) {
-        toast.success('Password reset successful');
+      if (response.status >= 200 && response.status <= 299) {
+        showToast({ message: 'Password reset successful.', variant: 'success' });
         setLoading(false);
 
         setTimeout(() => {
@@ -53,7 +54,7 @@ export default function PasswordResetPage() {
         }, 1500);
       }
     } catch (error) {
-      toast.error('Password reset failed');
+      showToast({ message: 'Password reset failed.', variant: 'danger' });
       setLoading(false);
     }
   };
@@ -68,7 +69,6 @@ export default function PasswordResetPage() {
   return (
     <div className={styles.container}>
       <Spinner loading={loading} fullscreen />
-      <ToastContainer />
       <Container className="h-100 align-items-center d-flex justify-content-center">
         <Col sm={12} md={8}>
           <Form onSubmit={handleSubmit}>

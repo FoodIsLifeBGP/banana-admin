@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import {
   Container, Col, Form, InputGroup, InputGroupText, Input,
 } from 'reactstrap';
-import { ToastContainer, toast } from 'react-toastify';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import Button from '../Button';
 import Icon from '../Icon';
@@ -26,6 +26,7 @@ function NewAdminForm() {
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { showToast } = useGlobalStateContext();
 
   // const navigate = useNavigate();
 
@@ -49,10 +50,10 @@ function NewAdminForm() {
             password: '',
           });
         } else {
-          toast.error(`Admin data not found: ${id}`);
+          showToast({ message: `Admin data not found: ${id}`, variant: 'warning' });
         }
       } catch (error) {
-        toast.error(`Failed to get admin with Id ${id}`);
+        showToast({ message: `Failed to get admin with Id ${id}`, variant: 'danger' });
       } finally {
         setLoading(false);
       }
@@ -67,16 +68,16 @@ function NewAdminForm() {
     try {
       if (id) {
         await updateAdmin(id, formData);
-        toast.success('Admin updated successfully');
+        showToast({ message: 'Admin updated successfully', variant: 'success' });
         // navigate('/admins');
       } else {
         await createAdmin(formData);
-        toast.success('Admin created successfully');
+        showToast({ message: 'Admin updated successfully', variant: 'success' });
         // navigate('/admins');
       }
     } catch (error) {
       const errorMessage = error?.response?.data?.error || 'Operation failed';
-      toast.error(errorMessage);
+      showToast({ message: errorMessage, variant: 'danger' });
     } finally {
       setLoading(false);
     }
@@ -84,7 +85,6 @@ function NewAdminForm() {
 
   return (
     <div className={styles.container}>
-      <ToastContainer />
       <Spinner loading={loading} />
       <Container className="h-100 align-items-center d-flex justify-content-center">
         <Col sm={12}>

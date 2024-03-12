@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
 import React, {
   useState, createContext, useMemo, useContext,
+  useCallback,
 } from 'react';
+import { Toast, ToastHeader, ToastBody } from 'reactstrap';
 import ApiService from '../Services/ApiService';
 import initialState from '../util/environment';
 
@@ -11,6 +13,25 @@ export const GlobalStateContext = createContext({
   // eslint-disable-next-line no-unused-vars
   logIn: async ({ email, password }) => {},
   logOut: async () => {},
+  /**
+   * Custom Toast Notification Component
+   *
+   * Method:
+   * - `showToast({ message, variant, header })`: Displays a toast.
+   *   - `message` (string): The toast body content. Required.
+   *   - `variant` (string): The toast's background color theme. Options:
+   *     - `primary`: Indicates primary information or actions.
+   *     - `secondary`: For less important information.
+   *     - `success`: Indicates successful operations or feedback.
+   *     - `danger`: Indicates errors or dangerous actions.
+   *     - `warning`: For cautionary or warning messages.
+   *     - `info`: For general informational messages.
+   *     Default is `primary`.
+   *   - `header` (string): The toast header content. Default is 'Notification'.
+   *
+   * Use `showToast` within components wrapped in `GlobalStateProvider` to display notifications.
+   */
+  showToast: () => {},
 });
 
 export const useGlobalStateContext = () => {
@@ -26,6 +47,8 @@ export const useGlobalStateContext = () => {
 export function GlobalStateProvider({ children }) {
   const [jwt, setJwt] = useState(initialState.jwt);
   const [admin, setAdmin] = useState(initialState.user);
+  const [isToastVisible, setIsToastVisible] = useState(false);
+  const [toastProps, setToastProps] = useState({});
 
   const { axiosRequest } = ApiService();
 
@@ -67,64 +90,26 @@ export function GlobalStateProvider({ children }) {
     localStorage.removeItem('user');
   };
 
-  // /* TODO: tweak and/or implement these methods */
-  // const requestResetToken = async ({
-  //   onComplete, input, setIsSubmitting, setError,
-  // }) => {
-  //   const { userIdentity } = initialState;
-  //   const endpoint = `/password_resets/${userIdentity}`;
-  //   const email = { email: input };
-
-  //   try {
-  //     await axiosRequest('POST', endpoint, email);
-  //     setIsSubmitting(false);
-  //     onComplete();
-  //   } catch (e) {
-  //     setIsSubmitting(false);
-  //     setError(e.response ? e.response.data.message : "We're sorry, but there was an error. Please try again.");
-  //   }
-  // };
-
-  // const submitNewPassword = async ({
-  //   input, token, setIsSubmitting, onComplete, setError,
-  // }) => {
-  //   const { userIdentity } = initialState; // Adjust based on your initialState structure
-  //   const password = { password: input };
-  //   const endpoint = `/password_resets/${userIdentity}/${token}`;
-
-  //   try {
-  //     await axiosRequest('PATCH', endpoint, password);
-  //     setIsSubmitting(false);
-  //     onComplete();
-  //   } catch (e) {
-  //     setIsSubmitting(false);
-  //     setError(e.response ? e.response.data.message : "We're sorry, but there was an error. Please try again.");
-  //   }
-  // };
-
-  // const registerAdmin = async (newAdmin) => {
-  //   const { createUrl, USER_IDENTITY } = initialState;
-  //   let response;
-
-  //   try {
-  //     response = await axiosRequest('POST', createUrl, {
-  //       [USER_IDENTITY]: newAdmin,
-  //     });
-  //     storeJwtAndUser(response.data.jwt, response.data.admin);
-  //     return response.status;
-  //   } catch (error) {
-  //     logOut();
-  //   }
-
-  //   return response.status;
-  // };
+  const showToast = useCallback(({ message, variant = 'primary', header = 'Notification' }) => {
+    setToastProps({ message, variant, header });
+    setIsToastVisible(true);
+    setTimeout(() => setIsToastVisible(false), 3000);
+  }, []);
 
   const contextProps = useMemo(() => ({
-    jwt, admin, logIn, logOut,
+    jwt, admin, logIn, logOut, showToast,
   }), [jwt, admin]);
 
   return (
     <GlobalStateContext.Provider value={contextProps}>
+      <div className={`default-animation bg-${toastProps.variant} position-fixed top-0 end-0 m-2 rounded`} style={{ zIndex: 100 }}>
+        <Toast isOpen={isToastVisible}>
+          <ToastHeader toggle={() => setIsToastVisible(false)}>
+            {toastProps.header}
+          </ToastHeader>
+          <ToastBody>{toastProps.message}</ToastBody>
+        </Toast>
+      </div>
       {children}
     </GlobalStateContext.Provider>
   );

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import DataTable from '../../Components/DataTable';
 import Pagination from '../../Components/Pagination';
@@ -10,6 +9,7 @@ import Badge from '../../Components/Badge';
 import styles from './style.module.scss';
 import { GetClients } from '../../Services/ClientsService';
 import BreadCrumb from '../../Components/BreadCrumb';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import { formatDateToPST } from '../../util/utilities';
 
@@ -22,6 +22,8 @@ function ClientsPage() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const { showToast } = useGlobalStateContext();
+
   const getClients = async () => {
     setLoading(true);
     try {
@@ -32,7 +34,7 @@ function ClientsPage() {
     } catch (error) {
       setItemsCount(0);
       setClients([]);
-      toast.error('Failed to fetch data');
+      showToast({ message: 'Failed to fetch data', variant: 'danger' });
     }
     setLoading(false);
   };
