@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row } from 'reactstrap';
 
@@ -18,7 +18,6 @@ export default function ReviewApplicationPage(props) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const params = useParams();
-  const modalContentRef = useRef(null);
 
   const init = async () => {
     let result;
@@ -82,7 +81,6 @@ export default function ReviewApplicationPage(props) {
       <Modal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        modalContentRef={modalContentRef}
         title={applicationStatusChange ? 'Application Status Change' : 'Error Occurred'}
       >
         {applicationStatusChange ? (

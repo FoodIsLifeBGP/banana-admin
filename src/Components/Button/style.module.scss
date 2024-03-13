@@ -38,7 +38,11 @@ $buttonFontSize: 1.25rem;
 
   &.buttonDanger {
     background-color: var(--SUSPENDED_RED);
-    color: var(--NAVY_BLUE);
+    color: var(--WHITE);
+
+    &:hover {
+      background-color: var(--RED);
+    }
   }
 
   &.buttonSuccess {

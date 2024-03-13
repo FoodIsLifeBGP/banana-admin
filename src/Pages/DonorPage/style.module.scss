@@ -5,10 +5,16 @@
   width: 100%;
 }
 
+.breadCrumbTrail {
+  display: flex;
+  width: 100%;
+}
+
 .headerBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 
   h2 {
     color: var(--NAVY_BLUE);

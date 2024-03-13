@@ -1,16 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import DataTable from '../../Components/DataTable';
 import Pagination from '../../Components/Pagination';
 import Modal from '../../Components/Modal';
 import Search from '../../Components/Search';
-import Spinner from '../../Components/Spinner/Spinner';
 import Button from '../../Components/Button';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
-// The next line will be uncommented when the back end is ready:
-import { GetAdmins, UpdateAdminStatus } from '../../Services/AdminsService';
+import { getAdminIndex, updateAdminStatus } from '../../Services/AdminsService';
 
 import { formatDateToPST } from '../../util/utilities';
 import styles from './style.module.scss';
@@ -21,37 +19,37 @@ function AdminsPage() {
   const [sortColumn, setSortColumn] = useState({ sortBy: 'id', orderBy: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedAdmin, setSelectedAdmin] = useState(null);
 
-  const modalContentRef = useRef(null);
-
   const navigate = useNavigate();
+  const { showToast, showSpinner } = useGlobalStateContext();
 
   const getAdmins = async () => {
-    setLoading(true);
     try {
+      showSpinner(true);
       const { sortBy, orderBy } = sortColumn;
-      const response = await GetAdmins(currentPage, defaultPageSize, sortBy, orderBy);
+      const response = await getAdminIndex(currentPage, defaultPageSize, sortBy, orderBy);
       setItemsCount(response.pagy.count);
       setAdmins(response.data);
     } catch (error) {
       setItemsCount(0);
       setAdmins([]);
-      toast.error('Failed to fetch data');
+      showToast({ message: 'Failed to fetch data', variant: 'danger' });
+    } finally {
+      showSpinner(false);
     }
-    setLoading(false);
   };
 
   const deactivateAdmin = async (admin) => {
-    setLoading(true);
+    showSpinner(true);
     try {
-      await UpdateAdminStatus(admin.id, 'inactive');
-      setLoading(false);
+      await updateAdminStatus(admin.id, 'inactive');
     } catch (error) {
-      toast.error('Failed to deactivate admin');
+      showToast({ message: 'Failed to deactivate admin', variant: 'danger' });
+    } finally {
+      showSpinner(false);
     }
   };
 
@@ -77,26 +75,22 @@ function AdminsPage() {
       key: 'account_status',
       label: 'Actions',
       content: (admin) => (
-        <div className="row space-between gap-3">
+        <div className="d-flex">
           <Button
             type="button"
             iconName="edit"
             className={`col btn btn-sm ${styles.editButton}`}
-            onClick={() => navigate(`/admins/${admin.id}`)}
-          >
-            Edit
-          </Button>
+            action={() => navigate(`/admins/${admin.id}`)}
+          />
           <Button
             type="button"
             iconName="trash"
-            className={`col btn btn-sm ${styles.deactivateButton}`}
-            onClick={() => {
+            className={`col btn btn-sm ${styles.deactivateButton} mx-1`}
+            action={() => {
               setSelectedAdmin(admin);
               setModalOpen(true);
             }}
-          >
-            Deactivate
-          </Button>
+          />
         </div>
       ),
     },
@@ -124,16 +118,13 @@ function AdminsPage() {
     <>
       <div className={`${styles.adminsPage}`}>
         <div className="row mt-4 mb-4 d-flex">
-          <h1 className="col-8 text-start">All Admins</h1>
+          <h2 className={`${styles.header} col-8 text-start`}>All Admins</h2>
           <div className="col">
             <Search value={searchQuery} onChange={handleSearch} />
           </div>
         </div>
         <div className="row">
           <DataTable columns={columns} data={admins} sortColumn={sortColumn} onSort={handleSort} />
-
-          <Spinner loading={loading} />
-
           <Pagination
             itemsCount={itemsCount}
             pageSize={defaultPageSize}
@@ -145,7 +136,6 @@ function AdminsPage() {
       <Modal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        modalContentRef={modalContentRef}
         title="DEACTIVATE ADMIN?"
         buttonsConfig={[
           {

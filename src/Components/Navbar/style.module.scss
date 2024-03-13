@@ -62,9 +62,10 @@ a {
     display: block;
     width: 100%;
     padding: 5px;
+    text-decoration: none;
 
     &:hover {
-      background-color: var(--FADED_BLUE);
+      color: var(--FADED_NAVY_BLUE);
     }
   }
 
@@ -84,6 +85,10 @@ a {
 
 .dropdownToggle {
   text-align: start;
+
+  &::after {
+    color: var(--NAVY_BLUE);
+  }
 
   &:hover {
     opacity: 0.65;

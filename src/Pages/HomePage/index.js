@@ -3,8 +3,8 @@ import { Container, Col, Row } from 'reactstrap';
 
 import ApplicationCard from '../../Components/ApplicationCard';
 import DonationCard from '../../Components/DonationCard';
-
 import ApiService from '../../Services/ApiService';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 export default function HomePage() {
   const [newClients, setNewClients] = useState(0);
@@ -14,10 +14,13 @@ export default function HomePage() {
   const [claimedDonations, setClaimedDonations] = useState(0);
   const [activeDonations, setActiveDonations] = useState(0);
 
+  const { showSpinner, showToast } = useGlobalStateContext();
+
   async function getHomePageData() {
     const { axiosRequest } = ApiService();
 
     try {
+      showSpinner(true);
       const response = await axiosRequest('GET', 'admins/home');
 
       setNewClients(response.data.new_clients);
@@ -26,8 +29,10 @@ export default function HomePage() {
       setActiveDonations(response.data.total_active_donations);
       return response.data;
     } catch (error) {
-      const e = error.toString().toLowerCase().split(' status code ');
-      return e.length > 1 ? parseInt(e.slice(-1), 10) : 418;
+      showToast({ message: 'Failed to get user data.', variant: 'danger' });
+      return null;
+    } finally {
+      showSpinner(false);
     }
   }
 

@@ -4,6 +4,13 @@
   width: 100%;
 }
 
+.header {
+  color: var(--NAVY_BLUE);
+  font-weight: bold;
+  text-align: left;
+  text-transform: uppercase;
+}
+
 .editButton {
   background-color: var(--GREEN);
   border-radius: 0.5rem;

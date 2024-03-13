@@ -36,7 +36,7 @@ function Layout() {
       <AuthWrapper>
         <Navbar />
       </AuthWrapper>
-      <main className="container">
+      <main>
         <Routes>
           {protectedRoutes.map((route) => (
             <Route

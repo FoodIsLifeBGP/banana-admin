@@ -17,3 +17,8 @@ export const formatDateToPST = (dateString) => {
 export function isValidNumber(value) {
   return value !== null && value !== undefined && !Number.isNaN(value);
 }
+
+export function isValidEmail(email) {
+  const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+  return emailRegex.test(email);
+}

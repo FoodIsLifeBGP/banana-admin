@@ -3,13 +3,12 @@ import { useParams } from 'react-router-dom';
 import {
   Container, Col, Form, InputGroup, InputGroupText, Input,
 } from 'reactstrap';
-import { ToastContainer, toast } from 'react-toastify';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import Button from '../Button';
 import Icon from '../Icon';
-import Spinner from '../Spinner/Spinner';
 
-import { GetAdmin, CreateAdmin, UpdateAdmin } from '../../Services/AdminsService';
+import { getAdmin, createAdmin, updateAdmin } from '../../Services/AdminsService';
 
 import styles from './style.module.scss';
 
@@ -24,8 +23,8 @@ function NewAdminForm() {
 
   const { id } = useParams();
   const [formData, setFormData] = useState(initialFormData);
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { showToast, showSpinner } = useGlobalStateContext();
 
   // const navigate = useNavigate();
 
@@ -37,9 +36,9 @@ function NewAdminForm() {
   useEffect(() => {
     const getAdminById = async () => {
       if (!id) return;
-      setLoading(true);
+      showSpinner(true);
       try {
-        const response = await GetAdmin(id);
+        const response = await getAdmin(id);
         if (response && response.admin) {
           setFormData({
             ...initialFormData,
@@ -49,12 +48,12 @@ function NewAdminForm() {
             password: '',
           });
         } else {
-          toast.error(`Admin data not found: ${id}`);
+          showToast({ message: `Admin data not found: ${id}`, variant: 'warning' });
         }
       } catch (error) {
-        toast.error(`Failed to get admin with Id ${id}`);
+        showToast({ message: `Failed to get admin with Id ${id}`, variant: 'danger' });
       } finally {
-        setLoading(false);
+        showSpinner(false);
       }
     };
 
@@ -63,29 +62,27 @@ function NewAdminForm() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
+    showSpinner(true);
     try {
       if (id) {
-        await UpdateAdmin(id, formData);
-        toast.success('Admin updated successfully');
+        await updateAdmin(id, formData);
+        showToast({ message: 'Admin updated successfully', variant: 'success' });
         // navigate('/admins');
       } else {
-        await CreateAdmin(formData);
-        toast.success('Admin created successfully');
+        await createAdmin(formData);
+        showToast({ message: 'Admin updated successfully', variant: 'success' });
         // navigate('/admins');
       }
     } catch (error) {
       const errorMessage = error?.response?.data?.error || 'Operation failed';
-      toast.error(errorMessage);
+      showToast({ message: errorMessage, variant: 'danger' });
     } finally {
-      setLoading(false);
+      showSpinner(false);
     }
   };
 
   return (
     <div className={styles.container}>
-      <ToastContainer />
-      <Spinner loading={loading} />
       <Container className="h-100 align-items-center d-flex justify-content-center">
         <Col sm={12}>
           <h3>

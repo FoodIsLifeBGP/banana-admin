@@ -1,17 +1,22 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 import styles from './style.module.scss';
 
-function Modal(props) {
-  const {
-    modalOpen,
-    setModalOpen,
-    modalContentRef,
-    children,
-    title,
-    buttonsConfig,
-  } = props;
+function Modal({
+  modalOpen,
+  setModalOpen,
+  children,
+  title,
+  buttonsConfig,
+}) {
+  const handleOverlayClick = (e) => {
+    /* close modal when user clicks outside of modal content container */
+    if (e.target !== e.currentTarget) return;
+
+    setModalOpen(false);
+  };
 
   const defaultButtonConfig = [
     {
@@ -24,8 +29,8 @@ function Modal(props) {
   const finalButtonsConfig = buttonsConfig || defaultButtonConfig;
 
   return modalOpen ? (
-    <dialog className={styles.modal}>
-      <div className={styles.modalContent} ref={modalContentRef}>
+    <dialog onClick={handleOverlayClick} className={styles.modal}>
+      <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
           {title && <p className={styles.modalTitle}>{title}</p>}
         </div>
@@ -50,7 +55,6 @@ function Modal(props) {
 Modal.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   setModalOpen: PropTypes.func.isRequired,
-  modalContentRef: PropTypes.object.isRequired,
   children: PropTypes.node,
   title: PropTypes.string.isRequired,
   // eslint-disable-next-line react/require-default-props

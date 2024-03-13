@@ -30,7 +30,7 @@ function DataTable({
     return item[column.path];
   };
 
-  const createKey = (item, column) => `${item.id}${column.path || column.key}`;
+  const createKey = (item, column) => `${item.id}${column.path || column.key || column.sortBy}`;
 
   return (
     <Table striped responsive>
@@ -38,7 +38,7 @@ function DataTable({
         <tr>
           {columns.map((column) => (
             <th
-              key={column.path || column.key}
+              key={column.path || column.key || column.sortBy}
               onClick={() => handleSortClick(column.path)}
             >
               {column.label}

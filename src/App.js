@@ -5,14 +5,16 @@ import { GlobalStateProvider } from './contexts/GlobalStateContext';
 
 import Layout from './Components/Layout/index';
 import LoginPage from './Pages/LoginPage';
+import PasswordResetPage from './Pages/PasswordResetPage';
 
 function App() {
   return (
     <GlobalStateProvider>
       <Router>
         <Routes>
-          {/* Public route */}
+          {/* Public routes */}
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/password-reset" element={<PasswordResetPage />} />
 
           {/* Protected routes */}
           <Route path="/*" element={<Layout />} />

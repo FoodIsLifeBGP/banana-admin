@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import DataTable from '../../Components/DataTable';
 import Pagination from '../../Components/Pagination';
 import Search from '../../Components/Search';
-import Spinner from '../../Components/Spinner/Spinner';
 import Badge from '../../Components/Badge';
 import styles from './style.module.scss';
 import { GetClients } from '../../Services/ClientsService';
 import BreadCrumb from '../../Components/BreadCrumb';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import { formatDateToPST } from '../../util/utilities';
 
@@ -19,11 +18,12 @@ function ClientsPage() {
   const [sortColumn, setSortColumn] = useState({ sortBy: 'id', orderBy: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const { showToast, showSpinner } = useGlobalStateContext();
+
   const getClients = async () => {
-    setLoading(true);
+    showSpinner(true);
     try {
       const { sortBy, orderBy } = sortColumn;
       const response = await GetClients(currentPage, defaultPageSize, sortBy, orderBy);
@@ -32,9 +32,10 @@ function ClientsPage() {
     } catch (error) {
       setItemsCount(0);
       setClients([]);
-      toast.error('Failed to fetch data');
+      showToast({ message: 'Failed to fetch data', variant: 'danger' });
+    } finally {
+      showSpinner(false);
     }
-    setLoading(false);
   };
 
   const columns = [
@@ -91,7 +92,7 @@ function ClientsPage() {
 
   return (
     <>
-      <div className="container">
+      <div className="w-100">
         <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
         <div className="row mt-4 mb-4">
           <div className={styles.headerBar}>
@@ -113,9 +114,6 @@ function ClientsPage() {
           onSort={handleSort}
           sortColumn={sortColumn}
         />
-
-        <Spinner loading={loading} />
-
         <Pagination
           itemsCount={itemsCount}
           pageSize={defaultPageSize}
