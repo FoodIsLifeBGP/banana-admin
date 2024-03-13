@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import Badge from '../../Components/Badge';
 import BreadCrumb from '../../Components/BreadCrumb';
 import Search from '../../Components/Search';
-import Spinner from '../../Components/Spinner/Spinner';
 
 import { GetDonors } from '../../Services/DonorsService';
 import DataTable from '../../Components/DataTable';
 import Pagination from '../../Components/Pagination';
 
 import { formatDateToPST } from '../../util/utilities';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import styles from './style.module.scss';
 
@@ -20,11 +20,11 @@ function DonorPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
-  const [loading, setLoading] = useState(true);
+  const { showSpinner } = useGlobalStateContext();
 
   const getDonors = async () => {
-    setLoading(true);
     try {
+      showSpinner(true);
       const { sortBy, orderBy } = sortColumn;
       const response = await GetDonors(currentPage, defaultPageSize, sortBy, orderBy);
       setDonors(response.data);
@@ -32,8 +32,9 @@ function DonorPage() {
     } catch (error) {
       setItemsCount(0);
       setDonors([]);
+    } finally {
+      showSpinner(false);
     }
-    setLoading(false);
   };
 
   const columns = [
@@ -61,8 +62,8 @@ function DonorPage() {
     },
   ];
 
-  const handleSort = (sortcolumn) => {
-    setSortColumn(sortcolumn);
+  const handleSort = (column) => {
+    setSortColumn(column);
     setCurrentPage(1);
   };
 
@@ -87,8 +88,10 @@ function DonorPage() {
   ];
 
   return (
-    <div className="container">
-      <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
+    <>
+      <div className={styles.breadCrumbTrail}>
+        <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
+      </div>
       <div className={styles.headerBar}>
         <h2 className={styles.headerLeft}>NEW DONOR APPLICATIONS</h2>
         <Search
@@ -105,7 +108,6 @@ function DonorPage() {
           onSort={handleSort}
           className={styles.newDonorTable}
         />
-        <Spinner loading={loading} />
         <Pagination
           itemsCount={itemsCount}
           pageSize={defaultPageSize}
@@ -113,7 +115,7 @@ function DonorPage() {
           onPageChange={handlePageChange}
         />
       </div>
-    </div>
+    </>
   );
 }
 

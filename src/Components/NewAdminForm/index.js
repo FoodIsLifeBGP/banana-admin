@@ -7,7 +7,6 @@ import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import Button from '../Button';
 import Icon from '../Icon';
-import Spinner from '../Spinner/Spinner';
 
 import { getAdmin, createAdmin, updateAdmin } from '../../Services/AdminsService';
 
@@ -24,9 +23,8 @@ function NewAdminForm() {
 
   const { id } = useParams();
   const [formData, setFormData] = useState(initialFormData);
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { showToast } = useGlobalStateContext();
+  const { showToast, showSpinner } = useGlobalStateContext();
 
   // const navigate = useNavigate();
 
@@ -38,7 +36,7 @@ function NewAdminForm() {
   useEffect(() => {
     const getAdminById = async () => {
       if (!id) return;
-      setLoading(true);
+      showSpinner(true);
       try {
         const response = await getAdmin(id);
         if (response && response.admin) {
@@ -55,7 +53,7 @@ function NewAdminForm() {
       } catch (error) {
         showToast({ message: `Failed to get admin with Id ${id}`, variant: 'danger' });
       } finally {
-        setLoading(false);
+        showSpinner(false);
       }
     };
 
@@ -64,7 +62,7 @@ function NewAdminForm() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
+    showSpinner(true);
     try {
       if (id) {
         await updateAdmin(id, formData);
@@ -79,13 +77,12 @@ function NewAdminForm() {
       const errorMessage = error?.response?.data?.error || 'Operation failed';
       showToast({ message: errorMessage, variant: 'danger' });
     } finally {
-      setLoading(false);
+      showSpinner(false);
     }
   };
 
   return (
     <div className={styles.container}>
-      <Spinner loading={loading} />
       <Container className="h-100 align-items-center d-flex justify-content-center">
         <Col sm={12}>
           <h3>

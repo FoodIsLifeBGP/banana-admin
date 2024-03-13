@@ -1,18 +1,21 @@
 /* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
 import React, {
   useState, createContext, useMemo, useContext,
   useCallback,
 } from 'react';
 import { Toast, ToastHeader, ToastBody } from 'reactstrap';
+import Spinner from '../Components/Spinner/Spinner';
 import ApiService from '../Services/ApiService';
 import initialState from '../util/environment';
 
 export const GlobalStateContext = createContext({
   jwt: localStorage.getItem('jwt') || '',
   admin: localStorage.getItem('user') || {},
-  // eslint-disable-next-line no-unused-vars
   logIn: async ({ email, password }) => {},
   logOut: async () => {},
+  showSpinner: ({ isVisible }) => {},
+
   /**
    * Custom Toast Notification Component
    *
@@ -47,6 +50,7 @@ export const useGlobalStateContext = () => {
 export function GlobalStateProvider({ children }) {
   const [jwt, setJwt] = useState(initialState.jwt);
   const [admin, setAdmin] = useState(initialState.user);
+  const [isSpinnerVisible, setSpinnerVisible] = useState(false);
   const [isToastVisible, setIsToastVisible] = useState(false);
   const [toastProps, setToastProps] = useState({});
 
@@ -90,6 +94,8 @@ export function GlobalStateProvider({ children }) {
     localStorage.removeItem('user');
   };
 
+  const showSpinner = useCallback((isVisible) => setSpinnerVisible(isVisible), []);
+
   const showToast = useCallback(({ message, variant = 'primary', header = 'Notification' }) => {
     setToastProps({ message, variant, header });
     setIsToastVisible(true);
@@ -97,17 +103,23 @@ export function GlobalStateProvider({ children }) {
   }, []);
 
   const contextProps = useMemo(() => ({
-    jwt, admin, logIn, logOut, showToast,
+    jwt, admin, logIn, logOut, showToast, showSpinner,
   }), [jwt, admin]);
 
   return (
     <GlobalStateContext.Provider value={contextProps}>
-      <div className={`default-animation bg-${toastProps.variant} position-fixed top-0 end-0 m-2 rounded`} style={{ zIndex: 100 }}>
+      <Spinner loading={isSpinnerVisible} fullscreen />
+      <div
+        style={{ zIndex: 100 }}
+        className={`default-animation bg-${toastProps.variant} position-fixed top-0 end-0 m-2 rounded`}
+      >
         <Toast isOpen={isToastVisible}>
           <ToastHeader toggle={() => setIsToastVisible(false)}>
             {toastProps.header}
           </ToastHeader>
-          <ToastBody>{toastProps.message}</ToastBody>
+          <ToastBody>
+            {toastProps.message}
+          </ToastBody>
         </Toast>
       </div>
       {children}

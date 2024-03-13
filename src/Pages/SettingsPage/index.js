@@ -10,7 +10,6 @@ import Badge from '../../Components/Badge';
 import Button from '../../Components/Button';
 import fallbackPic from '../../Image/banana.png';
 import Modal from '../../Components/Modal';
-import Spinner from '../../Components/Spinner/Spinner';
 
 import ApiService from '../../Services/ApiService';
 
@@ -47,7 +46,7 @@ const formatAdminUpdateData = (admin) => ({
 });
 
 export default function SettingsPage() {
-  const { logOut, admin: savedUser } = useGlobalStateContext();
+  const { logOut, showSpinner, admin: savedUser } = useGlobalStateContext();
   const { axiosRequest, axiosFormRequest } = ApiService();
   const navigate = useNavigate();
 
@@ -57,14 +56,13 @@ export default function SettingsPage() {
   const [editingProfilePic, setEditingProfilePic] = useState(false);
   const [fileSelected, setFileSelected] = useState(false);
   const [selectedFileName, setSelectedFileName] = useState('');
-  const [loading, setLoading] = useState(false);
   const [responseError, setResponseError] = useState(undefined);
 
   useEffect(() => {
     const fetchAdmin = async () => {
       if (savedUser) {
         try {
-          setLoading(true);
+          showSpinner(true);
           const response = await axiosRequest('GET', `admins/${savedUser.id}`);
 
           if (response?.data?.admin) {
@@ -78,7 +76,7 @@ export default function SettingsPage() {
           setResponseError(`Error fetching admin: ${error.message}`);
           setModalOpen(true);
         }
-        setLoading(false);
+        showSpinner(false);
       }
     };
     fetchAdmin();
@@ -90,7 +88,7 @@ export default function SettingsPage() {
   };
 
   const handleFileChange = (e) => {
-    setLoading(false);
+    showSpinner(false);
     const file = e.target.files[0];
     if (file) {
       setFileSelected(true);
@@ -107,7 +105,7 @@ export default function SettingsPage() {
     formData.append('admin[avatar]', e.target[0].files[0]);
 
     try {
-      setLoading(true);
+      showSpinner(true);
       const response = await axiosFormRequest(
         'PATCH',
         `admins/${savedUser.id}/update`,
@@ -124,7 +122,7 @@ export default function SettingsPage() {
       setResponseError(`Error updating profile pic: ${error.message}`);
       setModalOpen(true);
     }
-    setLoading(false);
+    showSpinner(false);
   };
 
   const handleUserInfoFormSubmit = async (e) => {
@@ -137,7 +135,7 @@ export default function SettingsPage() {
     };
 
     try {
-      setLoading(true);
+      showSpinner(true);
       const response = await axiosFormRequest(
         'PATCH',
         `admins/${savedUser.id}/update`,
@@ -157,7 +155,7 @@ export default function SettingsPage() {
       setResponseError(`Error updating admin: ${error.message}`);
       setModalOpen(true);
     }
-    setLoading(false);
+    showSpinner(false);
     setModalOpen(false);
   };
 
@@ -214,7 +212,7 @@ export default function SettingsPage() {
                   />
                   <label
                     htmlFor="fileUpload"
-                    onClick={() => setLoading(true)}
+                    onClick={() => showSpinner(true)}
                     className={styles.fileUploadButton}
                   >
                     Select Photo
@@ -326,7 +324,6 @@ export default function SettingsPage() {
           </Form>
         )}
       </Modal>
-      <Spinner loading={loading} />
     </>
   );
 }

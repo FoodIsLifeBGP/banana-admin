@@ -18,19 +18,17 @@ import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 import Modal from '../../Components/Modal';
 import Button from '../../Components/Button';
 import Icon from '../../Components/Icon';
-import Spinner from '../../Components/Spinner/Spinner';
 import useMediaQuery from '../../util/useMediaQuery';
 import { isValidEmail } from '../../util/utilities';
 
 import styles from './style.module.scss';
 
 export default function LoginPage() {
-  const { logIn, showToast } = useGlobalStateContext();
+  const { logIn, showToast, showSpinner } = useGlobalStateContext();
 
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [passwordResetEmail, setPasswordResetEmail] = useState('');
@@ -54,7 +52,7 @@ export default function LoginPage() {
     event.preventDefault();
 
     try {
-      setLoading(true);
+      showSpinner(true);
       const status = await logIn({ email, password });
 
       // TODO: should probably be abstracted into a global "error parsing & toast" helper function?
@@ -76,10 +74,10 @@ export default function LoginPage() {
       default:
         showToast({ message: `Server replied with ${status} status code`, variant: 'warning' });
       }
-      setLoading(false);
+      showSpinner(false);
     } catch (error) {
       showToast({ message: error, variant: 'error' });
-      setLoading(false);
+      showSpinner(false);
     }
   };
 
@@ -132,7 +130,6 @@ export default function LoginPage() {
 
   return (
     <div className={styles.container}>
-      <Spinner loading={loading} fullscreen />
       <div className={styles.borderspace} />
       <div className={styles.mainspace}>
         <Container className="h-100 align-items-center d-flex justify-content-center">
