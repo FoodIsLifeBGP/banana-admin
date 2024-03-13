@@ -12,7 +12,7 @@ function App() {
     <GlobalStateProvider>
       <Router>
         <Routes>
-          {/* Public route */}
+          {/* Public routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/password-reset" element={<PasswordResetPage />} />
 
