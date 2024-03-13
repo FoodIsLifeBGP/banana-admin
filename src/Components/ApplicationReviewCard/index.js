@@ -8,7 +8,7 @@ function ApplicationReview(props) {
 
   return (
     <div className={styles.container}>
-      <h3>General Info</h3>
+      <h3 className={styles.title}>General Info</h3>
       <div className={styles.infoList}>
         {client && client.id && (
           <>

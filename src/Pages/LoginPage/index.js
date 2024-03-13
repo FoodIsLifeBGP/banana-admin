@@ -77,6 +77,7 @@ export default function LoginPage() {
       showSpinner(false);
     } catch (error) {
       showToast({ message: error, variant: 'error' });
+    } finally {
       showSpinner(false);
     }
   };

@@ -14,7 +14,7 @@ export default function HomePage() {
   const [claimedDonations, setClaimedDonations] = useState(0);
   const [activeDonations, setActiveDonations] = useState(0);
 
-  const { showSpinner } = useGlobalStateContext();
+  const { showSpinner, showToast } = useGlobalStateContext();
 
   async function getHomePageData() {
     const { axiosRequest } = ApiService();
@@ -29,8 +29,8 @@ export default function HomePage() {
       setActiveDonations(response.data.total_active_donations);
       return response.data;
     } catch (error) {
-      const e = error.toString().toLowerCase().split(' status code ');
-      return e.length > 1 ? parseInt(e.slice(-1), 10) : 418;
+      showToast({ message: 'Failed to get user data.', variant: 'danger' });
+      return null;
     } finally {
       showSpinner(false);
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Card, CardBody, Col, Container, Row,
+  Card, CardBody, Col, Row,
 } from 'reactstrap';
 import Pagination from '../../Components/Pagination';
 import Icon from '../../Components/Icon';
@@ -88,7 +88,7 @@ function NotificationPage() {
   ];
 
   return (
-    <Container>
+    <Col>
       <Row style={{ margin: '1rem' }}>
         <h1 className={styles.header}>Notifications</h1>
       </Row>
@@ -138,7 +138,7 @@ function NotificationPage() {
       ))}
       {/* TODO: add paginator logic */}
       <Pagination />
-    </Container>
+    </Col>
   );
 }
 

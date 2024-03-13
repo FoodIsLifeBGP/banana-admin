@@ -92,7 +92,7 @@ function ClientsPage() {
 
   return (
     <>
-      <div>
+      <div className="w-100">
         <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
         <div className="row mt-4 mb-4">
           <div className={styles.headerBar}>
