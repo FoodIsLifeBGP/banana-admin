@@ -13,7 +13,8 @@ import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 import { formatDateToPST } from '../../util/utilities';
 
 function ClientsPage() {
-  const defaultPageSize = 8;
+  const count = 1000;
+  const pageSize = 12;
   const [clients, setClients] = useState([]);
   const [sortColumn, setSortColumn] = useState({ sortBy: 'id', orderBy: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,7 +27,8 @@ function ClientsPage() {
     showSpinner(true);
     try {
       const { sortBy, orderBy } = sortColumn;
-      const response = await GetClients(currentPage, defaultPageSize, sortBy, orderBy);
+      const response = await GetClients(currentPage, count, sortBy, orderBy);
+      console.log(response);
       setItemsCount(response.pagy.count);
       setClients(response.data);
     } catch (error) {
@@ -81,7 +83,9 @@ function ClientsPage() {
 
   useEffect(() => {
     getClients();
-  }, [currentPage, sortColumn, searchQuery]);
+  }, []);
+
+  useEffect(() => {}, [currentPage, sortColumn, searchQuery]);
 
   /* TODO: remove and base this off URL sortBy */
   const newDonorPageBCT = [
@@ -102,21 +106,24 @@ function ClientsPage() {
             <Search
               value={searchQuery}
               onChange={handleSearch}
-              searchButton={{ action: () => alert('TODO: get all clients and donors'), text: 'All' }}
+              searchButton={{
+                action: () => alert('TODO: get all clients and donors'),
+                text: 'All',
+              }}
             />
           </div>
         </div>
       </div>
       <div className="row">
         <DataTable
-          data={clients}
+          data={clients.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
           columns={columns}
           onSort={handleSort}
           sortColumn={sortColumn}
         />
         <Pagination
           itemsCount={itemsCount}
-          pageSize={defaultPageSize}
+          pageSize={pageSize}
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />
