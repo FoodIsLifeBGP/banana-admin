@@ -100,7 +100,7 @@ function DonorPage() {
           searchButton={{ action: () => alert('TODO: get all clients and donors'), text: 'All' }}
         />
       </div>
-      <div className="row">
+      <div className="row w-100">
         <DataTable
           columns={columns}
           data={donors}

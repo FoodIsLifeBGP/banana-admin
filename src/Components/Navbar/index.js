@@ -57,7 +57,7 @@ function Navbar() {
             </DropdownToggle>
             <DropdownMenu end className={styles.mobileDropdownTasks}>
               <DropdownItem className={styles.dropDownItem}>
-                <RouterNavLink to="/all" className={styles.dropdownLink}>All</RouterNavLink>
+                <RouterNavLink to="/admins" className={styles.dropdownLink}>Admins</RouterNavLink>
               </DropdownItem>
               <DropdownItem className={styles.dropDownItem}>
                 <RouterNavLink to="/clients" className={styles.dropdownLink}>Clients</RouterNavLink>

@@ -114,7 +114,7 @@ function ClientsPage() {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="row w-100">
         <DataTable
           data={clients.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
           columns={columns}
