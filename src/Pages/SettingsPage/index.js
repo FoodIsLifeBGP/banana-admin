@@ -4,7 +4,6 @@ import {
   Form, FormGroup, Label, Input, Container,
 } from 'reactstrap';
 
-import { useGlobalStateContext } from 'src/contexts/GlobalStateContext';
 
 import Badge from '../../Components/Badge';
 import Button from '../../Components/Button';
@@ -12,9 +11,10 @@ import fallbackPic from '../../Image/banana.png';
 import Modal from '../../Components/Modal';
 
 import ApiService from '../../Services/ApiService';
+import initialState from '../../util/environment';
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import styles from './style.module.scss';
-import initialState from '../../util/environment';
 
 const formatDate = (date) => {
   const dateObj = new Date(date);
@@ -106,11 +106,7 @@ export default function SettingsPage() {
 
     try {
       showSpinner(true);
-      const response = await axiosFormRequest(
-        'PATCH',
-        `admins/${savedUser.id}/update`,
-        formData,
-      );
+      const response = await axiosFormRequest('PATCH', `admins/${savedUser.id}/update`, formData);
       if (response?.data?.admin) {
         setAdminData(formatAdminData(response.data.admin));
         setEditingProfilePic(false);
@@ -136,13 +132,9 @@ export default function SettingsPage() {
 
     try {
       showSpinner(true);
-      const response = await axiosFormRequest(
-        'PATCH',
-        `admins/${savedUser.id}/update`,
-        {
-          [initialState.USER_IDENTITY]: adminUpdateParams,
-        },
-      );
+      const response = await axiosFormRequest('PATCH', `admins/${savedUser.id}/update`, {
+        [initialState.USER_IDENTITY]: adminUpdateParams,
+      });
 
       if (response?.data?.admin) {
         setAdminData(formatAdminData(response.data.admin));
@@ -193,23 +185,14 @@ export default function SettingsPage() {
                 alt="profile pic"
                 className={styles.profilePic}
                 src={
-                  admin.avatarUrl
-                    ? `${initialState.API_BASE_URL}${admin.avatarUrl}`
-                    : fallbackPic
+                  admin.avatarUrl ? `${initialState.API_BASE_URL}${admin.avatarUrl}` : fallbackPic
                 }
               />
             </div>
-            <form
-              className={styles.profilePicForm}
-              onSubmit={handleProfilePicFormSubmit}
-            >
+            <form className={styles.profilePicForm} onSubmit={handleProfilePicFormSubmit}>
               {editingProfilePic && (
                 <>
-                  <input
-                    type="file"
-                    id="fileUpload"
-                    onChange={handleFileChange}
-                  />
+                  <input type="file" id="fileUpload" onChange={handleFileChange} />
                   <label
                     htmlFor="fileUpload"
                     onClick={() => showSpinner(true)}
@@ -222,9 +205,7 @@ export default function SettingsPage() {
                       <button className={styles.profilePicButton} type="submit">
                         Save
                       </button>
-                      <p className={styles.selectedFileName}>
-                        {selectedFileName}
-                      </p>
+                      <p className={styles.selectedFileName}>{selectedFileName}</p>
                     </div>
                   )}
                 </>
@@ -241,22 +222,15 @@ export default function SettingsPage() {
             </form>
             <div className={styles.infoContainer}>
               <p className={styles.infoItem}>
-                Member Since:
-                {' '}
-                {admin.createdAt ? formatDate(admin.createdAt) : 'N/A'}
+                Member Since: {admin.createdAt ? formatDate(admin.createdAt) : 'N/A'}
               </p>
               <p className={styles.infoItem}>
-                Member Authorization:
-                {' '}
-                <Badge
-                  status={admin.accountStatus}
-                  text={admin.role ? admin.role : ''}
-                />
+                Member Authorization:{' '}
+                <Badge status={admin.accountStatus} text={'admin.role' ? admin.role : ''} />
               </p>
               <hr />
               <div className={styles.emailContainer}>
-                <span>Email Address:</span>
-                {' '}
+                <span>Email Address:</span>{' '}
                 <span className="adminInfo">{admin.email || 'N/A'}</span>
               </div>
               <div className={styles.passwordContainer}>
@@ -265,16 +239,8 @@ export default function SettingsPage() {
               </div>
             </div>
             <div className={styles.buttonContainer}>
-              <Button
-                text="Update"
-                style={{ width: '20%' }}
-                action={() => setModalOpen(true)}
-              />
-              <Button
-                text="Logout"
-                style={{ width: '20%' }}
-                action={handleLogout}
-              />
+              <Button text="Update" style={{ width: '20%' }} action={() => setModalOpen(true)} />
+              <Button text="Logout" style={{ width: '20%' }} action={handleLogout} />
             </div>
           </div>
         </Container>
@@ -288,10 +254,7 @@ export default function SettingsPage() {
         {responseError ? (
           <p>{responseError}</p>
         ) : (
-          <Form
-            onSubmit={handleUserInfoFormSubmit}
-            className={styles.userInfoForm}
-          >
+          <Form onSubmit={handleUserInfoFormSubmit} className={styles.userInfoForm}>
             <FormGroup floating>
               <Input
                 id="firstName"

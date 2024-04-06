@@ -1,38 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import DataTable from '../../Components/DataTable';
-import Pagination from '../../Components/Pagination';
-import Search from '../../Components/Search';
 import Badge from '../../Components/Badge';
-import styles from './style.module.scss';
-import { GetClients } from '../../Services/ClientsService';
 import BreadCrumb from '../../Components/BreadCrumb';
-import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
+import DataTable from '../../Components/DataTable';
+import { GetClients } from '../../Services/ClientsService';
 
+import styles from './style.module.scss';
+
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 import { formatDateToPST } from '../../util/utilities';
 
 function ClientsPage() {
   const count = 1000;
-  const pageSize = 12;
   const [clients, setClients] = useState([]);
-  const [sortColumn, setSortColumn] = useState({ sortBy: 'id', orderBy: 'asc' });
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsCount, setItemsCount] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
 
   const { showToast, showSpinner } = useGlobalStateContext();
 
   const getClients = async () => {
     showSpinner(true);
     try {
-      const { sortBy, orderBy } = sortColumn;
-      const response = await GetClients(currentPage, count, sortBy, orderBy);
-      console.log(response);
-      setItemsCount(response.pagy.count);
+      const response = await GetClients(1, count, 'id', 'asc');
       setClients(response.data);
     } catch (error) {
-      setItemsCount(0);
       setClients([]);
       showToast({ message: 'Failed to fetch data', variant: 'danger' });
     } finally {
@@ -67,31 +57,14 @@ function ClientsPage() {
     },
   ];
 
-  const handleSort = (sortBy) => {
-    setSortColumn(sortBy);
-    setCurrentPage(1);
-  };
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    setCurrentPage(1);
-  };
-
   useEffect(() => {
     getClients();
   }, []);
 
-  useEffect(() => {}, [currentPage, sortColumn, searchQuery]);
-
-  /* TODO: remove and base this off URL sortBy */
   const newDonorPageBCT = [
-    { pageName: 'Home', url: 'localhost:3000' },
-    { pageName: 'Client', url: 'localhost:3000' },
-    { pageName: 'All', url: 'localhost:3000' },
+    { pageName: 'Admins', url: '/admins' },
+    { pageName: 'Client', url: '/clients' },
+    { pageName: 'Donors', url: '/donors' },
   ];
 
   return (
@@ -103,29 +76,17 @@ function ClientsPage() {
             <div className="col-6">
               <h2>NEW CLIENT APPLICATIONS</h2>
             </div>
-            <Search
-              value={searchQuery}
-              onChange={handleSearch}
-              searchButton={{
-                action: () => alert('TODO: get all clients and donors'),
-                text: 'All',
-              }}
-            />
           </div>
         </div>
       </div>
       <div className="row w-100">
         <DataTable
-          data={clients.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
+          data={clients}
           columns={columns}
-          onSort={handleSort}
-          sortColumn={sortColumn}
-        />
-        <Pagination
-          itemsCount={itemsCount}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
+          initialState={{
+            sorting: { id: 'first_name', desc: false },
+            pagination: { pageIndex: 0, pageSize: 12 },
+          }}
         />
       </div>
     </>

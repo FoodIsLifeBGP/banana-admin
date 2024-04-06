@@ -2,36 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Badge from '../../Components/Badge';
 import BreadCrumb from '../../Components/BreadCrumb';
-import Search from '../../Components/Search';
 
 import { GetDonors } from '../../Services/DonorsService';
 import DataTable from '../../Components/DataTable';
-import Pagination from '../../Components/Pagination';
 
-import { formatDateToPST } from '../../util/utilities';
 import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
+import { formatDateToPST } from '../../util/utilities';
 
 import styles from './style.module.scss';
 
 function DonorPage() {
-  const defaultPageSize = 8;
+  const count = 1000;
   const [donors, setDonors] = useState([]);
-  const [sortColumn, setSortColumn] = useState({ sortBy: 'id', orderBy: 'asc' });
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsCount, setItemsCount] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
-  const { showSpinner } = useGlobalStateContext();
+
+  const { showToast, showSpinner } = useGlobalStateContext();
 
   const getDonors = async () => {
+    showSpinner(true);
     try {
-      showSpinner(true);
-      const { sortBy, orderBy } = sortColumn;
-      const response = await GetDonors(currentPage, defaultPageSize, sortBy, orderBy);
+      const response = await GetDonors(1, count, 'id', 'asc');
       setDonors(response.data);
-      setItemsCount(response.pagy.count);
     } catch (error) {
-      setItemsCount(0);
       setDonors([]);
+      showToast({ message: 'Failed to fetch data', variant: 'danger' });
     } finally {
       showSpinner(false);
     }
@@ -41,50 +34,37 @@ function DonorPage() {
     {
       sortBy: 'first_name',
       label: 'Name',
-      content: (d) => <Link to={`/donors/${d.id}`}>{`${d.first_name} ${d.last_name}`}</Link>,
+      content: (donor) => (
+        <Link to={`/donors/${donor.id}`}>{`${donor.first_name} ${donor.last_name}`}</Link>
+      ),
     },
     {
       sortBy: 'email',
       label: 'Email',
-      content: (d) => d.email,
+      content: (donor) => donor.email,
     },
     { sortBy: 'organization_name', label: 'Organization' },
     {
       sortBy: 'created_at',
       label: 'Created At',
-      content: (d) => <span>{`${formatDateToPST(d.created_at)} PST`}</span>,
+      content: (donor) => <span>{`${formatDateToPST(donor.created_at)} PST`}</span>,
     },
     {
       sortBy: 'account_status',
       key: 'account_status',
       label: 'Status',
-      content: (d) => <Badge status={d.account_status} />,
+      content: (donor) => <Badge status={donor.account_status} />,
     },
   ];
 
-  const handleSort = (column) => {
-    setSortColumn(column);
-    setCurrentPage(1);
-  };
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    setCurrentPage(1);
-  };
-
   useEffect(() => {
     getDonors();
-  }, [currentPage, sortColumn, searchQuery]);
+  }, []);
 
-  /* TODO: remove and base this off URL sortBy */
   const newDonorPageBCT = [
-    { pageName: 'Home', url: 'localhost:3000' },
-    { pageName: 'Donor', url: 'localhost:3000' },
-    { pageName: 'All', url: 'localhost:3000' },
+    { pageName: 'Admins', url: '/admins' },
+    { pageName: 'Client', url: '/clients' },
+    { pageName: 'Donors', url: '/donors' },
   ];
 
   return (
@@ -94,25 +74,16 @@ function DonorPage() {
       </div>
       <div className={styles.headerBar}>
         <h2 className={styles.headerLeft}>NEW DONOR APPLICATIONS</h2>
-        <Search
-          value={searchQuery}
-          onChange={handleSearch}
-          searchButton={{ action: () => alert('TODO: get all clients and donors'), text: 'All' }}
-        />
       </div>
       <div className="row w-100">
         <DataTable
-          columns={columns}
           data={donors}
-          sortColumn={sortColumn}
-          onSort={handleSort}
+          columns={columns}
           className={styles.newDonorTable}
-        />
-        <Pagination
-          itemsCount={itemsCount}
-          pageSize={defaultPageSize}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
+          initialState={{
+            sorting: { id: 'first_name', desc: false },
+            pagination: { pageIndex: 0, pageSize: 12 },
+          }}
         />
       </div>
     </>
