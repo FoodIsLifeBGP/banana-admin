@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Col, Row } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import ApplicationCard from '../../Components/ApplicationCard';
 import DonationCard from '../../Components/DonationCard';
 import ApiService from '../../Services/ApiService';
+
 import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
+
+import styles from './style.module.scss';
 
 export default function HomePage() {
   const [newClients, setNewClients] = useState(0);
@@ -45,8 +49,12 @@ export default function HomePage() {
       <Row>
         <Col lg="6">
           <h3>New Applications</h3>
-          <ApplicationCard type="client" userCount={newClients} />
-          <ApplicationCard type="donor" userCount={newDonors} />
+          <Link to="/clients" className={styles.cardLink}>
+            <ApplicationCard type="client" userCount={newClients} />
+          </Link>
+          <Link to="/donors" className={styles.cardLink}>
+            <ApplicationCard type="donor" userCount={newDonors} />
+          </Link>
         </Col>
         <Col lg="6">
           <h3>Donation Status</h3>
