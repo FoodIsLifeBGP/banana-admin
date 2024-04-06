@@ -12,7 +12,7 @@ import {
   Input,
 
 } from 'reactstrap';
-import { initiatePasswordReset } from 'src/Services/AdminsService';
+import { initiatePasswordReset } from '../../Services/AdminsService';
 import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 
 import Modal from '../../Components/Modal';
@@ -92,7 +92,6 @@ export default function LoginPage() {
     if (isValidEmail(passwordResetEmail)) {
       try {
         const { message, status } = await initiatePasswordReset(passwordResetEmail);
-        console.log('status', status);
         setResponseMessage(message);
       } catch (error) {
         console.error(error);
