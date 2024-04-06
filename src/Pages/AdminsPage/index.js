@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import BreadCrumb from '../../Components/BreadCrumb';
 import DataTable from '../../Components/DataTable';
-import Pagination from '../../Components/Pagination';
 import Modal from '../../Components/Modal';
-import Search from '../../Components/Search';
 import Button from '../../Components/Button';
+
 import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
-
 import { getAdminIndex, updateAdminStatus } from '../../Services/AdminsService';
-
 import { formatDateToPST } from '../../util/utilities';
+
 import styles from './style.module.scss';
 
 function AdminsPage() {
-  const defaultPageSize = 8;
+  const count = 1000;
   const [admins, setAdmins] = useState([]);
-  const [sortColumn, setSortColumn] = useState({ sortBy: 'id', orderBy: 'asc' });
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsCount, setItemsCount] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedAdmin, setSelectedAdmin] = useState(null);
 
@@ -27,14 +22,11 @@ function AdminsPage() {
   const { showToast, showSpinner } = useGlobalStateContext();
 
   const getAdmins = async () => {
+    showSpinner(true);
     try {
-      showSpinner(true);
-      const { sortBy, orderBy } = sortColumn;
-      const response = await getAdminIndex(currentPage, defaultPageSize, sortBy, orderBy);
-      setItemsCount(response.pagy.count);
+      const response = await getAdminIndex(1, count, 'id', 'asc');
       setAdmins(response.data);
     } catch (error) {
-      setItemsCount(0);
       setAdmins([]);
       showToast({ message: 'Failed to fetch data', variant: 'danger' });
     } finally {
@@ -55,21 +47,32 @@ function AdminsPage() {
 
   const columns = [
     {
-      sortBy: 'name',
+      sortBy: 'first_name',
       label: 'Name',
       content: (admin) => (
         <Link to={`/admins/${admin.id}`}>{`${admin.first_name} ${admin.last_name}`}</Link>
       ),
     },
     {
+      sortBy: 'email',
       key: 'email',
       label: 'Email',
-      content: (client) => client.email,
+      content: (admin) => admin.email,
     },
     {
       sortBy: 'created_at',
       label: 'Created At',
       content: (admin) => <span>{`${formatDateToPST(admin.created_at)} PST`}</span>,
+    },
+    {
+      sortBy: 'status',
+      label: 'Status',
+      content: (admin) => admin.account_status,
+    },
+    {
+      sortBy: 'user_type',
+      label: 'User Type',
+      content: (admin) => (admin.user_type === 'admin' ? 'Admin' : 'Super Admin'),
     },
     {
       key: 'account_status',
@@ -96,40 +99,35 @@ function AdminsPage() {
     },
   ];
 
-  const handleSort = (sortBy) => {
-    setSortColumn(sortBy);
-    setCurrentPage(1);
-  };
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    setCurrentPage(1);
-  };
-
   useEffect(() => {
     getAdmins();
-  }, [currentPage, sortColumn, searchQuery]);
+  }, []);
+
+  const newDonorPageBCT = [
+    { pageName: 'Admins', url: '/admins' },
+    { pageName: 'Client', url: '/clients' },
+    { pageName: 'Donors', url: '/donors' },
+  ];
 
   return (
     <>
       <div className={`${styles.adminsPage}`}>
+        <div className={styles.breadCrumbTrail}>
+          <BreadCrumb breadCrumbTrail={newDonorPageBCT} />
+        </div>
         <div className="row mt-4 mb-4 d-flex">
           <h2 className={`${styles.header} col-8 text-start`}>All Admins</h2>
-          <div className="col">
-            <Search value={searchQuery} onChange={handleSearch} />
-          </div>
         </div>
         <div className="row">
-          <DataTable columns={columns} data={admins} sortColumn={sortColumn} onSort={handleSort} />
-          <Pagination
-            itemsCount={itemsCount}
-            pageSize={defaultPageSize}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
+          <DataTable
+            data={admins}
+            columns={columns}
+            initialState={{
+              sorting: { id: 'first_name', desc: false },
+              pagination: { pageIndex: 0, pageSize: 12 },
+            }}
+            buttonText={'Add Admin'}
+            buttonRoute={'/admins/create'}
           />
         </div>
       </div>
