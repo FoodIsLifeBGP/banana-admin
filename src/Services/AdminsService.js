@@ -1,4 +1,4 @@
-import initialState from 'src/util/environment';
+import initialState from '../util/environment';
 import ApiService from './ApiService';
 
 const { axiosRequest } = ApiService();
@@ -16,25 +16,28 @@ const getAdmin = async (id) => {
   return response.data;
 };
 
-const createAdmin = async (firstName, lastName, email, password) => {
+const createAdmin = async (formData) => {
   const response = await axiosRequest('POST', '/admins/create', {
     admin: {
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      password,
+      first_name: formData.first_name,
+      last_name: formData.last_name,
+      email: formData.email,
+      password: formData.password,
+      account_type: formData.account_type,
     },
   });
   return response.data;
 };
 
-const updateAdmin = async (id, firstName, lastName, email, password) => {
+const updateAdmin = async (id, formData) => {
   const response = await axiosRequest('PATCH', `/admins/${id}/update`, {
     admin: {
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      password,
+      id,
+      first_name: formData.first_name,
+      last_name: formData.last_name,
+      email: formData.email,
+      password: formData.password,
+      user_type: formData.user_type,
     },
   });
   return response.data;
