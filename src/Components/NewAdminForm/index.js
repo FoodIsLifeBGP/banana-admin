@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import {
-  Container, Col, Form, InputGroup, InputGroupText, Input,
-} from 'reactstrap';
-import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Container, Col, Form, InputGroup, InputGroupText, Input } from 'reactstrap';
 
 import Button from '../Button';
 import Icon from '../Icon';
 
+import { useGlobalStateContext } from '../../contexts/GlobalStateContext';
 import { getAdmin, createAdmin, updateAdmin } from '../../Services/AdminsService';
 
 import styles from './style.module.scss';
 
 function NewAdminForm() {
   const initialFormData = {
-    id: undefined,
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
+    user_type: '',
   };
 
   const { id } = useParams();
@@ -26,7 +24,7 @@ function NewAdminForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { showToast, showSpinner } = useGlobalStateContext();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   function handleOnChange(e) {
     const { name, value } = e.target;
@@ -42,10 +40,11 @@ function NewAdminForm() {
         if (response && response.admin) {
           setFormData({
             ...initialFormData,
-            firstName: response.admin.first_name,
-            lastName: response.admin.last_name,
+            first_name: response.admin.first_name,
+            last_name: response.admin.last_name,
             email: response.admin.email,
             password: '',
+            user_type: response.admin.user_type,
           });
         } else {
           showToast({ message: `Admin data not found: ${id}`, variant: 'warning' });
@@ -67,11 +66,11 @@ function NewAdminForm() {
       if (id) {
         await updateAdmin(id, formData);
         showToast({ message: 'Admin updated successfully', variant: 'success' });
-        // navigate('/admins');
+        navigate('/admins');
       } else {
         await createAdmin(formData);
         showToast({ message: 'Admin updated successfully', variant: 'success' });
-        // navigate('/admins');
+        navigate('/admins');
       }
     } catch (error) {
       const errorMessage = error?.response?.data?.error || 'Operation failed';
@@ -85,28 +84,24 @@ function NewAdminForm() {
     <div className={styles.container}>
       <Container className="h-100 align-items-center d-flex justify-content-center">
         <Col sm={12}>
-          <h3>
-            {id ? 'Modify ' : 'Add New '}
-            {' '}
-            Admin
-          </h3>
+          <h3>{id ? 'Modify ' : 'Add New '} Admin</h3>
           <Form onSubmit={onSubmit}>
             <InputGroup className={styles.inputrow}>
               <Input
-                id="firstName"
-                name="firstName"
+                id="first_name"
+                name="first_name"
                 placeholder="First name"
-                value={formData.firstName}
+                value={formData.first_name}
                 onChange={(e) => handleOnChange(e)}
               />
             </InputGroup>
 
             <InputGroup className={styles.inputrow}>
               <Input
-                id="lastName"
-                name="lastName"
+                id="last_name"
+                name="last_name"
                 placeholder="Last name"
-                value={formData.lastName}
+                value={formData.last_name}
                 onChange={(e) => handleOnChange(e)}
               />
             </InputGroup>
@@ -136,17 +131,26 @@ function NewAdminForm() {
               </InputGroupText>
             </InputGroup>
 
+            <InputGroup className={styles.inputrow}>
+              <Input
+                id="user_type"
+                name="user_type"
+                type="select"
+                placeholder="User Type"
+                value={formData.user_type}
+                onChange={handleOnChange}
+              >
+                <option value="" disabled>
+                  Select user type
+                </option>
+                <option value="admin">Admin</option>
+                <option value="super_admin">Super Admin</option>
+              </Input>
+            </InputGroup>
+
             <div className={styles.formSubmit}>
-              <Button
-                text="Back"
-                variant="buttonSecondary"
-                action={() => alert('implement me!')} /* TODO: implement */
-              />
-              <Button
-                text="Confirm"
-                variant="buttonPrimary"
-                action={onSubmit}
-              />
+              <Button text="Back" variant="buttonSecondary" action={() => navigate('/admins')} />
+              <Button text="Confirm" variant="buttonPrimary" action={onSubmit} />
             </div>
           </Form>
         </Col>
